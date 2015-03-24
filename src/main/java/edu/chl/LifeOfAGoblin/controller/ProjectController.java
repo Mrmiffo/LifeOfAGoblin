@@ -1,7 +1,7 @@
-package edu.chl.change2projectname.controller;
+package edu.chl.LifeOfAGoblin.controller;
 
-import edu.chl.change2projectname.model.Project;
-import edu.chl.change2projectname.view.ProjectView;
+import edu.chl.LifeOfAGoblin.model.Project;
+import edu.chl.LifeOfAGoblin.view.ProjectView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

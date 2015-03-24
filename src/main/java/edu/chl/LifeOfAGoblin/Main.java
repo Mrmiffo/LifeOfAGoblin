@@ -1,8 +1,8 @@
-package edu.chl.change2projectname;
+package edu.chl.LifeOfAGoblin;
 
-import edu.chl.change2projectname.controller.ProjectController;
-import edu.chl.change2projectname.model.Project;
-import edu.chl.change2projectname.view.ProjectView;
+import edu.chl.LifeOfAGoblin.controller.ProjectController;
+import edu.chl.LifeOfAGoblin.model.Project;
+import edu.chl.LifeOfAGoblin.view.ProjectView;
 import javax.swing.SwingUtilities;
 
 /*
@@ -14,12 +14,12 @@ public final class Main {
 	}
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> {
+//		SwingUtilities.invokeLater(() -> {
                     final Project project = new Project();
                     final ProjectView projectView = new ProjectView(project);
                     
                     ProjectController.create(project, projectView);
                     projectView.setVisible(true);
-                });
+//                });
 	}
 }

@@ -1,6 +1,6 @@
 package edu.chl.change2projectname.model;
 
-import edu.chl.change2projectname.model.Project;
+import edu.chl.LifeOfAGoblin.model.Project;
 import org.junit.Assert;
 import org.junit.Test;
 
