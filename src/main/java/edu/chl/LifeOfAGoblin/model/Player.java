@@ -13,8 +13,8 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
  */
 public class Player extends AbstractCharacter {
     
-    public Player(String model){
-        super(model);
+    public Player(){
+        super("Goblin");
         
     }
             

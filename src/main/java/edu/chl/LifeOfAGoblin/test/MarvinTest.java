@@ -13,7 +13,7 @@ import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.view.LifeOfAGoblin;
 
 /**
- *
+ * This class is for testing purposes only. It will recreate parts of the application in order to test new functionality.
  * @author Anton
  */
 public class MarvinTest extends SimpleApplication{
@@ -33,7 +33,7 @@ public class MarvinTest extends SimpleApplication{
         
 //      Player creation test
         System.out.println("Starting player creation test...");
-        Player testPlayer = new Player("Goblin");
+        Player testPlayer = new Player();
         Node node = testPlayer.getNode();
         if (node == null){
             System.out.println("No node loaded");
