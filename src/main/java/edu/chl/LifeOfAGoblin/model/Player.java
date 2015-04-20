@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 
 /**
@@ -12,4 +13,9 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
  */
 public class Player extends AbstractCharacter {
     
+    public Player(String model){
+        super(model);
+        
+    }
+            
 }
