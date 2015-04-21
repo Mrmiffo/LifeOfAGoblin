@@ -11,6 +11,11 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
  * @author Anton
  */
 public class Checkpoint extends AbstractInanimateObject {
-
+    
+    public Checkpoint(){
+        super("Checkpoint");
+        object.setUserData("objectType", "Checkpoint");
+    }
+    
     
 }

@@ -7,17 +7,18 @@ package edu.chl.LifeOfAGoblin.controller;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.control.AbstractControl;
+import edu.chl.LifeOfAGoblin.controller.abstractClass.AbstractGetControl;
 
 /**
  *
  * @author Anton
  */
-public class PlayerMoveControl extends AbstractControl{
-
-    public PlayerMoveControl(){
+public class PlayerGetControl extends AbstractGetControl {
+    
+    public PlayerGetControl(){
         
     }
+
     
     /** This method is called when the control is added to the spatial,
     * and when the control is removed from the spatial (setting a null value).
@@ -35,8 +36,15 @@ public class PlayerMoveControl extends AbstractControl{
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
-        /* Optional: rendering manipulation (for advanced users) */
         
+    }
+    
+    public int getHealth(){
+        return spatial.getUserData("health");
+    }
+    
+    public int getMaxHealth(){
+        return spatial.getUserData("maxHealth");
     }
     
 }

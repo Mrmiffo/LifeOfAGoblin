@@ -5,6 +5,8 @@
 package edu.chl.LifeOfAGoblin.model;
 
 
+import edu.chl.LifeOfAGoblin.controller.PlayerAttackControl;
+import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 
 /**
@@ -13,8 +15,11 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
  */
 public class Player extends AbstractCharacter {
     
-    public Player(){
-        super("Goblin");
+    public Player(int health, int maxHealth){
+        super("Goblin", health, maxHealth);
+        character.setUserData("objectType", "Player");
+        character.addControl(new PlayerMoveControl());
+        character.addControl(new PlayerAttackControl());
         
     }
             

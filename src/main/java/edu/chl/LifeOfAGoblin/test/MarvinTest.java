@@ -6,11 +6,9 @@ package edu.chl.LifeOfAGoblin.test;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.FileLocator;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.utils.Resources;
-import edu.chl.LifeOfAGoblin.view.LifeOfAGoblin;
 
 /**
  * This class is for testing purposes only. It will recreate parts of the application in order to test new functionality.
@@ -33,7 +31,7 @@ public class MarvinTest extends SimpleApplication{
         
 //      Player creation test
         System.out.println("Starting player creation test...");
-        Player testPlayer = new Player();
+        Player testPlayer = new Player(100, 100);
         Node node = testPlayer.getNode();
         if (node == null){
             System.out.println("No node loaded");
