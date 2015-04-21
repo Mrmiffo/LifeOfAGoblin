@@ -24,6 +24,7 @@ public class PlayerMoveControl extends AbstractControl{
     * It can be used for both initialization and cleanup. */    
     @Override
     public void setSpatial(Spatial spatial) {
+        //Each spatial has an objectType (in the AbstractGetControl), here we could check if the spatial is a valid type.
         super.setSpatial(spatial);
     }
     
