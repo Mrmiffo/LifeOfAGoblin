@@ -31,12 +31,12 @@ public class PlayerGetControl extends AbstractGetControl {
     
     @Override
     protected void controlUpdate(float f) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
     public int getHealth(){

@@ -30,13 +30,13 @@ public class PlayerMoveControl extends AbstractControl{
     
     @Override
     protected void controlUpdate(float f) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
         /* Optional: rendering manipulation (for advanced users) */
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }
