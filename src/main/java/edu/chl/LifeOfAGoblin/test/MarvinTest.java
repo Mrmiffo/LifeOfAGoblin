@@ -45,21 +45,18 @@ public class MarvinTest extends SimpleApplication{
     
     private void loadModels() {
         System.out.println("Loading models...");
-        ClassLoader classLoader = getClass().getClassLoader();
         assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\models", FileLocator.class);
         Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin.j3o"));
     }
 
     private void loadScenes() {
         System.out.println("Loading scenes...");
-        ClassLoader classLoader = getClass().getClassLoader();
         assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\scenes", FileLocator.class);
         
     }
 
     private void loadSounds() {
         System.out.println("Loading sounds...");
-        ClassLoader classLoader = getClass().getClassLoader();
         assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\sounds", FileLocator.class);
         
     }
