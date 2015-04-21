@@ -9,5 +9,7 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
  * @author Anton
  */
 public abstract class AbstractMovableObject extends AbstractInanimateObject {
-    
+    protected AbstractMovableObject(String modelName) {
+        super(modelName);
+    }
 }

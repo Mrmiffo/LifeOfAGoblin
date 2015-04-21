@@ -4,12 +4,18 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
+import com.jme3.scene.Node;
+import edu.chl.LifeOfAGoblin.utils.Resources;
+
 
 /**
  *
  * @author Anton
  */
 public abstract class AbstractInanimateObject {
-//Not sure if this class should contain a spatial or extend spatial... Need to investigate
-   
+    protected Node object;
+    
+   protected AbstractInanimateObject(String modelName) {
+       object = (Node) Resources.getInstance().getResources(modelName);
+   }
 }
