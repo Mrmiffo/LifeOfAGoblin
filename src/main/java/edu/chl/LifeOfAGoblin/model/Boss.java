@@ -13,5 +13,6 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 public class Boss extends AbstractHostileNPC {
     public Boss(String model){
         super(model);
+        character.setUserData("objectType", "Boss");
     }
 }

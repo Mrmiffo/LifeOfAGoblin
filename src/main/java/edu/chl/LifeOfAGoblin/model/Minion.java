@@ -13,5 +13,6 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 public class Minion extends AbstractHostileNPC {
     public Minion(String model){
         super(model);
+        character.setUserData("objectType", "Minion");
     }
 }

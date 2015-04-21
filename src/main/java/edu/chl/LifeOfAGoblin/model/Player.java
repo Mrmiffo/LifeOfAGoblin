@@ -15,6 +15,7 @@ public class Player extends AbstractCharacter {
     
     public Player(){
         super("Goblin");
+        character.setUserData("objectType", "Player");
         
     }
             
