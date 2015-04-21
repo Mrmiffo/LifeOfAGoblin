@@ -11,5 +11,7 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
  * @author Anton
  */
 public class Boss extends AbstractHostileNPC {
-    
+    public Boss(String model){
+        super(model);
+    }
 }

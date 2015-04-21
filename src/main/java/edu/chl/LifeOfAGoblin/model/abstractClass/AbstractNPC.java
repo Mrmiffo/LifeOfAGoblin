@@ -9,5 +9,7 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
  * @author Anton
  */
 public class AbstractNPC extends AbstractCharacter {
-    
+    public AbstractNPC(String model){
+        super(model);
+    }
 }

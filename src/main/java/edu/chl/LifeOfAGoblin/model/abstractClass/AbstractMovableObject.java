@@ -4,12 +4,10 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
-import edu.chl.LifeOfAGoblin.model.InanimateObject;
-
 /**
  *
  * @author Anton
  */
-public abstract class AbstractMovableObject extends InanimateObject {
+public abstract class AbstractMovableObject extends AbstractInanimateObject {
     
 }
