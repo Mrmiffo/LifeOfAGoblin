@@ -16,6 +16,9 @@ import edu.chl.LifeOfAGoblin.utils.Resources;
  */
 public class MarvinTest extends SimpleApplication{
     //Test character player hierarchy
+    
+    private boolean isLinux;
+    
     public static void main(String[] args){
         MarvinTest app = new MarvinTest();
         app.start();
@@ -24,7 +27,10 @@ public class MarvinTest extends SimpleApplication{
     @Override
     public void simpleInitApp() {
         
-        System.out.println("Loading resources...");
+        System.out.println("Loading resources...");       
+        if (System.getProperty("os.name").equals("Linux")) {
+            isLinux = true;
+        }        
         loadModels();
         loadScenes();
         loadSounds();
@@ -44,21 +50,33 @@ public class MarvinTest extends SimpleApplication{
     
     
     private void loadModels() {
+
         System.out.println("Loading models...");
-        assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\models", FileLocator.class);
-        Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin.j3o"));
+        if (isLinux) {
+            assetManager.registerLocator("src/main/java/edu/chl/LifeOfAGoblin/assets/models", FileLocator.class);
+            Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin.j3o"));
+        } else {
+            assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\models", FileLocator.class);
+            Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin.j3o"));
+        }
     }
 
     private void loadScenes() {
         System.out.println("Loading scenes...");
-        assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\scenes", FileLocator.class);
-        
+        if (isLinux) {
+            assetManager.registerLocator("src/main/java/edu/chl/LifeOfAGoblin/assets/scenes", FileLocator.class);
+        } else {
+            assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\scenes", FileLocator.class);
+        }
     }
 
     private void loadSounds() {
         System.out.println("Loading sounds...");
-        assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\sounds", FileLocator.class);
-        
+        if (isLinux) {
+            assetManager.registerLocator("src/main/java/edu/chl/LifeOfAGoblin/assets/sounds", FileLocator.class);
+        } else {
+            assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\sounds", FileLocator.class);
+        }
     }
     
 }
