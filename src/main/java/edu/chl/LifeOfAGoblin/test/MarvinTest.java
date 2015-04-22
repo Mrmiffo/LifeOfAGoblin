@@ -6,7 +6,10 @@ package edu.chl.LifeOfAGoblin.test;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.FileLocator;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.scene.Node;
+import edu.chl.LifeOfAGoblin.controller.PlayerListener;
+import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 
@@ -29,9 +32,16 @@ public class MarvinTest extends SimpleApplication{
         loadScenes();
         loadSounds();
         
+                
+        PlayerListener playerListener = new PlayerListener();
+        inputManager.addMapping("walkRight", new KeyTrigger(keyInput.KEY_D));
+        inputManager.addMapping("walkLeft", new KeyTrigger(keyInput.KEY_A));
+        inputManager.addMapping("jump", new KeyTrigger(keyInput.KEY_W), new KeyTrigger(keyInput.KEY_SPACE));
+        inputManager.addListener(playerListener, "walkRight", "walkLeft", "jump");
+        
 //      Player creation test
         System.out.println("Starting player creation test...");
-        Player testPlayer = new Player(100, 100);
+        Player testPlayer = new Player(100, 100, playerListener);
         Node node = testPlayer.getNode();
         if (node == null){
             System.out.println("No node loaded");
@@ -40,6 +50,9 @@ public class MarvinTest extends SimpleApplication{
         }
         rootNode.attachChild(node);
         System.out.println("Player creation test finished");
+
+//        Level currLevel = new Level("Level1", playerListener);
+//        rootNode.attachChild(currLevel);
     }
     
     

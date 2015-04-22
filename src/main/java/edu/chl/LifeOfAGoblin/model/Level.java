@@ -5,6 +5,7 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import com.jme3.scene.Spatial;
+import edu.chl.LifeOfAGoblin.controller.PlayerListener;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 
 /**
@@ -13,7 +14,8 @@ import edu.chl.LifeOfAGoblin.utils.Resources;
  */
 public class Level {
     Spatial scene;
-    public Level(String levelName){
+    public Level(String levelName, PlayerListener pl){
         scene = Resources.getInstance().getResources(levelName);
+//        Player player = new Player();
     }
 }
