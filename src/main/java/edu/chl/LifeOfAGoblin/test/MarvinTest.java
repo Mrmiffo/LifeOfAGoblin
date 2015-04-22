@@ -14,6 +14,7 @@ import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.controller.PlayerListener;
@@ -89,8 +90,6 @@ public class MarvinTest extends SimpleApplication{
         rootNode.addLight(al);
         rootNode.attachChild(player);
         rootNode.attachChild(scene);
-        
-
 
 //        Level currLevel = new Level("Level1", playerListener);
 //        rootNode.attachChild(currLevel);
@@ -116,6 +115,7 @@ public class MarvinTest extends SimpleApplication{
         } else {
             assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\scenes", FileLocator.class);
         }
+        Resources.getInstance().addResource("TestScene", assetManager.loadModel("testScene.j3o"));
     }
 
     private void loadSounds() {
