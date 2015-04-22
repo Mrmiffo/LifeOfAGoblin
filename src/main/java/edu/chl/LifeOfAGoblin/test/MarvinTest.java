@@ -7,7 +7,12 @@ package edu.chl.LifeOfAGoblin.test;
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.light.AmbientLight;
+import com.jme3.light.DirectionalLight;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.controller.PlayerListener;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.model.Player;
@@ -26,7 +31,6 @@ public class MarvinTest extends SimpleApplication{
 
     @Override
     public void simpleInitApp() {
-        
         System.out.println("Loading resources...");
         loadModels();
         loadScenes();
@@ -50,6 +54,16 @@ public class MarvinTest extends SimpleApplication{
         }
         rootNode.attachChild(node);
         System.out.println("Player creation test finished");
+        
+        AmbientLight al = new AmbientLight();
+        al.setColor(ColorRGBA.White.mult(1.3f));
+        rootNode.addLight(al);
+        
+        
+        
+        Spatial scene =  Resources.getInstance().getResources("TestScene");
+
+        rootNode.attachChild(scene);
 
 //        Level currLevel = new Level("Level1", playerListener);
 //        rootNode.attachChild(currLevel);
@@ -59,12 +73,13 @@ public class MarvinTest extends SimpleApplication{
     private void loadModels() {
         System.out.println("Loading models...");
         assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\models", FileLocator.class);
-        Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin.j3o"));
+        Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin2.j3o"));
     }
 
     private void loadScenes() {
         System.out.println("Loading scenes...");
         assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\scenes", FileLocator.class);
+        Resources.getInstance().addResource("TestScene", assetManager.loadModel("testScene.j3o"));
         
     }
 

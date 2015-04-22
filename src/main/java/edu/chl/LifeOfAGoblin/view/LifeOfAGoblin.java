@@ -36,6 +36,7 @@ public class LifeOfAGoblin extends SimpleApplication {
     private void loadScenes() {
         assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\scenes", FileLocator.class);
         
+        
     }
 
     private void loadSounds() {
