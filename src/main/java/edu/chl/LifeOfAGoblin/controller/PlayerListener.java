@@ -62,15 +62,17 @@ public class PlayerListener extends AbstractControl implements ActionListener{
     }
     
     private void faceLeft() {
-        Quaternion turnLeft = new Quaternion();
+        spatial.getControl(CharacterControl.class).setViewDirection(new Vector3f(-1, 0, 0));
+        /*Quaternion turnLeft = new Quaternion();
         turnLeft.fromAngleAxis(-FastMath.PI/2, new Vector3f(0, 1, 0));
-        spatial.setLocalRotation(turnLeft);
+        spatial.setLocalRotation(turnLeft);*/
     }
     
     private void faceRight() {
-        Quaternion turnRight = new Quaternion();
+        spatial.getControl(CharacterControl.class).setViewDirection(new Vector3f(1, 0, 0));
+        /*Quaternion turnRight = new Quaternion();
         turnRight.fromAngleAxis(FastMath.PI/2, new Vector3f(0, 1, 0));
-        spatial.setLocalRotation(turnRight);
+        spatial.setLocalRotation(turnRight);*/
     }
     
     private  void faceFront() {
