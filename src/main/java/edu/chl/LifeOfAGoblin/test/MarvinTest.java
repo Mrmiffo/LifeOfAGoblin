@@ -46,7 +46,7 @@ public class MarvinTest extends SimpleApplication{
         //System setup
         if (System.getProperty("os.name").equals("Linux")) {
             isLinux = true;
-        }   
+        } 
         
         //Camera
 //        this.flyCam.setEnabled(false);

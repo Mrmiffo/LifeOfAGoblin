@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.view.state;
+package edu.chl.LifeOfAGoblin.state;
 
 import com.jme3.app.Application;
 import com.jme3.app.state.AppState;
@@ -13,7 +13,7 @@ import com.jme3.renderer.RenderManager;
  *
  * @author Anton
  */
-public class MainMenuAppState implements AppState {
+public class PauseAppState implements AppState {
 
     @Override
     public void initialize(AppStateManager asm, Application aplctn) {
