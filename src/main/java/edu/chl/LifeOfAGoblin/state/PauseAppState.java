@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.view.state;
+package edu.chl.LifeOfAGoblin.state;
 
 import com.jme3.app.Application;
 import com.jme3.app.state.AppState;
