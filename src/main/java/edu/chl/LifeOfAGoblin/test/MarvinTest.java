@@ -5,6 +5,7 @@
 package edu.chl.LifeOfAGoblin.test;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.asset.TextureKey;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -13,10 +14,15 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
+import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.Box;
+import com.jme3.texture.Texture;
 import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.utils.Resources;
@@ -37,14 +43,15 @@ public class MarvinTest extends SimpleApplication{
 
     @Override
     public void simpleInitApp() {
-        
-        
+        //System setup
         if (System.getProperty("os.name").equals("Linux")) {
             isLinux = true;
-        }        
-        this.flyCam.setEnabled(false);
-        BulletAppState bulletAppState = new BulletAppState();
-        stateManager.attach(bulletAppState);
+        }   
+        
+        //Camera
+//        this.flyCam.setEnabled(false);
+        
+
         
         System.out.println("Loading resources...");
         loadModels();
@@ -83,9 +90,33 @@ public class MarvinTest extends SimpleApplication{
         al.setColor(ColorRGBA.White.mult(3f));
 
         System.out.println("Adding physics...");
+        BulletAppState bulletAppState = new BulletAppState();
+        stateManager.attach(bulletAppState);
         bulletAppState.getPhysicsSpace().add(landscape);
         bulletAppState.getPhysicsSpace().add(player.getControl(CharacterControl.class));
         
+        //Character physics test:
+        
+        Material stone_mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+//        TextureKey key2 = new TextureKey("Textures/Terrain/Rock/Rock.PNG");
+//        key2.setGenerateMips(true);
+//        Texture tex2 = assetManager.loadTexture(key2);
+//        stone_mat.setTexture("ColorMap", tex2);
+        Box box = new Box(1f,1f,1f);
+        Geometry brick_geo = new Geometry("brick", box);
+        brick_geo.setMaterial(stone_mat);
+
+        /** Position the brick geometry  */
+        brick_geo.setLocalTranslation(new Vector3f(0f, 10f, 0));
+        /** Make brick physical with a mass > 0.0f. */
+        RigidBodyControl brick_phy = new RigidBodyControl(2f);
+        /** Add physical brick to physics space. */
+        brick_geo.addControl(brick_phy);
+        
+        bulletAppState.getPhysicsSpace().add(brick_phy);
+        rootNode.attachChild(brick_geo);
+                
+                
         System.out.println("Attaching to rootNode..");
         rootNode.addLight(al);
         rootNode.attachChild(player);
