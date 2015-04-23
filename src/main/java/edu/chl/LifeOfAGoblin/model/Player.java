@@ -18,15 +18,19 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
  * @author Anton
  */
 public class Player extends AbstractCharacter {
+    private float collisionShapeHeight = 1f;
+    private float collisionShapeWidth = 0.5f;
     
     public Player(int health, int maxHealth, PlayerMoveControl pl){
         super("Goblin", health, maxHealth);
-        character.setUserData("objectType", "Player");
-        CapsuleCollisionShape shape = new CapsuleCollisionShape(1f, 1f, 1);
+        //Setting upp collision shape and character control:
+        CapsuleCollisionShape shape = new CapsuleCollisionShape(collisionShapeWidth, collisionShapeHeight, 1);
         CharacterControl mover = new CharacterControl(shape, 0.05f);
-        mover.setJumpSpeed(10);
-        mover.setFallSpeed(30);
-        mover.setGravity(30);
+        //Setting object data:
+        character.setUserData("objectType", "Player");
+        mover.setJumpSpeed(12);
+        character.getChild(0).setLocalTranslation(new Vector3f(0,-collisionShapeHeight,0));
+        //Attaching controls:
         character.addControl(mover);
         character.addControl(new PlayerAttackControl());
         character.addControl(pl);

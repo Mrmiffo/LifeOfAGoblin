@@ -12,9 +12,9 @@ import edu.chl.LifeOfAGoblin.utils.Resources;
  * @author Anton
  */
 public abstract class AbstractCharacter {
-    protected Node character;
+    protected Node character = new Node();
     protected AbstractCharacter(String model, int health, int maxHealth) {
-        character = (Node) Resources.getInstance().getResources(model);
+        character.attachChild(Resources.getInstance().getResources(model));
         character.setUserData("health", health);
         character.setUserData("maxHealth", maxHealth);
     }
