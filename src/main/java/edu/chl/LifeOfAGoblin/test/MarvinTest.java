@@ -17,7 +17,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.controller.PlayerListener;
+import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 
@@ -54,7 +54,7 @@ public class MarvinTest extends SimpleApplication{
         
         //Setup keys
         System.out.println("Setting up keys...");
-        PlayerListener playerListener = new PlayerListener();
+        PlayerMoveControl playerListener = new PlayerMoveControl();
         initKeys(playerListener);
         
 //      Player creation test
@@ -127,7 +127,7 @@ public class MarvinTest extends SimpleApplication{
         }
     }
 
-    private void initKeys(PlayerListener playerListener) {
+    private void initKeys(PlayerMoveControl playerListener) {
         inputManager.addMapping("walkRight", new KeyTrigger(keyInput.KEY_D));
         inputManager.addMapping("walkLeft", new KeyTrigger(keyInput.KEY_A));
         inputManager.addMapping("jump", new KeyTrigger(keyInput.KEY_W), new KeyTrigger(keyInput.KEY_SPACE));

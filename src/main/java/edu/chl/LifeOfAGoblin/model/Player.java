@@ -10,7 +10,7 @@ import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
 import edu.chl.LifeOfAGoblin.controller.PlayerAttackControl;
-import edu.chl.LifeOfAGoblin.controller.PlayerListener;
+import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 
 /**
@@ -19,7 +19,7 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
  */
 public class Player extends AbstractCharacter {
     
-    public Player(int health, int maxHealth, PlayerListener pl){
+    public Player(int health, int maxHealth, PlayerMoveControl pl){
         super("Goblin", health, maxHealth);
         character.setUserData("objectType", "Player");
         CapsuleCollisionShape shape = new CapsuleCollisionShape(1f, 1f, 1);
