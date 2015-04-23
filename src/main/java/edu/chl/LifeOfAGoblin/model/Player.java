@@ -8,6 +8,7 @@ package edu.chl.LifeOfAGoblin.model;
 
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
+import com.jme3.math.Vector3f;
 import edu.chl.LifeOfAGoblin.controller.PlayerAttackControl;
 import edu.chl.LifeOfAGoblin.controller.PlayerListener;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
@@ -28,7 +29,7 @@ public class Player extends AbstractCharacter {
         mover.setGravity(30);
         character.addControl(mover);
         character.addControl(new PlayerAttackControl());
-        character.addControl(pl); 
+        character.addControl(pl);
     }
             
 }
