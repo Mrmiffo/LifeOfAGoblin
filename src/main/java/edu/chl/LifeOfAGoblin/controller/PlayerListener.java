@@ -20,35 +20,48 @@ import com.jme3.scene.control.AbstractControl;
 public class PlayerListener extends AbstractControl implements ActionListener{
     
     //private CharacterControl playerControl = spatial.getControl(CharacterControl.class);
-     
+
+    private String  currentDirection;
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (name.equals("walkLeft")){
-            if (isPressed) {
-                faceLeft();
-                spatial.getControl(CharacterControl.class).setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
-            }
-            
-            if (!isPressed) {
-                haltPlayer();
-            }
-        } 
-        
-        if (name.equals("walkRight")){
-            if (isPressed) {
+        if (isPressed){
+            if (name.equals("walkRight")){
                 faceRight();
                 spatial.getControl(CharacterControl.class).setWalkDirection(new Vector3f(0.1f, 0f, 0f));
-            }
-            
-            if (!isPressed) {
-                haltPlayer();
-            }
+                currentDirection = name;
+            } else if (name.equals("walkLeft")){
+                faceLeft();
+                spatial.getControl(CharacterControl.class).setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
+                currentDirection  = name;
+            } else if (name.equals("jump")){
+                spatial.getControl(CharacterControl.class).jump();
+            } 
+        } else if (name.equals(currentDirection)){
+            haltPlayer();  
         }
         
-        if (name.equals("jump") && isPressed){
-            //TODO implement double jump
-            spatial.getControl(CharacterControl.class).jump();
-        }
+//        if (name.equals("walkLeft")){
+//            if (isPressed) {
+//                faceLeft();
+//                spatial.getControl(CharacterControl.class).setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
+//            } else if (!isPressed) {
+//                haltPlayer();
+//            }
+//        }
+//        
+//        if (name.equals("walkRight")){
+//            if (isPressed) {
+//                faceRight();
+//                spatial.getControl(CharacterControl.class).setWalkDirection(new Vector3f(0.1f, 0f, 0f));
+//            } else if (!isPressed) {
+//                haltPlayer();
+//            }
+//        }
+        
+//        if (name.equals("jump") && isPressed){
+//            //TODO implement double jump
+//            spatial.getControl(CharacterControl.class).jump();
+//        }
     }
 
     @Override
