@@ -24,9 +24,9 @@ public class Player extends AbstractCharacter {
         character.setUserData("objectType", "Player");
         CapsuleCollisionShape shape = new CapsuleCollisionShape(1f, 1f, 1);
         CharacterControl mover = new CharacterControl(shape, 0.05f);
-        mover.setJumpSpeed(10);
-        mover.setFallSpeed(30);
-        mover.setGravity(30);
+        mover.setJumpSpeed(12);
+//        mover.setFallSpeed(30);
+//        mover.setGravity(30);
         character.addControl(mover);
         character.addControl(new PlayerAttackControl());
         character.addControl(pl);

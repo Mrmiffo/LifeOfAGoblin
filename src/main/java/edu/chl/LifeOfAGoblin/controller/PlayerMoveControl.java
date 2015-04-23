@@ -32,7 +32,7 @@ public class PlayerMoveControl extends AbstractControl implements ActionListener
                     currentDirection  = name;
                     break; 
                 case "jump":
-                    spatial.getControl(CharacterControl.class).jump();
+                    playerControl.jump();
                     break;
             }
         } else if (name.equals(currentDirection)){
@@ -42,7 +42,7 @@ public class PlayerMoveControl extends AbstractControl implements ActionListener
 
     @Override
     protected void controlUpdate(float tpf) {
-
+        
     }
 
     @Override
