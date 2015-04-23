@@ -1,9 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.controller;
 
+import com.jme3.bullet.control.CharacterControl;
+import com.jme3.input.controls.ActionListener;
+import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
@@ -13,30 +12,70 @@ import com.jme3.scene.control.AbstractControl;
  *
  * @author Anton
  */
-public class PlayerMoveControl extends AbstractControl{
+public class PlayerMoveControl extends AbstractControl implements ActionListener{
+    
+    private CharacterControl playerControl;
 
-    public PlayerMoveControl(){
-        
-    }
-    
-    /** This method is called when the control is added to the spatial,
-    * and when the control is removed from the spatial (setting a null value).
-    * It can be used for both initialization and cleanup. */    
+    private String  currentDirection;
     @Override
-    public void setSpatial(Spatial spatial) {
-        //Each spatial has an objectType (in the AbstractGetControl), here we could check if the spatial is a valid type.
-        super.setSpatial(spatial);
+    public void onAction(String name, boolean isPressed, float tpf) {
+        if (isPressed){
+            switch (name) {
+                case "walkRight":
+                    faceRight();
+                    playerControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
+                    currentDirection = name;
+                    break;
+                case "walkLeft":
+                    faceLeft();
+                    playerControl.setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
+                    currentDirection  = name;
+                    break; 
+                case "jump":
+                    spatial.getControl(CharacterControl.class).jump();
+                    break;
+            }
+        } else if (name.equals(currentDirection)){
+            haltPlayer();  
+        }
     }
-    
+
     @Override
-    protected void controlUpdate(float f) {
-        
+    protected void controlUpdate(float tpf) {
+
     }
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
-        /* Optional: rendering manipulation (for advanced users) */
         
     }
+    
+    private void faceLeft() {
+        playerControl.setViewDirection(new Vector3f(-1, 0, 0));
+    }
+    
+    private void faceRight() {
+        playerControl.setViewDirection(new Vector3f(1, 0, 0));
+    }
+    
+    private  void faceFront() {
+        playerControl.setViewDirection(new Vector3f(0, 0, 1));
+    }
+    
+    private void haltPlayer() {
+        playerControl.setWalkDirection(Vector3f.ZERO);
+    }
+    
+    @Override
+    public void setSpatial(Spatial spatial) {
+        
+        super.setSpatial(spatial);
+        
+        if (spatial != null) {
+            playerControl = spatial.getControl(CharacterControl.class);
+        } else {
+            playerControl = null;
+        }
+    } 
     
 }
