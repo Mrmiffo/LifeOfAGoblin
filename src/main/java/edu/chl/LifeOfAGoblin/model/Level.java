@@ -14,8 +14,12 @@ import edu.chl.LifeOfAGoblin.utils.Resources;
  */
 public class Level {
     Spatial scene;
-    public Level(String levelName, PlayerMoveControl pl){
+    public Level(String levelName){
         scene = Resources.getInstance().getResources(levelName);
 //        Player player = new Player();
+    }
+    
+    public Spatial getScene(){
+        return scene;
     }
 }
