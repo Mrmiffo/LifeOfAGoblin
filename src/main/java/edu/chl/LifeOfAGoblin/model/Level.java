@@ -23,40 +23,34 @@ import edu.chl.LifeOfAGoblin.utils.Resources;
  * @author Anton
  */
 public class Level {
-    private Spatial scene;
+    private Node scene;
     
     /**
+     * Creates and stores a scene with a specified name and adds all wanted objects to the scene.
      * 
      * @param levelName the name of the level that should be created
      */
     
     public Level(String levelName){
-        //Player creation
-        //TODO The player class will fetch its MoveControl from input manager, thus making this code viable
-//        Node player = createPlayer();
-        
         //Getting the scene
         scene = loadScene(levelName);
         
-        //Makes the scene solid
-        CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(scene);
-        RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
-        scene.addControl(landscape);
-        
-        //Creates a light for the scene
-        Light light = createLight();
-        
-        //TODO Should probaly be created and saved somewhere else (GameAppState/physics manager)
-        BulletAppState bulletAppState = new BulletAppState();
-//        stateManager.attach(bulletAppState);
-        
-        //TODO Replace this with physics manager call
-        bulletAppState.getPhysicsSpace().add(landscape);
-//        bulletAppState.getPhysicsSpace().add(player.getControl(CharacterControl.class));
-               
-        //Attach light an player to scene 
-        scene.addLight(light);
+         //Creates a player node and adds it to the scene
+        //TODO The player class will fetch its MoveControl from input manager, thus making this code viable
+//        Node player = createPlayer();
 //        scene.attachChild(player);
+        
+        //Adds a light source to the scene
+        Light light = createLight();
+        scene.addLight(light);
+        
+        //Adds a solid landscape
+        RigidBodyControl landscape = createRigidBody();
+        scene.addControl(landscape);
+        //TODO add proper physics manager call
+        //PhysicsManager.getInstance().addToPhysicsSpace(landscape); //Or something
+        
+        //TODO Populate scene with NPCs, interactable objects, all the stuff that's not added in SceneComposer
     }
     
     //TODO Remove this constructor when all needed help classes have benn implemented
@@ -67,34 +61,27 @@ public class Level {
         //Getting the scene
         scene = loadScene(levelName);
         
+        //Adds a light source to the scene
+        Light light = createLight();
+        scene.addLight(light);
         
-        //Makes the scene solid
-        CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(scene);
-        RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
+        //Adds a solid landscape
+        RigidBodyControl landscape = createRigidBody();
         scene.addControl(landscape);
         
-        //TODO Make into sunlight (DirectionalLight?)
-        //Adds light too the scene
-        AmbientLight al = new AmbientLight();
-        al.setColor(ColorRGBA.White.mult(3f));
-        
         //TODO Should probaly be created and saved somewhere else (GameAppState/physics manager)
-        BulletAppState bulletAppState = new BulletAppState();
-//        stateManager.attach(bulletAppState);
-        
-        //TODO Replace this with physics manager call
-        bulletAppState.getPhysicsSpace().add(landscape);
-//        bulletAppState.getPhysicsSpace().add(player.getControl(CharacterControl.class));
-               
-        //Attach light an player to scene 
-        scene.addLight(al);
-//        scene.attachChild(player);
+        ps.add(landscape);
+        ps.add(player.getControl(CharacterControl.class));
     }
     
     //TODO Uncomment this method when player fetches its own MoveControl
     /*
     private Node createPlayer() {
         Player p = new Player(100, 100);
+        
+        //TODO Change to physics manager call. Move to Player class?
+        bulletAppState.getPhysicsSpace().add(p.getNode().getControl(CharacterControl.class)); 
+        
         return p.getNode();
     }*/
     
@@ -112,6 +99,10 @@ public class Level {
         return l;
     }
     
+    /**
+     * Creates a solid body with the same shape as the scene
+     * @return 
+     */
     private RigidBodyControl createRigidBody() {
         CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(scene);
         RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
@@ -124,26 +115,11 @@ public class Level {
      * @param name the name of the wanted scene
      * @return the scene
      */
-    private Spatial loadScene(String name) {
-        Spatial s = Resources.getInstance().getResources(name);
+    private Node loadScene(String name) {
+        Node s = (Node)Resources.getInstance().getResources(name);
         //TODO Does the translation need to be set by hand?
         s.setLocalTranslation(0f, -5f, 0f);
         return s;
-    }
-    
-    /**
-     * Adds all the wanted content of the scene
-     */
-    private void setupScene() {
-        //Adds a light source to the scene
-        Light light = createLight();
-        scene.addLight(light);
-        
-        RigidBodyControl landscape = createRigidBody();
-        scene.addControl(landscape);
-        
-        //TODO add proper physics manager call
-        //PhysicsManager.getInstance().addToPhysicsSpace(landscape); //Or something
     }
     
     public Spatial getScene(){
