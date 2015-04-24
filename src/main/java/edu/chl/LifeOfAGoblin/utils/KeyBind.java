@@ -7,7 +7,6 @@ package edu.chl.LifeOfAGoblin.utils;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
-import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -20,9 +19,10 @@ import java.util.Set;
 public class KeyBind {
     private static KeyBind instance;
     private Map<String, Set<KeyTrigger>> keySettings;
-    private InputManager inputManager;  //How get?
+    private InputManager inputManager;
     
-    private KeyBind() {
+    private KeyBind(InputManager inputManager) {
+        this.inputManager = inputManager;
         removeDefaultMappings(); //Remove JMonkeys Defaults
         keySettings = getDefaultKeySettings(); //Start game with defaults
         //TODO replace with data from settings
@@ -37,21 +37,18 @@ public class KeyBind {
         }
         
         //add keylisteners to game
-        inputManager.addListener(new PlayerMoveControl(), "walkRight", "walkLeft", "jump");
+        
     }
 
-    public static synchronized KeyBind getInstance(){
+    public static synchronized KeyBind getInstance(InputManager inputManager){
         if (instance == null){
-            instance = new KeyBind();
+            instance = new KeyBind(inputManager);
         }
         return instance;
     }
 
     private void removeDefaultMappings() {
-        inputManager.deleteMapping("INPUT_MAPPING_HIDE_STATS");
-        inputManager.deleteMapping("INPUT_MAPPING_CAMERA_POS");
-        inputManager.deleteMapping("INPUT_MAPPING_MEMORY");
-        //TODO delete more
+        //TODO delete unused defaults
     }
     
     private Map<String, Set<KeyTrigger>> getDefaultKeySettings() {
