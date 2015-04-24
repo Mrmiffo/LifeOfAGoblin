@@ -56,6 +56,11 @@ public class GameAppState extends AbstractAppState {
         this.viewPort = ((SimpleApplication)app).getViewPort();
         this.rootNode = ((SimpleApplication)app).getRootNode();
         
+//Temporary, find better solution        
+        if (System.getProperty("os.name").equals("Linux")) {
+            isLinux = true;
+        }
+        
         loadResources();
         //Start level
         temporaryMethodToCreateLevel();
