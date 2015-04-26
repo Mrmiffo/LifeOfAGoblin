@@ -25,6 +25,7 @@ import com.jme3.scene.shape.Box;
 import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.utils.KeyBind;
+import edu.chl.LifeOfAGoblin.utils.Physics;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 
 
@@ -163,10 +164,13 @@ public class GameAppState extends AbstractAppState {
         
         
         System.out.println("Adding physics...");
-        BulletAppState bulletAppState = new BulletAppState();
-        stateManager.attach(bulletAppState);
-        bulletAppState.getPhysicsSpace().add(landscape);
-        bulletAppState.getPhysicsSpace().add(player.getControl(CharacterControl.class));
+        stateManager.attach(Physics.getInstance().getBulletAppState());
+        Physics.getInstance().add(landscape);
+        Physics.getInstance().add(player.getControl(CharacterControl.class));
+        //BulletAppState bulletAppState = new BulletAppState();
+        //stateManager.attach(bulletAppState);
+        //bulletAppState.getPhysicsSpace().add(landscape);
+        //bulletAppState.getPhysicsSpace().add(player.getControl(CharacterControl.class));
         
         //Character physics test:
         Material stone_mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
@@ -183,7 +187,7 @@ public class GameAppState extends AbstractAppState {
         RigidBodyControl brick_phy = new RigidBodyControl(2f);
         /** Add physical brick to physics space. */
         brick_geo.addControl(brick_phy);
-        bulletAppState.getPhysicsSpace().add(brick_phy);
+        Physics.getInstance().add(brick_phy);
         rootNode.attachChild(brick_geo);
         //Character physics test completed.
                 
