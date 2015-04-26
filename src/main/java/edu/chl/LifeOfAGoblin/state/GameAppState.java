@@ -24,7 +24,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.Player;
-import edu.chl.LifeOfAGoblin.utils.KeyBind;
+import edu.chl.LifeOfAGoblin.utils.KeyBindings;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 
 
@@ -197,7 +197,7 @@ public class GameAppState extends AbstractAppState {
     }
     
     private void initKeys(PlayerMoveControl playerListener) {
-        KeyBind kb = KeyBind.getInstance(app.getInputManager());
+        KeyBindings.attachStartUpKeyBinds(app.getInputManager());
         app.getInputManager().addListener(playerListener, "walkRight", "walkLeft", "jump");
     }
 
