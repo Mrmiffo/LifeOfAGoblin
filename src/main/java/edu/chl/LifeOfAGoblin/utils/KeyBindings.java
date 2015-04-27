@@ -17,6 +17,20 @@ import java.util.Set;
  * @author kakan
  */
 public class KeyBindings {
+    public enum KeyBind{
+        WALK_LEFT ("walkLeft"),
+        WALK_RIGHT ("walkRight"),
+        JUMP ("jump");
+        
+        private final String keyBindText;
+        
+        KeyBind(String keyBindText){
+            this.keyBindText = keyBindText;
+        }
+        public String getKeyText(){
+            return keyBindText;
+        }
+    }
 
     private static void removeJMEDefaultMappings(Map<String, Set<KeyTrigger>> map) {
         //TODO delete unused defaults
@@ -28,7 +42,7 @@ public class KeyBindings {
         defaults.put("walkLeft", makeSet(KeyInput.KEY_A));
         defaults.put("jump", makeSet(KeyInput.KEY_W, KeyInput.KEY_SPACE));
         return defaults;
-    }
+}
     
     private static Set<KeyTrigger> makeSet(int... keys) {
         if (keys.length == 0) {
