@@ -4,16 +4,8 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-
-
-import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
-import com.jme3.bullet.control.CharacterControl;
-import com.jme3.math.Vector3f;
-import edu.chl.LifeOfAGoblin.controller.PlayerAttackControl;
-import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.utils.NodeFactory;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
