@@ -15,22 +15,24 @@ public class Physics {
     private static Physics instance;
     private BulletAppState bulletAppState = new BulletAppState();
     
+    
+    
     private Physics(){
         
     }
-        public static synchronized Physics getInstance(){
+    
+    public static synchronized Physics getInstance(){
         if (instance == null){
             instance = new Physics();
         }
         return instance;
     }
-        public void add(Control control){
-            this.bulletAppState.getPhysicsSpace().add(control);
-        }
-        public BulletAppState getBulletAppState(){
-            return this.bulletAppState;
-        }
     
+    public void add(Control control){
+        this.bulletAppState.getPhysicsSpace().add(control);
+    }
     
-    
+    public BulletAppState getBulletAppState(){
+        return this.bulletAppState;
+    }   
 }
