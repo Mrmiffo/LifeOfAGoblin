@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.controller;
 
+import com.jme3.input.controls.InputListener;
 import com.jme3.scene.control.AbstractControl;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,8 @@ import java.util.Map;
  */
 public class KeyManager {
     private static KeyManager instance;
-    private Map<String, AbstractControl> keyControls = new HashMap<>();
+    private Map<InputListener, String[]> mapping = new HashMap<>();
+    private Map<String, Map<InputListener, String[]>> keyControls = new HashMap<>();
     
     private KeyManager(){
         
@@ -27,11 +29,12 @@ public class KeyManager {
         return instance;
     }
     
-    public void addKeyControl(String name, AbstractControl control){
-        keyControls.put(name, control);
+    public void addKeyControl(String name, InputListener listener, String... mappingnames){
+        mapping.put(listener, mappingnames);
+        keyControls.put(name, mapping);
     }
     
-    public AbstractControl getResources(String name){
+    public Map<InputListener, String[]> getResources(String name){
         return keyControls.get(name);
     }
     

@@ -11,7 +11,9 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.input.Input;
 import com.jme3.input.KeyInput;
+import com.jme3.input.controls.InputListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.material.Material;
@@ -22,10 +24,12 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+import edu.chl.LifeOfAGoblin.controller.KeyManager;
 import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.utils.KeyBindings;
 import edu.chl.LifeOfAGoblin.utils.Resources;
+import java.util.Map;
 
 
 /**
@@ -198,7 +202,10 @@ public class GameAppState extends AbstractAppState {
     
     private void initKeys(PlayerMoveControl playerListener) {
         KeyBindings.attachStartUpKeyBinds(app.getInputManager());
-        app.getInputManager().addListener(playerListener, "walkRight", "walkLeft", "jump");
+        KeyManager km = KeyManager.getInstance();
+        km.addKeyControl("PlayerMoveControl", playerListener, "walkRight", "walkRight", "jump");
+//        Map<InputListener, String[]> stuff = km.getResources("PlayerMoveControl");
+        app.getInputManager().addListener(playerListener, "walkRight", "walkRight", "jump");
     }
 
 }
