@@ -5,13 +5,17 @@
 package edu.chl.LifeOfAGoblin.utils;
 
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
+import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
+import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.light.AmbientLight;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
-import edu.chl.LifeOfAGoblin.controller.PlayerAttackControl;
 import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
+import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 import java.util.Set;
 
 /**
@@ -48,17 +52,34 @@ public class NodeFactory {
                 CapsuleCollisionShape shape = new CapsuleCollisionShape(collisionShapeWidth, collisionShapeHeight, 1);
                 //CharacterControl has been depricated prematurly due to BetterCharacterControl. Although BetterCharacterControl contains major flaws (such as missing step height) that make CharacterControl a better choice for this project.
                 CharacterControl mover = new CharacterControl(shape, 0.05f);
+                PhysicsWrapper.getInstance().add(mover);
                 //Set the character jumpspeed. 12 is just right for this character to jump 1f.
                 mover.setJumpSpeed(12);
-                //Setting up PlayerMoveControl which translates keycommands to node actions.
+                //Setting up PlayerMoveControl which translates keycommands(key binds) to node actions.
                 PlayerMoveControl pmc = new PlayerMoveControl();
-                //TODO register PlayerMoveControl to the KeyManager
+                InputManagerWrapper.getInstance().registerListener(pmc);
                 
                 //Attaching controls:
                 node.addControl(mover);
                 node.addControl(pmc);
+                break;
+            case LEVEL:
+                //Adding the player character to the level
+                Player player = new Player(100, 100);
+                node.attachChild(NodeFactory.createModeledNode(player));
+                node.setLocalTranslation(0f, -5f, 0f);
+                //Adding collisionshape
+                CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(node);
+                RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
+                PhysicsWrapper.getInstance().add(landscape);
+                node.addControl(landscape);
                 
-                
+                //TODO REMOVE -> FOR TESTING PURPOSES ONLY
+                //Adding a basic ambient light to the level
+                AmbientLight l = new AmbientLight();
+                l.setColor(ColorRGBA.White.mult(3f));
+                node.addLight(l);
+                break;
         }
             
         
