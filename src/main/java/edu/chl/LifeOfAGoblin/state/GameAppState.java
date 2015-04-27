@@ -26,6 +26,7 @@ import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.utils.KeyBind;
 import edu.chl.LifeOfAGoblin.utils.Resources;
+import java.io.File;
 
 
 /**
@@ -46,8 +47,6 @@ public class GameAppState extends AbstractAppState {
         this.levelToCreate = level;
     }
     
-    private boolean isLinux;
-    
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
@@ -57,10 +56,6 @@ public class GameAppState extends AbstractAppState {
         this.viewPort = ((SimpleApplication)app).getViewPort();
         this.rootNode = ((SimpleApplication)app).getRootNode();
         
-//Temporary, find better solution        
-        if (System.getProperty("os.name").equals("Linux")) {
-            isLinux = true;
-        }
         
         loadResources();
         //Start level
@@ -99,32 +94,19 @@ public class GameAppState extends AbstractAppState {
     
     private void loadModels() {
         System.out.println("Loading models...");
-        if (isLinux) {
-            assetManager.registerLocator("src/main/java/edu/chl/LifeOfAGoblin/assets/models", FileLocator.class);
-            Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin2.j3o"));
-        } else {
-            assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\models", FileLocator.class);
-            Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin2.j3o"));
-        }
+        assetManager.registerLocator("src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets" + File.separator + "models", FileLocator.class);
+        Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin2.j3o"));
     }
 
     private void loadScenes() {
         System.out.println("Loading scenes...");
-        if (isLinux) {
-            assetManager.registerLocator("src/main/java/edu/chl/LifeOfAGoblin/assets/scenes", FileLocator.class);
-        } else {
-            assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\scenes", FileLocator.class);
-        }
+        assetManager.registerLocator("src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets" + File.separator + "scenes", FileLocator.class);
         Resources.getInstance().addResource("TestScene", assetManager.loadModel("testScene.j3o"));
     }
 
     private void loadSounds() {
         System.out.println("Loading sounds...");
-        if (isLinux) {
-            assetManager.registerLocator("src/main/java/edu/chl/LifeOfAGoblin/assets/sounds", FileLocator.class);
-        } else {
-            assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\sounds", FileLocator.class);
-        }
+        assetManager.registerLocator("src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets" + File.separator + "sounds", FileLocator.class);     
     }
 
     
