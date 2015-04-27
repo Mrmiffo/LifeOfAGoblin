@@ -56,7 +56,7 @@ public class Level {
     //TODO Remove this constructor when all needed help classes have benn implemented
     public Level(String levelName, PlayerMoveControl pmc, PhysicsSpace ps) {
         //Player creation
-        Node player = new Player(100, 100, pmc).getNode();
+//        Node player = new Player(100, 100, pmc).getNode();
         
         //Getting the scene
         scene = loadScene(levelName);
@@ -71,7 +71,7 @@ public class Level {
         
         //TODO Should probaly be created and saved somewhere else (GameAppState/physics manager)
         ps.add(landscape);
-        ps.add(player.getControl(CharacterControl.class));
+//        ps.add(player.getControl(CharacterControl.class));
     }
     
     //TODO Uncomment this method when player fetches its own MoveControl
