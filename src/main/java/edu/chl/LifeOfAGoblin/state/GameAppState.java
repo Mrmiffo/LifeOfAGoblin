@@ -34,7 +34,8 @@ import java.io.File;
  */
 public class GameAppState extends AbstractAppState {
     
-    String levelToCreate;
+    private String levelToCreate;
+    private String filePath;
     
     SimpleApplication app;
     AppStateManager stateManager;
@@ -44,6 +45,9 @@ public class GameAppState extends AbstractAppState {
     
     public GameAppState(String level){
         this.levelToCreate = level;
+        this.filePath = "src" + File.separator + "main" + File.separator + "java"
+                + File.separator + "edu" + File.separator + "chl"+ File.separator
+                + "LifeOfAGoblin";
     }
     
     @Override
@@ -93,13 +97,15 @@ public class GameAppState extends AbstractAppState {
     
     private void loadModels() {
         System.out.println("Loading models...");
-        assetManager.registerLocator("src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets" + File.separator + "models", FileLocator.class);
+        assetManager.registerLocator(filePath + File.separator + "assets" + File.separator
+                + "models", FileLocator.class);
         Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin2.j3o"));
     }
 
     private void loadScenes() {
         System.out.println("Loading scenes...");
-        assetManager.registerLocator("src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets" + File.separator + "scenes", FileLocator.class);
+        assetManager.registerLocator(filePath + File.separator + "assets" + File.separator
+                + "scenes", FileLocator.class);
         Resources.getInstance().addResource("TestScene", assetManager.loadModel("testScene.j3o"));
     }
 
@@ -183,9 +189,9 @@ public class GameAppState extends AbstractAppState {
     private void initKeys(PlayerMoveControl playerListener) {
         KeyBindings.attachStartUpKeyBinds(app.getInputManager());
         KeyManager km = KeyManager.getInstance();
-        km.addKeyControl("PlayerMoveControl", playerListener, "walkRight", "walkRight", "jump");
+        km.addKeyControl("PlayerMoveControl", playerListener, "walkLeft", "walkRight", "jump");
 //        Map<InputListener, String[]> stuff = km.getResources("PlayerMoveControl");
-        app.getInputManager().addListener(playerListener, "walkRight", "walkRight", "jump");
+        app.getInputManager().addListener(playerListener, "walkLeft", "walkRight", "jump");
     }
 
 }
