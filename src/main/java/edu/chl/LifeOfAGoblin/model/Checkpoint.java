@@ -8,7 +8,9 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
 
 /**
  *
- * @author Anton
+ * @author Fredrik
+ * A class that represents a node in the game that can update the 
+ * progress class and that the player can respawn at.
  */
 public class Checkpoint extends AbstractInanimateObject {
     
@@ -17,5 +19,5 @@ public class Checkpoint extends AbstractInanimateObject {
         object.setUserData("objectType", "Checkpoint");
     }
     
-    
+     
 }
