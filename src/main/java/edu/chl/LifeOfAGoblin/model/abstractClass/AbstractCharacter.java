@@ -4,22 +4,35 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
-import com.jme3.scene.Node;
-import edu.chl.LifeOfAGoblin.utils.Resources;
+import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
+import edu.chl.LifeOfAGoblin.model.interfaces.INode;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author Anton
  */
-public abstract class AbstractCharacter {
-    protected Node character = new Node();
+public abstract class AbstractCharacter implements INode, IModeledNode{
+    private int health;
+    private int maxHealth;
+    private String model;
     protected AbstractCharacter(String model, int health, int maxHealth) {
-        character.attachChild(Resources.getInstance().getResources(model));
-        character.setUserData("health", health);
-        character.setUserData("maxHealth", maxHealth);
+        this.model = model;
+        this.health = health;
+        this.maxHealth = maxHealth;
     }
     
-    public Node getNode(){
-        return character;
+    @Override
+    public Map<String, Object> getNodeData(){
+        Map<String, Object> nodeData = new HashMap<>();
+        nodeData.put("health", health);
+        nodeData.put("maxHealth", maxHealth);
+        return nodeData;
+    }
+    
+    @Override
+    public String getModel(){
+        return model;
     }
 }

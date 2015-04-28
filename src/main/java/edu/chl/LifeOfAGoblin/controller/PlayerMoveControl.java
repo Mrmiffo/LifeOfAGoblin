@@ -7,33 +7,34 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
+import edu.chl.LifeOfAGoblin.controller.interfaces.IKeyListener;
+import edu.chl.LifeOfAGoblin.utils.KeyBindings;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Anton
  */
-public class PlayerMoveControl extends AbstractControl implements ActionListener{
+public class PlayerMoveControl extends AbstractControl implements IKeyListener{
     
     private CharacterControl playerControl;
-
     private String  currentDirection;
+    
+
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
         if (isPressed){
-            switch (name) {
-                case "walkRight":
-                    faceRight();
-                    playerControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
-                    currentDirection = name;
-                    break;
-                case "walkLeft":
-                    faceLeft();
-                    playerControl.setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
-                    currentDirection  = name;
-                    break; 
-                case "jump":
-                    playerControl.jump();
-                    break;
+            if (name.equals(KeyBindings.KeyBind.WALK_RIGHT.getKeyText())){
+                faceRight();
+                playerControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
+                currentDirection = name;
+            } else if (name.equals(KeyBindings.KeyBind.WALK_LEFT.getKeyText())){
+                faceLeft();
+                playerControl.setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
+                currentDirection  = name;
+            } else if (name.equals(KeyBindings.KeyBind.JUMP.getKeyText())){
+                playerControl.jump();
             }
         } else if (name.equals(currentDirection)){
             haltPlayer();  
@@ -68,14 +69,21 @@ public class PlayerMoveControl extends AbstractControl implements ActionListener
     
     @Override
     public void setSpatial(Spatial spatial) {
-        
         super.setSpatial(spatial);
-        
         if (spatial != null) {
             playerControl = spatial.getControl(CharacterControl.class);
         } else {
             playerControl = null;
         }
     } 
+
+    @Override
+    public List<KeyBindings.KeyBind> getKeyBinds() {
+        List<KeyBindings.KeyBind> binds = new ArrayList<>();
+        binds.add(KeyBindings.KeyBind.JUMP);
+        binds.add(KeyBindings.KeyBind.WALK_LEFT);
+        binds.add(KeyBindings.KeyBind.WALK_RIGHT);
+        return binds;
+    }
     
 }

@@ -5,8 +5,9 @@
 package edu.chl.LifeOfAGoblin.view;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.asset.plugins.FileLocator;
-import edu.chl.LifeOfAGoblin.utils.Resources;
+import edu.chl.LifeOfAGoblin.state.GameAppState;
+import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
+import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 
 
 /**
@@ -17,31 +18,13 @@ public class LifeOfAGoblin extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        loadResources();
-    }
-
-    private void loadResources() {
-        loadModels();
-        loadScenes();
-        loadSounds();
+        InputManagerWrapper.getInstance().initialize(inputManager);
+        StateManagerWrapper.getInstance().initialize(stateManager);
         
-
-    }
-
-    private void loadModels() {
-        assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\models", FileLocator.class);
-        Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin.j3o"));
-    }
-
-    private void loadScenes() {
-        assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\scenes", FileLocator.class);
-        
-        
-    }
-
-    private void loadSounds() {
-        assetManager.registerLocator("src\\main\\java\\edu\\chl\\LifeOfAGoblin\\assets\\sounds", FileLocator.class);
-        
+        //Start the game
+        //TODO Replace with main menu.
+        GameAppState gameState = new GameAppState();
+        StateManagerWrapper.getInstance().addState(gameState);
     }
     
 }

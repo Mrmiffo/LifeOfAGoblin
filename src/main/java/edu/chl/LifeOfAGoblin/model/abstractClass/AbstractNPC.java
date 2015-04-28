@@ -8,7 +8,7 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
  *
  * @author Anton
  */
-public class AbstractNPC extends AbstractCharacter {
+public abstract class AbstractNPC extends AbstractCharacter {
     protected AbstractNPC(String modelName, int health, int maxHealth){
         super(modelName, health, maxHealth);
     }

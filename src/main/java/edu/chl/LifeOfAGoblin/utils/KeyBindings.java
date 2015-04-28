@@ -14,13 +14,32 @@ import java.util.Set;
  * @author kakan
  */
 public class KeyBindings {
-
-    private static Set<KeyTrigger> makeSet(int... triggers) {
-        Set<KeyTrigger> triggerSet = new HashSet<>();
-        for (int trigger : triggers) {
-            triggerSet.add(new KeyTrigger(trigger));
+    public enum KeyBind{
+        WALK_LEFT ("walkLeft"),
+        WALK_RIGHT ("walkRight"),
+        JUMP ("jump");
+        
+        private final String keyBindText;
+        
+        KeyBind(String keyBindText){
+            this.keyBindText = keyBindText;
         }
-        return triggerSet;
+        public String getKeyText(){
+            return keyBindText;
+        }
+    }
+
+    
+    private static Set<KeyTrigger> makeSet(int... keys) {
+        if (keys.length == 0) {
+            return null;
+        } else {
+            Set<KeyTrigger> temp = new HashSet<>();
+            for (int key : keys) {
+                temp.add(new KeyTrigger(key));
+            }
+            return temp;
+        }
     }
     
     public static Set<KeyTrigger> getTrigger(String action) {

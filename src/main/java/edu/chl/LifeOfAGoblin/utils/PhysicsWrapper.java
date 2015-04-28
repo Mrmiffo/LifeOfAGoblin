@@ -11,26 +11,21 @@ import com.jme3.scene.control.Control;
  *
  * @author fredrik
  */
-public class Physics {
-    private static Physics instance;
-    private BulletAppState bulletAppState = new BulletAppState();
+public class PhysicsWrapper {
+    private static PhysicsWrapper instance;
+    private BulletAppState bulletAppState;
     
-    private Physics(){
-        
+    private PhysicsWrapper(){
+        bulletAppState  = new BulletAppState();
+        StateManagerWrapper.getInstance().addState(bulletAppState);
     }
-        public static synchronized Physics getInstance(){
+        public static synchronized PhysicsWrapper getInstance(){
         if (instance == null){
-            instance = new Physics();
+            instance = new PhysicsWrapper();
         }
         return instance;
     }
         public void add(Control control){
             this.bulletAppState.getPhysicsSpace().add(control);
         }
-        public BulletAppState getBulletAppState(){
-            return this.bulletAppState;
-        }
-    
-    
-    
 }
