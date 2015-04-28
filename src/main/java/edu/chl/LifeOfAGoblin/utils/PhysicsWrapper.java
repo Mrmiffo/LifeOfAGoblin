@@ -28,10 +28,4 @@ public class PhysicsWrapper {
         public void add(Control control){
             this.bulletAppState.getPhysicsSpace().add(control);
         }
-        public BulletAppState getBulletAppState(){
-            return this.bulletAppState;
-        }
-    
-    
-    
 }
