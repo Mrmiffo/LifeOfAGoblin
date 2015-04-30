@@ -5,9 +5,6 @@
 package edu.chl.LifeOfAGoblin.utils;
 
 import com.jme3.input.KeyInput;
-import com.jme3.input.controls.KeyTrigger;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
@@ -15,43 +12,28 @@ import java.util.Set;
  */
 public class KeyBindings {
     public enum KeyBind{
-        WALK_LEFT ("walkLeft"),
-        WALK_RIGHT ("walkRight"),
-        JUMP ("jump");
+        WALK_LEFT ("walkLeft", KeyInput.KEY_A),
+        WALK_RIGHT ("walkRight", KeyInput.KEY_D),
+        JUMP ("jump", KeyInput.KEY_SPACE /*and KEY_W*/);
         
         private final String keyBindText;
+        private int trigger;
         
-        KeyBind(String keyBindText){
+        KeyBind(String keyBindText, int trigger){
             this.keyBindText = keyBindText;
+            this.trigger = trigger;
         }
+        
         public String getKeyText(){
             return keyBindText;
         }
-    }
-
-    
-    private static Set<KeyTrigger> makeSet(int... keys) {
-        if (keys.length == 0) {
-            return null;
-        } else {
-            Set<KeyTrigger> temp = new HashSet<>();
-            for (int key : keys) {
-                temp.add(new KeyTrigger(key));
-            }
-            return temp;
+        
+        public int getTrigger() {
+            return trigger;
         }
-    }
-    
-    public static Set<KeyTrigger> getTrigger(String action) {
-        switch (action) {
-            case "walkRight":                
-                return makeSet(KeyInput.KEY_D); //Read from file
-            case "walkLeft":
-                return makeSet(KeyInput.KEY_A);
-            case "jump":
-                return makeSet(KeyInput.KEY_W, KeyInput.KEY_SPACE);
-            default:
-                return null;
+        
+        public void setTrigger(int trigger) {
+            this.trigger = trigger;
         }
     }
 }
