@@ -105,7 +105,7 @@ public class GameAppState extends AbstractAppState {
     //EVERYTHING BELOW THIS POINT IS TO BE REMOVED!!! ONLY HERE UNTIL LEVEL AND INPUT MANAGER IS IMPLEMENTED
     private void temporaryMethodToCreateLevel() {
         Level level = new Level("TestScene");
-        rootNode.attachChild(NodeFactory.createModeledNode(level));
+        rootNode.attachChild(NodeFactory.createModeledLevelNode(level, app.getCamera()));
 
         //Character physics test:
 //        Material stone_mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");

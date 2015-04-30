@@ -9,11 +9,14 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.input.ChaseCamera;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
+import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import java.util.Set;
@@ -82,6 +85,39 @@ public class NodeFactory {
                 break;
         }
             
+        
+        return node;
+    }
+    
+    public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
+        Node node = new Node();
+        node.attachChild(Resources.getInstance().getResources(levelToCreate.getModel()));
+        //Setting object data:
+        Set<String> tempSet = levelToCreate.getNodeData().keySet();
+        for (String key: tempSet){
+            node.setUserData(key, levelToCreate.getNodeData().get(key));
+        }
+        
+        //Adding the player character to the level
+        Player player = new Player(100, 100);
+        Node playerNode = NodeFactory.createModeledNode(player);
+        ChaseCamera chaseCam = new ChaseCamera(cam);
+        chaseCam.setRotationSensitivity(0);
+        playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
+        node.attachChild(playerNode);
+        node.setLocalTranslation(0f, -5f, 0f);
+        
+        //Adding collisionshape
+        CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(node);
+        RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
+        PhysicsWrapper.getInstance().add(landscape);
+        node.addControl(landscape);
+
+        //TODO REMOVE -> FOR TESTING PURPOSES ONLY
+        //Adding a basic ambient light to the level
+        AmbientLight l = new AmbientLight();
+        l.setColor(ColorRGBA.White.mult(3f));
+        node.addLight(l);
         
         return node;
     }
