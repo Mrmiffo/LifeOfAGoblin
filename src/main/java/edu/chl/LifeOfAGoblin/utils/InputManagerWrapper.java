@@ -31,7 +31,7 @@ public class InputManagerWrapper {
     }
     
     public void initialize(InputManager inputManager){
-        im = inputManager;
+        this.im = inputManager;
         instance.updateKeybinds();
     }
     
