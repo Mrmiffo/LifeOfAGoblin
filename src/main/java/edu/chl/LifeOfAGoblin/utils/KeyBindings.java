@@ -21,7 +21,6 @@ public class KeyBindings implements Serializable {
         WALK_RIGHT ("walkRight", new Trigger[] { new KeyTrigger(KeyInput.KEY_D) }),
         JUMP ("jump", new Trigger[] {
             new MouseButtonTrigger(MouseInput.BUTTON_LEFT),
-            new MouseButtonTrigger(MouseInput.BUTTON_RIGHT),
             new KeyTrigger(KeyInput.KEY_W),
             new KeyTrigger(KeyInput.KEY_SPACE)
         });
