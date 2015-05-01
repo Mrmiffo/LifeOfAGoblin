@@ -44,7 +44,8 @@ public class InputManagerWrapper {
     
     private void updateKeybinds() {
         for (KeyBind action : KeyBind.values()) {
-            im.addMapping(action.getKeyText(), action.getTrigger());
+            im.addMapping(action.getKeyText(), action.getTriggers());
+            
         }
     }
 }

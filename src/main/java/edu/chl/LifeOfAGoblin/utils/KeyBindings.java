@@ -17,28 +17,33 @@ import java.io.Serializable;
  */
 public class KeyBindings implements Serializable {
     public enum KeyBind{
-        WALK_LEFT ("walkLeft", new KeyTrigger(KeyInput.KEY_A)),
-        WALK_RIGHT ("walkRight", new KeyTrigger(KeyInput.KEY_D)),
-        JUMP ("jump", new MouseButtonTrigger(MouseInput.BUTTON_LEFT /*and KEY_W*/));
+        WALK_LEFT ("walkLeft", new Trigger[] {new KeyTrigger(KeyInput.KEY_A)}),
+        WALK_RIGHT ("walkRight", new Trigger[] { new KeyTrigger(KeyInput.KEY_D) }),
+        JUMP ("jump", new Trigger[] {
+            new MouseButtonTrigger(MouseInput.BUTTON_LEFT),
+            new MouseButtonTrigger(MouseInput.BUTTON_RIGHT),
+            new KeyTrigger(KeyInput.KEY_W),
+            new KeyTrigger(KeyInput.KEY_SPACE)
+        });
         
         private final String keyBindText;
-        private Trigger trigger;
+        private Trigger[] triggers;
         
-        KeyBind(String keyBindText, Trigger trigger){
+        KeyBind(String keyBindText, Trigger[] triggers){
             this.keyBindText = keyBindText;
-            this.trigger = trigger;
+            this.triggers = triggers;
         }
         
         public String getKeyText(){
             return keyBindText;
         }
         
-        public Trigger getTrigger() {
-            return trigger;
+        public Trigger[] getTriggers() {
+            return triggers;
         }
         
-        public void setTrigger(Trigger trigger) {
-            this.trigger = trigger;
+        public void setTriggers(Trigger[] triggers) {
+            this.triggers = triggers;
         }
 
     }
