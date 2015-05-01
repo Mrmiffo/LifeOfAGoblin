@@ -8,6 +8,7 @@ import com.jme3.input.InputManager;
 import com.jme3.input.controls.KeyTrigger;
 import edu.chl.LifeOfAGoblin.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.utils.KeyBindings.KeyBind;
+import java.util.List;
 
 /**
  * This is a wrapper clas for the inputManager intended to move actionlistener
@@ -43,7 +44,7 @@ public class InputManagerWrapper {
     
     private void updateKeybinds() {
         for (KeyBind action : KeyBind.values()) {
-            im.addMapping(action.getKeyText(), new KeyTrigger(action.getTrigger()));
+            im.addMapping(action.getKeyText(), action.getTrigger());
         }
     }
 }
