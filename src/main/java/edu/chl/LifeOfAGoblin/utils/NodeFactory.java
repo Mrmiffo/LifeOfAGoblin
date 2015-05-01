@@ -10,6 +10,7 @@ import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.input.ChaseCamera;
+import com.jme3.input.InputManager;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -103,6 +104,7 @@ public class NodeFactory {
         Node playerNode = NodeFactory.createModeledNode(player);
         ChaseCamera chaseCam = new ChaseCamera(cam);
         chaseCam.setRotationSensitivity(0);
+        chaseCam.setDefaultHorizontalRotation(new Float(Math.PI/2));
         playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
         node.attachChild(playerNode);
         node.setLocalTranslation(0f, -5f, 0f);
