@@ -5,35 +5,45 @@
 package edu.chl.LifeOfAGoblin.utils;
 
 import com.jme3.input.KeyInput;
+import com.jme3.input.MouseInput;
+import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.input.controls.Trigger;
+import java.io.Serializable;
 
 /**
  *
  * @author kakan
  */
-public class KeyBindings {
+public class KeyBindings implements Serializable {
     public enum KeyBind{
-        WALK_LEFT ("walkLeft", KeyInput.KEY_A),
-        WALK_RIGHT ("walkRight", KeyInput.KEY_D),
-        JUMP ("jump", KeyInput.KEY_SPACE /*and KEY_W*/);
+        WALK_LEFT ("walkLeft", new Trigger[] {new KeyTrigger(KeyInput.KEY_A)}),
+        WALK_RIGHT ("walkRight", new Trigger[] { new KeyTrigger(KeyInput.KEY_D) }),
+        JUMP ("jump", new Trigger[] {
+            new MouseButtonTrigger(MouseInput.BUTTON_LEFT),
+            new KeyTrigger(KeyInput.KEY_W),
+            new KeyTrigger(KeyInput.KEY_SPACE)
+        });
         
         private final String keyBindText;
-        private int trigger;
+        private Trigger[] triggers;
         
-        KeyBind(String keyBindText, int trigger){
+        KeyBind(String keyBindText, Trigger[] triggers){
             this.keyBindText = keyBindText;
-            this.trigger = trigger;
+            this.triggers = triggers;
         }
         
         public String getKeyText(){
             return keyBindText;
         }
         
-        public int getTrigger() {
-            return trigger;
+        public Trigger[] getTriggers() {
+            return triggers;
         }
         
-        public void setTrigger(int trigger) {
-            this.trigger = trigger;
+        public void setTriggers(Trigger[] triggers) {
+            this.triggers = triggers;
         }
+
     }
 }
