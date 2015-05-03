@@ -20,24 +20,26 @@ import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import edu.chl.LifeOfAGoblin.controller.MainMenuController;
+import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 import java.io.File;
 
 
 
 /**
- *
+ * Initial basic draft of a main menu, needs major rewriting when we have more time.
  * @author Anton
  */
 public class MainMenuAppState extends AbstractAppState {
-    Nifty nifty;
-    String mainMenuName;
-    AssetManager assetManager;
+    private Nifty nifty;
+    private String mainMenuName;
+    private AssetManager assetManager;
+    private Application app;
     
-    public MainMenuAppState(){
-    }
+
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
+        this.app = app;
         assetManager = app.getAssetManager();
 
         
@@ -72,10 +74,11 @@ public class MainMenuAppState extends AbstractAppState {
     public void update(float tpf) {
         
     }
-
+    //Set up the main menu components, register the controller and sets button actions.
     private void setupMainMenu(String mainMenuName) {
         assetManager.registerLocator("src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets" + File.separator + "textures", FileLocator.class);     
         final MainMenuController niftyController = new MainMenuController(this);
+        StateManagerWrapper.getInstance().addState(niftyController);
         nifty.addScreen(mainMenuName, new ScreenBuilder(mainMenuName) {{
             controller(niftyController);
             
@@ -156,6 +159,7 @@ public class MainMenuAppState extends AbstractAppState {
                           valignCenter();
                           height("50%");
                           width("50%");
+                          interactOnClick("quitGame()");
                         }});//Quit button
                     }});//Panel bottom right
                 }}); // panel bottom

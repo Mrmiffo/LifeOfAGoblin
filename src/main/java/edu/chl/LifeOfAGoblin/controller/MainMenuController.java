@@ -4,6 +4,9 @@
  */
 package edu.chl.LifeOfAGoblin.controller;
 
+import com.jme3.app.Application;
+import com.jme3.app.state.AbstractAppState;
+import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
@@ -15,11 +18,17 @@ import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
  *
  * @author Anton
  */
-public class MainMenuController implements ScreenController{
+public class MainMenuController extends AbstractAppState implements ScreenController{
     private MainMenuAppState mainMenu;
+    private Application app;
     
     public MainMenuController(MainMenuAppState mainMenu){
         this.mainMenu = mainMenu;
+    }
+    
+    @Override
+    public void initialize(AppStateManager stateManager, Application app) {
+        this.app = app;
     }
 
     @Override
@@ -40,6 +49,12 @@ public class MainMenuController implements ScreenController{
     public void startGame(){
         StateManagerWrapper.getInstance().removeState(mainMenu);
         StateManagerWrapper.getInstance().addState(new GameAppState());
+        
+    }
+    
+    public void quitGame(){
+        System.out.println("Shutting down...");
+        app.stop();
         
     }
     
