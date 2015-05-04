@@ -2,6 +2,7 @@ package edu.chl.LifeOfAGoblin.test;
 
 import com.jme3.app.SimpleApplication;
 import edu.chl.LifeOfAGoblin.state.GameAppState;
+import edu.chl.LifeOfAGoblin.state.MainMenuAppState;
 import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 
@@ -26,7 +27,8 @@ public class MarvinTest extends SimpleApplication{
         InputManagerWrapper.getInstance().initialize(inputManager);
         StateManagerWrapper.getInstance().initialize(stateManager);
         GameAppState playGame = new GameAppState();
-        stateManager.attach(playGame);
+        MainMenuAppState mainMenu = new MainMenuAppState();
+        stateManager.attach(mainMenu);
 
     }
 
