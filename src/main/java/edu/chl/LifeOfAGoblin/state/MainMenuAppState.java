@@ -49,7 +49,7 @@ public class MainMenuAppState extends AbstractAppState {
         app.getGuiViewPort().addProcessor(niftyDisplay);
         ((SimpleApplication)app).getFlyByCamera().setDragToRotate(true);
         
-        nifty.setDebugOptionPanelColors(true);
+        nifty.setDebugOptionPanelColors(false);
         nifty.loadStyleFile("nifty-default-styles.xml");
         nifty.loadControlFile("nifty-default-controls.xml");        
         mainMenuName = "mainMenu";
@@ -88,6 +88,8 @@ public class MainMenuAppState extends AbstractAppState {
                 // add image
                 image(new ImageBuilder() {{
                     filename("skin.jpg");
+                    height("100%");
+                    width("100%");
                 }});
 
             }});
@@ -99,7 +101,7 @@ public class MainMenuAppState extends AbstractAppState {
                 panel(new PanelBuilder("panel_top") {{
                     childLayoutCenter();
                     alignCenter();
-                    backgroundColor("#f008");
+//                    backgroundColor("#f008");
                     height("25%");
                     width("75%");
 
@@ -115,7 +117,7 @@ public class MainMenuAppState extends AbstractAppState {
                 panel(new PanelBuilder("panel_mid") {{
                     childLayoutCenter();
                     alignCenter();
-                    backgroundColor("#0f08");
+//                    backgroundColor("#0f08");
                     height("50%");
                     width("75%");
 
@@ -124,14 +126,14 @@ public class MainMenuAppState extends AbstractAppState {
                 panel(new PanelBuilder("panel_bottom") {{
                     childLayoutHorizontal();
                     alignCenter();
-                    backgroundColor("#00f8");
+//                    backgroundColor("#00f8");
                     height("25%");
                     width("75%");
 
                     panel(new PanelBuilder("panel_bottom_left") {{
                         childLayoutCenter();
                         valignCenter();
-                        backgroundColor("#44f8");
+//                        backgroundColor("#44f8");
                         height("50%");
                         width("50%");
 
@@ -149,7 +151,7 @@ public class MainMenuAppState extends AbstractAppState {
                     panel(new PanelBuilder("panel_bottom_right") {{
                         childLayoutCenter();
                         valignCenter();
-                        backgroundColor("#88f8");
+//                        backgroundColor("#88f8");
                         height("50%");
                         width("50%");
 
