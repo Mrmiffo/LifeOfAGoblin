@@ -61,12 +61,9 @@ public class NodeFactory {
                 //Setting up PlayerMoveControl which translates keycommands(key binds) to node actions.
                 PlayerMoveControl pmc = new PlayerMoveControl();
                 InputManagerWrapper.getInstance().registerListener(pmc);
-                //adds a collisionControl
-                GhostControl ghost = new GhostControl(shape);
                 //Attaching controls:
                 node.addControl(mover);
                 node.addControl(pmc);
-                node.addControl(ghost);
                 break;
             case LEVEL:
                 //Adding the player character to the level
