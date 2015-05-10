@@ -31,8 +31,8 @@ public class MainMenu implements INiftyScreen{
     private Screen screen;
 
     public MainMenu() {  
-//        NiftyGUIWrapper.getInstance().loadStyleFile("nifty-default-styles.xml");
-//        NiftyGUIWrapper.getInstance().loadControlFile("nifty-default-controls.xml");     
+        NiftyGUIWrapper.getInstance().loadStyleFile("nifty-default-styles.xml");
+        NiftyGUIWrapper.getInstance().loadControlFile("nifty-default-controls.xml");     
         mainMenuName = "mainMenu";
         setupMainMenu();
         
