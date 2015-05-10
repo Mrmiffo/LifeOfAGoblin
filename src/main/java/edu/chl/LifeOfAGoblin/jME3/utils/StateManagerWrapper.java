@@ -13,7 +13,7 @@ import com.jme3.app.state.AppStateManager;
  */
 public class StateManagerWrapper {
     private static StateManagerWrapper instance;
-    private static AppStateManager sm;
+    private AppStateManager sm;
     private StateManagerWrapper(){
         
     }
@@ -25,7 +25,7 @@ public class StateManagerWrapper {
         return instance;
     }
     
-    public static void initialize(AppStateManager stateManager){
+    public void initialize(AppStateManager stateManager){
         sm = stateManager;
     }
     
