@@ -9,72 +9,36 @@ import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Node;
-import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**
  *
  * @author Fredrik
- * A class that represents a node in the game that can update the 
- * progress class and that the player can respawn at.
+ * A class that represents a control that listens to collisions with a player 
+ * and itself and notifies the collisionObject object associated with the node 
+ * this is added on. 
  */
-public class CheckpointControl extends Node implements INode, PhysicsCollisionListener {
-    private int level;
-    private int number;
-    private boolean activated;
-    private Vector3f halfExtent;
+public class CollisionControl extends GhostControl implements PhysicsCollisionListener {
+    private ICollidable collisionObject;
     
- /**
- *
- * Creates a CheckpointControl object.
- * @param level the level the CheckpointControl is associated with.
- * @param number the CheckpointControls position in relation to other 
- * CheckpointControls on the level.
- * @param halfExtent the size of the collisionbody from the center of the 
- * checkpointcontrol to its borders.
+/**
+ * Creates a CollisionControl. 
+ * @param collisionObject the collisionObject object associated with the node this is 
+ * added on.
  */
-    public CheckpointControl(int level, int number, Vector3f halfExtent){
-        this.setUserData("objectType", "Checkpoint");
-        this.level = level;
-        this.number = number;
-        this.activated = false;
+    public CollisionControl(ICollidable collisionObject){
+        this.collisionObject = collisionObject;
         PhysicsWrapper.getInstance().getBulletAppState().getPhysicsSpace().addCollisionListener(this);
+        Vector3f halfExtent = new Vector3f(collisionObject.getWidth()/2,collisionObject.getHeight()/2, 1);
         BoxCollisionShape box = new BoxCollisionShape(halfExtent);
-        GhostControl ghost = new GhostControl(box);
-        this.getParent().addControl(ghost);
+        this.setCollisionShape(box);
     }
-    
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.CHECKPOINT;
-    }
-    /**
-     * sets wheter or not this CheckpointControl has been activated
-     * in this game.
-     * @param isActivated true if the player has collided with this 
-     * checkpointControl during this game.
-     */
-    public void setActivated(boolean isActivated){
-        this.activated = isActivated;
-    }
-    
-//        @Override
-//    public Map<String, Object> getNodeData() {
-//        Map<String, Object> nodeData = new HashMap<>();
-//        nodeData.put("level", level);
-//        nodeData.put("number", number);
-//        nodeData.put("halfExtent", halfExtent);  
-//        nodeData.put("activated", activated); 
-//        return nodeData;
-//    }
 
     @Override
     public void collision(PhysicsCollisionEvent pce) {
-          if (((INode)pce.getNodeA()).getNodeType().equals(NodeType.PLAYER) && !this.activated){
-              this.setActivated(true);
-              //todo notify progress
+        if(pce.getNodeA().getUserData("NodeType").equals("Player")){ //not working atm
+            this.collisionObject.Collision();
           }
     }
      
