@@ -49,13 +49,13 @@ public class SpawnPointControl extends Node implements INode, PhysicsCollisionLi
     }
     
     
-        @Override
-    public Map<String, Object> getNodeData() {
-        Map<String, Object> nodeData = new HashMap<>();
-        nodeData.put("halfExtent", halfExtent); 
-        nodeData.put("minion", minion); 
-        return nodeData;
-    }
+//        @Override
+//    public Map<String, Object> getNodeData() {
+//        Map<String, Object> nodeData = new HashMap<>();
+//        nodeData.put("halfExtent", halfExtent); 
+//        nodeData.put("minion", minion); 
+//        return nodeData;
+//    }
 
     @Override
     public void collision(PhysicsCollisionEvent pce) {

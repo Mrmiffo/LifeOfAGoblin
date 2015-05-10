@@ -11,7 +11,6 @@ import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import edu.chl.LifeOfAGoblin.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.factory.NodeType;
 import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import java.util.HashMap;
@@ -63,15 +62,15 @@ public class CheckpointControl extends Node implements INode, PhysicsCollisionLi
         this.activated = isActivated;
     }
     
-        @Override
-    public Map<String, Object> getNodeData() {
-        Map<String, Object> nodeData = new HashMap<>();
-        nodeData.put("level", level);
-        nodeData.put("number", number);
-        nodeData.put("halfExtent", halfExtent);  
-        nodeData.put("activated", activated); 
-        return nodeData;
-    }
+//        @Override
+//    public Map<String, Object> getNodeData() {
+//        Map<String, Object> nodeData = new HashMap<>();
+//        nodeData.put("level", level);
+//        nodeData.put("number", number);
+//        nodeData.put("halfExtent", halfExtent);  
+//        nodeData.put("activated", activated); 
+//        return nodeData;
+//    }
 
     @Override
     public void collision(PhysicsCollisionEvent pce) {
