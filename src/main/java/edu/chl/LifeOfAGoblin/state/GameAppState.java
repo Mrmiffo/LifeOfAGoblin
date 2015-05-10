@@ -11,6 +11,7 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.factory.NodeFactory;
+import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 import java.io.File;
 
@@ -101,7 +102,8 @@ public class GameAppState extends AbstractAppState {
     
     //EVERYTHING BELOW THIS POINT IS TO BE REMOVED!!! ONLY HERE UNTIL LEVEL AND INPUT MANAGER IS IMPLEMENTED
     private void temporaryMethodToCreateLevel() {
-        Level level = new Level("TestScene");
+        Player newPlayer = new Player(100,100);
+        Level level = new Level("TestScene", newPlayer);
         rootNode.attachChild(NodeFactory.createModeledLevelNode(level, app.getCamera()));
 
         //Character physics test:

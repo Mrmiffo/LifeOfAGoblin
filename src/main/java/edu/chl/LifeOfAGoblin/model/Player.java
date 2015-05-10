@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
-import edu.chl.LifeOfAGoblin.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.factory.NodeType;
 import java.util.Map;
 
@@ -14,7 +13,8 @@ import java.util.Map;
  * @author Anton
  */
 public class Player extends AbstractCharacter {
-
+    private float modelShapeHeight = 1f;
+    private float modelShapeWidth = 0.5f;
     
     public Player(int health, int maxHealth){
         super("Goblin", health, maxHealth);
@@ -22,15 +22,16 @@ public class Player extends AbstractCharacter {
     }
 
     @Override
-    public Map<String, Object> getNodeData() {
-        Map<String, Object> nodeData = super.getNodeData();
-        //TODO Add custom player data here.
-        return nodeData;
-    }
-
-    @Override
     public NodeType getNodeType() {
         return NodeType.PLAYER;
+    }
+    
+    public float getModelShapeHeight(){
+        return modelShapeHeight;
+    }
+    
+    public float getModelShapeWidth(){
+        return modelShapeWidth;
     }
             
 }

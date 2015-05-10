@@ -9,5 +9,5 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  * @author Anton
  */
 public interface IModeledNode extends INode {
-    public String getModel();
+    public String getModelName();
 }
