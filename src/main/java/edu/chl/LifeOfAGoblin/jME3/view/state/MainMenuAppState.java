@@ -42,11 +42,7 @@ public class MainMenuAppState extends AbstractAppState {
         this.app = app;
         assetManager = app.getAssetManager();
 
-        
-        NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
-                app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
-        nifty = niftyDisplay.getNifty();
-        app.getGuiViewPort().addProcessor(niftyDisplay);
+
         ((SimpleApplication)app).getFlyByCamera().setDragToRotate(true);
         
         nifty.setDebugOptionPanelColors(false);
