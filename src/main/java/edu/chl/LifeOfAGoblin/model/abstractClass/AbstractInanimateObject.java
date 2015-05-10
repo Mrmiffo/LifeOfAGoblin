@@ -7,9 +7,8 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import edu.chl.LifeOfAGoblin.utils.NodeFactory;
-import edu.chl.LifeOfAGoblin.utils.Resources;
-import java.util.Map;
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 
 
 /**
@@ -26,17 +25,12 @@ public abstract class AbstractInanimateObject implements INode, IModeledNode {
    }
 
     @Override
-    public String getModel() {
+    public String getModelName() {
         return model;
     }
 
     @Override
-    public Map<String, Object> getNodeData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public NodeFactory.NodeType getNodeType() {
+    public NodeType getNodeType() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

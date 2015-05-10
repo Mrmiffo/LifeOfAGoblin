@@ -6,8 +6,6 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -23,16 +21,30 @@ public abstract class AbstractCharacter implements INode, IModeledNode{
         this.maxHealth = maxHealth;
     }
     
-    @Override
-    public Map<String, Object> getNodeData(){
-        Map<String, Object> nodeData = new HashMap<>();
-        nodeData.put("health", health);
-        nodeData.put("maxHealth", maxHealth);
-        return nodeData;
-    }
     
     @Override
-    public String getModel(){
+    public String getModelName(){
         return model;
     }
+    
+    public int getHealth(){
+        return health;
+    }
+    
+    public void setHealth(int newHealth){
+        health = newHealth;
+        if (health <= 0){
+            killCharacter();
+        }
+    }
+    
+    public int getMaxHealth(){
+        return maxHealth;
+    }
+    
+    public void setMaxHealth(int newMaxHealth){
+        maxHealth = newMaxHealth;
+    }
+    
+    public abstract void killCharacter();
 }
