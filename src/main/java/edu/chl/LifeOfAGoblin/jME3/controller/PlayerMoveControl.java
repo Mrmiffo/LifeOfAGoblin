@@ -1,7 +1,6 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.bullet.control.CharacterControl;
-import com.jme3.input.controls.ActionListener;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;

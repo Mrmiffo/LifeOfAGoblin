@@ -13,8 +13,6 @@ import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *

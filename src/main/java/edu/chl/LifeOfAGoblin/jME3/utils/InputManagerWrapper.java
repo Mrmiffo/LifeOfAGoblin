@@ -5,10 +5,8 @@
 package edu.chl.LifeOfAGoblin.jME3.utils;
 
 import com.jme3.input.InputManager;
-import com.jme3.input.controls.KeyTrigger;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.KeyBindings.KeyBind;
-import java.util.List;
 
 /**
  * This is a wrapper clas for the inputManager intended to move actionlistener

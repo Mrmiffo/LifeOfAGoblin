@@ -6,8 +6,6 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
