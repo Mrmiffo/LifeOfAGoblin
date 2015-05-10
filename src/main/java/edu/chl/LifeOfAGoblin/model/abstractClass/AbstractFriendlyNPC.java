@@ -8,8 +8,13 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
  *
  * @author Anton
  */
-public abstract class AbstractFriendlyNPC extends AbstractNPC {
+public abstract class AbstractFriendlyNPC extends AbstractNPC /*implements IFriendlyBehaviour*/ {
     protected AbstractFriendlyNPC(String model, int health, int maxHealth){
         super(model, health, maxHealth);
     }
+    
+    /*IFriendlyBehaviour extends IBehaviour and adds:
+     * public void friendlyBehaviour()
+     * 
+     */
 }
