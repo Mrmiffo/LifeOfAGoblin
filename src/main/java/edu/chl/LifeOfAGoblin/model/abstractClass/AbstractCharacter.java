@@ -15,6 +15,16 @@ public abstract class AbstractCharacter implements INode, IModeledNode{
     private int health;
     private int maxHealth;
     private String model;
+
+     private float height; //consider what unit to use
+     private float width; //along the x-axis
+     private float weight;
+     private int id; //Necessary?
+     //private float mana/energy etc;
+     private float baseDamage;
+     private float baseArmour;
+     //private boolean rangedUnit; should be a seperate class?
+
     protected AbstractCharacter(String model, int health, int maxHealth) {
         this.model = model;
         this.health = health;
