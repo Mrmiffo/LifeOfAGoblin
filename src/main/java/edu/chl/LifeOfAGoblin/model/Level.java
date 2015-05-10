@@ -7,8 +7,12 @@ package edu.chl.LifeOfAGoblin.model;
 import com.jme3.asset.plugins.FileLocator;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+<<<<<<< HEAD
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import java.io.File;
+=======
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
+>>>>>>> spawnpoint
 
     
 /**
@@ -43,5 +47,9 @@ public class Level implements IModeledNode{
     
     public Player getPlayer(){
         return player;
+    }
+
+    void Spawn(int amount, AbstractNPC type) {
+       //todo add functionality1 for spawning NPCs.
     }
 }
