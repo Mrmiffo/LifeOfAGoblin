@@ -35,6 +35,9 @@ public abstract class AbstractCharacter implements INode, IModeledNode{
     
     public void setHealth(int newHealth){
         health = newHealth;
+        if (health <= 0){
+            killCharacter();
+        }
     }
     
     public int getMaxHealth(){
@@ -44,4 +47,6 @@ public abstract class AbstractCharacter implements INode, IModeledNode{
     public void setMaxHealth(int newMaxHealth){
         maxHealth = newMaxHealth;
     }
+    
+    public abstract void killCharacter();
 }

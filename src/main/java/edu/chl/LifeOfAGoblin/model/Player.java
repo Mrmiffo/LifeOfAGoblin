@@ -33,5 +33,12 @@ public class Player extends AbstractCharacter {
     public float getModelShapeWidth(){
         return modelShapeWidth;
     }
+
+    @Override
+    public void killCharacter() {
+        //TODO Kill the character somehow.
+    }
+    
+    
             
 }
