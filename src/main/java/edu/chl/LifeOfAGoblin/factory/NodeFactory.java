@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.utils;
+package edu.chl.LifeOfAGoblin.factory;
 
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -11,7 +11,6 @@ import com.jme3.bullet.control.GhostControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.input.ChaseCamera;
-import com.jme3.input.InputManager;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -21,6 +20,9 @@ import edu.chl.LifeOfAGoblin.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
+import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
+import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.utils.Resources;
 import java.util.Set;
 
 /**
@@ -28,13 +30,7 @@ import java.util.Set;
  * @author Anton
  */
 public class NodeFactory {
-    public enum NodeType{
-        PLAYER,
-        LEVEL,
-        NPC,
-        CHECKPOINT,
-        SPAWNPOINT
-    }
+
     
     public NodeFactory(){
         

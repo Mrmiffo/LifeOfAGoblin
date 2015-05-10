@@ -11,7 +11,7 @@ import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import edu.chl.LifeOfAGoblin.utils.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeType;
 import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ import java.util.Map;
  * 
  */
 public class SpawnPointControl extends Node implements INode, PhysicsCollisionListener {
-    private NodeFactory.NodeType minion;
+    private NodeType minion;
     private Vector3f halfExtent;
     
     /**
@@ -34,7 +34,7 @@ public class SpawnPointControl extends Node implements INode, PhysicsCollisionLi
      * @param minion  the type of minion associated with this 
      * SpawnPointControl
      */
-    public SpawnPointControl(Vector3f halfExtent, NodeFactory.NodeType minion ){
+    public SpawnPointControl(Vector3f halfExtent, NodeType minion ){
         this.setUserData("objectType", "Checkpoint");
         this.minion = minion;
         PhysicsWrapper.getInstance().getBulletAppState().getPhysicsSpace().addCollisionListener(this);
@@ -44,8 +44,8 @@ public class SpawnPointControl extends Node implements INode, PhysicsCollisionLi
     }
     
     @Override
-    public NodeFactory.NodeType getNodeType() {
-        return NodeFactory.NodeType.SPAWNPOINT;
+    public NodeType getNodeType() {
+        return NodeType.SPAWNPOINT;
     }
     
     
@@ -59,7 +59,7 @@ public class SpawnPointControl extends Node implements INode, PhysicsCollisionLi
 
     @Override
     public void collision(PhysicsCollisionEvent pce) {
-        if (((INode)pce.getNodeA()).getNodeType().equals(NodeFactory.NodeType.PLAYER)){
+        if (((INode)pce.getNodeA()).getNodeType().equals(NodeType.PLAYER)){
         //Todo notify level
         }   
           

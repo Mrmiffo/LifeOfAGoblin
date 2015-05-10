@@ -5,7 +5,8 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
-import edu.chl.LifeOfAGoblin.utils.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeType;
 import java.util.Map;
 
 /**
@@ -28,8 +29,8 @@ public class Player extends AbstractCharacter {
     }
 
     @Override
-    public NodeFactory.NodeType getNodeType() {
-        return NodeFactory.NodeType.PLAYER;
+    public NodeType getNodeType() {
+        return NodeType.PLAYER;
     }
             
 }

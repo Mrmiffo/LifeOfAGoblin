@@ -10,7 +10,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.Level;
-import edu.chl.LifeOfAGoblin.utils.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 import java.io.File;
 

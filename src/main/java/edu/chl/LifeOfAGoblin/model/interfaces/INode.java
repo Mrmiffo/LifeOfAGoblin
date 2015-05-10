@@ -4,7 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model.interfaces;
 
-import edu.chl.LifeOfAGoblin.utils.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeType;
 import java.util.Map;
 
 /**
@@ -13,5 +13,5 @@ import java.util.Map;
  */
 public interface INode {
     public Map<String, Object> getNodeData();
-    public NodeFactory.NodeType getNodeType();
+    public NodeType getNodeType();
 }

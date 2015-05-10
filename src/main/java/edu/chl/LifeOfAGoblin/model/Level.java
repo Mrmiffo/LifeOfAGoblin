@@ -5,7 +5,8 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.utils.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public class Level implements IModeledNode{
     }
 
     @Override
-    public NodeFactory.NodeType getNodeType() {
-        return NodeFactory.NodeType.LEVEL;
+    public NodeType getNodeType() {
+        return NodeType.LEVEL;
     }
 }

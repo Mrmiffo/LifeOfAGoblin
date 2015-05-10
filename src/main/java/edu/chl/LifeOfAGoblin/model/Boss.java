@@ -5,7 +5,7 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
-import edu.chl.LifeOfAGoblin.utils.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeType;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Boss extends AbstractHostileNPC {
     }
 
     @Override
-    public NodeFactory.NodeType getNodeType() {
-        return NodeFactory.NodeType.NPC;
+    public NodeType getNodeType() {
+        return NodeType.NPC;
     }
 }

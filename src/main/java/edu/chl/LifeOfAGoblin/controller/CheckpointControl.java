@@ -11,7 +11,8 @@ import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import edu.chl.LifeOfAGoblin.utils.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeFactory;
+import edu.chl.LifeOfAGoblin.factory.NodeType;
 import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,8 +50,8 @@ public class CheckpointControl extends Node implements INode, PhysicsCollisionLi
     }
     
     @Override
-    public NodeFactory.NodeType getNodeType() {
-        return NodeFactory.NodeType.CHECKPOINT;
+    public NodeType getNodeType() {
+        return NodeType.CHECKPOINT;
     }
     /**
      * sets wheter or not this CheckpointControl has been activated
@@ -74,7 +75,7 @@ public class CheckpointControl extends Node implements INode, PhysicsCollisionLi
 
     @Override
     public void collision(PhysicsCollisionEvent pce) {
-          if (((INode)pce.getNodeA()).getNodeType().equals(NodeFactory.NodeType.PLAYER) && !this.activated){
+          if (((INode)pce.getNodeA()).getNodeType().equals(NodeType.PLAYER) && !this.activated){
               this.setActivated(true);
               //todo notify progress
           }
