@@ -4,16 +4,12 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.asset.AssetManager;
-import com.jme3.asset.plugins.FileLocator;
 import com.jme3.math.ColorRGBA;
-import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.model.Player;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import java.io.File;
+
 
 
 /**
@@ -21,45 +17,28 @@ import java.io.File;
  * @author Anton
  */
 public class GameAppState extends AbstractAppState {
-    
-    private String filePath;
-
-    SimpleApplication app;
-    AssetManager assetManager;
-    ViewPort viewPort;
-    Node rootNode;
-    
-
+    private Node rootNode;
+    private Application app;
     public GameAppState(){
-        this.filePath = "src" + File.separator + "main" + File.separator + "java"
-                + File.separator + "edu" + File.separator + "chl"+ File.separator
-                + "LifeOfAGoblin";
+
     }
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
-        this.app = (SimpleApplication)app;
-        this.assetManager = app.getAssetManager();
-        this.viewPort = ((SimpleApplication)app).getViewPort();
-        this.rootNode = ((SimpleApplication)app).getRootNode();
-        
-        
+        rootNode = ((SimpleApplication)app).getRootNode();
+        this.app = app;
         loadResources();
         //Start level
         temporaryMethodToCreateLevel();
-//        Level currentLevel = new Level(levelToCreate);
-        viewPort.setBackgroundColor(ColorRGBA.Cyan);
+        app.getViewPort().setBackgroundColor(ColorRGBA.Cyan);
 //        rootNode.attachChild(currentLevel.getScene());
     }
     
     @Override
     public void cleanup() {
         super.cleanup();
-        this.app = null;
-        this.assetManager = null;
-        this.viewPort = null;
-        this.rootNode = null;
+
     }
     
     @Override
@@ -74,28 +53,11 @@ public class GameAppState extends AbstractAppState {
 
     private void loadResources() {
         System.out.println("Loading resources...");
-        loadModels();
-        loadScenes();
         loadSounds();
-    }
-    
-    private void loadModels() {
-        System.out.println("Loading models...");
-        assetManager.registerLocator(filePath + File.separator + "assets" + File.separator
-                + "models", FileLocator.class);
-        Resources.getInstance().addResource("Goblin", assetManager.loadModel("Goblin2.j3o"));
-    }
-
-    private void loadScenes() {
-        System.out.println("Loading scenes...");
-        assetManager.registerLocator(filePath + File.separator + "assets" + File.separator
-                + "scenes", FileLocator.class);
-        Resources.getInstance().addResource("TestScene", assetManager.loadModel("testScene.j3o"));
     }
 
     private void loadSounds() {
         System.out.println("Loading sounds...");
-        assetManager.registerLocator("src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets" + File.separator + "sounds", FileLocator.class);     
     }
 
     
@@ -103,7 +65,7 @@ public class GameAppState extends AbstractAppState {
     //EVERYTHING BELOW THIS POINT IS TO BE REMOVED!!! ONLY HERE UNTIL LEVEL AND INPUT MANAGER IS IMPLEMENTED
     private void temporaryMethodToCreateLevel() {
         Player newPlayer = new Player(100,100);
-        Level level = new Level("TestScene", newPlayer);
+        Level level = new Level("testScene.j3o", newPlayer);
         rootNode.attachChild(NodeFactory.createModeledLevelNode(level, app.getCamera()));
 
         //Character physics test:
