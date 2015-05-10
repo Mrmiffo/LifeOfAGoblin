@@ -5,31 +5,27 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.app.Application;
-import com.jme3.app.state.AbstractAppState;
-import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
-import edu.chl.LifeOfAGoblin.jME3.view.state.MainMenuAppState;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
 
 /**
  *
  * @author Anton
  */
-public class MainMenuController extends AbstractAppState implements ScreenController{
-    private MainMenuAppState mainMenu;
+public class MainMenuController implements ScreenController{
+    private MainMenu mainMenu;
     private Application app;
     
-    public MainMenuController(MainMenuAppState mainMenu){
+    public MainMenuController(MainMenu mainMenu){
         this.mainMenu = mainMenu;
     }
-    
-    @Override
-    public void initialize(AppStateManager stateManager, Application app) {
-        this.app = app;
-    }
+   
 
     @Override
     public void bind(Nifty nifty, Screen screen) {
@@ -47,7 +43,9 @@ public class MainMenuController extends AbstractAppState implements ScreenContro
     }
     
     public void startGame(){
-        StateManagerWrapper.getInstance().removeState(mainMenu);
+        GameHud hud = new GameHud();
+        NiftyGUIWrapper.getInstance().addScreen(hud.getScreenName(), hud.getScreen());
+        NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
         StateManagerWrapper.getInstance().addState(new GameAppState());
         
     }

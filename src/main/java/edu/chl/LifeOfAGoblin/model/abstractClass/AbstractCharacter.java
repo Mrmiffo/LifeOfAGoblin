@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
+import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
@@ -15,7 +16,6 @@ public abstract class AbstractCharacter implements INode, IModeledNode{
     private int health;
     private int maxHealth;
     private String model;
-
      private float height; //consider what unit to use
      private float width; //along the x-axis
      private float weight;
@@ -25,10 +25,18 @@ public abstract class AbstractCharacter implements INode, IModeledNode{
      private float baseArmour;
      //private boolean rangedUnit; should be a seperate class?
 
+    /** 
+     * @param model the model texture to load for the character. Must be placed in the assets/model folder.
+     * @param health the current health of the character
+     * @param maxHealth the max health of the character
+     */
+
     protected AbstractCharacter(String model, int health, int maxHealth) {
         this.model = model;
         this.health = health;
         this.maxHealth = maxHealth;
+        Resources.getInstance().loadResource(model, "models");
+        
     }
     
     
@@ -55,6 +63,6 @@ public abstract class AbstractCharacter implements INode, IModeledNode{
     public void setMaxHealth(int newMaxHealth){
         maxHealth = newMaxHealth;
     }
-    
+
     public abstract void killCharacter();
 }
