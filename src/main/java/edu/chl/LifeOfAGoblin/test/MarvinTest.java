@@ -35,6 +35,7 @@ public class MarvinTest extends SimpleApplication{
         MainMenu mainMenu = new MainMenu();
         NiftyGUIWrapper.getInstance().addScreen(mainMenu.getScreenName(), mainMenu.getScreen());
         NiftyGUIWrapper.getInstance().goToScreen(mainMenu.getScreenName());
+        this.getFlyByCamera().setDragToRotate(true);
 
     }
 
