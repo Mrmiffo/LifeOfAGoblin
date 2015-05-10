@@ -5,7 +5,7 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.factory.NodeType;
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 
 /**
  * The level model. Contains the model data of the level and the scene name.

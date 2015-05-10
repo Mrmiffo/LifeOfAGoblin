@@ -5,7 +5,7 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
-import edu.chl.LifeOfAGoblin.factory.NodeType;
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 
 /**
  *
@@ -20,5 +20,10 @@ public class Boss extends AbstractHostileNPC {
     @Override
     public NodeType getNodeType() {
         return NodeType.NPC;
+    }
+
+    @Override
+    public void killCharacter() {
+        //TODO Kill boss
     }
 }

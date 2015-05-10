@@ -7,8 +7,8 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import edu.chl.LifeOfAGoblin.factory.NodeType;
-import edu.chl.LifeOfAGoblin.utils.Resources;
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import java.util.Map;
 
 
