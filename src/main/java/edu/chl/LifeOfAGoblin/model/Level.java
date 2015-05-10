@@ -6,6 +6,7 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 
 /**
  * The level model. Contains the model data of the level and the scene name.
@@ -41,5 +42,9 @@ public class Level implements IModeledNode{
     
     public Player getPlayer(){
         return player;
+    }
+
+    void Spawn(int amount, AbstractNPC type) {
+       //todo add functionality1 for spawning NPCs.
     }
 }
