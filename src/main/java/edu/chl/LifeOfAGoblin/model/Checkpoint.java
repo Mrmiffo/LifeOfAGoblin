@@ -10,7 +10,9 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
 /**
- * 
+ * a class representing a checkpoint attached to an object in the game 
+ * with a size that updates the progress class when a player gets 
+ * within its size.
  * @author fredrik
  */
 public class Checkpoint implements INode, ICollidable {
@@ -21,7 +23,7 @@ public class Checkpoint implements INode, ICollidable {
     private float height;
     private float width;
     /**
-     * constructor for creating a checkpoint with a  collisionbody the same size
+     * constructor for creating a checkpoint with the same size
      * as its parent's modelShape
      * @param level the level containing the checkpoint
      * @param number the number of the checkpoint in relation to the other
@@ -39,7 +41,7 @@ public class Checkpoint implements INode, ICollidable {
         
     }
         /**
-     * constructor for creating a checkpoint with a larger collisionbody than
+     * constructor for creating a checkpoint with a different size than
      * its parent's modelShape
      * @param level the level containing the checkpoint
      * @param number the number of the checkpoint in relation to the other
@@ -59,7 +61,7 @@ public class Checkpoint implements INode, ICollidable {
     
     
     /**
-     * sets wheter or not this CheckpointControl has been activated
+     * sets wheter or not this Checkpoint has been activated
      * in this game.
      * @param isActivated true if the player has collided with this 
      * checkpointControl during this game.
@@ -77,10 +79,12 @@ public class Checkpoint implements INode, ICollidable {
         return this.parent;
     }
     
+    @Override
     public float getWidth(){
         return this.width;
     }
     
+    @Override
     public float getHeight(){
         return this.height;
         

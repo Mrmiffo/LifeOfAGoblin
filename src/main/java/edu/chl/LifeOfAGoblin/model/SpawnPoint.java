@@ -12,7 +12,8 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
 /**
- * 
+ * A class representing a spawnpoint attached to an object in the game that with
+ * a size that tells the level to spawn NPCs when a player gets within its size.
  * @author fredrik
  */
 public class SpawnPoint implements INode, ICollidable {
@@ -24,6 +25,14 @@ public class SpawnPoint implements INode, ICollidable {
     private float width;
     private Level level;
 
+    /**
+     * Constructor for creating a Spawnpoint with the same size as its parent's
+     * modelShape
+     * @param amount how many NPCs should spawn
+     * @param type what type of NPC should spawn
+     * @param parent the AbstractGameObject the spawnpoint is associated with
+     * @param level the level that should spawn the NPCs
+     */
     public SpawnPoint(int amount, AbstractNPC type, AbstractGameObject 
             parent, Level level){
         this.activated = false;
@@ -35,7 +44,15 @@ public class SpawnPoint implements INode, ICollidable {
         this.level = level;
         
     }
-   
+       /**
+     * Constructor for creating a Spawnpoint with a different size than its 
+     * parent's modelShape
+     * modelShape
+     * @param amount how many NPCs should spawn
+     * @param type what type of NPC should spawn
+     * @param parent the AbstractGameObject the spawnpoint is associated with
+     * @param level the level that should spawn the NPCs
+     */
         public SpawnPoint(int amount, AbstractNPC type, AbstractGameObject 
             parent, float height, float width, Level level){
         this.activated = false;
@@ -81,8 +98,9 @@ public class SpawnPoint implements INode, ICollidable {
         
     }
     /**
-     * is called when a player collides with the Spawnpoint. Tells progress
-     * to update itself if neccesary and sets activated to true
+     * is called when a player collides with the Spawnpoint. Tells level to 
+     * spawn a number of certain type of NPC according to the spawnpoint's
+     * amount and type.
      */
     @Override
     public void Collision(){
