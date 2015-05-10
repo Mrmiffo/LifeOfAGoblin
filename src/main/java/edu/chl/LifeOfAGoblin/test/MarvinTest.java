@@ -34,6 +34,7 @@ public class MarvinTest extends SimpleApplication{
 //        GameAppState playGame = new GameAppState();
         MainMenu mainMenu = new MainMenu();
         NiftyGUIWrapper.getInstance().addScreen(mainMenu.getScreenName(), mainMenu.getScreen());
+        NiftyGUIWrapper.getInstance().goToScreen(mainMenu.getScreenName());
 
     }
 
