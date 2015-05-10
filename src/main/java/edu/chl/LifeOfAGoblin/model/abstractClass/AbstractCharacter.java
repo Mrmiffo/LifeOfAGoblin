@@ -23,7 +23,7 @@ public abstract class AbstractCharacter implements INode, IModeledNode{
      //private float mana/energy etc;
      private float baseDamage;
      private float baseArmour;
-     private boolean rangedUnit; //should perhaps be a seperate class
+     //private boolean rangedUnit; should be a seperate class?
 
     protected AbstractCharacter(String model, int health, int maxHealth) {
         this.model = model;
