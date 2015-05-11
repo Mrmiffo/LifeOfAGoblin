@@ -22,8 +22,5 @@ public class Boss extends AbstractHostileNPC {
         return NodeType.NPC;
     }
 
-    @Override
-    public void killCharacter() {
-        //TODO Kill boss
-    }
+
 }

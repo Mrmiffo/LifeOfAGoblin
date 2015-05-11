@@ -6,15 +6,14 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 
 /**
  *
  * @author Anton
  */
 public class Player extends AbstractCharacter {
-    private float modelShapeHeight = 1f;
-    private float modelShapeWidth = 0.5f;
+    private float height = 1f;
+    private float width = 0.5f;
     
     public Player(int health, int maxHealth){
         super("Goblin2.j3o", health, maxHealth);
@@ -25,20 +24,5 @@ public class Player extends AbstractCharacter {
     public NodeType getNodeType() {
         return NodeType.PLAYER;
     }
-    
-    public float getModelShapeHeight(){
-        return modelShapeHeight;
-    }
-    
-    public float getModelShapeWidth(){
-        return modelShapeWidth;
-    }
-
-    @Override
-    public void killCharacter() {
-        //TODO Kill the character somehow.
-    }
-    
-
-            
+        
 }

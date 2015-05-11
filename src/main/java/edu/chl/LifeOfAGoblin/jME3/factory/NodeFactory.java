@@ -40,9 +40,9 @@ public class NodeFactory {
         switch (nodeToCreate.getNodeType()){
             case PLAYER:
                 //Moving the model node slightly to fit the CollisionShape
-                node.getChild(0).setLocalTranslation(new Vector3f(0,-((Player)nodeToCreate).getModelShapeHeight(),0));
+                node.getChild(0).setLocalTranslation(new Vector3f(0,-((Player)nodeToCreate).getHeight(),0));
                 //Setting upp collision shape and character control:
-                CapsuleCollisionShape shape = new CapsuleCollisionShape(((Player)nodeToCreate).getModelShapeWidth(), ((Player)nodeToCreate).getModelShapeHeight(), 1);
+                CapsuleCollisionShape shape = new CapsuleCollisionShape(((Player)nodeToCreate).getWidth(), ((Player)nodeToCreate).getHeight(), 1);
                 //CharacterControl has been depricated prematurly due to BetterCharacterControl. Although BetterCharacterControl contains major flaws (such as missing step height) that make CharacterControl a better choice for this project.
                 CharacterControl mover = new CharacterControl(shape, 0.05f);
                 PhysicsWrapper.getInstance().add(mover);
