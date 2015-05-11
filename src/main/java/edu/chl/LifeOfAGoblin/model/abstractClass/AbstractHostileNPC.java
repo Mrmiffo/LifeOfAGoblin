@@ -27,10 +27,9 @@ public abstract class AbstractHostileNPC extends AbstractNPC implements IHostile
      * @param target
      */
     protected AbstractHostileNPC(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage, float baseArmour,
-            AbstractCharacter target){
+            float width, float weight, float baseDamage, AbstractCharacter target){
         
-        super(maxHealth, model, height, width, weight, baseDamage, baseArmour);
+        super(maxHealth, model, height, width, weight, baseDamage);
         this.target = target;
     }
     

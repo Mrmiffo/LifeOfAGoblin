@@ -23,23 +23,18 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     private float width; //along the x-axis
     private float weight;
     private float baseDamage;
-    private float baseArmour;
-
-    /** 
-     * @param model the model texture to load for the character. Must be placed in the assets/model folder.
-     * @param health the current health of the character
-     * @param maxHealth the max health of the character
-     */
-
-    /*protected AbstractCharacter(String model, int health, int maxHealth) {
-        this.model = model;
-        this.health = health;
-        this.maxHealth = maxHealth;
-        Resources.getInstance().loadResource(model, "models");
-    }*/
     
+    /**
+     *
+     * @param maxHealth the max health of the character.
+     * @param model the model texture to load for the character. Must be placed in the assets/model folder.
+     * @param height the height of the character.
+     * @param width the width (along the X-axis) of the character.
+     * @param weight the weight of the character.
+     * @param baseDamage the character's unmodified damage.
+     */
     protected AbstractCharacter(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage, float baseArmour) {
+            float width, float weight, float baseDamage) {
         
         this.health = maxHealth; //everything has full health when created
         this.maxHealth = maxHealth;
@@ -48,7 +43,6 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
         this.width = width;
         this.weight = weight;
         this.baseDamage = baseDamage;
-        this.baseArmour = baseArmour;
         Resources.getInstance().loadResource(model, "models");
     }
     
@@ -93,10 +87,6 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     
     public float getBaseDamage() {
         return baseDamage;
-    }
-    
-    public float getBaseArmour() {
-        return baseArmour;
     }
     
     

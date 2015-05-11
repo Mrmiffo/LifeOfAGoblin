@@ -20,7 +20,6 @@ public class Boss extends AbstractHostileNPC {
     private static final float width = 7;
     private static final float weight = 1000;
     private static final float baseDamage = 10;
-    private static final float baseArmour = 10;
     
     public Boss(AbstractCharacter target) {
         this(target, 1);
@@ -28,7 +27,7 @@ public class Boss extends AbstractHostileNPC {
     
     public Boss(AbstractCharacter target, float healthMultiplyer) {
         super((int)healthMultiplyer * maxHealth, model, height, width, weight,
-                baseDamage, baseArmour, target);
+                baseDamage, target);
     }
     
     @Override

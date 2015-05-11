@@ -14,10 +14,16 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 public class Player extends AbstractCharacter {
     
     private static Player instance;
-    private static int maxHealth = 5;
+    private static final int maxHealth = 5;
+    private static final String model = "Goblin2.j3o";
+    private static final float height = 1;
+    private static final float width = 0.4f;
+    private static final float weight = 10;
+    private static final float baseDamage = 1;
     
     private Player(){
-        super(maxHealth, "Goblin2.j3o", 1, 0.5f, 10, 0, 0);   
+        super(maxHealth, model, height, width, weight, baseDamage);
+        
     }
 
     @Override
