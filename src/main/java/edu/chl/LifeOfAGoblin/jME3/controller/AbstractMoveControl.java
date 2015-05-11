@@ -41,10 +41,10 @@ public abstract class AbstractMoveControl extends AbstractControl {
     protected void controlUpdate(float tpf) {
         if (right) {
             faceRight();
-            characterControl.setWalkDirection(new Vector3f(stepWidth*tpf, 0, 0));
+            characterControl.setWalkDirection(new Vector3f(stepWidth, 0, 0));
         } else if (left) {
             faceLeft();
-            characterControl.setWalkDirection(new Vector3f(-stepWidth*tpf, 0, 0));
+            characterControl.setWalkDirection(new Vector3f(-stepWidth, 0, 0));
         } else {
             haltCharacter();
         }
@@ -59,21 +59,21 @@ public abstract class AbstractMoveControl extends AbstractControl {
      * Makes the controlled spatial face to the left.
      */
     protected void faceLeft() {
-        characterControl.setViewDirection(new Vector3f(-1, 0, 0));
+        characterControl.setViewDirection(Vector3f.UNIT_X.mult(-1));
     }
     
     /**
      * Makes the controlled spatial face to the right.
      */
     protected void faceRight() {
-        characterControl.setViewDirection(new Vector3f(1, 0, 0));
+        characterControl.setViewDirection(Vector3f.UNIT_X);
     }
     
     /**
      * Makes the controlled spatial face towards the player (front).
      */
     protected void faceFront() {
-        characterControl.setViewDirection(new Vector3f(0, 0, 1));
+        characterControl.setViewDirection(Vector3f.UNIT_Z);
     }
     
     /**
