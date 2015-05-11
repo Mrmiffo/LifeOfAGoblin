@@ -8,11 +8,8 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  *
  * @author kakan
  */
-public interface IIdleBehaviour {
+public interface IKillable {
     
-    /**
-     * Specifies AI for the object while idle.
-     */
-    public void idleBehaviour();
+    public void die();
     
 }

@@ -6,25 +6,40 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 
 /**
  *
  * @author Anton
  */
 public class Minion extends AbstractHostileNPC {
+    
+    private static final int maxHealth = 1;
+    private static final String model = "";
+    private static final float height = 1;
+    private static final float width = 0.4f;
+    private static final float weight = 10;
+    private static final float baseDamage = 1;
 
-    public Minion(String model, int health, int maxHealth){
-        super(model, health, maxHealth);
-//        character.setUserData("objectType", "Minion");
+    /**
+     *
+     * {@inheritDoc}
+     */
+    public Minion(AbstractCharacter target){
+        this(target, 1);   
     }
-
+    
+    /**
+     *
+     * {@inheritDoc}
+     * @param healthMultiplyer the multiplier to make the Minion tougher.
+     */
+    public Minion(AbstractCharacter target, float healthMultiplyer) {
+        super((int)healthMultiplyer * maxHealth, model, height, width, weight,
+                baseDamage, target);
+    }
     @Override
     public NodeType getNodeType() {
         return NodeType.NPC;
-    }
-
-    @Override
-    public void killCharacter() {
-        //TODO Kill minion
     }
 }
