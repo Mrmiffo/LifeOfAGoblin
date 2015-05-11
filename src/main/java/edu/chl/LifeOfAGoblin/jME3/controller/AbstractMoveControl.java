@@ -19,18 +19,18 @@ public class AbstractMoveControl extends AbstractControl {
     
     protected boolean right;
     protected boolean left;
-    protected CharacterControl playerControl;
+    private CharacterControl characterControl;
 
     @Override
     protected void controlUpdate(float tpf) {
         if (right) {
             faceRight();
-            playerControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
+            characterControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
         } else if (left) {
             faceLeft();
-            playerControl.setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
+            characterControl.setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
         } else {
-            haltPlayer();
+            haltCharacter();
         }
     }
 
@@ -39,29 +39,33 @@ public class AbstractMoveControl extends AbstractControl {
         
     }
     
-    private void faceLeft() {
-        playerControl.setViewDirection(new Vector3f(-1, 0, 0));
+    protected void faceLeft() {
+        characterControl.setViewDirection(new Vector3f(-1, 0, 0));
     }
     
-    private void faceRight() {
-        playerControl.setViewDirection(new Vector3f(1, 0, 0));
+    protected void faceRight() {
+        characterControl.setViewDirection(new Vector3f(1, 0, 0));
     }
     
-    private  void faceFront() {
-        playerControl.setViewDirection(new Vector3f(0, 0, 1));
+    protected  void faceFront() {
+        characterControl.setViewDirection(new Vector3f(0, 0, 1));
     }
     
-    private void haltPlayer() {
-        playerControl.setWalkDirection(Vector3f.ZERO);
+    protected void haltCharacter() {
+        characterControl.setWalkDirection(Vector3f.ZERO);
+    }
+    
+    protected void jump() {
+        characterControl.jump();
     }
     
     @Override
     public void setSpatial(Spatial spatial) {
         super.setSpatial(spatial);
         if (spatial != null) {
-            playerControl = spatial.getControl(CharacterControl.class);
+            characterControl = spatial.getControl(CharacterControl.class);
         } else {
-            playerControl = null;
+            characterControl = null;
         }
     }
     

@@ -26,7 +26,7 @@ public class PlayerMoveControl extends AbstractMoveControl implements IKeyListen
                 left = false;
             }
         } else if (name.equals(KeyBindings.KeyBind.JUMP.getKeyText())){
-            playerControl.jump();
+            jump();
         }
     }
 
