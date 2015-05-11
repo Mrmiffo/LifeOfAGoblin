@@ -17,31 +17,43 @@ import java.util.List;
  */
 public class PlayerMoveControl extends AbstractControl implements IKeyListener{
     
+    private boolean right;
+    private boolean left;
+    
     private CharacterControl playerControl;
-    private String  currentDirection;
+
     
 
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (isPressed){
-            if (name.equals(KeyBindings.KeyBind.WALK_RIGHT.getKeyText())){
-                faceRight();
-                playerControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
-                currentDirection = name;
-            } else if (name.equals(KeyBindings.KeyBind.WALK_LEFT.getKeyText())){
-                faceLeft();
-                playerControl.setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
-                currentDirection  = name;
-            } else if (name.equals(KeyBindings.KeyBind.JUMP.getKeyText())){
-                playerControl.jump();
+        if (name.equals(KeyBindings.KeyBind.WALK_RIGHT.getKeyText())){
+            if (isPressed) {
+                right = true;
+            } else {
+                right = false;
             }
-        } else if (name.equals(currentDirection)){
-            haltPlayer();  
+        } else if (name.equals(KeyBindings.KeyBind.WALK_LEFT.getKeyText())){
+            if (isPressed) {
+                left = true;
+            } else {
+                left = false;
+            }
+        } else if (name.equals(KeyBindings.KeyBind.JUMP.getKeyText())){
+            playerControl.jump();
         }
     }
 
     @Override
     protected void controlUpdate(float tpf) {
+        if (right) {
+            faceRight();
+            playerControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
+        } else if (left) {
+            faceLeft();
+            playerControl.setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
+        } else {
+            haltPlayer();
+        }
         
     }
 
