@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.jME3.controller;
+package edu.chl.LifeOfAGoblin.archive;
 
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
@@ -21,7 +21,7 @@ import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
  * level?? to spawn a certain type of minion.
  * 
  */
-public class SpawnPointControl extends Node implements INode, PhysicsCollisionListener {
+public class SpawnPointControl extends Node implements PhysicsCollisionListener {
     private NodeType minion;
     private Vector3f halfExtent;
     
@@ -35,16 +35,12 @@ public class SpawnPointControl extends Node implements INode, PhysicsCollisionLi
     public SpawnPointControl(Vector3f halfExtent, NodeType minion ){
         this.setUserData("objectType", "Checkpoint");
         this.minion = minion;
-        PhysicsWrapper.getInstance().getBulletAppState().getPhysicsSpace().addCollisionListener(this);
+        //PhysicsWrapper.getInstance().getBulletAppState().getPhysicsSpace().addCollisionListener(this);
         BoxCollisionShape box = new BoxCollisionShape(halfExtent);
         GhostControl ghost = new GhostControl(box);
         this.getParent().addControl(ghost);
     }
     
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.SPAWNPOINT;
-    }
     
     
 //        @Override

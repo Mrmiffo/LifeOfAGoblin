@@ -36,4 +36,9 @@ public class Player extends AbstractCharacter {
         }
         return instance;
     }   
+    
+    @Override
+        public void collide(){
+        //todo add methods for colliding with a player
+    }
 }
