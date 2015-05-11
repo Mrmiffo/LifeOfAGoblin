@@ -19,10 +19,10 @@ public abstract class AbstractHostileNPC extends AbstractNPC implements IHostile
      * {@inheritDoc}
      * @param target the target that the NPC should be hostile toward
      */
-    protected AbstractHostileNPC(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage, AbstractCharacter target){
+    protected AbstractHostileNPC(int maxHealth, String model, float height, float width,
+            float weight, float baseDamage, float jumpStrength, AbstractCharacter target){
         
-        super(maxHealth, model, height, width, weight, baseDamage);
+        super(maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         this.target = target;
     }
     

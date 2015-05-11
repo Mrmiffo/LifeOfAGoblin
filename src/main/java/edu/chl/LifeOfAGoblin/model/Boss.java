@@ -20,6 +20,7 @@ public class Boss extends AbstractHostileNPC {
     private static final float width = 7;
     private static final float weight = 1000;
     private static final float baseDamage = 10;
+    private static final float jumpStrength = 0;
     
     /**
      * 
@@ -36,7 +37,7 @@ public class Boss extends AbstractHostileNPC {
      */
     public Boss(AbstractCharacter target, float healthMultiplier) {
         super((int)healthMultiplier * maxHealth, model, height, width, weight,
-                baseDamage, target);
+                baseDamage, jumpStrength, target);
     }
     
     @Override

@@ -17,9 +17,9 @@ public abstract class AbstractFriendlyNPC extends AbstractNPC implements IFriend
      * {@inheritDoc}
      */
     protected AbstractFriendlyNPC(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage){
+            float width, float weight, float baseDamage, float jumpStrength){
         
-        super(maxHealth, model, height, width, weight, baseDamage);
+        super(maxHealth, model, height, width, weight, baseDamage, jumpStrength);
     }
     
     @Override

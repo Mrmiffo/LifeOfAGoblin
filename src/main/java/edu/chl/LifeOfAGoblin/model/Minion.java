@@ -20,6 +20,7 @@ public class Minion extends AbstractHostileNPC {
     private static final float width = 0.4f;
     private static final float weight = 10;
     private static final float baseDamage = 1;
+    private static final float jumpStrength = 12;
 
     /**
      *
@@ -36,7 +37,7 @@ public class Minion extends AbstractHostileNPC {
      */
     public Minion(AbstractCharacter target, float healthMultiplyer) {
         super((int)healthMultiplyer * maxHealth, model, height, width, weight,
-                baseDamage, target);
+                baseDamage, jumpStrength, target);
     }
     @Override
     public NodeType getNodeType() {
