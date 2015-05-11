@@ -27,8 +27,8 @@ public class Boss extends AbstractHostileNPC {
     }
     
     public Boss(AbstractCharacter target, float healthMultiplyer) {
-        super((int)healthMultiplyer * maxHealth, (int)healthMultiplyer * maxHealth,
-                model, height, width, weight, baseDamage, baseArmour, target);
+        super((int)healthMultiplyer * maxHealth, model, height, width, weight,
+                baseDamage, baseArmour, target);
     }
     
     @Override

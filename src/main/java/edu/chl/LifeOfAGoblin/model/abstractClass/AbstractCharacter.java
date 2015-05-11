@@ -38,10 +38,10 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
         Resources.getInstance().loadResource(model, "models");
     }*/
     
-    protected AbstractCharacter(int health, int maxHealth, String model, float height,
+    protected AbstractCharacter(int maxHealth, String model, float height,
             float width, float weight, float baseDamage, float baseArmour) {
         
-        this.health = health;
+        this.health = maxHealth; //everything has full health when created
         this.maxHealth = maxHealth;
         this.model = model;
         this.height = height;

@@ -11,10 +11,10 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
  * @author Anton
  */
 public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour {
-    protected AbstractNPC(int health, int maxHealth, String model, float height,
+    protected AbstractNPC(int maxHealth, String model, float height,
             float width, float weight, float baseDamage, float baseArmour){
         
-        super(health, maxHealth, model, height, width, weight, baseDamage, baseArmour);
+        super(maxHealth, model, height, width, weight, baseDamage, baseArmour);
     }
     
     @Override
