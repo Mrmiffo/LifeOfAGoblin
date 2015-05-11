@@ -7,12 +7,13 @@ package edu.chl.LifeOfAGoblin.model;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import edu.chl.LifeOfAGoblin.model.interfaces.INode;
     
 /**
  * The level model. Contains the model data of the level and the scene name.
  * @author Anton
  */
-public class Level implements IModeledNode{
+public class Level implements IModeledNode, INode{
     private String scene;
     private Player player;
     
@@ -42,14 +43,15 @@ public class Level implements IModeledNode{
         return player;
     }
 
-
     @Override
     public float getHeight() {
-    return 2f; //are we sure a level needs this?
-    }
+        return 1f; //is this really nessecary?
+            }
 
     @Override
     public float getWidth() {
-        return 2f; //are we sure a level needs this?
+        return 1f; //is this really nessecary?
     }
+
+
 }
