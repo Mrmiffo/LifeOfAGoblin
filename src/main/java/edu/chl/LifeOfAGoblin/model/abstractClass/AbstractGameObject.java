@@ -4,11 +4,12 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
+import edu.chl.LifeOfAGoblin.model.interfaces.INode;
+
 /**
  *
  * @author fredrik
  */
-public class AbstractGameObject {
-    public float getModelShapeWidth;
-    public float getModelShapeHeight;
+public abstract class AbstractGameObject implements INode{
+
 }

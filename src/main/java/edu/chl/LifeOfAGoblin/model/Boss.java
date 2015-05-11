@@ -43,4 +43,9 @@ public class Boss extends AbstractHostileNPC {
     public NodeType getNodeType() {
         return NodeType.NPC;
     }
+    
+    @Override
+    public void collide(){
+        //todo add methods for colliding with a boss
+    }
 }

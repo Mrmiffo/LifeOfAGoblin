@@ -6,8 +6,8 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
 
 /**
  *
- * @author Anton
+ * @author fredrik
  */
-public interface IModeledNode {
-    public String getModelName();
+public interface ISpawnControl {
+    public void Spawn(int amount, ISpawnable type);
 }

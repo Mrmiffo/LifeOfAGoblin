@@ -8,8 +8,6 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  *
  * @author fredrik
  */
-public interface ICollidable {
-    public float getHeight();
-    public float getWidth();
-    public void Collision();
+public interface ICollidable extends INode{
+    public void collide();
 }

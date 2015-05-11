@@ -15,7 +15,7 @@ import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
  *
  * @author Anton
  */
-public abstract class AbstractInanimateObject implements INode, IModeledNode {
+public abstract class AbstractInanimateObject extends AbstractGameObject implements IModeledNode {
     protected Node object;
     protected String model;
     

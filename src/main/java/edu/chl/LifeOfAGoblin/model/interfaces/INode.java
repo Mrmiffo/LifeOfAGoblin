@@ -12,4 +12,6 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
  */
 public interface INode {
     public NodeType getNodeType();
+    public float getHeight();
+    public float getWidth();
 }

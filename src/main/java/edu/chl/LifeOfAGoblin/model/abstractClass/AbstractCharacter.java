@@ -15,7 +15,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
  *
  * @author Anton
  */
-public abstract class AbstractCharacter implements INode, IModeledNode, ICollidable, IKillable, ISpawnable{
+public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable, ISpawnable{
     private int health;
     private int maxHealth;
     private String model;
@@ -87,16 +87,6 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     
     public float getBaseDamage() {
         return baseDamage;
-    }
-    
-    
-    /**
-     * The default behaviour of a character when colliding with something
-     */
-    @Override
-    public void Collision() {
-        //TODO add implementation (if necessary)
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
