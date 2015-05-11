@@ -22,11 +22,8 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     private float height; //consider what unit to use
     private float width; //along the x-axis
     private float weight;
-    private int id; //Necessary?
-    //private float mana/energy etc;
     private float baseDamage;
     private float baseArmour;
-    //private boolean rangedUnit; should be a seperate class?
 
     /** 
      * @param model the model texture to load for the character. Must be placed in the assets/model folder.
@@ -34,12 +31,25 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
      * @param maxHealth the max health of the character
      */
 
-    protected AbstractCharacter(String model, int health, int maxHealth) {
+    /*protected AbstractCharacter(String model, int health, int maxHealth) {
         this.model = model;
         this.health = health;
         this.maxHealth = maxHealth;
         Resources.getInstance().loadResource(model, "models");
+    }*/
+    
+    protected AbstractCharacter(int health, int maxHealth, String model, float height,
+            float width, float weight, float baseDamage, float baseArmour) {
         
+        this.health = health;
+        this.maxHealth = maxHealth;
+        this.model = model;
+        this.height = height;
+        this.width = width;
+        this.weight = weight;
+        this.baseDamage = baseDamage;
+        this.baseArmour = baseArmour;
+        Resources.getInstance().loadResource(model, "models");
     }
     
     
@@ -79,10 +89,6 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     
     public float getWeight() {
         return weight;
-    }
-    
-    public int getID() {
-        return id;
     }
     
     public float getBaseDamage() {

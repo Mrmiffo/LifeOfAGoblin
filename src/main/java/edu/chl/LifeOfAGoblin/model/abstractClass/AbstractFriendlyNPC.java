@@ -11,8 +11,10 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IFriendlyBehaviour;
  * @author Anton
  */
 public abstract class AbstractFriendlyNPC extends AbstractNPC implements IFriendlyBehaviour {
-    protected AbstractFriendlyNPC(String model, int health, int maxHealth){
-        super(model, health, maxHealth);
+    protected AbstractFriendlyNPC(int health, int maxHealth, String model, float height,
+            float width, float weight, float baseDamage, float baseArmour){
+        
+        super(health, maxHealth, model, height, width, weight, baseDamage, baseArmour);
     }
     
     @Override

@@ -12,17 +12,25 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
  * @author Anton
  */
 public class Player extends AbstractCharacter {
-    private float height = 1f;
-    private float width = 0.5f;
     
-    public Player(int health, int maxHealth){
-        super("Goblin2.j3o", health, maxHealth);
-
+    private static Player instance;
+    private static int health = 5;
+    private static int maxHealth = 5;
+    
+    public Player(){
+        super(health, maxHealth, "Goblin2.j3o", 1, 0.5f, 10, 0, 0);   
     }
 
     @Override
     public NodeType getNodeType() {
         return NodeType.PLAYER;
+    }
+    
+    public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player();
+        }
+        return instance;
     }
         
 }

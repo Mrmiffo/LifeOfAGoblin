@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
+import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.interfaces.IHostileBehaviour;
 
 /**
@@ -12,10 +13,14 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IHostileBehaviour;
  */
 public abstract class AbstractHostileNPC extends AbstractNPC implements IHostileBehaviour {
     
-    private AbstractCharacter target; //target to be hostile against
+    private final AbstractCharacter target;
     
-    protected AbstractHostileNPC(String model, int health, int maxHealth){
-        super(model, health, maxHealth);
+    protected AbstractHostileNPC(int health, int maxHealth, String model, float height,
+            float width, float weight, float baseDamage, float baseArmour,
+            AbstractCharacter target){
+        
+        super(health, maxHealth, model, height, width, weight, baseDamage, baseArmour);
+        this.target = target;
     }
     
     @Override
