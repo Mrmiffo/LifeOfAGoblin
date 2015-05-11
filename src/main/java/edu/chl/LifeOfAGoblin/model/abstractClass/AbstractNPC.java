@@ -20,11 +20,12 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
      * @param width the width (along the X-axis) of the NPC.
      * @param weight the weight of the NPC.
      * @param baseDamage the NPC's unmodified damage.
+     * @param jumpStrength the height the NPC reaches by jumping.
      */
     protected AbstractNPC(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage){
+            float width, float weight, float baseDamage, float jumpStrength){
         
-        super(maxHealth, model, height, width, weight, baseDamage);
+        super(maxHealth, model, height, width, weight, baseDamage, jumpStrength);
     }
     
     @Override

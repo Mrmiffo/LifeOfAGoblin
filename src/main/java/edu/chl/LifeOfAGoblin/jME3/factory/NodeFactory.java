@@ -25,6 +25,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 
 /**
  * A factory used to create a level node and fill existing nodes with data depending on the node type.
@@ -37,11 +38,12 @@ public class NodeFactory {
         switch (nodetype) {
             case PLAYER:
             case NPC:
-            case LEVEL:
                 return createModeledNode(nodetype);
             case CHECKPOINT:
             case SPAWNPOINT:
                 return createPoint(nodetype);
+//            case LEVEL:
+//                return createModeledLevelNode(null, null);
             default:
             throw new InternalError("Error in NodeFactory: createNode()");
         }
@@ -50,7 +52,7 @@ public class NodeFactory {
     private static Node createModeledNode(NodeType nodetype) {
         
         Node node = new Node();
-        IModeledNode nodeToCreate;
+        AbstractCharacter nodeToCreate;
         AbstractMoveControl amc;
         switch (nodetype) {
             case PLAYER:
@@ -74,7 +76,6 @@ public class NodeFactory {
         mover = new CharacterControl(shape, 0.05f);
         PhysicsWrapper.getInstance().add(mover);
         
-        //Set the character jumpspeed. 12 is just right for this character to jump 1f.
         mover.setJumpSpeed(nodeToCreate.getJumpStrength());
         
         //Attaching controls:

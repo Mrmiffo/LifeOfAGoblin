@@ -23,6 +23,7 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     private float width;
     private float weight;
     private float baseDamage;
+    private float jumpStrength;
     
     /**
      *
@@ -32,9 +33,10 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
      * @param width the width (along the X-axis) of the character.
      * @param weight the weight of the character.
      * @param baseDamage the character's unmodified damage.
+     * @param jumpStrength the character reaches by jumping.
      */
     protected AbstractCharacter(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage) {
+            float width, float weight, float baseDamage, float jumpStrength) {
         
         this.health = maxHealth; //everything has full health when created
         this.maxHealth = maxHealth;
@@ -43,6 +45,7 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
         this.width = width;
         this.weight = weight;
         this.baseDamage = baseDamage;
+        this.jumpStrength = jumpStrength;
         Resources.getInstance().loadResource(model, "models");
     }
     
@@ -87,6 +90,10 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     
     public float getBaseDamage() {
         return baseDamage;
+    }
+    
+    public float getJumpStrength() {
+        return jumpStrength;
     }
     
     
