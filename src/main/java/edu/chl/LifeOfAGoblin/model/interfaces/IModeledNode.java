@@ -10,4 +10,10 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  */
 public interface IModeledNode extends INode {
     public String getModelName();
+
+    public float getHeight();
+
+    public float getWidth();
+
+    public float getJumpStrength();
 }
