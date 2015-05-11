@@ -4,15 +4,10 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import com.jme3.asset.plugins.FileLocator;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
-<<<<<<< HEAD
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import java.io.File;
-=======
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
->>>>>>> spawnpoint
 
     
 /**
