@@ -19,8 +19,8 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     private int health;
     private int maxHealth;
     private String model;
-    private float height; //consider what unit to use
-    private float width; //along the x-axis
+    private float height;
+    private float width;
     private float weight;
     private float baseDamage;
     
@@ -90,13 +90,21 @@ public abstract class AbstractCharacter implements INode, IModeledNode, ICollida
     }
     
     
+    /**
+     * The default behaviour of a character when colliding with something
+     */
     @Override
-    public void Collision() { //Default behaviour. Necessary?
+    public void Collision() {
+        //TODO add implementation (if necessary)
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * The default operation when a character dies.
+     */
     @Override
-    public void die() { //Default behaviour. Necessary?
+    public void die() {
+        //TODO add implementation (if necessary)
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

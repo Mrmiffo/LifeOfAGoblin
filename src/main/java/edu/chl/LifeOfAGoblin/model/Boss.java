@@ -21,12 +21,21 @@ public class Boss extends AbstractHostileNPC {
     private static final float weight = 1000;
     private static final float baseDamage = 10;
     
+    /**
+     * 
+     * {@inheritDoc}
+     */
     public Boss(AbstractCharacter target) {
         this(target, 1);
     }
     
-    public Boss(AbstractCharacter target, float healthMultiplyer) {
-        super((int)healthMultiplyer * maxHealth, model, height, width, weight,
+    /**
+     *
+     * {@inheritDoc}
+     * @param healthMultiplier the multiplier to make the Boss tougher.
+     */
+    public Boss(AbstractCharacter target, float healthMultiplier) {
+        super((int)healthMultiplier * maxHealth, model, height, width, weight,
                 baseDamage, target);
     }
     
@@ -34,6 +43,4 @@ public class Boss extends AbstractHostileNPC {
     public NodeType getNodeType() {
         return NodeType.NPC;
     }
-
-
 }

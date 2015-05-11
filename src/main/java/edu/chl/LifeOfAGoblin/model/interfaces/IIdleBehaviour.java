@@ -10,8 +10,8 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  */
 public interface IIdleBehaviour {
     
-    /*
-     * Specifies AI for the object while idle 
+    /**
+     * Specifies AI for the object while idle.
      */
     public void idleBehaviour();
     

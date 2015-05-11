@@ -23,7 +23,6 @@ public class Player extends AbstractCharacter {
     
     private Player(){
         super(maxHealth, model, height, width, weight, baseDamage);
-        
     }
 
     @Override
@@ -36,6 +35,5 @@ public class Player extends AbstractCharacter {
             instance = new Player();
         }
         return instance;
-    }
-        
+    }   
 }

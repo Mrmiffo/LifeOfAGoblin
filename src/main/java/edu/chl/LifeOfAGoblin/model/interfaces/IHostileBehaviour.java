@@ -10,8 +10,8 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  */
 public interface IHostileBehaviour {
     
-     /*
-     * Specifies AI for the object while hostile 
+    /**
+     * Specifies AI for the object while hostile.
      */
     public void hostileBehaviour();
     

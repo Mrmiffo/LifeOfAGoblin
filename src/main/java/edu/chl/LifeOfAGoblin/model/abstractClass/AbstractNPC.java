@@ -11,6 +11,16 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
  * @author Anton
  */
 public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour {
+   
+    /**
+     *
+     * @param maxHealth the max health of the NPC.
+     * @param model the model texture to load for the NPC. Must be placed in the assets/model folder.
+     * @param height the height of the NPC.
+     * @param width the width (along the X-axis) of the NPC.
+     * @param weight the weight of the NPC.
+     * @param baseDamage the NPC's unmodified damage.
+     */
     protected AbstractNPC(int maxHealth, String model, float height,
             float width, float weight, float baseDamage){
         

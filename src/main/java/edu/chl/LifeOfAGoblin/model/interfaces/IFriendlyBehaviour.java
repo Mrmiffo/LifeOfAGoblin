@@ -10,8 +10,8 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  */
 public interface IFriendlyBehaviour {
  
-    /*
-     * Specifies AI for the object while friendly 
+    /**
+     * Specifies AI for the object while friendly .
      */
     public void friendlyBehaviour();
 }

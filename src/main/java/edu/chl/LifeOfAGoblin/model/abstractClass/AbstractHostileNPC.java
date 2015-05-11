@@ -12,19 +12,12 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IHostileBehaviour;
  */
 public abstract class AbstractHostileNPC extends AbstractNPC implements IHostileBehaviour {
     
-    private final AbstractCharacter target; //The target to be hostile toward
+    private final AbstractCharacter target;
     
     /**
      *
-     * @param health
-     * @param maxHealth
-     * @param model
-     * @param height
-     * @param width
-     * @param weight
-     * @param baseDamage
-     * @param baseArmour
-     * @param target
+     * {@inheritDoc}
+     * @param target the target that the NPC should be hostile toward
      */
     protected AbstractHostileNPC(int maxHealth, String model, float height,
             float width, float weight, float baseDamage, AbstractCharacter target){
@@ -35,6 +28,7 @@ public abstract class AbstractHostileNPC extends AbstractNPC implements IHostile
     
     @Override
     public void hostileBehaviour() {
+        //TODO add implementation
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
