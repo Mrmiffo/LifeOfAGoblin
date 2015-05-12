@@ -23,6 +23,11 @@ public class AbstractMoveControl extends AbstractControl {
 
     @Override
     protected void controlUpdate(float tpf) {
+        if (characterControl.getPhysicsLocation().z != 0) {
+            Vector3f currentLocation = characterControl.getPhysicsLocation();
+            characterControl.warp(new Vector3f(currentLocation.x, currentLocation.y, currentLocation.z));
+        }
+        
         if (right) {
             faceRight();
             characterControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
