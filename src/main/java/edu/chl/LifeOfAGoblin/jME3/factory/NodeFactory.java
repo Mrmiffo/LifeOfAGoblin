@@ -35,9 +35,10 @@ public class NodeFactory {
                 return CharacterFactory.createCharacter(new Minion());
             case BOSS:
                 return CharacterFactory.createCharacter(new Boss());
-            case CHECKPOINT:
-            case SPAWNPOINT:
-                return createPoint(nodetype);
+//            case CHECKPOINT:
+//                return CollisionObjectFactory.createCollisionObject(new Checkpoint());
+//            case SPAWNPOINT:
+//                return CollisionObjectFactory.createCollisionObject(new Spawnpoint());
 //            case LEVEL:
 //                return createModeledLevelNode(null, null);
             default:
