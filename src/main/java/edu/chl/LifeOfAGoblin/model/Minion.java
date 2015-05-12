@@ -6,7 +6,6 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 
 /**
  *
@@ -26,7 +25,14 @@ public class Minion extends AbstractHostileNPC {
      *
      * {@inheritDoc}
      */
-    public Minion(AbstractCharacter target){
+    public Minion() {
+        this(NodeType.PLAYER);
+    }
+    /**
+     *
+     * {@inheritDoc}
+     */
+    public Minion(NodeType target){
         this(target, 1);   
     }
     
@@ -35,13 +41,13 @@ public class Minion extends AbstractHostileNPC {
      * {@inheritDoc}
      * @param healthMultiplyer the multiplier to make the Minion tougher.
      */
-    public Minion(AbstractCharacter target, float healthMultiplyer) {
+    public Minion(NodeType target, float healthMultiplyer) {
         super((int)healthMultiplyer * maxHealth, model, height, width, weight,
                 baseDamage, jumpStrength, target);
     }
     @Override
     public NodeType getNodeType() {
-        return NodeType.NPC;
+        return NodeType.MINION;
     }
     
     @Override

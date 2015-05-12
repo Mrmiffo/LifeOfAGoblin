@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.interfaces.IHostileBehaviour;
 
 /**
@@ -12,7 +13,8 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IHostileBehaviour;
  */
 public abstract class AbstractHostileNPC extends AbstractNPC implements IHostileBehaviour {
     
-    private final AbstractCharacter target;
+    private NodeType target;
+    private float aggresitionRange;
     
     /**
      *
@@ -20,7 +22,7 @@ public abstract class AbstractHostileNPC extends AbstractNPC implements IHostile
      * @param target the target that the NPC should be hostile toward
      */
     protected AbstractHostileNPC(int maxHealth, String model, float height, float width,
-            float weight, float baseDamage, float jumpStrength, AbstractCharacter target){
+            float weight, float baseDamage, float jumpStrength, NodeType target){
         
         super(maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         this.target = target;

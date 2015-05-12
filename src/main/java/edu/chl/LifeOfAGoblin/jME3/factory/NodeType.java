@@ -8,11 +8,11 @@ package edu.chl.LifeOfAGoblin.jME3.factory;
  *
  * @author Anton
  */
-public enum NodeType{
-    
+public enum NodeType{    
     PLAYER("PLAYER", true),
     LEVEL("LEVEL", false),
-    NPC("NPC", true),
+    MINION("MINION", true),
+    BOSS("BOSS", true),
     CHECKPOINT("CHECKPOINT", false),
     SPAWNPOINT("SPAWNPOINT", false);
     
