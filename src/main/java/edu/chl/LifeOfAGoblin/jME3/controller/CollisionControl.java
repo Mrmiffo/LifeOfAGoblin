@@ -29,7 +29,7 @@ public class CollisionControl extends GhostControl implements PhysicsCollisionLi
  */
     public CollisionControl(ICollidable collisionObject){
         this.collisionObject = collisionObject;
-        PhysicsWrapper.getInstance().getBulletAppState().getPhysicsSpace().addCollisionListener(this);
+        PhysicsWrapper.getInstance().addCollisonListener(this);
         Vector3f halfExtent = new Vector3f(collisionObject.getWidth()/2,collisionObject.getHeight()/2, 1);
         BoxCollisionShape box = new BoxCollisionShape(halfExtent);
         this.setCollisionShape(box);
@@ -38,7 +38,7 @@ public class CollisionControl extends GhostControl implements PhysicsCollisionLi
     @Override
     public void collision(PhysicsCollisionEvent pce) {
         if(pce.getNodeA().getUserData("NodeType").equals("Player")){ //not working atm
-            this.collisionObject.Collision();
+            this.collisionObject.collide();
           }
     }
      

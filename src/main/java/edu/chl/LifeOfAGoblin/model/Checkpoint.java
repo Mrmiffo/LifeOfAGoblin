@@ -5,23 +5,18 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
-import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-
 /**
  * a class representing a checkpoint attached to an object in the game 
  * with a size that updates the progress class when a player gets 
  * within its size.
  * @author fredrik
  */
-public class Checkpoint implements INode, ICollidable {
+public class Checkpoint extends AbstractCollisionObject implements ICollidable {
     private int level;
     private int number;
-    private boolean activated;
-    private AbstractGameObject parent;
-    private float height;
-    private float width;
     /**
      * constructor for creating a checkpoint with the same size
      * as its parent's modelShape
@@ -30,15 +25,10 @@ public class Checkpoint implements INode, ICollidable {
      * checkpoints in the level
      * @param parent the AbstractGameObject the checkpoint is associated with.
      */
-    public Checkpoint(int level, int number, AbstractGameObject 
-            parent){
+    public Checkpoint(int level, int number, AbstractGameObject parent){
+        super(parent);
         this.level = level;
         this.number = number;
-        this.activated = false;
-        this.parent = parent;
-        this.height = parent.getModelShapeHeight;
-        this.width = parent.getModelShapeWidth;
-        
     }
         /**
      * constructor for creating a checkpoint with a different size than
@@ -50,55 +40,25 @@ public class Checkpoint implements INode, ICollidable {
      */
         public Checkpoint(int level, int number, AbstractGameObject 
             parent, float height, float width ){
+        super(parent, height, width);
         this.level = level;
         this.number = number;
-        this.activated = false;
-        this.parent = parent;
-        this.height = height;
-        this.width = width;
-        
     }
     
-    
-    /**
-     * sets wheter or not this Checkpoint has been activated
-     * in this game.
-     * @param isActivated true if the player has collided with this 
-     * checkpointControl during this game.
-     */
-    public void setActivated(boolean isActivated){
-        this.activated = isActivated;
-    }
-    
-    @Override
     public NodeType getNodeType() {
         return NodeType.CHECKPOINT;
     }
     
-    public AbstractGameObject getParent(){
-        return this.parent;
-    }
-    
-    @Override
-    public float getWidth(){
-        return this.width;
-    }
-    
-    @Override
-    public float getHeight(){
-        return this.height;
-        
-    }
     /**
      * is called when a player collides with the checkpoint. Tells progress
      * to update itself if neccesary and sets activated to true
      */
     @Override
-    public void Collision(){
+    public void collide(){
         
         //Progress.getInstance.update(this.level, this.number);
         System.out.println("checkpoint");
-        setActivated(true);
+        super.setActivated(true);
     }
     
 }

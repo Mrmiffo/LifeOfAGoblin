@@ -8,6 +8,6 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  *
  * @author fredrik
  */
-public interface ICollidable extends INode{
-    public void collide();
+public interface ISpawnControl {
+    public void Spawn(int amount, ISpawnable type);
 }
