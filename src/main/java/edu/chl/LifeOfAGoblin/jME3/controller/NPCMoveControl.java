@@ -6,8 +6,12 @@ package edu.chl.LifeOfAGoblin.jME3.controller;
 
 /**
  *
- * @author kakan
+ * @author Ulrika Uddeborg
  */
-public class NPCMoveControl extends AbstractMoveControl{
-    //TODO add AI
+public class NPCMoveControl extends AbstractMoveControl {
+
+    private float idleMoveRange;
+    
+    
+    
 }
