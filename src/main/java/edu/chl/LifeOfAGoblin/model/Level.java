@@ -4,16 +4,16 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import edu.chl.LifeOfAGoblin.model.interfaces.INode;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
+
     
 /**
  * The level model. Contains the model data of the level and the scene name.
  * @author Anton
  */
-public class Level implements IModeledNode, INode{
+public class Level extends AbstractInanimateObject{
     private String scene;
     private Player player;
     
@@ -24,14 +24,8 @@ public class Level implements IModeledNode, INode{
      */
     public Level(String levelName, Player player){
         //Save the scene file to load.
-        scene = levelName;
+        super(levelName, "scenes");
         this.player = player;
-        Resources.getInstance().loadResource(scene, "scenes");
-    }
-
-    @Override
-    public String getModelName() {
-        return scene;
     }
     
     @Override
