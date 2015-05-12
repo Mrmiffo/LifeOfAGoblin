@@ -6,7 +6,6 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 
 /**
  *
@@ -23,10 +22,17 @@ public class Boss extends AbstractHostileNPC {
     private static final float jumpStrength = 0;
     
     /**
+     *
+     * {@inheritDoc}
+     */
+    public Boss(){
+        this(NodeType.PLAYER);
+    }
+    /**
      * 
      * {@inheritDoc}
      */
-    public Boss(AbstractCharacter target) {
+    public Boss(NodeType target) {
         this(target, 1);
     }
     
@@ -35,14 +41,14 @@ public class Boss extends AbstractHostileNPC {
      * {@inheritDoc}
      * @param healthMultiplier the multiplier to make the Boss tougher.
      */
-    public Boss(AbstractCharacter target, float healthMultiplier) {
+    public Boss(NodeType target, float healthMultiplier) {
         super((int)healthMultiplier * maxHealth, model, height, width, weight,
                 baseDamage, jumpStrength, target);
     }
     
     @Override
     public NodeType getNodeType() {
-        return NodeType.NPC;
+        return NodeType.BOSS;
     }
     
     @Override

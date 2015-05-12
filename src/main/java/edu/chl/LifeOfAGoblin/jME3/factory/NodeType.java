@@ -9,9 +9,10 @@ package edu.chl.LifeOfAGoblin.jME3.factory;
  * @author Anton
  */
 public enum NodeType{
-    PLAYER,
     LEVEL,
-    NPC,
+    PLAYER,
+    MINION,
+    BOSS,
     CHECKPOINT,
     SPAWNPOINT
 }

@@ -4,28 +4,21 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
-import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.input.ChaseCamera;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.model.Player;
-import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
+import edu.chl.LifeOfAGoblin.model.Boss;
+import edu.chl.LifeOfAGoblin.model.Minion;
 
 /**
  * A factory used to create a level node and fill existing nodes with data depending on the node type.
@@ -37,8 +30,11 @@ public class NodeFactory {
     public static Node createNode(NodeType nodetype){
         switch (nodetype) {
             case PLAYER:
-            case NPC:
-                return createModeledNode(nodetype);
+                return CharacterFactory.createCharacter(new Player());
+            case MINION:
+                return CharacterFactory.createCharacter(new Minion());
+            case BOSS:
+                return CharacterFactory.createCharacter(new Boss());
             case CHECKPOINT:
             case SPAWNPOINT:
                 return createPoint(nodetype);
@@ -47,42 +43,6 @@ public class NodeFactory {
             default:
             throw new InternalError("Error in NodeFactory: createNode()");
         }
-    }
-    
-    private static Node createModeledNode(NodeType nodetype) {
-        
-        Node node = new Node();
-        AbstractCharacter nodeToCreate;
-        AbstractMoveControl amc;
-        switch (nodetype) {
-            case PLAYER:
-                nodeToCreate = new Player();
-                amc = new PlayerMoveControl();
-                InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
-                break;
-//              add for various NPCs and level
-            default:
-                throw new InternalError("Error in NodeDactory: createModeledNode()");
-        }
-        Spatial model = Resources.getInstance().getResources(nodeToCreate.getModelName());
-        node.attachChild(model);
-        node.addControl(new ModelControl(nodeToCreate));
-        CapsuleCollisionShape shape;
-        CharacterControl mover; //CharacterControl has been depricated prematurly due to BetterCharacterControl. Although BetterCharacterControl contains major flaws (such as missing step height) that make CharacterControl a better choice for this project.
-        
-        //Moving the model node slightly to fit the CollisionShape
-        model.setLocalTranslation(new Vector3f(0, -nodeToCreate.getHeight(), 0));
-        shape = new CapsuleCollisionShape(nodeToCreate.getWidth(), nodeToCreate.getHeight(), 1);
-        mover = new CharacterControl(shape, 0.05f);
-        PhysicsWrapper.getInstance().add(mover);
-        
-        mover.setJumpSpeed(nodeToCreate.getJumpStrength());
-        
-        //Attaching controls:
-        node.addControl(mover);
-        node.addControl(amc);
-        return node;
-
     }
     
     private static Node createPoint(NodeType nodetype) {
