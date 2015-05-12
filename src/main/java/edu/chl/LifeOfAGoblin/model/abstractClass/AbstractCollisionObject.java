@@ -43,7 +43,7 @@ public abstract class AbstractCollisionObject extends AbstractGameObject impleme
      * checkpointControl during this game.
      */
     
-    public void setActivated(boolean isActivated){
+    public void setIsActivated(boolean isActivated){
         this.IsActivated = isActivated;
     }
     
