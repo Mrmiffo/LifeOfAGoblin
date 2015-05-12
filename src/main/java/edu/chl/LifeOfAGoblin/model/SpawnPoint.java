@@ -6,12 +6,11 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
 
 /**
- * A class representing a spawnpoint attached to an object in the game that with
- * a size that tells the level to spawn NPCs when a player gets within its size.
+ * A class representing a spawnpoint that is responsible for creating new 
+ * spawnables in the game when a player collides with it.
  * @author fredrik
  */
 public class SpawnPoint extends AbstractCollisionObject {
@@ -19,12 +18,10 @@ public class SpawnPoint extends AbstractCollisionObject {
     private NodeType type;
     private ISpawnControl spawner;
        /**
-     * Constructor for creating a Spawnpoint with a different size than its 
-     * parent's modelShape
-     * modelShape
-     * @param amount how many NPCs should spawn
-     * @param type what type of NPC should spawn
-     * @param parent the AbstractGameObject the spawnpoint is associated with
+     * Constructor for creating a Spawnpoint with a specified width
+     * @param spawner the control responsible for creating the spawnables
+     * @param amount how many spawnable should spawn
+     * @param type what type of spawnable should spawn
      */
         public SpawnPoint(ISpawnControl spawner, int amount, NodeType type,
         float width){
@@ -55,9 +52,14 @@ public class SpawnPoint extends AbstractCollisionObject {
     public void collide(){
         Spawn(amount, type);
         System.out.println("spawnpoint");
-        super.setActivated(true);
+        super.setIsActivated(true);
     }
-
+    /**
+     * Tells this objects spawner to create a number of new spawnables in the
+     * game
+     * @param amount the number of spawnables to be created
+     * @param type the type of spawnable to be created
+     */
     private void Spawn(int amount, NodeType type) {
         spawner.Spawn(amount, type);
     }
