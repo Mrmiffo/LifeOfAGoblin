@@ -25,7 +25,7 @@ public class AbstractMoveControl extends AbstractControl {
     protected void controlUpdate(float tpf) {
         if (characterControl.getPhysicsLocation().z != 0) {
             Vector3f currentLocation = characterControl.getPhysicsLocation();
-            characterControl.warp(new Vector3f(currentLocation.x, currentLocation.y, currentLocation.z));
+            characterControl.warp(new Vector3f(currentLocation.x, currentLocation.y, 0));
         }
         
         if (right) {
