@@ -6,43 +6,51 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
+
 /**
- * a class representing a checkpoint attached to an object in the game 
- * with a size that updates the progress class when a player gets 
- * within its size.
+ * A class representing a checkpoint that is responsible for updating progress
+ * on collision with a player.
  * @author fredrik
  */
+
 public class Checkpoint extends AbstractCollisionObject {
     private int level;
     private int number;
-        /**
-     * constructor for creating a checkpoint with a different size than
-     * its parent's modelShape
+    
+     /**
+     * constructor for creating a checkpoint with a specified width
      * @param level the level containing the checkpoint
      * @param number the number of the checkpoint in relation to the other
      * checkpoints in the level
      */
+    
         public Checkpoint(int level, int number, float width ){
         super(width);
         this.level = level;
         this.number = number;
     }
     
+    @Override
     public NodeType getNodeType() {
         return NodeType.CHECKPOINT;
     }
     
-    /**
-     * is called when a player collides with the checkpoint. Tells progress
-     * to update itself if neccesary and sets activated to true
-     */
     @Override
     public void collide(){
-        
-        //Progress.getInstance.update(this.level, this.number);
+        updateProgress(this.level, this.number);      
         System.out.println("checkpoint");
-        super.setActivated(true);
+        super.setIsActivated(true);
+    }
+    
+    /**
+     * tells progress to update itself with given values
+     * @param level the level this checkpoint belongs to.
+     * @param number this checkpoints position related to all other checkpoints 
+     * on this level.
+     */
+    
+    private void updateProgress(int level, int number) {
+        //progress.getInstance().update(level, number);
     }
     
 }
