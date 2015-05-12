@@ -122,9 +122,9 @@ public class NodeFactory {
 
         //TODO REMOVE -> FOR TESTING PURPOSES ONLY
         //Adding a basic ambient light to the level
-        AmbientLight l = new AmbientLight();
-        l.setColor(ColorRGBA.White.mult(3f));
-        node.addLight(l);
+//        AmbientLight l = new AmbientLight();
+//        l.setColor(ColorRGBA.White.mult(3f));
+//        node.addLight(l);
         
         return node;
     }
