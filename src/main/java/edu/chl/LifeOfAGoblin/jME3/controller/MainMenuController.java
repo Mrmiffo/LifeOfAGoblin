@@ -8,6 +8,7 @@ import com.jme3.app.Application;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import edu.chl.LifeOfAGoblin.jME3.main.Main;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
@@ -52,7 +53,7 @@ public class MainMenuController implements ScreenController{
     
     public void quitGame(){
         System.out.println("Shutting down...");
-        app.stop();
+        Main.shutDown();
         
     }
     

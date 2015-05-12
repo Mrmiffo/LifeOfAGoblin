@@ -21,15 +21,18 @@ public class LifeOfAGoblin extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        //Camera
+//        this.flyCam.setEnabled(false);
         NiftyGUIWrapper.getInstance().initialize(this);
         InputManagerWrapper.getInstance().initialize(inputManager);
         StateManagerWrapper.getInstance().initialize(stateManager);
         Resources.getInstance().initialize(assetManager);
         
-        //Start the game
-        //TODO Replace with main menu.
+//        GameAppState playGame = new GameAppState();
         MainMenu mainMenu = new MainMenu();
         NiftyGUIWrapper.getInstance().addScreen(mainMenu.getScreenName(), mainMenu.getScreen());
+        NiftyGUIWrapper.getInstance().goToScreen(mainMenu.getScreenName());
+        this.getFlyByCamera().setDragToRotate(true);
     }
     
 }
