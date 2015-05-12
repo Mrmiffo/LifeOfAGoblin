@@ -11,8 +11,12 @@ import edu.chl.LifeOfAGoblin.jME3.view.LifeOfAGoblin;
  * @author Anton
  */
 public class Main {
+    private static LifeOfAGoblin game;
     public static void main(String[] args){
-        LifeOfAGoblin game = new LifeOfAGoblin();
+        game = new LifeOfAGoblin();
         game.start();
+    }
+    public static void shutDown(){
+        game.stop();
     }
 }
