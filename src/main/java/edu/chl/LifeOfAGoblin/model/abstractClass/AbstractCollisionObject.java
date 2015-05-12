@@ -13,25 +13,15 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 public abstract class AbstractCollisionObject extends AbstractGameObject implements ICollidable{
     private float width;
     private float height;
-    private boolean IsActivated;
-    private AbstractGameObject parent;
+    private boolean IsActivated; 
     
-    public AbstractCollisionObject(AbstractGameObject parent, 
-            float height, float width){
+    public AbstractCollisionObject(float width){
         this.IsActivated = false;
-        this.parent = parent;
         this.IsActivated = false;
-        this.height = height;
         this.width = width; 
+        this.height = 1000; //arbitary big number
     }
-    
-    public AbstractCollisionObject(AbstractGameObject parent){
-        this.IsActivated = false;
-        this.parent = parent;
-        this.height = parent.getHeight();
-        this.width = parent.getWidth();
-        }
-        
+     
     @Override
     public float getWidth(){
         return this.width;
@@ -39,9 +29,8 @@ public abstract class AbstractCollisionObject extends AbstractGameObject impleme
     
     @Override
     public float getHeight(){
-        return this.height;    
+        return this.height;
     }
-    
         /**
      * sets wheter or not this Checkpoint has been activated
      * in this game.
@@ -56,10 +45,4 @@ public abstract class AbstractCollisionObject extends AbstractGameObject impleme
     public boolean getIsActivated(){
         return this.IsActivated;
     }
-    
-    public AbstractGameObject getParent(){
-        return this.parent;
-    }
-
-
 }

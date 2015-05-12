@@ -8,7 +8,7 @@ import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IKillable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
+import edu.chl.LifeOfAGoblin.archive.ISpawnable;
 
 /**
  *

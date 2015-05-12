@@ -16,30 +16,15 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 public class Checkpoint extends AbstractCollisionObject {
     private int level;
     private int number;
-    /**
-     * constructor for creating a checkpoint with the same size
-     * as its parent's modelShape
-     * @param level the level containing the checkpoint
-     * @param number the number of the checkpoint in relation to the other
-     * checkpoints in the level
-     * @param parent the AbstractGameObject the checkpoint is associated with.
-     */
-    public Checkpoint(int level, int number, AbstractGameObject parent){
-        super(parent);
-        this.level = level;
-        this.number = number;
-    }
         /**
      * constructor for creating a checkpoint with a different size than
      * its parent's modelShape
      * @param level the level containing the checkpoint
      * @param number the number of the checkpoint in relation to the other
      * checkpoints in the level
-     * @param parent the AbstractGameObject the checkpoint is associated with.
      */
-        public Checkpoint(int level, int number, AbstractGameObject 
-            parent, float height, float width ){
-        super(parent, height, width);
+        public Checkpoint(int level, int number, float width ){
+        super(width);
         this.level = level;
         this.number = number;
     }
