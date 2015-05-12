@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
@@ -14,8 +15,9 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
  */
 public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour, IAI {
    
-    private AIAction activeAction;
-    private float targetDistance;
+    protected AIAction activeAction;
+    protected float targetDistance;
+    protected NodeType targetNodeType;
     
     /**
      *
@@ -36,6 +38,11 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
     @Override
     public void idleBehaviour() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void updateAIAction() {
+        activeAction = AIAction.IDLE;
     }
     
     @Override

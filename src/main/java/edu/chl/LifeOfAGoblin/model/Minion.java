@@ -37,9 +37,19 @@ public class Minion extends AbstractHostileNPC {
     public Minion(AbstractCharacter target, float healthMultiplyer) {
         super((int)healthMultiplyer * maxHealth, model, height, width, weight,
                 baseDamage, target);
+        
+        targetNodeType = NodeType.PLAYER;
+        targetDistance = 2;
     }
     @Override
     public NodeType getNodeType() {
         return NodeType.NPC;
+    }
+    
+    @Override
+    public void updateAIAction(float distance, NodeType type) {
+        if (targetDistance <= distance && targetNodeType == type) {
+            activeAction = AIAction.MOVETOTARGET;
+        }
     }
 }
