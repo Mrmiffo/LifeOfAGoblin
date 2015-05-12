@@ -4,14 +4,19 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
+import edu.chl.LifeOfAGoblin.model.AIAction;
+import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
 
 /**
  *
  * @author Anton
  */
-public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour {
+public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour, IAI {
    
+    private AIAction activeAction;
+    private float targetDistance;
+    
     /**
      *
      * @param maxHealth the max health of the NPC.
@@ -25,10 +30,16 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
             float width, float weight, float baseDamage){
         
         super(maxHealth, model, height, width, weight, baseDamage);
+        activeAction = AIAction.IDLE;
     }
     
     @Override
     public void idleBehaviour() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public AIAction getAIAction() {
+        return activeAction;
     }
 }
