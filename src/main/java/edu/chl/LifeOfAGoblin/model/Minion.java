@@ -45,11 +45,4 @@ public class Minion extends AbstractHostileNPC {
     public NodeType getNodeType() {
         return NodeType.NPC;
     }
-    
-    @Override
-    public void updateAIAction(float distance, NodeType type) {
-        if (targetDistance <= distance && targetNodeType == type) {
-            activeAction = AIAction.MOVETOTARGET;
-        }
-    }
 }

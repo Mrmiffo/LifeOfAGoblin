@@ -45,6 +45,14 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
         activeAction = AIAction.IDLE;
     }
     
+        
+    @Override
+    public void updateAIAction(float distance, NodeType type) {
+        if (targetDistance <= distance && targetNodeType == type) {
+            activeAction = AIAction.MOVETOTARGET;
+        }
+    }
+    
     @Override
     public AIAction getAIAction() {
         return activeAction;
