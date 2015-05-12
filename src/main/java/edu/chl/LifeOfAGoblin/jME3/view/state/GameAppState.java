@@ -65,7 +65,7 @@ public class GameAppState extends AbstractAppState {
     //EVERYTHING BELOW THIS POINT IS TO BE REMOVED!!! ONLY HERE UNTIL LEVEL AND INPUT MANAGER IS IMPLEMENTED
     private void temporaryMethodToCreateLevel() {
         Player newPlayer = new Player();
-        Level level = new Level("testScene.j3o", newPlayer);
+        Level level = new Level("Level1.j3o", newPlayer);
         rootNode.attachChild(NodeFactory.createModeledLevelNode(level, app.getCamera()));
 
         //Character physics test:
