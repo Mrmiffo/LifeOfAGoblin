@@ -56,7 +56,7 @@ public class NodeFactory {
         AbstractMoveControl amc;
         switch (nodetype) {
             case PLAYER:
-                nodeToCreate = Player.getInstance();
+                nodeToCreate = new Player();
                 amc = new PlayerMoveControl();
                 InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
                 break;

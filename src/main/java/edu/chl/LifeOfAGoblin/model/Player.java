@@ -22,21 +22,14 @@ public class Player extends AbstractCharacter {
     private static final float baseDamage = 1;
     private static final float jumpStrength = 12;
     
-    private Player(){
+    public Player(){
         super(maxHealth, model, height, width, weight, baseDamage, jumpStrength);
     }
 
     @Override
     public NodeType getNodeType() {
         return NodeType.PLAYER;
-    }
-    
-    public static Player getInstance() {
-        if (instance == null) {
-            instance = new Player();
-        }
-        return instance;
-    }   
+    } 
     
     @Override
         public void collide(){
