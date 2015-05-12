@@ -4,10 +4,12 @@
  */
 package edu.chl.LifeOfAGoblin.model.interfaces;
 
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+
 /**
  *
  * @author fredrik
  */
 public interface ISpawnControl {
-    public void Spawn(int amount, ISpawnable type);
+    public void Spawn(int amount, NodeType type);
 }

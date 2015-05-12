@@ -6,10 +6,8 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
-import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
 
 /**
  * A class representing a spawnpoint attached to an object in the game that with
@@ -18,21 +16,8 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
  */
 public class SpawnPoint extends AbstractCollisionObject implements ICollidable {
     private int amount;
-    private ISpawnable type;
+    private NodeType type;
     private ISpawnControl spawner;
-    /**
-     * Constructor for creating a Spawnpoint with the same size as its parent's
-     * modelShape
-     * @param amount how many NPCs should spawn
-     * @param type what type of NPC should spawn
-     * @param parent the AbstractGameObject the spawnpoint is associated with
-     */
-    public SpawnPoint(ISpawnControl spawner, int amount, ISpawnable type, AbstractGameObject parent){
-        super(parent);
-        this.spawner = spawner;
-        this.amount = amount;
-        this.type = type;
-    }
        /**
      * Constructor for creating a Spawnpoint with a different size than its 
      * parent's modelShape
@@ -41,9 +26,9 @@ public class SpawnPoint extends AbstractCollisionObject implements ICollidable {
      * @param type what type of NPC should spawn
      * @param parent the AbstractGameObject the spawnpoint is associated with
      */
-        public SpawnPoint(ISpawnControl spawner, int amount, ISpawnable type, AbstractGameObject 
-            parent, float height, float width){
-        super(parent, height, width);
+        public SpawnPoint(ISpawnControl spawner, int amount, NodeType type,
+        float width){
+        super(width);
         this.spawner = spawner;
         this.amount = amount;
         this.type = type;
@@ -73,7 +58,7 @@ public class SpawnPoint extends AbstractCollisionObject implements ICollidable {
         super.setActivated(true);
     }
 
-    private void Spawn(int amount, ISpawnable type) {
+    private void Spawn(int amount, NodeType type) {
         spawner.Spawn(amount, type);
     }
     

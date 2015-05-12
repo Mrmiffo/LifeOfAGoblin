@@ -4,7 +4,9 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
-import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
+import com.jme3.scene.Node;
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
 
 /**
@@ -13,7 +15,9 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
  */
 public class SpawnControl implements ISpawnControl{
    @Override
-   public void Spawn(int amount, ISpawnable type){
-        //nodefactory.dostuff();
-    }
+   public void Spawn(int amount, NodeType type){
+//    Node node =NodeFactory.createModeledNode(type.);
+//    this.getParent().atttachChild(node);
+//node.setLocalTranslataion(this.getLocalTranslation);
+   }
 }

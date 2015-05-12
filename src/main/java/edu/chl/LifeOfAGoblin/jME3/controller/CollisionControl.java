@@ -30,7 +30,7 @@ public class CollisionControl extends GhostControl implements PhysicsCollisionLi
     public CollisionControl(ICollidable collisionObject){
         this.collisionObject = collisionObject;
         PhysicsWrapper.getInstance().addCollisonListener(this);
-        Vector3f halfExtent = new Vector3f(collisionObject.getWidth()/2,collisionObject.getHeight()/2, 1);
+        Vector3f halfExtent = new Vector3f(collisionObject.getWidth(),collisionObject.getHeight(), 1);
         BoxCollisionShape box = new BoxCollisionShape(halfExtent);
         this.setCollisionShape(box);
     }
