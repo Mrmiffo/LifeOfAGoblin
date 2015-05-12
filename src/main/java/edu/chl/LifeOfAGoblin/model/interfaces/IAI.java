@@ -20,6 +20,11 @@ public interface IAI {
     public AIAction getAIAction();
     
     /**
+     * Updates the active action when no collisions are found.
+     */
+    public void updateAIAction();
+    
+    /**
      * Gets the distance to a specified object and the object's NodeType.
      * Updates the active AIAction accordingly.
      */
