@@ -5,13 +5,12 @@
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
-import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 
 /**
  *
  * @author Anton
  */
-public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour, IModeledNode{
+public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour {
    
     /**
      *

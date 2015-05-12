@@ -7,14 +7,13 @@ package edu.chl.LifeOfAGoblin.model;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 /**
  * a class representing a checkpoint attached to an object in the game 
  * with a size that updates the progress class when a player gets 
  * within its size.
  * @author fredrik
  */
-public class Checkpoint extends AbstractCollisionObject implements ICollidable {
+public class Checkpoint extends AbstractCollisionObject {
     private int level;
     private int number;
     /**

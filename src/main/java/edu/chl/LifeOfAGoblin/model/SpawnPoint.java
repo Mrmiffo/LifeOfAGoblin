@@ -7,7 +7,6 @@ package edu.chl.LifeOfAGoblin.model;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
 import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
 
@@ -16,7 +15,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
  * a size that tells the level to spawn NPCs when a player gets within its size.
  * @author fredrik
  */
-public class SpawnPoint extends AbstractCollisionObject implements ICollidable {
+public class SpawnPoint extends AbstractCollisionObject {
     private int amount;
     private ISpawnable type;
     private ISpawnControl spawner;
