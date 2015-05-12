@@ -128,4 +128,21 @@ public class NodeFactory {
         
         return node;
     }
+    /**
+     * Creates and returns a new Node based on a type and userData from another
+     * node.
+     * @param type The type of node to be created.
+     * @param node The node containing the userData.
+     * @return A new node of a specified NodeType with a model that matches the
+     * parameter node's userData
+     */
+    public static Node createUserDataNode(NodeType type, Node node){
+        switch (type) {
+            case CHECKPOINT:
+                return CollisionObjectFactory.createCollisionObject(type, node);
+            case SPAWNPOINT:
+               return CollisionObjectFactory.createCollisionObject(type, node);
+        }
+        return null;
+    }
 }
