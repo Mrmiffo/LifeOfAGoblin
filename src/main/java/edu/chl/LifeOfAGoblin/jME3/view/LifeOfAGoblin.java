@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.jME3.view;
 
 import com.jme3.app.SimpleApplication;
-import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
@@ -21,8 +20,6 @@ public class LifeOfAGoblin extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        //Camera
-//        this.flyCam.setEnabled(false);
         NiftyGUIWrapper.getInstance().initialize(this);
         InputManagerWrapper.getInstance().initialize(inputManager);
         StateManagerWrapper.getInstance().initialize(stateManager);
@@ -32,7 +29,9 @@ public class LifeOfAGoblin extends SimpleApplication {
         MainMenu mainMenu = new MainMenu();
         NiftyGUIWrapper.getInstance().addScreen(mainMenu.getScreenName(), mainMenu.getScreen());
         NiftyGUIWrapper.getInstance().goToScreen(mainMenu.getScreenName());
-        this.getFlyByCamera().setDragToRotate(true);
+        
+        //Disables the built-in flyCam
+        this.flyCam.setEnabled(false);
     }
     
 }
