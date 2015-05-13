@@ -25,8 +25,8 @@ public interface IAI {
     public void updateAIAction();
     
     /**
-     * Gets the distance to a specified object and the object's NodeType.
-     * Updates the active AIAction accordingly.
+     * Recieves the distance to a specified object and the object's NodeType and
+     * updates the active action accordingly. The direction can be either left or right.
      */
-    public void updateAIAction(float distance, NodeType type);
+    public void updateAIAction(float distance, String direction, NodeType type);
 }

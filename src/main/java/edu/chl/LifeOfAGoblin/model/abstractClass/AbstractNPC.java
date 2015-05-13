@@ -18,6 +18,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
     protected AIAction activeAction;
     protected float targetDistance;
     protected NodeType targetNodeType;
+    protected String targetDirection;
     
     /**
      *
@@ -47,14 +48,19 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
     
         
     @Override
-    public void updateAIAction(float distance, NodeType type) {
+    public void updateAIAction(float distance, String direction, NodeType type) {
         if (targetDistance <= distance && targetNodeType == type) {
             activeAction = AIAction.MOVETOTARGET;
+            targetDirection = direction;
         }
     }
     
     @Override
     public AIAction getAIAction() {
         return activeAction;
+    }
+    
+    public String getTargetDirection() {
+        return targetDirection;
     }
 }
