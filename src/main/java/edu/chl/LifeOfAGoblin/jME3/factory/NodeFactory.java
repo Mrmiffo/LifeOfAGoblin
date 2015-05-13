@@ -8,8 +8,7 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.input.ChaseCamera;
-import com.jme3.light.AmbientLight;
-import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
@@ -46,60 +45,6 @@ public class NodeFactory {
         }
     }
     
-    private static Node createPoint(NodeType nodetype) {
-        return null;
-    }
-        
-        /*
-        //TODO Do not create new node in factory, the level will have a node from the scene composer which will be updated instead.
-        Node node = new Node();
-        node.attachChild(Resources.getInstance().getResources(nodeToCreate.getModelName()));
-        //Attach the model to the node through a custom control containing and providing the model.
-        node.addControl(new ModelControl(nodeToCreate));
-        
-        CapsuleCollisionShape shape;
-        CharacterControl mover; //CharacterControl has been depricated prematurly due to BetterCharacterControl. Although BetterCharacterControl contains major flaws (such as missing step height) that make CharacterControl a better choice for this project.
-        
-        switch (nodeToCreate.getNodeType()){
-            case PLAYER:
-                //Moving the model node slightly to fit the CollisionShape
-                node.getChild(0).setLocalTranslation(new Vector3f(0,-((Player)nodeToCreate).getHeight(),0));
-                //Setting upp collision shape and character control:
-                shape = new CapsuleCollisionShape(((Player)nodeToCreate).getWidth(), ((Player)nodeToCreate).getHeight(), 1);
-                mover = new CharacterControl(shape, 0.05f);
-                PhysicsWrapper.getInstance().add(mover);
-                //Set the character jumpspeed. 12 is just right for this character to jump 1f.
-                mover.setJumpSpeed(12);
-                //Setting up PlayerMoveControl which translates keycommands(key binds) to node actions.
-                PlayerMoveControl pmc = new PlayerMoveControl();
-                InputManagerWrapper.getInstance().registerListener(pmc);
-                //Attaching controls:
-                node.addControl(mover);
-                node.addControl(pmc);
-                break;
-            case NPC:
-                //Moving the model node slightly to fit the CollisionShape
-                node.getChild(0).setLocalTranslation(new Vector3f(0,-((AbstractNPC)nodeToCreate).getHeight(),0));
-                //Setting upp collision shape and character control:
-                shape = new CapsuleCollisionShape(((AbstractNPC)nodeToCreate).getWidth(), ((AbstractNPC)nodeToCreate).getHeight(), 1);
-                mover = new CharacterControl(shape, 0.05f);
-                PhysicsWrapper.getInstance().add(mover);
-                //Set the character jumpspeed. 12 is just right for this character to jump 1f.
-                mover.setJumpSpeed(12);
-                //Setting up PlayerMoveControl which translates AI behaviour to node actions.
-                NPCMoveControl nmc = new NPCMoveControl();
-                //Attaching controls:
-                node.addControl(mover);
-                node.addControl(nmc);      
-                break;
-            case CHECKPOINT:
-                break;
-            case SPAWNPOINT:
-                break;
-        }
-        return node;
-    }*/
-    
     public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
         Node node = new Node();
         node.attachChild(Resources.getInstance().getResources(levelToCreate.getModelName()));
@@ -107,10 +52,13 @@ public class NodeFactory {
         
         //Adding the player character to the level
         Node playerNode = NodeFactory.createNode(NodeType.PLAYER/*((Level)levelToCreate).getPlayer()*/);
+        
         ChaseCamera chaseCam = new ChaseCamera(cam);
         chaseCam.setRotationSensitivity(0);
-        chaseCam.setDefaultHorizontalRotation(new Float(Math.PI/2));
+        chaseCam.setDefaultHorizontalRotation(new Float(FastMath.HALF_PI));
+        chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
         playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
+        
         node.attachChild(playerNode);
         node.setLocalTranslation(0f, -5f, 0f);
         
@@ -119,15 +67,10 @@ public class NodeFactory {
         RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
         PhysicsWrapper.getInstance().add(landscape);
         node.addControl(landscape);
-
-        //TODO REMOVE -> FOR TESTING PURPOSES ONLY
-        //Adding a basic ambient light to the level
-//        AmbientLight l = new AmbientLight();
-//        l.setColor(ColorRGBA.White.mult(3f));
-//        node.addLight(l);
         
         return node;
     }
+    
     /**
      * Creates and returns a new Node based on a type and userData from another
      * node.
