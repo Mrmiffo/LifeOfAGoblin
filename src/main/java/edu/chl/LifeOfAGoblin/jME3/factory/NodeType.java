@@ -14,7 +14,8 @@ public enum NodeType{
     MINION("MINION", true),
     BOSS("BOSS", true),
     CHECKPOINT("CHECKPOINT", false),
-    SPAWNPOINT("SPAWNPOINT", false);
+    SPAWNPOINT("SPAWNPOINT", false),
+    GAMEOBJECT("GAMEOBJECT", true);
     
     private final String type;
     private final boolean spawnable;

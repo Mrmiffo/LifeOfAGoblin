@@ -15,10 +15,9 @@ import edu.chl.LifeOfAGoblin.model.SpawnPoint;
  *
  * @author kakan
  */
-class CollisionObjectFactory {
+class CollisionObjectPainter {
     
-    static Node createCollisionObject(NodeType typeToCreate, Node userDataNode) {
-        Node node = new Node();
+    static void createCollisionObject(NodeType typeToCreate, Node userDataNode) {
         float width = userDataNode.getUserData("WIDTH");
         switch (typeToCreate) {
             case CHECKPOINT:
@@ -27,12 +26,11 @@ class CollisionObjectFactory {
                 Checkpoint cp = new Checkpoint(level, number, width);
                 ModelControl CheckMc = new ModelControl(cp);
                 CollisionObjectControl CheckCc = new CollisionObjectControl(cp);
-                node.addControl(CheckMc);
-                node.addControl(CheckCc);
-                return node;
+                userDataNode.addControl(CheckMc);
+                userDataNode.addControl(CheckCc);
+                break;
             case SPAWNPOINT:
                 if(!typeToCreate.getSpawnable()){
-                    return null;
                 }
                 int amount = userDataNode.getUserData("AMOUNT");
                 NodeType type = null;
@@ -52,13 +50,14 @@ class CollisionObjectFactory {
                 SpawnPoint sp = new SpawnPoint(sc, amount, type, width);
                 CollisionObjectControl spawnCc = new CollisionObjectControl(sp);
                 ModelControl spawnMc = new ModelControl(sp);
-                node.addControl(spawnMc);
-                node.addControl(spawnCc);
-                node.addControl(sc);
-                return node;  
+                userDataNode.addControl(spawnMc);
+                userDataNode.addControl(spawnCc);
+                userDataNode.addControl(sc);
+                break;
+            case GAMEOBJECT:
+                //todo add stuffzz for gameobjects.
         }
         
-        return null;
     }
     
 }
