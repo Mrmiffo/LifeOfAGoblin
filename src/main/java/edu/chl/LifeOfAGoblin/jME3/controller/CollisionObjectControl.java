@@ -37,11 +37,11 @@ public class CollisionObjectControl extends GhostControl implements PhysicsColli
 
     @Override
     public void collision(PhysicsCollisionEvent pce) {
-        if(pce.getNodeA().getUserData("NodeType").equals("Player")){ //not working atm
-            if(!this.collisionObject.getIsActivated()){
-                this.collisionObject.collide();
-            }
-          }
+//        if(pce.getNodeA().getUserData("NodeType").equals("Player")){ //not working atm
+       //     if(!this.collisionObject.getIsActivated()){
+         //       this.collisionObject.collide();
+          //  }
+      //    }
     }
      
 }
