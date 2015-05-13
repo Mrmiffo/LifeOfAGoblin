@@ -44,6 +44,9 @@ public class Minion extends AbstractHostileNPC {
     public Minion(NodeType target, float healthMultiplyer) {
         super((int)healthMultiplyer * maxHealth, model, height, width, weight,
                 baseDamage, jumpStrength, target);
+        
+        targetNodeType = NodeType.PLAYER;
+        targetDistance = 2;
     }
     @Override
     public NodeType getNodeType() {

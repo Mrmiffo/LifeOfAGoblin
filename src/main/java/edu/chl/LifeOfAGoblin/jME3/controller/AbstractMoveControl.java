@@ -15,11 +15,27 @@ import com.jme3.scene.control.AbstractControl;
  *
  * @author kakan
  */
-public class AbstractMoveControl extends AbstractControl {
+public abstract class AbstractMoveControl extends AbstractControl {
     
     protected boolean right;
     protected boolean left;
     private CharacterControl characterControl;
+    private float stepWidth;
+    
+    /**
+     * Creates a AbstractMoveControl with a step width of 0.1.
+     */
+    public AbstractMoveControl() {
+        this.stepWidth = 0.1f;
+    }
+    
+    /**
+     * Creates a AbstractMoveControl with a specified step width.
+     * @param stepWidth the wanted step width
+     */
+    public AbstractMoveControl(float stepWidth) {
+        this.stepWidth = stepWidth;
+    }
 
     @Override
     protected void controlUpdate(float tpf) {
@@ -30,10 +46,10 @@ public class AbstractMoveControl extends AbstractControl {
         
         if (right) {
             faceRight();
-            characterControl.setWalkDirection(new Vector3f(0.1f, 0f, 0f));
+            characterControl.setWalkDirection(new Vector3f(stepWidth, 0, 0));
         } else if (left) {
             faceLeft();
-            characterControl.setWalkDirection(new Vector3f(-0.1f, 0f, 0f));
+            characterControl.setWalkDirection(new Vector3f(-stepWidth, 0, 0));
         } else {
             haltCharacter();
         }
@@ -44,22 +60,37 @@ public class AbstractMoveControl extends AbstractControl {
         
     }
     
+    /**
+     * Makes the controlled spatial face to the left.
+     */
     protected void faceLeft() {
-        characterControl.setViewDirection(new Vector3f(-1, 0, 0));
+        characterControl.setViewDirection(Vector3f.UNIT_X.mult(-1));
     }
     
+    /**
+     * Makes the controlled spatial face to the right.
+     */
     protected void faceRight() {
-        characterControl.setViewDirection(new Vector3f(1, 0, 0));
+        characterControl.setViewDirection(Vector3f.UNIT_X);
     }
     
-    protected  void faceFront() {
-        characterControl.setViewDirection(new Vector3f(0, 0, 1));
+    /**
+     * Makes the controlled spatial face towards the player (front).
+     */
+    protected void faceFront() {
+        characterControl.setViewDirection(Vector3f.UNIT_Z);
     }
     
+    /**
+     * Makes the controlled spatial stop moving.
+     */
     protected void haltCharacter() {
         characterControl.setWalkDirection(Vector3f.ZERO);
     }
     
+    /**
+     * Makes the controlled spatial jump.
+     */
     protected void jump() {
         characterControl.jump();
     }

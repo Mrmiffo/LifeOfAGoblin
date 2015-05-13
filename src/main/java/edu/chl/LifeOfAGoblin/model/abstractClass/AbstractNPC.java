@@ -4,14 +4,22 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
+import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.AIAction;
+import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
 
 /**
  *
  * @author Anton
  */
-public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour {
+public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour, IAI {
    
+    protected AIAction activeAction;
+    protected float targetDistance;
+    protected NodeType targetNodeType;
+    protected String targetDirection;
+    
     /**
      *
      * @param maxHealth the max health of the NPC.
@@ -26,10 +34,34 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
             float width, float weight, float baseDamage, float jumpStrength){
         
         super(maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        activeAction = AIAction.IDLE;
     }
     
     @Override
     public void idleBehaviour() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void updateAIAction() {
+        activeAction = AIAction.IDLE;
+    }
+    
+        
+    @Override
+    public void updateAIAction(float distance, String direction, NodeType type) {
+        if (targetDistance <= distance && targetNodeType == type) {
+            activeAction = AIAction.MOVETOTARGET;
+            targetDirection = direction;
+        }
+    }
+    
+    @Override
+    public AIAction getAIAction() {
+        return activeAction;
+    }
+    
+    public String getTargetDirection() {
+        return targetDirection;
     }
 }
