@@ -12,12 +12,18 @@ import edu.chl.LifeOfAGoblin.model.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.SpawnPoint;
 
 /**
- *
- * @author kakan
+ * A class responsible for "painting" nodes giving them models and adding
+ * controls
+ * @author fredrik
  */
 class CollisionObjectPainter {
-    
-    static void createCollisionObject(NodeType typeToCreate, Node userDataNode) {
+    /**
+     * Paints a node of the type collisionObject
+     * @param typeToCreate the specific type of collisionobject to create
+     * @param userDataNode the node to be painted. It also contains all 
+     * relevant userdata.
+     */
+    static void paintCollisionObject(NodeType typeToCreate, Node userDataNode) {
         float width = userDataNode.getUserData("WIDTH");
         switch (typeToCreate) {
             case CHECKPOINT:
@@ -56,6 +62,7 @@ class CollisionObjectPainter {
                 break;
             case GAMEOBJECT:
                 //todo add stuffzz for gameobjects.
+                break;
         }
         
     }
