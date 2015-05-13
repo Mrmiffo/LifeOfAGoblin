@@ -13,28 +13,21 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
  * The level model. Contains the model data of the level and the scene name.
  * @author Anton
  */
-public class Level extends AbstractInanimateObject{
-    private String scene;
-    private Player player;
+public class Level extends AbstractInanimateObject {
     
     /**
      * 
      * @param levelName the name of the level that should be created
      * @param player the player instance to load into the level.
      */
-    public Level(String levelName, Player player){
+    public Level(String levelName){
         //Save the scene file to load.
         super(levelName, "scenes");
-        this.player = player;
     }
     
     @Override
     public NodeType getNodeType() {
         return NodeType.LEVEL;
-    }
-    
-    public Player getPlayer(){
-        return player;
     }
 
     @Override
