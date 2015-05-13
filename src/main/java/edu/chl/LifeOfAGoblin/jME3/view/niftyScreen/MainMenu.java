@@ -41,7 +41,6 @@ public class MainMenu implements INiftyScreen{
     //Set up the main menu components, register the controller and sets button actions.
     private void setupMainMenu() {     
         final MainMenuController niftyController = new MainMenuController(this);
-        Resources.getInstance().setTempPath("textures");
         screen = new ScreenBuilder(mainMenuName) {{
             controller(niftyController);
             
@@ -50,8 +49,8 @@ public class MainMenu implements INiftyScreen{
                 
                 // add image
                 image(new ImageBuilder() {{
-                    
-                    filename("skin.jpg");
+                    Resources.getInstance().setTempPath("images");
+                    filename("forest-wallpaper-free-picture.jpg");
                     height("100%");
                     width("100%");
                 }});
