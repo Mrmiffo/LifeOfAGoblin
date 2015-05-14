@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
 
     
@@ -33,12 +32,10 @@ public class Level extends AbstractInanimateObject {
     @Override
     public float getHeight() {
         return 1f; //is this really nessecary?
-            }
+    }
 
     @Override
     public float getWidth() {
         return 1f; //is this really nessecary?
     }
-
-
 }
