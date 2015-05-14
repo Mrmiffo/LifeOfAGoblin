@@ -22,12 +22,25 @@ public class Profile implements Serializable{
         listOfProfiles.add(this);
     }
     
+    public void rename(String newName) {
+        profileName = newName;
+    }
+    
     public String getProfileName() {
         return profileName;
     }
     
-    public void rename(String newName) {
-        profileName = newName;
+    public Progress getProgress() {
+        return progress;
+    }
+    
+    public static Profile getProfile(String profileName) {
+        for (Profile p: listOfProfiles) {
+            if (p.getProfileName().equals(profileName)) {
+                return p;
+            }
+        }
+        return null;
     }
     
     public static Profile getActiveProfile() {

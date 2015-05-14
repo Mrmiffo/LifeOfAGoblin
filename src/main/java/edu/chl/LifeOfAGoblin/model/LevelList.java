@@ -52,6 +52,13 @@ public class LevelList {
         listOfLevels.remove(position-1);
     }
     
+    public static Level getNext(Level level) {
+        if ((listOfLevels.indexOf(level) == -1) || (listOfLevels.indexOf(level) == listOfLevels.size()-1)) {
+            throw new IllegalArgumentException("In LevelList: getNext(). ");
+        }
+        return listOfLevels.get(listOfLevels.indexOf(level) +1);
+    }
+    
     public static ArrayList<Level> getList() {
         return (ArrayList<Level>)listOfLevels.clone();
     }

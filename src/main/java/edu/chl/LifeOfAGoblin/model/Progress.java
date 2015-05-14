@@ -16,6 +16,7 @@ public class Progress implements Serializable {
     private Level lastVisitedLevel;
     private Checkpoint lastVisitedCheckpoint;
     
+    //This should be called everytime the player activates a Checkpoint.
     public void update(Level currentLevel, Checkpoint currentCheckpoint) {
         lastVisitedLevel = currentLevel;
         lastVisitedCheckpoint = currentCheckpoint;
