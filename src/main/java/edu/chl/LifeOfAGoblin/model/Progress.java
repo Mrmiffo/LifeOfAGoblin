@@ -12,13 +12,15 @@ import java.io.Serializable;
  */
 public class Progress implements Serializable {
     
-    private int longestProgress, lastVisitedLevel, lastVisitedCheckpoint;
+    private Level longestProgress;
+    private Level lastVisitedLevel;
+    private Checkpoint lastVisitedCheckpoint;
     
-    public void update(int levelNbr, int checkpointNbr) {
-        lastVisitedLevel = levelNbr;
-        lastVisitedCheckpoint = checkpointNbr;
-        if (longestProgress < levelNbr) {
-            longestProgress = levelNbr;
+    public void update(Level currentLevel, Checkpoint currentCheckpoint) {
+        lastVisitedLevel = currentLevel;
+        lastVisitedCheckpoint = currentCheckpoint;
+        if (LevelList.getPosition(longestProgress) < LevelList.getPosition(currentLevel)) {
+            longestProgress = currentLevel;
         }
     }
 }
