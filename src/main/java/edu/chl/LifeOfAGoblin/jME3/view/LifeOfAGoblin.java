@@ -11,6 +11,7 @@ import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.SettingsMenu;
 
 
 /**
@@ -30,6 +31,7 @@ public class LifeOfAGoblin extends SimpleApplication {
         
 //        GameAppState playGame = new GameAppState();
         MainMenu mainMenu = new MainMenu();
+        SettingsMenu settingsMenu = new SettingsMenu();
         NiftyGUIWrapper.getInstance().addScreen(mainMenu.getScreenName(), mainMenu.getScreen());
         NiftyGUIWrapper.getInstance().goToScreen(mainMenu.getScreenName());
         this.getFlyByCamera().setDragToRotate(true);
