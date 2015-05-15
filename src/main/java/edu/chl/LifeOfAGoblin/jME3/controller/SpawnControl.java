@@ -15,16 +15,17 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
 
 /**
  * A control that belongs to a SpawnPoint. It is responsible for creating new
- * spawnables and attaching them to the level.
+ * spawnables, attaching them to the level and moving them to the correct 
+ * position.
  * @author fredrik
  */
+
 public class SpawnControl extends AbstractControl implements ISpawnControl{
-   @Override
-   public void Spawn(int amount, NodeType type){
+   
+    @Override
+    public void Spawn(int amount, NodeType type){
     Node node = NodeFactory.createNode(type);
     this.getSpatial().getParent().attachChild(node);
-    System.out.println(this.getSpatial().getParent().toString());
-    System.out.println(this.getSpatial().getLocalTranslation());
     node.setLocalTranslation(this.getSpatial().getLocalTranslation());
     node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());
 

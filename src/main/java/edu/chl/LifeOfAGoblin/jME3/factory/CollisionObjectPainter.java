@@ -19,6 +19,7 @@ import edu.chl.LifeOfAGoblin.model.SpawnPoint;
  * controls
  * @author fredrik
  */
+
 class CollisionObjectPainter {
     /**
      * Paints a node of the type collisionObject
@@ -26,6 +27,7 @@ class CollisionObjectPainter {
      * @param userDataNode the node to be painted. It also contains all 
      * relevant userdata.
      */
+    
     static void paintCollisionObject(NodeType typeToCreate, Node userDataNode) {
         float width = userDataNode.getUserData("WIDTH");
         switch (typeToCreate) {

@@ -18,7 +18,7 @@ public class Checkpoint extends AbstractCollisionObject {
     private int number;
     
      /**
-     * constructor for creating a checkpoint with a specified width
+     * constructor for creating a checkpoint
      * @param level the level containing the checkpoint
      * @param number the number of the checkpoint in relation to the other
      * checkpoints in the level
@@ -35,7 +35,12 @@ public class Checkpoint extends AbstractCollisionObject {
         return NodeType.CHECKPOINT;
     }
     
+     /**
+     * Is called when a player collides with the Checkpoint. Runs 
+     * updateProgress with this object's level and number and sets IsActivated to true
+     */
     @Override
+    
     public void collide(){
         updateProgress(this.level, this.number);      
         System.out.println("checkpoint");
