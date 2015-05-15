@@ -19,6 +19,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.MainMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
+import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
 
 
@@ -99,8 +100,9 @@ public class MainMenu implements INiftyScreen{
                         height("100%");
                         width("50%");
                         Resources.getInstance().setTempPath("images");
-                        addImage("Level1.png");
-                        addImage("Level2.png");
+                        for (final String name: LevelManager.getInstance().getAllLevelNames()){
+                            addImage(name + ".png");
+                        }
                         pixels(100);
 //                        interactOnClick("");
                     }});

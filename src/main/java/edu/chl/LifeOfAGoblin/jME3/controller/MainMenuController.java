@@ -4,12 +4,10 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
+
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.NiftyEventSubscriber;
 import de.lessvoid.nifty.controls.ImageSelect;
-import de.lessvoid.nifty.controls.ListBox;
-import de.lessvoid.nifty.controls.ListBoxSelectionChangedEvent;
-import de.lessvoid.nifty.controls.imageselect.builder.ImageSelectBuilder;
+import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import edu.chl.LifeOfAGoblin.jME3.main.Main;
@@ -18,7 +16,7 @@ import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
-import java.util.ArrayList;
+import edu.chl.LifeOfAGoblin.utils.LevelManager;
 import java.util.List;
 
 /**
@@ -45,7 +43,7 @@ public class MainMenuController implements ScreenController{
 
     @Override
     public void onStartScreen() {
-        fillLevelSelectBox();
+
     }
 
     @Override
@@ -59,11 +57,11 @@ public class MainMenuController implements ScreenController{
     public void startGame(){
         //Get the selected level.
         ImageSelect levelSelectBox = screen.findNiftyControl("levelSelectBox", ImageSelect.class);
-//        System.out.println("Level no:" +levelSelectBox.getSelectedImageIndex());
+        int selectedLevel = levelSelectBox.getSelectedImageIndex()+1;
         GameHud hud = new GameHud();
         NiftyGUIWrapper.getInstance().addScreen(hud.getScreenName(), hud.getScreen());
         NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
-        StateManagerWrapper.getInstance().addState(new GameAppState());
+        StateManagerWrapper.getInstance().addState(new GameAppState(selectedLevel));
 //        StateManagerWrapper.getInstance().addState(new GameAppState(selectedLevel));
         
     }
@@ -75,17 +73,6 @@ public class MainMenuController implements ScreenController{
         Main.shutDown();
         
     }
-    
-    /**
-     * Fills the list box with the names of the levels.
-     */
-    public void fillLevelSelectBox() {
-//        Profile.getActiveProfile().getAvailableLevels();
-        displayedLevels = new ArrayList<>();
-//        displayedLevels.add(null);
-        ImageSelect levelSelectBox = screen.findNiftyControl("levelSelectBox", ImageSelect.class);
-//        levelSelectBox.addImage(); //Add a nifty image... Imagebuilder?
-  }
     
     public void settings(){
         NiftyGUIWrapper.getInstance().goToScreen("settingsMenu");
