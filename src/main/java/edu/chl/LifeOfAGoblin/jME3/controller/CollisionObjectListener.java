@@ -24,16 +24,15 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
  * and itself and notifies the collisionObject associated with the node 
  * this is added on. 
  */
-public class CollisionObjectControl extends AbstractControl implements PhysicsCollisionListener , 
+public class CollisionObjectListener extends AbstractControl implements PhysicsCollisionListener , 
         PhysicsCollisionGroupListener{
     private AbstractCollisionObject collisionObject;
     
 /**
- * Creates a CollisionObjectControl. 
- * @param collisionObject the collisionObject object associated with the node this is 
- * added on.
+ * Creates a CollisionObjectListener. 
+ * 
  */
-    public CollisionObjectControl(){
+    public CollisionObjectListener(){
         
     }
 
