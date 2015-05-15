@@ -8,6 +8,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
+import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
 /**
  *
@@ -16,19 +17,19 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 public class GameAppState extends AbstractAppState {
     private Node rootNode;
     private Application app;
-    private String levelToStart;
+    private int levelToStart;
     
     /**
      * Creates a GameAppState with a default first level 
      */
     public GameAppState() {
-        levelToStart = "Level1.j3o";
+        levelToStart = 1;
     }
     
     /**
      * Creates a GameAppState with a specified first level 
      */
-    public GameAppState(String firstLevelToStart){
+    public GameAppState(int firstLevelToStart){
         levelToStart = firstLevelToStart;
     }
     
@@ -60,18 +61,18 @@ public class GameAppState extends AbstractAppState {
     }
     
     /**
-     * Updates the name of the next level that should start.
-     * @param levelName the name of the next level
+     * Updates the the next level that should start.
+     * @param levelno the number of the next level
      */
-    public void updateLevelToStart(String levelName) {
-        levelToStart = levelName;
+    public void updateLevelToStart(int levelno) {
+        levelToStart = levelno;
     }
 
     /**
      * Starts the level specified by updateLevelToStart.
      */
     private void startLevel() {
-        Level level = new Level(levelToStart);
+        Level level = LevelManager.getInstance().getLevel(levelToStart);
         Node levelNode = NodeFactory.createModeledLevelNode(level, app.getCamera());
         rootNode.attachChild(levelNode);
     }

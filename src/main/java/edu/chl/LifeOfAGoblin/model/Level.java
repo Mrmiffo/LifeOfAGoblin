@@ -13,15 +13,17 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
  * @author Anton
  */
 public class Level extends AbstractInanimateObject {
+    private int levelNo;
     
     /**
      * 
      * @param levelName the name of the level that should be created
      * @param player the player instance to load into the level.
      */
-    public Level(String levelName){
+    public Level(String levelName, int levelNo){
         //Save the scene file to load.
-        super(levelName, "scenes");
+        super(levelName+".j3o", "scenes");
+        this.levelNo = levelNo;
     }
     
     @Override
@@ -37,5 +39,21 @@ public class Level extends AbstractInanimateObject {
     @Override
     public float getWidth() {
         return 1f; //is this really nessecary?
+    }
+    
+    /**
+     * An identical method to getModelName(), but with a more logical name.
+     * @return the name of the level (same as model name).
+     */
+    public String getLevelName(){
+        return getModelName();
+    }
+    
+    /**
+     * Returns the number of the level.
+     * @return 
+     */
+    public int getLevelNo(){
+        return levelNo;
     }
 }
