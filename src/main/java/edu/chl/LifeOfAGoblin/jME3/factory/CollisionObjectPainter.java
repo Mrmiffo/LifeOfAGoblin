@@ -12,6 +12,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.model.Checkpoint;
+import edu.chl.LifeOfAGoblin.model.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.SpawnPoint;
 
 /**
@@ -44,6 +45,20 @@ class CollisionObjectPainter {
                 PhysicsWrapper.getInstance().add(checkGhost);
                 userDataNode.addControl(checkMc);
                 userDataNode.addControl(checkGhost);
+                break;
+                case FINALCHECKPOINT:
+                int flevel = userDataNode.getUserData("LEVEL");
+                int fnumber = userDataNode.getUserData("NUMBER");
+                FinalCheckpoint fcp = new FinalCheckpoint(flevel, fnumber, width);
+                ModelControl fCheckMc = new ModelControl(fcp);
+                Vector3f fcheckhalfExtent = new Vector3f(fcp.getWidth(),fcp.getHeight(), 0);
+                BoxCollisionShape fcheckBox = new BoxCollisionShape(fcheckhalfExtent);
+                GhostControl fcheckGhost = new GhostControl(fcheckBox);
+                fcheckGhost.setCollisionGroup(5);
+                fcheckGhost.setCollideWithGroups(2);
+                PhysicsWrapper.getInstance().add(fcheckGhost);
+                userDataNode.addControl(fCheckMc);
+                userDataNode.addControl(fcheckGhost);
                 break;
             case SPAWNPOINT:
                 if(!typeToCreate.getSpawnable()){

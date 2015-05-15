@@ -38,7 +38,7 @@ public class CollisionObjectListener extends AbstractControl implements PhysicsC
     public void collision(PhysicsCollisionEvent pce) {
     if(pce.getNodeB().getUserDataKeys().size() > 0){
         if(collide(pce.getObjectA(), pce.getObjectB())){
-            if(pce.getNodeB().getUserData("nodeType").equals("CHECKPOINT") || pce.getNodeB().getUserData("nodeType").equals("SPAWNPOINT")){
+            if(pce.getNodeB().getUserData("nodeType").equals("CHECKPOINT") || pce.getNodeB().getUserData("nodeType").equals("SPAWNPOINT") || pce.getNodeB().getUserData("nodeType").equals("FINALCHECKPOINT")){
                 if(!((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsActivated()){
                     ((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).collide();
                 }

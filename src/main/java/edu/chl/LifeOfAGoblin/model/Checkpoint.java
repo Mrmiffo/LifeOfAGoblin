@@ -54,7 +54,7 @@ public class Checkpoint extends AbstractCollisionObject {
      * on this level.
      */
     
-    private void updateProgress(int level, int number) {
+    public void updateProgress(int level, int number) {
         //progress.getInstance().update(level, number);
     }
     
