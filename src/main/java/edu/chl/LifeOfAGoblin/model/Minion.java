@@ -14,7 +14,7 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 public class Minion extends AbstractHostileNPC {
     
     private static final int maxHealth = 1;
-    private static final String model = "";
+    private static final String model = "Goblin2.j3o"; //temporary model for testing purposesdd
     private static final float height = 1;
     private static final float width = 0.4f;
     private static final float weight = 10;
