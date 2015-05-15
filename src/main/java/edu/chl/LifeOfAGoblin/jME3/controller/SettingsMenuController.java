@@ -10,6 +10,7 @@ import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.model.KeyBindings;
+import java.util.Arrays;
 
 /**
  *
@@ -38,7 +39,7 @@ public class SettingsMenuController implements ScreenController{
     
     private void fillKeyBindBox(){
         keybindBox =  screen.findNiftyControl("keybind_box", ListBox.class);
-        keybindBox.addAllItems(KeyBindings.getAllEnums());
+        keybindBox.addAllItems(Arrays.asList(KeyBindings.KeyBind.values()));
         
     }
     
