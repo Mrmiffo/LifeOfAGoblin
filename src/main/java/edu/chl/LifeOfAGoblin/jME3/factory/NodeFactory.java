@@ -68,6 +68,9 @@ public class NodeFactory {
                     case("CHECKPOINT"):
                         CollisionObjectPainter.paintCollisionObject(NodeType.CHECKPOINT, ((Node)nodeList.get(i)));
                         break;
+                    case("FINALCHECKPOINT"):
+                        CollisionObjectPainter.paintCollisionObject(NodeType.FINALCHECKPOINT, ((Node)nodeList.get(i)));
+                        break;
                     case("GAMEOBJECT"):
                         CollisionObjectPainter.paintCollisionObject(NodeType.GAMEOBJECT, ((Node)nodeList.get(i)));
                     case("PLAYER"):  
