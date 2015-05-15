@@ -1,13 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.ImageSelect;
-import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import edu.chl.LifeOfAGoblin.jME3.main.Main;
@@ -16,7 +11,6 @@ import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
-import edu.chl.LifeOfAGoblin.utils.LevelManager;
 import java.util.List;
 
 /**
@@ -25,27 +19,36 @@ import java.util.List;
  * @author Anton
  */
 public class MainMenuController implements ScreenController{
-    private MainMenu mainMenu;
     private Nifty nifty;
     private Screen screen;
     private List<String> displayedLevels;
     
     public MainMenuController(MainMenu mainMenu){
-        this.mainMenu = mainMenu;
+
     }
    
-
+    /**
+     * This mehtod is run when the control is bound to the screen through the controll() method in MainMenu.
+     * @param nifty
+     * @param screen 
+     */
     @Override
     public void bind(Nifty nifty, Screen screen) {
         this.nifty = nifty;
         this.screen = screen;
     }
 
+    /**
+     * This method is run everytime the screen is displayed.
+     */
     @Override
     public void onStartScreen() {
 
     }
 
+    /**
+     * This method is run everytime the screen is no longer displayed.
+     */
     @Override
     public void onEndScreen() {
         
@@ -57,12 +60,13 @@ public class MainMenuController implements ScreenController{
     public void startGame(){
         //Get the selected level.
         ImageSelect levelSelectBox = screen.findNiftyControl("levelSelectBox", ImageSelect.class);
-        int selectedLevel = levelSelectBox.getSelectedImageIndex()+1;
+        int selectedLevel = levelSelectBox.getSelectedImageIndex()+1; //+1 is used as the levelSelectBox start at 0 but the first level is 1
+        //Create a new hud and display it.
         GameHud hud = new GameHud();
         NiftyGUIWrapper.getInstance().addScreen(hud.getScreenName(), hud.getScreen());
         NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
+        //Create the GameAppState with a selected level. Might need rework for pause and restart to work...
         StateManagerWrapper.getInstance().addState(new GameAppState(selectedLevel));
-//        StateManagerWrapper.getInstance().addState(new GameAppState(selectedLevel));
         
     }
     /**

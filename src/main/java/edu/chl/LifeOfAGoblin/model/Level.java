@@ -16,9 +16,12 @@ public class Level extends AbstractInanimateObject {
     private int levelNo;
     
     /**
-     * 
+     * Defaul contstructor for the level. Typically called from the LevelManager 
+     * class. Takes the name of the level and the number of the level. These values
+     * typcally only exist in the LevelManager class. The AbstractInanimate 
+     * object class will use the level name to load the .j3o file. 
      * @param levelName the name of the level that should be created
-     * @param player the player instance to load into the level.
+     * @param levelno the player instance to load into the level.
      */
     public Level(String levelName, int levelNo){
         //Save the scene file to load.

@@ -14,7 +14,6 @@ import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.imageselect.builder.ImageSelectBuilder;
 import de.lessvoid.nifty.screen.Screen;
-import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.controller.MainMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
@@ -34,6 +33,10 @@ public class MainMenu implements INiftyScreen{
     private Screen screen;
     private MainMenuController niftyController;
 
+    /**
+     * Default constructor for the main menu. WIll load all files and build all the interface components.
+     * Use the getScreen to load it into nifty.
+     */
     public MainMenu() {  
         //Loading default nifty visuals for buttons etc.
         NiftyGUIWrapper.getInstance().loadStyleFile("nifty-default-styles.xml");
@@ -81,12 +84,12 @@ public class MainMenu implements INiftyScreen{
                     width("75%");
 
                     // add text
-//                    text(new TextBuilder() {{
-//                        text("Welcome to Life of a Goblin");
-//                        font("Interface/Fonts/Default.fnt");
-//                        height("100%");
-//                        width("100%");
-//                    }});
+                    text(new TextBuilder() {{
+                        text("Welcome to Life of a Goblin");
+                        font("Interface/Fonts/Default.fnt");
+                        height("100%");
+                        width("100%");
+                    }});
                 }}); //Panel top
 
                 //Create the center panel which will contain the level select field. 
