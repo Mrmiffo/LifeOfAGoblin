@@ -12,7 +12,9 @@ import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
+import de.lessvoid.nifty.controls.imageselect.builder.ImageSelectBuilder;
 import de.lessvoid.nifty.screen.Screen;
+import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.controller.MainMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
@@ -23,27 +25,36 @@ import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
 
 
 /**
- * Initial basic draft of a main menu, needs major rewriting when we have more time.
+ * The MainMenu is the menu from which the player will select level, start the game, go to settings and exit the game.
  * @author Anton
  */
 public class MainMenu implements INiftyScreen{
     private String mainMenuName;
     private Screen screen;
+    private MainMenuController niftyController;
 
     public MainMenu() {  
+        //Loading default nifty visuals for buttons etc.
         NiftyGUIWrapper.getInstance().loadStyleFile("nifty-default-styles.xml");
-        NiftyGUIWrapper.getInstance().loadControlFile("nifty-default-controls.xml");     
+        NiftyGUIWrapper.getInstance().loadControlFile("nifty-default-controls.xml");    
+        //Decides the name of the nifty screen. Will be used to identify the screen for loading it.
         mainMenuName = "mainMenu";
+        //Starts the main menu setup.
         setupMainMenu();
         
         
     }
+    
     //Set up the main menu components, register the controller and sets button actions.
     private void setupMainMenu() {     
-        final MainMenuController niftyController = new MainMenuController(this);
+        //Create a controller for the screen.
+        niftyController = new MainMenuController(this);
+        //Create a new nifty screen.
         screen = new ScreenBuilder(mainMenuName) {{
+            //Register the controler to the screen. Any actions taken on the screen objects will be resolved in this controller.
             controller(niftyController);
             
+            //Create the background layer that covers the whole screen and set a background image.
             layer(new LayerBuilder("background") {{
                 childLayoutCenter();
                 
@@ -57,15 +68,15 @@ public class MainMenu implements INiftyScreen{
 
             }});
             
+            //Create a foreground which covers the whole screen which will contain the panels which in turn contain buttons and other objects.
             layer(new LayerBuilder("foreground") {{
                 childLayoutVertical();
-//                backgroundColor("#0000");
-                
+
+                //Create the top panel which will contain the game tile text and welcoming message
                 panel(new PanelBuilder("panel_top") {{
                     childLayoutCenter();
                     alignCenter();
-//                    backgroundColor("#f008");
-                    height("25%");
+                    height("10%");
                     width("75%");
 
                     // add text
@@ -77,53 +88,85 @@ public class MainMenu implements INiftyScreen{
 //                    }});
                 }}); //Panel top
 
+                //Create the center panel which will contain the level select field. 
                 panel(new PanelBuilder("panel_mid") {{
                     childLayoutCenter();
                     alignCenter();
-//                    backgroundColor("#0f08");
-                    height("50%");
+                    height("30%");
                     width("75%");
+                    
+                    control(new ImageSelectBuilder("levelSelectBox") {{
+                        height("100%");
+                        width("50%");
+                        Resources.getInstance().setTempPath("images");
+                        addImage("Level1.png");
+                        addImage("Level2.png");
+                        pixels(100);
+//                        interactOnClick("");
+                    }});
 
                 }});
                 
+                //Builds the buttom panel which contains the buttons
                 panel(new PanelBuilder("panel_bottom") {{
-                    childLayoutHorizontal();
+                    childLayoutVertical();
                     alignCenter();
-//                    backgroundColor("#00f8");
-                    height("25%");
+                    height("40%");
                     width("75%");
+                    padding("5%");
 
-                    panel(new PanelBuilder("panel_bottom_left") {{
+                    //Creates a panel which contain the start game button
+                    panel(new PanelBuilder("panel_bottom_top") {{
                         childLayoutCenter();
                         valignCenter();
-//                        backgroundColor("#44f8");
-                        height("50%");
-                        width("50%");
+                        height("40%");
+                        width("100%");
+                        padding("5%");
 
                         // add control
                         control(new ButtonBuilder("StartButton", "Start game") {{
                           alignCenter();
                           valignCenter();
-                          height("50%");
-                          width("50%");
+                          height("100%");
+                          width("30%");
                           interactOnClick("startGame()");
                         }});
 
                     }});
-
-                    panel(new PanelBuilder("panel_bottom_right") {{
+                    
+                    //A panel for the settings button
+                    panel(new PanelBuilder("panel_bottom_middle") {{
                         childLayoutCenter();
                         valignCenter();
-//                        backgroundColor("#88f8");
-                        height("50%");
-                        width("50%");
+                        height("20%");
+                        width("100%");
+                        padding("5%");
+
+                        
+                        // add Button for settings
+                        control(new ButtonBuilder("SettingsButton", "Settings") {{
+                          alignCenter();
+                          valignCenter();
+                          height("100%");
+                          width("30%");
+                          interactOnClick("settings()");
+                        }});//Settings button
+                    }});
+
+
+                    panel(new PanelBuilder("panel_bottom_bottom") {{
+                        childLayoutCenter();
+                        valignCenter();
+                        height("20%");
+                        width("100%");
+                        padding("5%");
 
                         // add control
                         control(new ButtonBuilder("QuitButton", "Quit") {{
                           alignCenter();
                           valignCenter();
-                          height("50%");
-                          width("50%");
+                          height("100%");
+                          width("30%");
                           interactOnClick("quitGame()");
                         }});//Quit button
                     }});//Panel bottom right
