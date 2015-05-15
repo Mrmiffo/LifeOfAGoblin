@@ -25,7 +25,9 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     private float jumpStrength;
     
     /**
-     *
+     * Default constructor for the abstract character. To be called by subclasses
+     * to populate needed values. Also tells the Resource class to load needed model. 
+     * This reduce the need of loading resources from harddrive during gameplay.
      * @param maxHealth the max health of the character.
      * @param model the model texture to load for the character. Must be placed in the assets/model folder.
      * @param height the height of the character.
@@ -53,11 +55,18 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     public String getModelName(){
         return model;
     }
-    
+    /**
+     * Returns the health of the character
+     * @return 
+     */
     public int getHealth(){
         return health;
     }
     
+    /**
+     * A meathod to set the character health. If the health reach 0 or below the die()method will be run.
+     * @param newHealth 
+     */
     public void setHealth(int newHealth){
         health = newHealth;
         if (health <= 0){
@@ -65,10 +74,18 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         }
     }
     
+    /**
+     * Returns the max health of the character.
+     * @return the character max health.
+     */
     public int getMaxHealth(){
         return maxHealth;
     }
     
+    /**
+     * Method to set the max health.
+     * @param newMaxHealth The nex max health of the character.
+     */
     public void setMaxHealth(int newMaxHealth){
         maxHealth = newMaxHealth;
     }
@@ -83,14 +100,27 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         return width;
     }
     
+    /**
+     * Returns the wheigt of the character. Used in the physics engine.
+     * @return 
+     */
     public float getWeight() {
         return weight;
     }
     
+    /**
+     * Returns the base damage for the character. Used when calculating the 
+     * damage it does to other character.
+     * @return 
+     */
     public float getBaseDamage() {
         return baseDamage;
     }
     
+    /**
+     * Returns the jump strenght of the character. Used by the physics engine.
+     * @return 
+     */
     public float getJumpStrength() {
         return jumpStrength;
     }
@@ -102,7 +132,7 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     @Override
     public void collide() {
         //TODO add implementation (if necessary)
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     /**
@@ -111,6 +141,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     @Override
     public void die() {
         //TODO add implementation (if necessary)
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }

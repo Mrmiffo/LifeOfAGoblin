@@ -21,7 +21,10 @@ public class InputManagerWrapper {
     private InputManagerWrapper(){
 
     }
-    
+    /**
+     * Basice singleton getInstance method.
+     * @return 
+     */
     public static synchronized InputManagerWrapper getInstance(){
         if (instance == null){
             instance = new InputManagerWrapper();
@@ -29,11 +32,20 @@ public class InputManagerWrapper {
         return instance;
     }
     
+    /**
+     * Initialized the input manager. This must be done before the singlton can be used. 
+     * @param inputManager 
+     */
     public void initialize(InputManager inputManager){
         this.im = inputManager;
         instance.updateKeybinds();
     }
     
+    /**
+     * Register an actionlistoner to the input manager. This will cause the input 
+     * manager to forward any requested actions. 
+     * @param actionListener 
+     */
     public void registerListener(IKeyListener actionListener){
         for (KeyBind keyBind : actionListener.getKeyBinds()){
             im.addListener(actionListener, keyBind.getKeyText());

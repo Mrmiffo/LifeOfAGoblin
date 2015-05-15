@@ -5,7 +5,7 @@
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 /**
- *
+ * Is this needed?
  * @author Anton
  */
 public abstract class AbstractMovableObject extends AbstractInanimateObject {

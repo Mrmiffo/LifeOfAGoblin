@@ -8,7 +8,7 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 
 /**
- *
+ * A basic minion NPC. Not yet fully implemented.
  * @author Anton
  */
 public class Minion extends AbstractHostileNPC {

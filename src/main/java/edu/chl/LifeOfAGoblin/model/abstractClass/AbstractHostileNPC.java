@@ -8,7 +8,7 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.interfaces.IHostileBehaviour;
 
 /**
- *
+ * Is this needed?
  * @author Anton
  */
 public abstract class AbstractHostileNPC extends AbstractNPC implements IHostileBehaviour {

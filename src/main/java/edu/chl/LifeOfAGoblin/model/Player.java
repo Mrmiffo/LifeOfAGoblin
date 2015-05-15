@@ -8,7 +8,9 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 
 /**
- *
+ * The player calss represent the player character in the game. The class 
+ * contains methods and values related to the player, such as health, jumpStrength,
+ * size etc. 
  * @author Anton
  */
 public class Player extends AbstractCharacter {
@@ -32,7 +34,19 @@ public class Player extends AbstractCharacter {
     } 
     
     @Override
-        public void collide(){
+    public void collide(){
         //todo add methods for colliding with a player
+    }
+    
+    /**
+     * Override the AbstractCharacter set health to add functionality to update
+     * the HUD.
+     * @param newHealth 
+     */
+    @Override
+    public void setHealth(int newHealth){
+        //TODO call HUD to update.
+        super.setHealth(newHealth);
+
     }
 }

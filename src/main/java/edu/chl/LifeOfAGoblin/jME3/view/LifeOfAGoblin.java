@@ -15,20 +15,23 @@ import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
 
 /**
- *
+ * The LifeOfAGoblin class is the game itself. This class will insitialize all 
+ * needed singletons and extends the jME3 simple Application. During use the start()
+ * method to run the game and the user will be presented with the main menu.
  * @author Anton
  */
 public class LifeOfAGoblin extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        //Initialize the game singleton instances.
         NiftyGUIWrapper.getInstance().initialize(this);
         InputManagerWrapper.getInstance().initialize(inputManager);
         StateManagerWrapper.getInstance().initialize(stateManager);
         Resources.getInstance().initialize(assetManager);
         LevelManager.getInstance().initialize();
         
-//        GameAppState playGame = new GameAppState();
+        //Create an instance of the main menu, add it to nifty and display it.
         MainMenu mainMenu = new MainMenu();
         SettingsMenu settingsMenu = new SettingsMenu();
         NiftyGUIWrapper.getInstance().addScreen(mainMenu.getScreenName(), mainMenu.getScreen());

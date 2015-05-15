@@ -7,7 +7,7 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 import edu.chl.LifeOfAGoblin.model.interfaces.IFriendlyBehaviour;
 
 /**
- *
+ * Is this abstraction level needed?
  * @author Anton
  */
 public abstract class AbstractFriendlyNPC extends AbstractNPC implements IFriendlyBehaviour {

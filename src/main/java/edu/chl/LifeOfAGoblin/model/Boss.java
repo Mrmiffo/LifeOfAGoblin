@@ -8,7 +8,7 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 
 /**
- *
+ * The basic boss NPC class. Not yet fully implemented.
  * @author Anton
  */
 public class Boss extends AbstractHostileNPC {
