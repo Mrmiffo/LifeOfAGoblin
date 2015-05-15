@@ -2,9 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.utils;
 
+import edu.chl.LifeOfAGoblin.model.Level;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +20,8 @@ import java.util.Map;
 public class LevelManager {
     private Map<Integer, String> levelList;
     private static LevelManager instance;
+    private List<Level> createdLevels;
+    
     private LevelManager(){
         
     }
@@ -36,6 +41,7 @@ public class LevelManager {
         levelList = new HashMap<>();
         levelList.put(1, "Level1");
         levelList.put(2, "testScene");
+        createdLevels = new ArrayList<>();
     }
     
     /**
@@ -43,9 +49,25 @@ public class LevelManager {
      * @param levelno
      * @return 
      */
-    public Level getLevel(int levelno){
-        return null;
+    public synchronized Level getLevel(int levelno){
+        Level toReturn = null;
+        //First check if the level has already been loaded. If so: return it
+        for (Level level: createdLevels){
+            if (level.getLevelNo() == levelno){
+                toReturn = level;
+                break;
+            }
+        }
+        //If the level has not loaded and it is a vali level: Create the level.
+        if (toReturn == null && levelList.containsKey(levelno)){
+            toReturn = new Level(levelList.get(levelno), levelno);
+            createdLevels.add(toReturn);
+        }
+        return toReturn;
+            
     }
+        
+
     
     /**
      * Return the level that comes after the provided level. If the current 
@@ -54,6 +76,20 @@ public class LevelManager {
      * @return the next level.
      */
     public Level getNextLevel(Level currentLevel){
-        return null;
+        return getLevel(currentLevel.getLevelNo()+1);
     }
+    
+    /**
+     * Returns a list containing the names of all the levels in the game.
+     * @return a list of all level names in level order.
+     */
+    public List<String> getAllLevelNames(){
+        List<String> toReturn = new ArrayList<>();
+        for (int i: levelList.keySet()){
+            toReturn.add(levelList.get(i));
+        }
+        return toReturn;
+    }
+
+
 }

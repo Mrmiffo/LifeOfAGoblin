@@ -11,6 +11,7 @@ import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.SettingsMenu;
+import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
 
 /**
@@ -25,6 +26,7 @@ public class LifeOfAGoblin extends SimpleApplication {
         InputManagerWrapper.getInstance().initialize(inputManager);
         StateManagerWrapper.getInstance().initialize(stateManager);
         Resources.getInstance().initialize(assetManager);
+        LevelManager.getInstance().initialize();
         
 //        GameAppState playGame = new GameAppState();
         MainMenu mainMenu = new MainMenu();
