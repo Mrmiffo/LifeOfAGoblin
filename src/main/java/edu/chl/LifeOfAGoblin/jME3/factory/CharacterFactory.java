@@ -6,6 +6,7 @@ package edu.chl.LifeOfAGoblin.jME3.factory;
 
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
+import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
@@ -33,7 +34,7 @@ class CharacterFactory {
         amc = new PlayerMoveControl();
         InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
     } else {
-        amc = new NPCMoveControl();
+        amc = new PlayerMoveControl();
     }
 
     Spatial model = Resources.getInstance().getResources(nodeToCreate.getModelName());
@@ -46,13 +47,16 @@ class CharacterFactory {
     model.setLocalTranslation(new Vector3f(0, -nodeToCreate.getHeight(), 0));
     shape = new CapsuleCollisionShape(nodeToCreate.getWidth(), nodeToCreate.getHeight(), 1);
     mover = new CharacterControl(shape, 0.05f);
+    GhostControl ghost = new GhostControl(shape);
+    ghost.setCollisionGroup(2);
     PhysicsWrapper.getInstance().add(mover);
-
+    PhysicsWrapper.getInstance().add(ghost);
     mover.setJumpSpeed(nodeToCreate.getJumpStrength());
 
     //Attaching controls:
     node.addControl(mover);
     node.addControl(amc);
+    node.addControl(ghost);
     return node;
     }
 }
