@@ -18,7 +18,7 @@ public class SpawnPoint extends AbstractCollisionObject {
     private NodeType type;
     private ISpawnControl spawner;
        /**
-     * Constructor for creating a Spawnpoint with a specified width
+     * Constructor for creating a Spawnpoint
      * @param spawner the control responsible for creating the spawnables
      * @param amount how many spawnable should spawn
      * @param type what type of spawnable should spawn
@@ -32,7 +32,7 @@ public class SpawnPoint extends AbstractCollisionObject {
     }
     
     /**
-     * sets wheter or not this spawnpoint has been activated
+     * Sets wheter or not this spawnpoint has been activated
      * in this game.
      * @param isActivated true if the player has collided with this 
      * spawnpoint during this game.
@@ -44,9 +44,8 @@ public class SpawnPoint extends AbstractCollisionObject {
     }
 
     /**
-     * is called when a player collides with the Spawnpoint. Tells level to 
-     * spawn a number of certain type of NPC according to the spawnpoint's
-     * amount and type.
+     * Is called when a player collides with the Spawnpoint. Runs spawn with 
+     * this object's amount and type and sets IsActivated to true
      */
     @Override
     public void collide(){
