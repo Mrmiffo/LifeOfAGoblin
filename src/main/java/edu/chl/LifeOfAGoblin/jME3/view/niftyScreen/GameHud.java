@@ -7,12 +7,12 @@ package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import edu.chl.LifeOfAGoblin.jME3.controller.GameHudController;
-import edu.chl.LifeOfAGoblin.jME3.controller.MainMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
 
 /**
- *
+ * The game hud class specifies how the game hud, which is display above the 
+ * actual game during runtime, should look. It is controlled by the GameHudControll class.
  * @author Anton
  */
 public class GameHud implements INiftyScreen{
@@ -20,6 +20,10 @@ public class GameHud implements INiftyScreen{
     private String gameHudName;
     private Screen gameHudScreen;
     
+    /**
+     * Default constructor for the game hud. Will set the name and setup the hud
+     * look and feel.
+     */
     public GameHud(){
         gameHudName = "GameHud";
         setupGameHud();

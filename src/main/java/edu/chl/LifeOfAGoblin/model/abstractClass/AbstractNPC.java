@@ -10,7 +10,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
 
 /**
- *
+ * The AbstractNPC class is the super class to all characters that use AI.
  * @author Anton
  */
 public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour, IAI {

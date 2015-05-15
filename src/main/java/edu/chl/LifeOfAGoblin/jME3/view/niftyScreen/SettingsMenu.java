@@ -12,18 +12,17 @@ import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
-import de.lessvoid.nifty.controls.imageselect.builder.ImageSelectBuilder;
 import de.lessvoid.nifty.controls.listbox.builder.ListBoxBuilder;
 import de.lessvoid.nifty.screen.Screen;
-import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.controller.SettingsMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
-import javax.swing.text.html.ListView;
+
 
 /**
- *
+ * The settings menu is called from the main menu and displays the keybinds. 
+ * May later be renamed if more settings are implemented.
  * @author Anton
  */
 public class SettingsMenu implements INiftyScreen{
@@ -31,6 +30,10 @@ public class SettingsMenu implements INiftyScreen{
     private Screen settingsMenu;
     private SettingsMenuController niftyController;
 
+    /**
+     * The default constructor for the settings menu. Will set the name of the 
+     * menu and create all the nifty componentes needed.
+     */
     public SettingsMenu(){ 
         settingsMenuName = "settingsMenu";
         setupSettingsManu();
@@ -50,7 +53,7 @@ public class SettingsMenu implements INiftyScreen{
     private void setupSettingsManu() {
         //Create a controller for the screen.
         niftyController = new SettingsMenuController();
-        //Create a custom control for the key bind box
+        //Create a custom control for the keybind box
         ControlDefinitionBuilder rowControlBuilder = new ControlDefinitionBuilder("row") {{
           panel(new PanelBuilder() {{
             childLayoutHorizontal();
@@ -71,12 +74,13 @@ public class SettingsMenu implements INiftyScreen{
           }});
         }};
         rowControlBuilder.registerControlDefintion(NiftyGUIWrapper.getInstance().getNifty());
+        
         //Create a new nifty screen.
         settingsMenu = new ScreenBuilder(settingsMenuName) {{
-            //Register the controler to the screen. Any actions taken on the screen objects will be resolved in this controller.
+            //Register the controller to the screen. Any actions taken on the screen objects will be resolved in this controller.
             controller(niftyController);
             
-                        //Create the background layer that covers the whole screen and set a background image.
+            //Create the background layer that covers the whole screen and set a background image.
             layer(new LayerBuilder("background") {{
                 childLayoutCenter();
                 
@@ -95,7 +99,7 @@ public class SettingsMenu implements INiftyScreen{
                 childLayoutVertical();
                 
                 
-                //Create the top panel which will contain the game title text and welcoming message
+                //Create the top panel which will contain the menu title text.
                 panel(new PanelBuilder("panel_top") {{
                     childLayoutCenter();
                     alignCenter();
@@ -104,7 +108,7 @@ public class SettingsMenu implements INiftyScreen{
 
                     // add title text
 //                    text(new TextBuilder() {{
-//                        text("Welcome to Life of a Goblin");
+//                        text("Settings");
 //                        font("Interface/Fonts/Default.fnt");
 //                        height("100%");
 //                        width("100%");
@@ -118,7 +122,9 @@ public class SettingsMenu implements INiftyScreen{
                     height("50%");
                     width("75%");
                     
+                    //Create the List box which displays the keybinds
                     control(new ListBoxBuilder("keybind_box") {{
+                        //Set the list box to use the custom "row" control (see above for the code of the control)
                         control(new ControlBuilder("row"));
                         displayItems(20);
                         selectionModeSingle();
@@ -127,9 +133,9 @@ public class SettingsMenu implements INiftyScreen{
                         width("66%");
                         height("100%");
                         childLayoutVertical();
+                        //Set the list box to use the custom class KeybindNiftyPanel 
+                        //to translate the addItem() call.
                         viewConverterClass(KeybindNiftyPanel.class);
-                        
-                        
                     }});
                     //TODO add keybinds box
                 }});

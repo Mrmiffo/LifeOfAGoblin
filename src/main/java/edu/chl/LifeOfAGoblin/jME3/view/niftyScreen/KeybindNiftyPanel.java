@@ -13,29 +13,27 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import edu.chl.LifeOfAGoblin.model.KeyBindings;
 
 /**
- *
+ * The KeyBindNiftyPanel is used by the Keybind list box to translate the KeyBind
+ * enum into text to display in the different panels in the list box custom control "row".
  * @author Anton
  */
 public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<KeyBindings.KeyBind> {
 
     @Override
     public void display(Element listBoxItem, KeyBindings.KeyBind item) {
-
-        
         //Fetch the triggers for the keybinds
         Trigger[] keyBinds = item.getTriggers();
         
         //Create a key converter for converting the triggerhascode int to a string
         KeyNames keyNameConverter = new KeyNames();
-        
-
 
         //Find the actionText column
         Element actionText = listBoxItem.findElementByName("actionField");
+        
         //Set the text
         actionText.getRenderer(TextRenderer.class).setText(item.getKeyText());
         
-        //This for loop will set the text for both the trigger field 0 and 1
+        //This loop will set the text for both the trigger field 0 and 1. (See custom control "row" in SettingsMenu.class)
         for (int i = 0; i<2; i++){
             Element triggerText = listBoxItem.findElementByName("triggerField"+i);
             String text = "";
@@ -53,6 +51,8 @@ public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<KeyBindin
 
     @Override
     public int getWidth(Element element, KeyBindings.KeyBind item) {
+        //Not sure what this thing does so I set it to 40, and it seems to work :)
+        //Supposedly this should return the pixle count for the width.
         return 40;
     }
 

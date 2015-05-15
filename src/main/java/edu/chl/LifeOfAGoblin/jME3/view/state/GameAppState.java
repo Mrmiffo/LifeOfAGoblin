@@ -11,7 +11,7 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
 /**
- *
+ * The game appstate is the state in which the game itself is run and initialized. 
  * @author Anton
  */
 public class GameAppState extends AbstractAppState {

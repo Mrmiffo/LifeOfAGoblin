@@ -15,7 +15,9 @@ import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
 
 /**
- *
+ * The LifeOfAGoblin class is the game itself. This class will insitialize all 
+ * needed singletons and extends the jME3 simple Application. During use the start()
+ * method to run the game and the user will be presented with the main menu.
  * @author Anton
  */
 public class LifeOfAGoblin extends SimpleApplication {

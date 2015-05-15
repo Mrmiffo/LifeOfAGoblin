@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author Anton
+ * @author kakan
  */
 public class Profile implements Serializable{
     private String profileName;

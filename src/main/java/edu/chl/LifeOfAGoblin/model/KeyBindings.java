@@ -12,10 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * The keybindings class contains all the actions that a player can take in the
+ * game and the corresponding keys. These are registered to the inputManager.
  * @author kakan
  */
 public class KeyBindings implements Serializable {
+    /**
+     * KeyBind is an enum that contains all the possible actions that can be 
+     * taken by the player and maps them to a KeyTrigger.
+     */
     public enum KeyBind{
         WALK_LEFT ("walkLeft", new Trigger[] {new KeyTrigger(KeyInput.KEY_A)}),
         WALK_RIGHT ("walkRight", new Trigger[] { new KeyTrigger(KeyInput.KEY_D) }),
