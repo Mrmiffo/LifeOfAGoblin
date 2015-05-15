@@ -10,6 +10,8 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.controls.Trigger;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -45,5 +47,13 @@ public class KeyBindings implements Serializable {
             this.triggers = triggers;
         }
 
+    }
+    public static List<KeyBind> getAllEnums(){
+        List<KeyBind> toReturn = new ArrayList<>();
+        toReturn.add(KeyBind.WALK_LEFT);
+        toReturn.add(KeyBind.WALK_RIGHT);
+        toReturn.add(KeyBind.JUMP);
+        return toReturn;
+        
     }
 }
