@@ -5,11 +5,16 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
+import com.jme3.bullet.collision.PhysicsCollisionGroupListener;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
+import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
-import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
+import com.jme3.renderer.RenderManager;
+import com.jme3.renderer.ViewPort;
+import com.jme3.scene.Node;
+import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 
 /**
@@ -19,7 +24,8 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
  * and itself and notifies the collisionObject associated with the node 
  * this is added on. 
  */
-public class CollisionObjectControl extends GhostControl implements PhysicsCollisionListener {
+public class CollisionObjectControl extends AbstractControl implements PhysicsCollisionListener , 
+        PhysicsCollisionGroupListener{
     private AbstractCollisionObject collisionObject;
     
 /**
@@ -27,21 +33,48 @@ public class CollisionObjectControl extends GhostControl implements PhysicsColli
  * @param collisionObject the collisionObject object associated with the node this is 
  * added on.
  */
-    public CollisionObjectControl(AbstractCollisionObject collisionObject){
-        this.collisionObject = collisionObject;
-        PhysicsWrapper.getInstance().addCollisonListener(this);
-        Vector3f halfExtent = new Vector3f(collisionObject.getWidth(),collisionObject.getHeight(), 1);
-        BoxCollisionShape box = new BoxCollisionShape(halfExtent);
-        this.setCollisionShape(box);
+    public CollisionObjectControl(){
+        
     }
 
     @Override
     public void collision(PhysicsCollisionEvent pce) {
-//        if(pce.getNodeA().getUserData("NodeType").equals("Player")){ //not working atm
-       //     if(!this.collisionObject.getIsActivated()){
-         //       this.collisionObject.collide();
-          //  }
-      //    }
+    if(pce.getNodeB().getUserDataKeys().size() > 0){
+        if(collide(pce.getObjectA(), pce.getObjectB())){
+            if(pce.getNodeB().getUserData("nodeType").equals("CHECKPOINT") || pce.getNodeB().getUserData("nodeType").equals("SPAWNPOINT")){
+                if(!((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsActivated()){
+                    ((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).collide();
+                }
+            }
+         }
+      }
+//    if(pce.getNodeB().getUserDataKeys().size() > 0){
+//        System.out.println(pce.getNodeA().getParent().getUserData("nodeType"));
+//        System.out.println(pce.getNodeB().getUserData("nodeType"));
+//        System.out.println(this.collisionObject.getNodeType().toString());
+//        if(pce.getNodeA().getParent().getUserData("nodeType").equals("PLAYER")
+//                && pce.getNodeB().getUserData("nodeType").equals(this.collisionObject.getNodeType().toString())){
+//            if(!this.collisionObject.getIsActivated()){
+//                this.collisionObject.collide();
+         //   }
+       // }
+    //}
+    }
+
+    @Override
+    public boolean collide(PhysicsCollisionObject pco, PhysicsCollisionObject pco1) {
+        if(pco.getCollideWithGroups() == (pco1.getCollisionGroup()) || pco1.getCollideWithGroups() == (pco.getCollisionGroup())){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected void controlUpdate(float f) {
+    }
+
+    @Override
+    protected void controlRender(RenderManager rm, ViewPort vp) {
     }
      
 }

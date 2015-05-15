@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
+import com.jme3.bullet.control.CharacterControl;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
@@ -22,7 +23,12 @@ public class SpawnControl extends AbstractControl implements ISpawnControl{
    public void Spawn(int amount, NodeType type){
     Node node = NodeFactory.createNode(type);
     this.getSpatial().getParent().attachChild(node);
+    System.out.println(this.getSpatial().getParent().toString());
+    System.out.println(this.getSpatial().getLocalTranslation());
     node.setLocalTranslation(this.getSpatial().getLocalTranslation());
+    node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());
+
+
    }
 
     @Override

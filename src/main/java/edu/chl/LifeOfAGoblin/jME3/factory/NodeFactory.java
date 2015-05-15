@@ -13,6 +13,8 @@ import com.jme3.math.FastMath;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.control.Control;
+import edu.chl.LifeOfAGoblin.jME3.controller.CollisionObjectControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.model.Player;
@@ -37,22 +39,17 @@ public class NodeFactory {
                 return CharacterFactory.createCharacter(new Minion());
             case BOSS:
                 return CharacterFactory.createCharacter(new Boss());
-//            case CHECKPOINT:
-//                return CollisionObjectPainter.createCollisionObject(new Checkpoint());
-//            case SPAWNPOINT:
-//                return CollisionObjectPainter.createCollisionObject(new Spawnpoint());
-//            case LEVEL:
-//                return createModeledLevelNode(null, null);
             default:
             throw new InternalError("Error in NodeFactory: createNode()");
         }
     }
  
     /**
-     * creates a 
-     * @param levelToCreate
-     * @param cam
-     * @return 
+     * Creates a Node represeting a level, gives it everything it needs based
+     * on the provided level object's children and attaches camera and physics.
+     * @param levelToCreate the Level object containing all the level's children
+     * @param cam the camera to be attached to the level.
+     * @return the finished levelNode.
      */
     public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
@@ -82,9 +79,9 @@ public class NodeFactory {
                         playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
                         ((Node)nodeList.get(i)).attachChild(playerNode);
                         
-                        System.out.println("noden i childrens localtranslation är " + nodeList.get(i).getLocalTranslation());
+                        //System.out.println("noden i childrens localtranslation är " + nodeList.get(i).getLocalTranslation());
                         playerNode.getControl(CharacterControl.class).warp(nodeList.get(i).getWorldTranslation());
-                        System.out.println(playerNode.getLocalTranslation());
+                       // System.out.println(playerNode.getLocalTranslation());
                         levelNode.setLocalTranslation(0f, -5f, 0f);
                         break;
                 }
@@ -94,7 +91,9 @@ public class NodeFactory {
         CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(levelNode);
         RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
         PhysicsWrapper.getInstance().add(landscape);
-
+        CollisionObjectControl listener = new CollisionObjectControl();
+        PhysicsWrapper.getInstance().addCollisonListener(listener);
+        levelNode.addControl(listener);
         levelNode.addControl(landscape);
         
     }
