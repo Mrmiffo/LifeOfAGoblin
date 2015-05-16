@@ -28,7 +28,8 @@ public class KeyBindings implements Serializable {
             //new MouseButtonTrigger(MouseInput.BUTTON_LEFT),
             new KeyTrigger(KeyInput.KEY_W),
             new KeyTrigger(KeyInput.KEY_SPACE)
-        });
+        }),
+        OPEN_MENU("openMenu", new Trigger[]{new KeyTrigger(KeyInput.KEY_P), new KeyTrigger(KeyInput.KEY_ESCAPE)});
         
         private final String keyBindText;
         private Trigger[] triggers;
@@ -55,6 +56,7 @@ public class KeyBindings implements Serializable {
         KeyBind.WALK_LEFT.setTriggers(new Trigger[] {new KeyTrigger(KeyInput.KEY_A)});
         KeyBind.WALK_RIGHT.setTriggers(new Trigger[] { new KeyTrigger(KeyInput.KEY_D)});
         KeyBind.JUMP.setTriggers(new Trigger[] {new KeyTrigger(KeyInput.KEY_W), new KeyTrigger(KeyInput.KEY_SPACE)});  
+        KeyBind.OPEN_MENU.setTriggers(new Trigger[]  {new KeyTrigger(KeyInput.KEY_P), new KeyTrigger(KeyInput.KEY_ESCAPE)});
     }
     
     public static Map<KeyBind, Trigger[]> getCurrentKeyBindings() {
