@@ -7,6 +7,7 @@ package edu.chl.LifeOfAGoblin.jME3.utils;
 import com.jme3.input.InputManager;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.Actions;
+import edu.chl.LifeOfAGoblin.model.KeyBindings;
 
 /**
  * This is a wrapper clas for the inputManager intended to move actionlistener
@@ -38,6 +39,7 @@ public class InputManagerWrapper {
      */
     public void initialize(InputManager inputManager){
         this.im = inputManager;
+        KeyBindings.setDefaultKeyBindings(); //Maybe change this
         instance.updateKeybinds();
     }
     
@@ -54,8 +56,8 @@ public class InputManagerWrapper {
     
     private void updateKeybinds() {
         for (Actions action : Actions.values()) {
-            im.addMapping(action.getKeyText(), action.getTriggers());
-            
+            System.out.println(action.getKeyText() + KeyBindings.integersToTriggers(action.getKeyCodes()));
+            im.addMapping(action.getKeyText(), KeyBindings.integersToTriggers(action.getKeyCodes()));
         }
     }
 }
