@@ -47,7 +47,20 @@ public class Profile implements Serializable{
         return activeProfile;
     }
     
-    public static void setActiveProfile() {
-        
+    public static void setActiveProfile(Profile profile) {
+        activeProfile = profile;
+    }
+    
+    public static void setActiveProfile(String profileName) {
+        boolean exists = false;
+        for (Profile p: listOfProfiles) {
+            if (p.getProfileName().equals(profileName)) {
+                exists = true;
+                setActiveProfile(p);
+            }
+        }
+        if (!exists) {
+            throw new IllegalArgumentException("In Profile: setActiveProfile(). No profile with such name.");
+        }
     }
 }
