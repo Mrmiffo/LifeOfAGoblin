@@ -10,17 +10,17 @@ import com.jme3.input.controls.Trigger;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
-import edu.chl.LifeOfAGoblin.model.KeyBindings;
+import edu.chl.LifeOfAGoblin.model.Actions;
 
 /**
  * The KeyBindNiftyPanel is used by the Keybind list box to translate the KeyBind
  * enum into text to display in the different panels in the list box custom control "row".
  * @author Anton
  */
-public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<KeyBindings.KeyBind> {
+public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<Actions> {
 
     @Override
-    public void display(Element listBoxItem, KeyBindings.KeyBind item) {
+    public void display(Element listBoxItem, Actions item) {
         //Fetch the triggers for the keybinds
         Trigger[] keyBinds = item.getTriggers();
         
@@ -50,7 +50,7 @@ public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<KeyBindin
     }
 
     @Override
-    public int getWidth(Element element, KeyBindings.KeyBind item) {
+    public int getWidth(Element element, Actions item) {
         //Not sure what this thing does so I set it to 40, and it seems to work :)
         //Supposedly this should return the pixle count for the width.
         return 40;

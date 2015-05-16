@@ -17,51 +17,17 @@ import java.util.Map;
  * @author kakan
  */
 public class KeyBindings implements Serializable {
-    /**
-     * KeyBind is an enum that contains all the possible actions that can be 
-     * taken by the player and maps them to a KeyTrigger.
-     */
-    public enum KeyBind{
-        WALK_LEFT ("walkLeft", new Trigger[] {new KeyTrigger(KeyInput.KEY_A)}),
-        WALK_RIGHT ("walkRight", new Trigger[] { new KeyTrigger(KeyInput.KEY_D) }),
-        JUMP ("jump", new Trigger[] {
-            //new MouseButtonTrigger(MouseInput.BUTTON_LEFT),
-            new KeyTrigger(KeyInput.KEY_W),
-            new KeyTrigger(KeyInput.KEY_SPACE)
-        }),
-        OPEN_MENU("openMenu", new Trigger[]{new KeyTrigger(KeyInput.KEY_P), new KeyTrigger(KeyInput.KEY_ESCAPE)});
-        
-        private final String keyBindText;
-        private Trigger[] triggers;
-        
-        KeyBind(String keyBindText, Trigger[] triggers){
-            this.keyBindText = keyBindText;
-            this.triggers = triggers;
-        }
-        
-        public String getKeyText(){
-            return keyBindText;
-        }
-        
-        public Trigger[] getTriggers() {
-            return triggers;
-        }
-        
-        public void setTriggers(Trigger[] triggers) {
-            this.triggers = triggers;
-        }
-    }
     
     public static void setDefaultKeyBindings() {
-        KeyBind.WALK_LEFT.setTriggers(new Trigger[] {new KeyTrigger(KeyInput.KEY_A)});
-        KeyBind.WALK_RIGHT.setTriggers(new Trigger[] { new KeyTrigger(KeyInput.KEY_D)});
-        KeyBind.JUMP.setTriggers(new Trigger[] {new KeyTrigger(KeyInput.KEY_W), new KeyTrigger(KeyInput.KEY_SPACE)});  
-        KeyBind.OPEN_MENU.setTriggers(new Trigger[]  {new KeyTrigger(KeyInput.KEY_P), new KeyTrigger(KeyInput.KEY_ESCAPE)});
+        Actions.WALK_LEFT.setTriggers(new Trigger[] {new KeyTrigger(KeyInput.KEY_A)});
+        Actions.WALK_RIGHT.setTriggers(new Trigger[] { new KeyTrigger(KeyInput.KEY_D)});
+        Actions.JUMP.setTriggers(new Trigger[] {new KeyTrigger(KeyInput.KEY_W), new KeyTrigger(KeyInput.KEY_SPACE)});  
+        Actions.OPEN_MENU.setTriggers(new Trigger[]  {new KeyTrigger(KeyInput.KEY_P), new KeyTrigger(KeyInput.KEY_ESCAPE)});
     }
     
-    public static Map<KeyBind, Trigger[]> getCurrentKeyBindings() {
-        Map<KeyBind, Trigger[]> temp = new HashMap<>();
-        for (KeyBind action: KeyBind.values()) {
+    public static Map<Actions, Trigger[]> getCurrentKeyBindings() {
+        Map<Actions, Trigger[]> temp = new HashMap<>();
+        for (Actions action: Actions.values()) {
             temp.put(action, action.getTriggers());
         }
         return temp;
