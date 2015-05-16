@@ -1,7 +1,7 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
-import edu.chl.LifeOfAGoblin.model.KeyBindings;
+import edu.chl.LifeOfAGoblin.model.Actions;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,29 +13,29 @@ public class PlayerMoveControl extends AbstractMoveControl implements IKeyListen
 
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (name.equals(KeyBindings.KeyBind.WALK_RIGHT.getKeyText())){
+        if (name.equals(Actions.WALK_RIGHT.getKeyText())){
             if (isPressed) {
                 right = true;
             } else {
                 right = false;
             }
-        } else if (name.equals(KeyBindings.KeyBind.WALK_LEFT.getKeyText())){
+        } else if (name.equals(Actions.WALK_LEFT.getKeyText())){
             if (isPressed) {
                 left = true;
             } else {
                 left = false;
             }
-        } else if (name.equals(KeyBindings.KeyBind.JUMP.getKeyText())){
+        } else if (name.equals(Actions.JUMP.getKeyText())){
             jump();
         }
     }
 
     @Override
-    public List<KeyBindings.KeyBind> getKeyBinds() {
-        List<KeyBindings.KeyBind> binds = new ArrayList<>();
-        binds.add(KeyBindings.KeyBind.JUMP);
-        binds.add(KeyBindings.KeyBind.WALK_LEFT);
-        binds.add(KeyBindings.KeyBind.WALK_RIGHT);
+    public List<Actions> getKeyBinds() {
+        List<Actions> binds = new ArrayList<>();
+        binds.add(Actions.JUMP);
+        binds.add(Actions.WALK_LEFT);
+        binds.add(Actions.WALK_RIGHT);
         return binds;
     }
 }

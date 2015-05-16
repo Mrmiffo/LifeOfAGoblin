@@ -6,8 +6,10 @@ package edu.chl.LifeOfAGoblin.model;
 
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.controls.Trigger;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,51 +19,76 @@ import java.util.Map;
  * @author kakan
  */
 public class KeyBindings implements Serializable {
-    /**
-     * KeyBind is an enum that contains all the possible actions that can be 
-     * taken by the player and maps them to a KeyTrigger.
-     */
-    public enum KeyBind{
-        WALK_LEFT ("walkLeft", new Trigger[] {new KeyTrigger(KeyInput.KEY_A)}),
-        WALK_RIGHT ("walkRight", new Trigger[] { new KeyTrigger(KeyInput.KEY_D) }),
-        JUMP ("jump", new Trigger[] {
-            //new MouseButtonTrigger(MouseInput.BUTTON_LEFT),
-            new KeyTrigger(KeyInput.KEY_W),
-            new KeyTrigger(KeyInput.KEY_SPACE)
-        });
-        
-        private final String keyBindText;
-        private Trigger[] triggers;
-        
-        KeyBind(String keyBindText, Trigger[] triggers){
-            this.keyBindText = keyBindText;
-            this.triggers = triggers;
-        }
-        
-        public String getKeyText(){
-            return keyBindText;
-        }
-        
-        public Trigger[] getTriggers() {
-            return triggers;
-        }
-        
-        public void setTriggers(Trigger[] triggers) {
-            this.triggers = triggers;
-        }
-    }
     
     public static void setDefaultKeyBindings() {
-        KeyBind.WALK_LEFT.setTriggers(new Trigger[] {new KeyTrigger(KeyInput.KEY_A)});
-        KeyBind.WALK_RIGHT.setTriggers(new Trigger[] { new KeyTrigger(KeyInput.KEY_D)});
-        KeyBind.JUMP.setTriggers(new Trigger[] {new KeyTrigger(KeyInput.KEY_W), new KeyTrigger(KeyInput.KEY_SPACE)});  
+
+        Actions.WALK_LEFT.setKeyCodes(new HashMap<Integer, InputDevice>() {{
+            put(KeyInput.KEY_A, InputDevice.KEYBOARD);
+        }});
+        
+        Actions.WALK_RIGHT.setKeyCodes(new HashMap<Integer, InputDevice>() {{
+            put(KeyInput.KEY_D, InputDevice.KEYBOARD);
+        }});
+        
+        Actions.JUMP.setKeyCodes(new HashMap<Integer, InputDevice>() {{
+            put(KeyInput.KEY_W, InputDevice.KEYBOARD);
+            put(KeyInput.KEY_SPACE, InputDevice.KEYBOARD);
+        }});
+        
+        Actions.OPEN_MENU.setKeyCodes(new HashMap<Integer, InputDevice>() {{
+            put(KeyInput.KEY_P, InputDevice.KEYBOARD);
+            put(KeyInput.KEY_ESCAPE, InputDevice.KEYBOARD);
+        }});
     }
     
-    public static Map<KeyBind, Trigger[]> getCurrentKeyBindings() {
-        Map<KeyBind, Trigger[]> temp = new HashMap<>();
-        for (KeyBind action: KeyBind.values()) {
-            temp.put(action, action.getTriggers());
+    public static Map<Actions, Trigger[]> getCurrentKeyBindings() {
+        Map<Actions, Trigger[]> temp = new HashMap<>();
+        for (Actions action: Actions.values()) {
+            temp.put(action, integersToTriggers(action.getKeyCodes()));
         }
         return temp;
     }
+    
+    public static Integer[] triggersToIntegers(Trigger... triggers) {
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (Trigger trigger: triggers) {
+            temp.add(trigger.triggerHashCode());
+        }
+        return temp.toArray(new Integer[1]);
+    }
+    
+    public static Trigger[] integersToTriggers(Map<Integer, InputDevice> integers) {
+        ArrayList<Trigger> temp = new ArrayList<>();
+        for (Integer i: integers.keySet()) {
+            switch(integers.get(i)) {
+                case KEYBOARD:
+                    temp.add(new KeyTrigger(i));
+                    break;
+                case MOUSE_BUTTON:
+                    temp.add(new MouseButtonTrigger(i));
+            }
+        }
+        return temp.toArray(new Trigger[1]);
+    }
+    
+    public static InputDevice getInputDevice(Trigger trigger) {
+        if (trigger.getClass() == KeyTrigger.class) {
+            return InputDevice.KEYBOARD;
+        } else if (trigger.getClass() == MouseButtonTrigger.class){
+            return InputDevice.MOUSE_BUTTON;
+        } else {
+            throw new IllegalArgumentException("In KeyBindings: getInputDevice(). Unknown input device: " + trigger.getClass());
+        }
+    }
+    
+    public static void setKeyBinding(Actions action, Trigger...triggers) {
+        HashMap<Integer, InputDevice> temp = new HashMap<>();
+        for (Trigger trigger: triggers) {
+            temp.put(triggersToIntegers(trigger)[0], getInputDevice(trigger));
+        }
+        action.setKeyCodes(temp);
+        //needs to notify InputManagerWrapper in order to work
+    }
+    
+    //relocate class.
 }

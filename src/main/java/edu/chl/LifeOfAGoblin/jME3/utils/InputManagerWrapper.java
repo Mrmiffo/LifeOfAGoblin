@@ -6,7 +6,8 @@ package edu.chl.LifeOfAGoblin.jME3.utils;
 
 import com.jme3.input.InputManager;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
-import edu.chl.LifeOfAGoblin.model.KeyBindings.KeyBind;
+import edu.chl.LifeOfAGoblin.model.Actions;
+import edu.chl.LifeOfAGoblin.model.KeyBindings;
 
 /**
  * This is a wrapper clas for the inputManager intended to move actionlistener
@@ -38,6 +39,7 @@ public class InputManagerWrapper {
      */
     public void initialize(InputManager inputManager){
         this.im = inputManager;
+        KeyBindings.setDefaultKeyBindings(); //Maybe change this
         instance.updateKeybinds();
     }
     
@@ -47,15 +49,17 @@ public class InputManagerWrapper {
      * @param actionListener 
      */
     public void registerListener(IKeyListener actionListener){
-        for (KeyBind keyBind : actionListener.getKeyBinds()){
+        for (Actions keyBind : actionListener.getKeyBinds()){
             im.addListener(actionListener, keyBind.getKeyText());
         }
     }
     
     private void updateKeybinds() {
-        for (KeyBind action : KeyBind.values()) {
-            im.addMapping(action.getKeyText(), action.getTriggers());
-            
+        for (Actions action : Actions.values()) {
+            System.out.println(action.getKeyText() + KeyBindings.integersToTriggers(action.getKeyCodes()));
+            im.addMapping(action.getKeyText(), KeyBindings.integersToTriggers(action.getKeyCodes()));
         }
+        //Does currently not remove existing mappings.
+        //Can as of yet not be updated after initializing
     }
 }

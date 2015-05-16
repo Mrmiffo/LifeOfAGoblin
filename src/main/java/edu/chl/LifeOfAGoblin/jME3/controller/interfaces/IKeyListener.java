@@ -5,7 +5,7 @@
 package edu.chl.LifeOfAGoblin.jME3.controller.interfaces;
 
 import com.jme3.input.controls.ActionListener;
-import edu.chl.LifeOfAGoblin.model.KeyBindings;
+import edu.chl.LifeOfAGoblin.model.Actions;
 import java.util.List;
 
 /**
@@ -18,5 +18,5 @@ public interface IKeyListener extends ActionListener {
      * actionlistener wish to listen to. Used when registering the 
      * actionlistener to the inputManager.
      */
-    public List<KeyBindings.KeyBind> getKeyBinds();
+    public List<Actions> getKeyBinds();
 }
