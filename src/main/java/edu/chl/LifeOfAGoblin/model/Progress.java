@@ -12,16 +12,28 @@ import java.io.Serializable;
  */
 public class Progress implements Serializable {
     
-    private Level longestProgress;
-    private Level lastVisitedLevel;
-    private Checkpoint lastVisitedCheckpoint;
+    private int longestProgress;
+    private int lastVisitedLevel;
+    private int lastVisitedCheckpoint;
     
     //This should be called everytime the player activates a Checkpoint.
-    public void update(Level currentLevel, Checkpoint currentCheckpoint) {
+    public void update(int currentLevel, int currentCheckpoint) {
         lastVisitedLevel = currentLevel;
         lastVisitedCheckpoint = currentCheckpoint;
-        if (LevelList.getPosition(longestProgress) < LevelList.getPosition(currentLevel)) {
+        if (longestProgress < currentLevel) {
             longestProgress = currentLevel;
         }
+    }
+    
+    public int getLastVisitedLevel() {
+        return lastVisitedLevel;
+    }
+    
+    public int getLastVisitedCheckpoint() {
+        return lastVisitedCheckpoint;
+    }
+    
+    public int getLongestProgress() {
+        return longestProgress;
     }
 }
