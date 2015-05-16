@@ -59,5 +59,7 @@ public class InputManagerWrapper {
             System.out.println(action.getKeyText() + KeyBindings.integersToTriggers(action.getKeyCodes()));
             im.addMapping(action.getKeyText(), KeyBindings.integersToTriggers(action.getKeyCodes()));
         }
+        //Does currently not remove existing mappings.
+        //Can as of yet not be updated after initializing
     }
 }

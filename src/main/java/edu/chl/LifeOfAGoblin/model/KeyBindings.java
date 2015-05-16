@@ -54,10 +54,8 @@ public class KeyBindings implements Serializable {
         for (Trigger trigger: triggers) {
             temp.add(trigger.triggerHashCode());
         }
-        return (Integer[])temp.toArray();
+        return temp.toArray(new Integer[1]);
     }
-    
-
     
     public static Trigger[] integersToTriggers(Map<Integer, InputDevice> integers) {
         ArrayList<Trigger> temp = new ArrayList<>();
@@ -70,7 +68,27 @@ public class KeyBindings implements Serializable {
                     temp.add(new MouseButtonTrigger(i));
             }
         }
-        Trigger[] temp2 = new Trigger[1];
-        return temp.toArray(temp2);
+        return temp.toArray(new Trigger[1]);
     }
+    
+    public static InputDevice getInputDevice(Trigger trigger) {
+        if (trigger.getClass() == KeyTrigger.class) {
+            return InputDevice.KEYBOARD;
+        } else if (trigger.getClass() == MouseButtonTrigger.class){
+            return InputDevice.MOUSE_BUTTON;
+        } else {
+            throw new IllegalArgumentException("In KeyBindings: getInputDevice(). Unknown input device: " + trigger.getClass());
+        }
+    }
+    
+    public static void setKeyBinding(Actions action, Trigger...triggers) {
+        HashMap<Integer, InputDevice> temp = new HashMap<>();
+        for (Trigger trigger: triggers) {
+            temp.put(triggersToIntegers(trigger)[0], getInputDevice(trigger));
+        }
+        action.setKeyCodes(temp);
+        //needs to notify InputManagerWrapper in order to work
+    }
+    
+    //relocate class.
 }
