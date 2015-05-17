@@ -32,7 +32,7 @@ public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<Actions> 
         Element actionText = listBoxItem.findElementByName("actionField");
         
         //Set the text
-        actionText.getRenderer(TextRenderer.class).setText(item.getKeyText());
+        actionText.getRenderer(TextRenderer.class).setText(item.getDescription());
         
         //This loop will set the text for both the trigger field 0 and 1. (See custom control "row" in SettingsMenu.class)
         for (int i = 0; i<2; i++){
