@@ -15,6 +15,7 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.listbox.builder.ListBoxBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.tools.Color;
+import edu.chl.LifeOfAGoblin.jME3.controller.ChangeKeyBindMenuItemController;
 import edu.chl.LifeOfAGoblin.jME3.controller.SettingsMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
@@ -60,17 +61,25 @@ public class SettingsMenu implements INiftyScreen{
             childLayoutHorizontal();
             width("100%");
             alignCenter();
-            text(new TextBuilder("actionField") {{
-              width("30%");
-              style("base-font");
+            text(new TextBuilder() {{
+                id("#actionField");
+                width("30%");
+                style("base-font");
             }});
-            text(new TextBuilder("triggerField0") {{
-              width("30%");
-              style("base-font");
+            text(new TextBuilder() {{
+                id("#triggerField0");
+                width("30%");
+                style("base-font");
+                controller(new ChangeKeyBindMenuItemController());
+                interactOnClick("changeBind()");
+                
             }});
-            text(new TextBuilder("triggerField1") {{
-              width("30%");
-              style("base-font");
+            text(new TextBuilder() {{
+                id("#triggerField1");
+                width("30%");
+                style("base-font");
+                controller(new ChangeKeyBindMenuItemController());
+                interactOnClick("changeBind()");
             }});
           }});
         }};
