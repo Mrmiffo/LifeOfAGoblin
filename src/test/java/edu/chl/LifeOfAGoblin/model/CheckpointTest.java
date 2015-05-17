@@ -47,6 +47,7 @@ public class CheckpointTest {
     @Test
     public void testCollide() {
         Checkpoint cp = new Checkpoint(1, 1, 1f);
+        assertFalse(cp.getIsActivated());
         cp.collide();
         assertTrue(cp.getIsActivated());
         cp.collide();
