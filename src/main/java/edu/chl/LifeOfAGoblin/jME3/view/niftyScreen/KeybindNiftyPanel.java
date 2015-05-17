@@ -29,14 +29,14 @@ public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<Actions> 
         KeyNames keyNameConverter = new KeyNames();
 
         //Find the actionText column
-        Element actionText = listBoxItem.findElementByName("actionField");
+        Element actionText = listBoxItem.findElementByName("#actionField");
         
         //Set the text
         actionText.getRenderer(TextRenderer.class).setText(item.getKeyText());
         
         //This loop will set the text for both the trigger field 0 and 1. (See custom control "row" in SettingsMenu.class)
         for (int i = 0; i<2; i++){
-            Element triggerText = listBoxItem.findElementByName("triggerField"+i);
+            Element triggerText = listBoxItem.findElementByName("#triggerField"+i);
             String text = "";
             if (keyBinds.length > i){
                 if (keyBinds[i].getName().substring(0, 7).equals("KeyCode")){
