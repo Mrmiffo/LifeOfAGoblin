@@ -16,7 +16,6 @@ import edu.chl.LifeOfAGoblin.model.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.SpawnPoint;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
