@@ -5,6 +5,7 @@
 package edu.chl.LifeOfAGoblin.jME3.utils;
 
 import com.jme3.input.InputManager;
+import com.jme3.input.RawInputListener;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.model.KeyBindings;
@@ -61,5 +62,14 @@ public class InputManagerWrapper {
         }
         //Does currently not remove existing mappings.
         //Can as of yet not be updated after initializing
+    }
+    
+    public void addRawInputListener(RawInputListener ril){
+        im.addRawInputListener(ril);
+        
+    }
+    
+    public void removeRawInputListener(RawInputListener ril){
+        im.removeRawInputListener(ril);
     }
 }
