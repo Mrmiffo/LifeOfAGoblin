@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.jME3.controller.GameHudController;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 
@@ -38,15 +39,4 @@ public class Player extends AbstractCharacter {
         //todo add methods for colliding with a player
     }
     
-    /**
-     * Override the AbstractCharacter set health to add functionality to update
-     * the HUD.
-     * @param newHealth 
-     */
-    @Override
-    public void setHealth(int newHealth){
-        //TODO call HUD to update.
-        super.setHealth(newHealth);
-
-    }
 }
