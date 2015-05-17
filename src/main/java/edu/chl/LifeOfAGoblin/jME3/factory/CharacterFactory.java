@@ -13,6 +13,7 @@ import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
+import edu.chl.LifeOfAGoblin.jME3.controller.PlayerHealthControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
@@ -32,6 +33,8 @@ class CharacterFactory {
     if (nodeToCreate instanceof Player) {
         nodeToCreate = new Player();
         amc = new PlayerMoveControl();
+        //A control which use the player model data to update the game hud health bar.
+        node.addControl(new PlayerHealthControl());
         InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
     } else {
         amc = new PlayerMoveControl();
