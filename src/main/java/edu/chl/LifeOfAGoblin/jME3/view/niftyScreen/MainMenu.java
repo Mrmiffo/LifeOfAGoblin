@@ -14,6 +14,7 @@ import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.imageselect.builder.ImageSelectBuilder;
 import de.lessvoid.nifty.screen.Screen;
+import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.controller.MainMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
@@ -78,16 +79,28 @@ public class MainMenu implements INiftyScreen{
 
                 //Create the top panel which will contain the game tile text and welcoming message
                 panel(new PanelBuilder("panel_top") {{
-                    childLayoutCenter();
+                    childLayoutVertical();
                     alignCenter();
-                    height("10%");
+                    height("20%");
                     width("75%");
 
                     // add text
                     text(new TextBuilder() {{
-                        text("Welcome to Life of a Goblin");
-                        font("Interface/Fonts/Default.fnt");
-                        height("100%");
+                        text("Welcome to");
+                        Resources.getInstance().setTempPath("fonts");
+                        font("BradleyHandITC100BOLD.fnt");
+                        color(new Color(0f, 0f, 0f, 1f));
+//                        color(new Color(0f, 0.3529f, 0f, 1f));
+                        height("50%");
+                        width("100%");
+                    }});
+                    text(new TextBuilder() {{
+                        text("Life of a Goblin");
+                        Resources.getInstance().setTempPath("fonts");
+                        font("BradleyHandITC100BOLD.fnt");
+                        color(new Color(0f, 0f, 0.f, 1f));
+//                        color(new Color(0f, 0.3529f, 0f, 1f));
+                        height("50%");
                         width("100%");
                     }});
                 }}); //Panel top
