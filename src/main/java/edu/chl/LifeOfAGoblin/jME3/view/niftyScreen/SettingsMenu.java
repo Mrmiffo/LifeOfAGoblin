@@ -14,6 +14,7 @@ import de.lessvoid.nifty.builder.TextBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.listbox.builder.ListBoxBuilder;
 import de.lessvoid.nifty.screen.Screen;
+import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.controller.SettingsMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
@@ -106,13 +107,15 @@ public class SettingsMenu implements INiftyScreen{
                     height("10%");
                     width("75%");
 
-                    // add title text
-//                    text(new TextBuilder() {{
-//                        text("Settings");
-//                        font("Interface/Fonts/Default.fnt");
-//                        height("100%");
-//                        width("100%");
-//                    }});
+                    text(new TextBuilder() {{
+                        text("Settings");
+                        Resources.getInstance().setTempPath("fonts");
+                        font("BradleyHandITC100BOLD.fnt");
+                        color(new Color(0f, 0f, 0f, 1f));
+//                        color(new Color(0f, 0.3529f, 0f, 1f));
+                        height("50%");
+                        width("100%");
+                    }});
                 }}); //Panel top
 
                 //Create the center panel which will contain the level select field. 
