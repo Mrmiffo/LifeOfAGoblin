@@ -41,12 +41,12 @@ public class KeyBindings implements Serializable {
         }});
     }
     
-    public static Map<Actions, Trigger[]> getCurrentKeyBindings() {
-        Map<Actions, Trigger[]> temp = new HashMap<>();
+    public static HashMap<Actions, Trigger[]> getCurrentKeyBindings() {
+        HashMap<Actions, Trigger[]> temp = new HashMap<>();
         for (Actions action: Actions.values()) {
             temp.put(action, integersToTriggers(action.getKeyCodes()));
         }
-        return temp;
+        return (HashMap<Actions, Trigger[]>)temp.clone();
     }
     
     public static Integer[] triggersToIntegers(Trigger... triggers) {
@@ -86,7 +86,7 @@ public class KeyBindings implements Serializable {
         for (Trigger trigger: triggers) {
             temp.put(triggersToIntegers(trigger)[0], getInputDevice(trigger));
         }
-        action.setKeyCodes(temp);
+        action.setKeyCodes((HashMap<Integer, InputDevice>) temp.clone());
         //needs to notify InputManagerWrapper in order to work
     }
     
