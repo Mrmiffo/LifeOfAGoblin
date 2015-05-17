@@ -5,6 +5,7 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ import java.util.List;
 public class Profile implements Serializable{
     private String profileName;
     private Progress progress;
+    private HashMap<Actions, HashMap<Integer, InputDevice>> customBindings;
     private static Profile activeProfile;
     private static List<Profile> listOfProfiles;
     
@@ -32,6 +34,24 @@ public class Profile implements Serializable{
     
     public Progress getProgress() {
         return progress;
+    }
+    
+    public void setCustomBindings(HashMap<Actions, HashMap<Integer, InputDevice>> customBindings) {
+        this.customBindings = new HashMap<>(customBindings);
+    }
+    
+    public HashMap<Actions, HashMap<Integer, InputDevice>> getCustomBindings() {
+        return (HashMap<Actions, HashMap<Integer, InputDevice>>) customBindings.clone();
+    }
+    
+    public void addCustomBinding(Actions action, Integer keyCode, InputDevice inputDevice) {
+        customBindings.get(action).put(keyCode, inputDevice);
+    }
+    
+    public void removeCustomBinding(Actions action, Integer keyCode, InputDevice inputDevice) {
+        if (customBindings.get(action).get(keyCode) == inputDevice) {
+            customBindings.get(action).remove(keyCode);
+        }
     }
     
     public static Profile getProfile(String profileName) {

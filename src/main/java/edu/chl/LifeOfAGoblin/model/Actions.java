@@ -4,7 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import java.util.Map;
+import java.util.HashMap;
 
 
 /**
@@ -23,7 +23,7 @@ public enum Actions {
     JUMP("jump"),
     OPEN_MENU("openMenu");
     private final String keyBindText;
-    private Map<Integer, InputDevice> keyCodes;
+    private HashMap<Integer, InputDevice> keyCodes;
 
     Actions(String keyBindText) {
         this.keyBindText = keyBindText;
@@ -33,14 +33,14 @@ public enum Actions {
         return keyBindText;
     }
 
-    public Map<Integer, InputDevice> getKeyCodes() {
-        return keyCodes;
+    public HashMap<Integer, InputDevice> getKeyCodes() {
+        return (HashMap<Integer, InputDevice>)keyCodes.clone();
     }
 
-    public void setKeyCodes(Map<Integer, InputDevice> newKeyCodes) {
+    public void setKeyCodes(HashMap<Integer, InputDevice> newKeyCodes) {
         if (keyCodes != null) {
             keyCodes.clear();
         }
-        keyCodes = newKeyCodes;
+        keyCodes = (HashMap<Integer, InputDevice>)newKeyCodes.clone();
     }
 }
