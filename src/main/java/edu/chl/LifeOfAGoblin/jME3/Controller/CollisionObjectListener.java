@@ -36,15 +36,15 @@ public class CollisionObjectListener extends AbstractControl implements PhysicsC
  */
     @Override
     public void collision(PhysicsCollisionEvent pce) {
-    if(pce.getNodeB().getUserDataKeys().size() > 0){
-        if(collide(pce.getObjectA(), pce.getObjectB())){
-            if(pce.getNodeB().getUserData("nodeType").equals("CHECKPOINT") || pce.getNodeB().getUserData("nodeType").equals("SPAWNPOINT") || pce.getNodeB().getUserData("nodeType").equals("FINALCHECKPOINT")){
-                if(!((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsActivated()){
-                    ((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).collide();
+        if(pce.getNodeB().getUserDataKeys().contains("nodeType")){
+            if(collide(pce.getObjectA(), pce.getObjectB())){
+                if(pce.getNodeB().getUserData("nodeType").equals("CHECKPOINT") || pce.getNodeB().getUserData("nodeType").equals("SPAWNPOINT") || pce.getNodeB().getUserData("nodeType").equals("FINALCHECKPOINT")){
+                    if(!((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsActivated()){
+                        ((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).collide();
+                    }
                 }
             }
-         }
-      }
+        }
     }
 /**
  * checks if the two collisionobjects are set to collide with eachother
@@ -56,9 +56,6 @@ public class CollisionObjectListener extends AbstractControl implements PhysicsC
     public boolean collide(PhysicsCollisionObject pco, PhysicsCollisionObject pco1) {
         if(pco.getCollideWithGroups() > 1 || pco1.getCollisionGroup() > 1){        
             if(pco.getCollideWithGroups() == (pco1.getCollisionGroup()) || pco1.getCollideWithGroups() == (pco.getCollisionGroup())){
-             //  System.out.println("pco är " + pco.getCollideWithGroups());
-               // System.out.println("pco1 är " + pco1.getCollideWithGroups());
-
                 return true;
             }
         }
