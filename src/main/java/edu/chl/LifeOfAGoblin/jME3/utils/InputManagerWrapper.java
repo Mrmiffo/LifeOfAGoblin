@@ -24,32 +24,16 @@ import java.util.Map;
  * @author Anton
  */
 public class InputManagerWrapper {
-    private static InputManagerWrapper instance;
-    private InputManager im;
-
-    
-    private InputManagerWrapper(){
-
-    }
-    /**
-     * Basice singleton getInstance method.
-     * @return 
-     */
-    public static synchronized InputManagerWrapper getInstance(){
-        if (instance == null){
-            instance = new InputManagerWrapper();
-        }
-        return instance;
-    }
+    private static InputManager im;
     
     /**
      * Initialized the input manager. This must be done before the singlton can be used. 
      * @param inputManager 
      */
-    public void initialize(InputManager inputManager){
-        this.im = inputManager;
+    public static void initialize(InputManager inputManager){
+        im = inputManager;
         KeyBindings.setDefaultKeyBindings(); //Maybe change this
-        instance.updateKeybinds();
+        updateKeybinds();
     }
     
     /**
@@ -57,13 +41,13 @@ public class InputManagerWrapper {
      * manager to forward any requested actions. 
      * @param actionListener 
      */
-    public void registerListener(IKeyListener actionListener){
+    public static void registerListener(IKeyListener actionListener){
         for (Actions keyBind : actionListener.getKeyBinds()){
             im.addListener(actionListener, keyBind.toString());
         }
     }
     
-    private void updateKeybinds() {
+    private static void updateKeybinds() {
         for (Actions action : Actions.values()) {
             im.deleteMapping(action.toString());
             im.addMapping(action.toString(), KeyBindings.integersToTriggers(action.getKeyCodes()));
@@ -175,7 +159,8 @@ public class InputManagerWrapper {
                temp.put(getInputDevice(trigger), triggersToIntegers(trigger)[0]);
            }
            action.setKeyCodes((HashMap<InputDevice, Integer>) temp.clone());
-           //needs to notify InputManagerWrapper in order to work
+           updateKeybinds();
+            
        }
    }
 }
