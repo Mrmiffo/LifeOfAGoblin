@@ -4,21 +4,27 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
+import com.jme3.bullet.PhysicsSpace;
+import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionGroupListener;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
+import com.jme3.bullet.control.GhostControl;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.control.AbstractControl;
+import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 
 /**
  *
  * @author Fredrik
  * A class that represents a control that listens to collisions with a player 
- * and an AbstractcollisionObject and runs collide in the abstractCollisonObject
- * if it has not yet been activated
+ * and an ICollidable and runs collide in the ICollidable
+ * if all requirements are fulfilled.
  */
 public class CollisionObjectListener extends AbstractControl implements PhysicsCollisionListener , 
         PhysicsCollisionGroupListener{
@@ -30,18 +36,23 @@ public class CollisionObjectListener extends AbstractControl implements PhysicsC
         
     }
 /**
- * runs collide in the abstractCollisonobject if the collision wasd between it
- * and a player and if it has not yet been activated.
+ * runs collide in the abstractCollisonobject if the collision was between it
+ * and a player and if it has not yet been activated if that is a requirement.
  * @param pce the physicsCollisionEvent
  */
     @Override
     public void collision(PhysicsCollisionEvent pce) {
         if(pce.getNodeB().getUserDataKeys().contains("nodeType")){
             if(collide(pce.getObjectA(), pce.getObjectB())){
-                if(pce.getNodeB().getUserData("nodeType").equals("CHECKPOINT") || pce.getNodeB().getUserData("nodeType").equals("SPAWNPOINT") || pce.getNodeB().getUserData("nodeType").equals("FINALCHECKPOINT")){
-                    if(!((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsActivated()){
+                if(pce.getNodeB().getControl(ModelControl.class).getModel() instanceof AbstractCollisionObject)
+                if(!((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsActivated()){
                         ((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).collide();
                     }
+                
+                if(pce.getNodeB().getControl(ModelControl.class).getModel() instanceof AbstractNPC){
+                    if(!((Player)pce.getNodeA().getControl(ModelControl.class).getModel()).getIsDamaged()){
+                        ((Player)pce.getNodeA().getControl(ModelControl.class).getModel()).collide((AbstractNPC) pce.getNodeB().getControl(ModelControl.class).getModel());
+                    }   
                 }
             }
         }

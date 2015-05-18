@@ -23,6 +23,7 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     private float weight;
     private float baseDamage;
     private float jumpStrength;
+    private boolean isDead = false;
     
     /**
      * Default constructor for the abstract character. To be called by subclasses
@@ -140,7 +141,17 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      */
     @Override
     public void die() {
-        //TODO add implementation (if necessary)
-        
+        this.isDead = true;
+        //animator.runDeathAnimation()  this is what these are actually good for
+    }
+    
+    @Override
+    public void setIsDead(boolean isDead){
+        this.isDead = isDead;
+    }
+    
+    @Override
+    public boolean getIsDead(){
+        return this.isDead;
     }
 }

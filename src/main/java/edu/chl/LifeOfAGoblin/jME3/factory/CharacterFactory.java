@@ -48,10 +48,9 @@ class CharacterFactory {
 
     //Moving the model node slightly to fit the CollisionShape
     model.setLocalTranslation(new Vector3f(0, -nodeToCreate.getHeight(), 0));
-    shape = new CapsuleCollisionShape(nodeToCreate.getWidth(), nodeToCreate.getHeight(), 1);
+    shape = new CapsuleCollisionShape(nodeToCreate.getWidth(), nodeToCreate.getHeight()*2, 1);
     mover = new CharacterControl(shape, 0.05f);
     GhostControl ghost = new GhostControl(shape);
-    ghost.setCollisionGroup(2);
     PhysicsWrapper.getInstance().add(mover);
     PhysicsWrapper.getInstance().add(ghost);
     mover.setJumpSpeed(nodeToCreate.getJumpStrength());
@@ -60,6 +59,14 @@ class CharacterFactory {
     node.addControl(mover);
     node.addControl(amc);
     node.addControl(ghost);
+    
+    //sets what to collide with
+    if(nodeToCreate instanceof Player){
+        ghost.setCollisionGroup(2);
+    }else{
+        ghost.setCollisionGroup(6);
+        ghost.setCollideWithGroups(2);
+    }
     return node;
     }
 }

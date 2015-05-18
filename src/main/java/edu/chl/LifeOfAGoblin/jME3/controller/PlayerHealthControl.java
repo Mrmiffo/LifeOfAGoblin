@@ -4,10 +4,12 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
+import com.jme3.bullet.control.CharacterControl;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.model.Player;
+import edu.chl.LifeOfAGoblin.model.Profile;
 
 /**
  *
@@ -23,6 +25,18 @@ public class PlayerHealthControl extends AbstractControl{
             GameHudController.updateHudHealthbar(player.getHealth(), player.getMaxHealth());
             lastHealth = player.getHealth();
             lastMaxHealth = player.getMaxHealth();
+        }
+        if(player.getIsDead()){
+            for(int i = 0; i <spatial.getParent().getParent().getChildren().size(); i++){
+                if(spatial.getParent().getParent().getChildren().get(i).getUserDataKeys().contains("nodeType")){
+                    if(spatial.getParent().getParent().getChildren().get(i).getUserData("nodeType").equals("CHECKPOINT")){
+                  //  && spatial.getParent().getParent().getChildren().get(i).getUserData("NUMBER").equals(Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint())){
+                        spatial.getControl(CharacterControl.class).warp(spatial.getParent().getParent().getChildren().get(i).getLocalTranslation());
+                        player.setHealth(player.getMaxHealth());
+                        player.setIsDead(false);
+                    }
+                }
+            }
         }
     }
 

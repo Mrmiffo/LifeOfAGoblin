@@ -4,9 +4,9 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.jME3.controller.GameHudController;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 
 /**
  * The player calss represent the player character in the game. The class 
@@ -24,19 +24,36 @@ public class Player extends AbstractCharacter {
     private static final float weight = 10;
     private static final float baseDamage = 1;
     private static final float jumpStrength = 12;
+    private boolean isDamaged;
     
     public Player(){
         super(maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        this.isDamaged = false;
     }
 
     @Override
     public NodeType getNodeType() {
         return NodeType.PLAYER;
     } 
-    
+     
     @Override
     public void collide(){
         //todo add methods for colliding with a player
+    }
+    
+    public void collide(AbstractNPC enemy){
+        System.out.println("player");
+        setIsDamaged(true);
+        super.setHealth(super.getHealth()-1);
+        //todo add methods for colliding with a player
+    }
+
+    public void setIsDamaged(boolean b) {
+        this.isDamaged = b;
+    }
+    
+    public boolean getIsDamaged(){
+        return this.isDamaged;
     }
     
 }

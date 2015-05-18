@@ -14,5 +14,9 @@ public interface IKillable {
      * Is called when the inheritor dies.
      */
     public void die();
+    public void setIsDead(boolean isDead);
+    public boolean getIsDead();
+
+    
     
 }
