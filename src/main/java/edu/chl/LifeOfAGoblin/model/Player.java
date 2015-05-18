@@ -7,6 +7,7 @@ package edu.chl.LifeOfAGoblin.model;
 import edu.chl.LifeOfAGoblin.jME3.controller.GameHudController;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 
 /**
  * The player calss represent the player character in the game. The class 
@@ -34,8 +35,15 @@ public class Player extends AbstractCharacter {
         return NodeType.PLAYER;
     } 
     
+    
     @Override
     public void collide(){
+        //todo add methods for colliding with a player
+    }
+    
+    public void collide(AbstractNPC enemy){
+        System.out.println("player");
+        super.setHealth(super.getHealth()-1);
         //todo add methods for colliding with a player
     }
     
