@@ -5,7 +5,9 @@
 package edu.chl.LifeOfAGoblin.jME3.utils;
 
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
+import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.scene.control.Control;
 
 /**
@@ -32,5 +34,13 @@ public class PhysicsWrapper {
         
         public void addCollisonListener(PhysicsCollisionListener listener){
             this.bulletAppState.getPhysicsSpace().addCollisionListener(listener);
+        }
+        
+        public void remove(Object object){
+            this.bulletAppState.getPhysicsSpace().remove(object);
+        }
+        
+        public void add(PhysicsTickListener listener){
+            this.bulletAppState.getPhysicsSpace().addTickListener(listener);
         }
 }
