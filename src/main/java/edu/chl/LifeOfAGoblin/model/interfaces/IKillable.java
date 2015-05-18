@@ -11,5 +11,9 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
 public interface IKillable {
     
     public void die();
+    public void setIsDead(boolean isDead);
+    public boolean getIsDead();
+
+    
     
 }
