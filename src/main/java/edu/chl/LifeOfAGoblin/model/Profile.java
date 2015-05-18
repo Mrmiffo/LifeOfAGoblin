@@ -15,7 +15,7 @@ import java.util.List;
 public class Profile implements Serializable{
     private String profileName;
     private Progress progress;
-    private HashMap<Actions, HashMap<Integer, InputDevice>> customBindings;
+    private HashMap<Actions, HashMap<InputDevice, Integer>> customBindings;
     private static Profile activeProfile;
     private static List<Profile> listOfProfiles;
     
@@ -52,7 +52,7 @@ public class Profile implements Serializable{
      * Replaces the current key bindings associated with the profile with new ones.
      * @param customBindings the mapping of new key bindings.
      */
-    public void setCustomBindings(HashMap<Actions, HashMap<Integer, InputDevice>> customBindings) {
+    public void setCustomBindings(HashMap<Actions, HashMap<InputDevice, Integer>> customBindings) {
         this.customBindings = new HashMap<>(customBindings);
     }
     
@@ -60,8 +60,8 @@ public class Profile implements Serializable{
      * Returns the current key bindings associated with the profile.
      * @return the mapping of the current key bindings.
      */
-    public HashMap<Actions, HashMap<Integer, InputDevice>> getCustomBindings() {
-        return (HashMap<Actions, HashMap<Integer, InputDevice>>) customBindings.clone();
+    public HashMap<Actions, HashMap<InputDevice, Integer>> getCustomBindings() {
+        return (HashMap<Actions, HashMap<InputDevice, Integer>>) customBindings.clone();
     }
     
     /**
@@ -70,8 +70,8 @@ public class Profile implements Serializable{
      * @param keyCode the key code of the new key binding.
      * @param inputDevice the input device used for the key binding-
      */
-    public void addCustomBinding(Actions action, Integer keyCode, InputDevice inputDevice) {
-        customBindings.get(action).put(keyCode, inputDevice);
+    public void addCustomBinding(Actions action, InputDevice inputDevice, Integer keyCode) {
+        customBindings.get(action).put(inputDevice, keyCode);
     }
     
     /**
@@ -80,9 +80,9 @@ public class Profile implements Serializable{
      * @param keyCode the key code of the to-be removed key binding.
      * @param inputDevice the input device used by the to-be removed key binding.
      */
-    public void removeCustomBinding(Actions action, Integer keyCode, InputDevice inputDevice) {
-        if (customBindings.get(action).get(keyCode) == inputDevice) {
-            customBindings.get(action).remove(keyCode);
+    public void removeCustomBinding(Actions action, InputDevice inputDevice, Integer keyCode) {
+        if (customBindings.get(action).get(inputDevice) == keyCode) {
+            customBindings.get(action).remove(inputDevice);
         }
     }
     
