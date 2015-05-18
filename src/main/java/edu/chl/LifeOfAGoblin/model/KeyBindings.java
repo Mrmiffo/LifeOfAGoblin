@@ -25,22 +25,22 @@ public class KeyBindings implements Serializable {
      */
     public static void setDefaultKeyBindings() {
 
-        Actions.WALK_LEFT.setKeyCodes(new HashMap<Integer, InputDevice>() {{
-            put(KeyInput.KEY_A, InputDevice.KEYBOARD);
+        Actions.WALK_LEFT.setKeyCodes(new HashMap<InputDevice, Integer>() {{
+            put(InputDevice.KEYBOARD, KeyInput.KEY_A);
         }});
         
-        Actions.WALK_RIGHT.setKeyCodes(new HashMap<Integer, InputDevice>() {{
-            put(KeyInput.KEY_D, InputDevice.KEYBOARD);
+        Actions.WALK_RIGHT.setKeyCodes(new HashMap<InputDevice, Integer>() {{
+            put(InputDevice.KEYBOARD, KeyInput.KEY_D);
         }});
         
-        Actions.JUMP.setKeyCodes(new HashMap<Integer, InputDevice>() {{
-            put(KeyInput.KEY_W, InputDevice.KEYBOARD);
-            put(KeyInput.KEY_SPACE, InputDevice.KEYBOARD);
+        Actions.JUMP.setKeyCodes(new HashMap<InputDevice, Integer>() {{
+            put(InputDevice.KEYBOARD, KeyInput.KEY_W);
+            put(InputDevice.KEYBOARD, KeyInput.KEY_SPACE);
         }});
         
-        Actions.OPEN_MENU.setKeyCodes(new HashMap<Integer, InputDevice>() {{
-            put(KeyInput.KEY_P, InputDevice.KEYBOARD);
-            put(KeyInput.KEY_ESCAPE, InputDevice.KEYBOARD);
+        Actions.OPEN_MENU.setKeyCodes(new HashMap<InputDevice, Integer>() {{
+            put(InputDevice.KEYBOARD, KeyInput.KEY_P);
+            put(InputDevice.KEYBOARD, KeyInput.KEY_ESCAPE);
         }});
     }
     
@@ -75,15 +75,15 @@ public class KeyBindings implements Serializable {
      * @param integers a Map of Integer/InputDevice pairs.
      * @return an array with the corresponding Trigger(s) of the Map.
      */
-    public static Trigger[] integersToTriggers(Map<Integer, InputDevice> integers) {
+    public static Trigger[] integersToTriggers(Map<InputDevice, Integer> integers) {
         ArrayList<Trigger> temp = new ArrayList<>();
-        for (Integer i: integers.keySet()) {
-            switch(integers.get(i)) {
+        for (InputDevice i: integers.keySet()) {
+            switch(i) {
                 case KEYBOARD:
-                    temp.add(new KeyTrigger(i));
+                    temp.add(new KeyTrigger(integers.get(i)));
                     break;
                 case MOUSE_BUTTON:
-                    temp.add(new MouseButtonTrigger(i));
+                    temp.add(new MouseButtonTrigger(integers.get(i)));
             }
         }
         return temp.toArray(new Trigger[1]);
@@ -110,11 +110,11 @@ public class KeyBindings implements Serializable {
      * @param triggers one or more Trigger(s) which will invoke the Action.
      */
     public static void setKeyBinding(Actions action, Trigger...triggers) {
-        HashMap<Integer, InputDevice> temp = new HashMap<>();
+        HashMap<InputDevice, Integer> temp = new HashMap<>();
         for (Trigger trigger: triggers) {
-            temp.put(triggersToIntegers(trigger)[0], getInputDevice(trigger));
+            temp.put(getInputDevice(trigger), triggersToIntegers(trigger)[0]);
         }
-        action.setKeyCodes((HashMap<Integer, InputDevice>) temp.clone());
+        action.setKeyCodes((HashMap<InputDevice, Integer>) temp.clone());
         //needs to notify InputManagerWrapper in order to work
     }
     
