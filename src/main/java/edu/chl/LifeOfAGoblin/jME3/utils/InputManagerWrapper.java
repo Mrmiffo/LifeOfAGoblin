@@ -25,6 +25,7 @@ import java.util.Map;
  */
 public class InputManagerWrapper {
     private static InputManagerWrapper instance;
+    private KeyBindings keyBindings;
     private InputManager im;
 
     
@@ -48,7 +49,8 @@ public class InputManagerWrapper {
      */
     public void initialize(InputManager inputManager){
         this.im = inputManager;
-        KeyBindings.setDefaultKeyBindings(); //Maybe change this
+        keyBindings = new KeyBindings();
+        keyBindings.setDefaultKeyBindings(); //Maybe change this
         instance.updateKeybinds();
     }
     
@@ -66,7 +68,7 @@ public class InputManagerWrapper {
     private void updateKeybinds() {
         for (Actions action : Actions.values()) {
             im.deleteMapping(action.toString());
-            im.addMapping(action.toString(), KeyBindings.integersToTriggers(action.getKeyCodes()));
+            im.addMapping(action.toString(), keyBindings.integersToTriggers(action.getKeyCodes()));
         }
         //Does currently not remove existing mappings.
         //Can as of yet not be updated after initializing
@@ -78,12 +80,12 @@ public class InputManagerWrapper {
     * game and the corresponding keys. These are registered to the inputManager.
     * @author kakan
     */
-   public static class KeyBindings {
+   public class KeyBindings {
 
        /**
         * Sets all key bindings to their default value.
         */
-       public static void setDefaultKeyBindings() {
+       public void setDefaultKeyBindings() {
 
            Actions.WALK_LEFT.setKeyCodes(new HashMap<InputDevice, Integer>() {{
                put(InputDevice.KEYBOARD, KeyInput.KEY_A);
@@ -109,7 +111,7 @@ public class InputManagerWrapper {
         * Each possible action is mapped to one or more triggers.
         * @return a HashMap with possible Actions as keys and their trigger(s) as value(s).
         */
-       public static HashMap<Actions, Trigger[]> getCurrentKeyBindings() {
+       public HashMap<Actions, Trigger[]> getCurrentKeyBindings() {
            HashMap<Actions, Trigger[]> temp = new HashMap<>();
            for (Actions action: Actions.values()) {
                temp.put(action, integersToTriggers(action.getKeyCodes()));
@@ -122,7 +124,7 @@ public class InputManagerWrapper {
         * @param triggers one or more Triggers.
         * @return an array with the corresponding integer value(s) of the Trigger(s).
         */
-       public static Integer[] triggersToIntegers(Trigger... triggers) {
+       public Integer[] triggersToIntegers(Trigger... triggers) {
            ArrayList<Integer> temp = new ArrayList<>();
            for (Trigger trigger: triggers) {
                temp.add(trigger.triggerHashCode());
@@ -135,7 +137,7 @@ public class InputManagerWrapper {
         * @param integers a Map of Integer/InputDevice pairs.
         * @return an array with the corresponding Trigger(s) of the Map.
         */
-       public static Trigger[] integersToTriggers(Map<InputDevice, Integer> integers) {
+       public Trigger[] integersToTriggers(Map<InputDevice, Integer> integers) {
            ArrayList<Trigger> temp = new ArrayList<>();
            for (InputDevice i: integers.keySet()) {
                switch(i) {
@@ -154,7 +156,7 @@ public class InputManagerWrapper {
         * @param trigger the Trigger which to analyze.
         * @return the associated InputDevice of the Trigger.
         */
-       public static InputDevice getInputDevice(Trigger trigger) {
+       public InputDevice getInputDevice(Trigger trigger) {
            if (trigger.getClass() == KeyTrigger.class) {
                return InputDevice.KEYBOARD;
            } else if (trigger.getClass() == MouseButtonTrigger.class){
@@ -169,13 +171,13 @@ public class InputManagerWrapper {
         * @param action the Action to be altered.
         * @param triggers one or more Trigger(s) which will invoke the Action.
         */
-       public static void setKeyBinding(Actions action, Trigger...triggers) {
+       public void setKeyBinding(Actions action, Trigger...triggers) {
            HashMap<InputDevice, Integer> temp = new HashMap<>();
            for (Trigger trigger: triggers) {
                temp.put(getInputDevice(trigger), triggersToIntegers(trigger)[0]);
            }
            action.setKeyCodes((HashMap<InputDevice, Integer>) temp.clone());
-           //needs to notify InputManagerWrapper in order to work
+           updateKeybinds();
        }
    }
 }
