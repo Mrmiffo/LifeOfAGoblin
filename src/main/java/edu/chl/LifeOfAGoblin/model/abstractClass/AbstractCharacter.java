@@ -145,10 +145,12 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         //animator.runDeathAnimation()  this is what these are actually good for
     }
     
+    @Override
     public void setIsDead(boolean isDead){
         this.isDead = isDead;
     }
     
+    @Override
     public boolean getIsDead(){
         return this.isDead;
     }
