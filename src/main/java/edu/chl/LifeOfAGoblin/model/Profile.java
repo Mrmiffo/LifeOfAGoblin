@@ -21,7 +21,8 @@ public class Profile implements Serializable{
     
     public Profile(String profileName) {
         this.profileName = profileName;
-        listOfProfiles.add(this);
+        customBindings = new HashMap();
+//        listOfProfiles.add(this);
     }
     
     /**
@@ -71,7 +72,15 @@ public class Profile implements Serializable{
      * @param inputDevice the input device used for the key binding-
      */
     public void addCustomBinding(Actions action, InputDevice inputDevice, Integer keyCode) {
-        customBindings.get(action).put(inputDevice, keyCode);
+        //Check if the action already exist, if so add the new mapping. Else create a new map for the action.
+        if (customBindings.containsKey(action)){
+            customBindings.get(action).put(inputDevice, keyCode);
+        } else {
+            HashMap<InputDevice, Integer> temp = new HashMap<>();
+            temp.put(inputDevice, keyCode);
+            customBindings.put(action, temp);
+        }
+        
     }
     
     /**

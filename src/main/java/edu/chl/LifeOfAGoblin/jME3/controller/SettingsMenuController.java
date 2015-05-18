@@ -12,6 +12,7 @@ import de.lessvoid.nifty.screen.ScreenController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.model.InputDevice;
+import edu.chl.LifeOfAGoblin.model.Profile;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +49,7 @@ public class SettingsMenuController implements ScreenController{
 
     @Override
     public void onEndScreen() {
-        keybindBox.removeAllItems(keybindBox.getItems());
+        emptyKeyBindBox();
     }
     
     private void fillKeyBindBox(){
@@ -62,11 +63,12 @@ public class SettingsMenuController implements ScreenController{
     }
     
     public void save(){
-        KeyNames test = new KeyNames();
-        for (String s: changedKeyBinds.keySet()){
-            for (int i: changedKeyBinds.get(s).keySet()){
-                for (InputDevice device: changedKeyBinds.get(s).get(i).keySet()){
-                    System.out.println("Action: "+s+" Field: " + i + "InputDevice: " + device.toString() + "Key: " + test.getName(changedKeyBinds.get(s).get(i).get(device)));
+        //Loops through all the maps in the changeKeyBinds and sends them to the active profile.
+        Profile.setActiveProfile(new Profile("test"));
+        for (String action: changedKeyBinds.keySet()){
+            for (int field: changedKeyBinds.get(action).keySet()){
+                for (InputDevice device: changedKeyBinds.get(action).get(field).keySet()){
+                    Profile.getActiveProfile().addCustomBinding(Actions.findActionByName(action), device, changedKeyBinds.get(action).get(field).get(device));
                 }
             }
         }
@@ -84,5 +86,9 @@ public class SettingsMenuController implements ScreenController{
         }
         fieldAndInput.put(field, input);
         changedKeyBinds.put(action, fieldAndInput);
+    }
+
+    private void emptyKeyBindBox() {
+        keybindBox.removeAllItems(keybindBox.getItems());
     }
 }

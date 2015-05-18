@@ -42,4 +42,18 @@ public enum Actions {
         }
         keyCodes = (HashMap<InputDevice, Integer>)newKeyCodes.clone();
     }
+    public static Actions findActionByName(String actionString){
+        switch (actionString){
+            case "WALK_LEFT":
+                return Actions.WALK_LEFT;
+            case "WALK_RIGHT":
+                return Actions.WALK_RIGHT;
+            case "JUMP":
+                return Actions.JUMP;
+            case "OPEN_MENU":
+                return Actions.OPEN_MENU;
+            default:
+                return null;
+        }
+    }
 }
