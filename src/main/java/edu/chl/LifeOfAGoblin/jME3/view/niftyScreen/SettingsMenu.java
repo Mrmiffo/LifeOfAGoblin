@@ -62,12 +62,14 @@ public class SettingsMenu implements INiftyScreen{
             width("100%");
             alignCenter();
             text(new TextBuilder() {{
-                id("#actionField");
+                //DO NOT CHANGE ID! Issues with coding xml cause things to be hardcoded to the strings.
+                id("actionField");
                 width("30%");
                 style("base-font");
             }});
             text(new TextBuilder() {{
-                id("#triggerField0");
+                //DO NOT CHANGE ID! Issues with coding xml cause things to be hardcoded to the strings.
+                id("triggerField0");
                 width("30%");
                 style("base-font");
                 controller(new ChangeKeyBindMenuItemController());
@@ -75,7 +77,8 @@ public class SettingsMenu implements INiftyScreen{
                 
             }});
             text(new TextBuilder() {{
-                id("#triggerField1");
+                //DO NOT CHANGE ID! Issues with coding xml cause things to be hardcoded to the strings.
+                id("triggerField1");
                 width("30%");
                 style("base-font");
                 controller(new ChangeKeyBindMenuItemController());
