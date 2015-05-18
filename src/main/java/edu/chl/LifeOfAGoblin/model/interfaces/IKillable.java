@@ -10,6 +10,9 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  */
 public interface IKillable {
     
+    /**
+     * Is called when the inheritor dies.
+     */
     public void die();
     
 }
