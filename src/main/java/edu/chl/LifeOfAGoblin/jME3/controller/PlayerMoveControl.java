@@ -13,19 +13,19 @@ public class PlayerMoveControl extends AbstractMoveControl implements IKeyListen
 
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (name.equals(Actions.WALK_RIGHT.getKeyText())){
+        if (name.equals(Actions.WALK_RIGHT.getDescription())){
             if (isPressed) {
                 right = true;
             } else {
                 right = false;
             }
-        } else if (name.equals(Actions.WALK_LEFT.getKeyText())){
+        } else if (name.equals(Actions.WALK_LEFT.getDescription())){
             if (isPressed) {
                 left = true;
             } else {
                 left = false;
             }
-        } else if (name.equals(Actions.JUMP.getKeyText())){
+        } else if (name.equals(Actions.JUMP.getDescription())){
             jump();
         }
     }

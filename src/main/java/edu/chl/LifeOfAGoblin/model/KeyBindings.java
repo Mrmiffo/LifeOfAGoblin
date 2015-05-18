@@ -20,6 +20,9 @@ import java.util.Map;
  */
 public class KeyBindings implements Serializable {
     
+    /**
+     * Sets all key bindings to their default value.
+     */
     public static void setDefaultKeyBindings() {
 
         Actions.WALK_LEFT.setKeyCodes(new HashMap<Integer, InputDevice>() {{
@@ -41,6 +44,11 @@ public class KeyBindings implements Serializable {
         }});
     }
     
+    /**
+     * Returns a mapping of the current key bindings.
+     * Each possible action is mapped to one or more triggers.
+     * @return a HashMap with possible Actions as keys and their trigger(s) as value(s).
+     */
     public static HashMap<Actions, Trigger[]> getCurrentKeyBindings() {
         HashMap<Actions, Trigger[]> temp = new HashMap<>();
         for (Actions action: Actions.values()) {
@@ -49,6 +57,11 @@ public class KeyBindings implements Serializable {
         return (HashMap<Actions, Trigger[]>)temp.clone();
     }
     
+    /**
+     * Returns the corresponing Integer value of one or more triggers.
+     * @param triggers one or more Triggers.
+     * @return an array with the corresponding integer value(s) of the Trigger(s).
+     */
     public static Integer[] triggersToIntegers(Trigger... triggers) {
         ArrayList<Integer> temp = new ArrayList<>();
         for (Trigger trigger: triggers) {
@@ -57,6 +70,11 @@ public class KeyBindings implements Serializable {
         return temp.toArray(new Integer[1]);
     }
     
+    /**
+     * Returns the corresponding Trigger for each Integer/InputDevice pair in the Map.
+     * @param integers a Map of Integer/InputDevice pairs.
+     * @return an array with the corresponding Trigger(s) of the Map.
+     */
     public static Trigger[] integersToTriggers(Map<Integer, InputDevice> integers) {
         ArrayList<Trigger> temp = new ArrayList<>();
         for (Integer i: integers.keySet()) {
@@ -71,6 +89,11 @@ public class KeyBindings implements Serializable {
         return temp.toArray(new Trigger[1]);
     }
     
+    /**
+     * Returns the InputDevice associated with the Trigger.
+     * @param trigger the Trigger which to analyze.
+     * @return the associated InputDevice of the Trigger.
+     */
     public static InputDevice getInputDevice(Trigger trigger) {
         if (trigger.getClass() == KeyTrigger.class) {
             return InputDevice.KEYBOARD;
@@ -81,6 +104,11 @@ public class KeyBindings implements Serializable {
         }
     }
     
+    /**
+     * Replaces the Action's current Trigger(s) with one or more Trigger(s).
+     * @param action the Action to be altered.
+     * @param triggers one or more Trigger(s) which will invoke the Action.
+     */
     public static void setKeyBinding(Actions action, Trigger...triggers) {
         HashMap<Integer, InputDevice> temp = new HashMap<>();
         for (Trigger trigger: triggers) {
