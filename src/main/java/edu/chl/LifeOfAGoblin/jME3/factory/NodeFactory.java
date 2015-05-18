@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
+import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -14,6 +15,7 @@ import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.CollisionObjectListener;
+import edu.chl.LifeOfAGoblin.jME3.controller.PhysicsTickControl;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
@@ -62,6 +64,7 @@ public class NodeFactory {
                         break;
                     case("CHECKPOINT"):
                         CollisionObjectPainter.paintCollisionObject(NodeType.CHECKPOINT, ((Node)nodeList.get(i)));
+                        ((Node)nodeList.get(i)).setLocalTranslation(0, 2, 0);
                         break;
                     case("FINALCHECKPOINT"):
                         CollisionObjectPainter.paintCollisionObject(NodeType.FINALCHECKPOINT, ((Node)nodeList.get(i)));
@@ -78,10 +81,12 @@ public class NodeFactory {
                         playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
                         ((Node)nodeList.get(i)).attachChild(playerNode);
                         
-                        //System.out.println("noden i childrens localtranslation är " + nodeList.get(i).getLocalTranslation());
                         playerNode.getControl(CharacterControl.class).warp(nodeList.get(i).getWorldTranslation());
-                       // System.out.println(playerNode.getLocalTranslation());
-                        levelNode.setLocalTranslation(0f, -5f, 0f);
+                        levelNode.setLocalTranslation(0f, -5f, 0f);  
+                        PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
+                        levelNode.addControl(ptc);
+                        PhysicsWrapper.getInstance().add(((PhysicsTickListener)ptc));
+                        
                         break;
                 }
             }   
@@ -94,6 +99,8 @@ public class NodeFactory {
         PhysicsWrapper.getInstance().addCollisonListener(listener);
         levelNode.addControl(listener);
         levelNode.addControl(landscape);
+        
+
         
     }
         return levelNode;
