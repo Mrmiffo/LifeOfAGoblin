@@ -26,13 +26,14 @@ public class PlayerHealthControl extends AbstractControl{
             lastHealth = player.getHealth();
             lastMaxHealth = player.getMaxHealth();
         }
-        if(lastHealth<0){
+        if(player.getIsDead()){
             for(int i = 0; i <spatial.getParent().getParent().getChildren().size(); i++){
                 if(spatial.getParent().getParent().getChildren().get(i).getUserDataKeys().contains("nodeType")){
                     if(spatial.getParent().getParent().getChildren().get(i).getUserData("nodeType").equals("CHECKPOINT")){
-          //          && spatial.getParent().getParent().getChildren().get(i).getUserData("NUMBER").equals(Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint())){
+                  //  && spatial.getParent().getParent().getChildren().get(i).getUserData("NUMBER").equals(Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint())){
                         spatial.getControl(CharacterControl.class).warp(spatial.getParent().getParent().getChildren().get(i).getLocalTranslation());
                         player.setHealth(player.getMaxHealth());
+                        player.setIsDead(false);
                     }
                 }
             }
