@@ -10,8 +10,9 @@ import com.jme3.input.controls.Trigger;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
+import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper.KeyBindings;
 import edu.chl.LifeOfAGoblin.model.Actions;
-import edu.chl.LifeOfAGoblin.model.KeyBindings;
 
 /**
  * The KeyBindNiftyPanel is used by the Keybind list box to translate the KeyBind
@@ -23,7 +24,9 @@ public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<Actions> 
     @Override
     public void display(Element listBoxItem, Actions item) {
         //Fetch the triggers for the keybinds
-        Trigger[] keyBinds = KeyBindings.integersToTriggers(item.getKeyCodes());
+        InputManagerWrapper iwm = InputManagerWrapper.getInstance();
+        KeyBindings kb = iwm.new KeyBindings();
+        Trigger[] keyBinds = kb.integersToTriggers(item.getKeyCodes());
         
         //Create a key converter for converting the triggerhascode int to a string
         KeyNames keyNameConverter = new KeyNames();

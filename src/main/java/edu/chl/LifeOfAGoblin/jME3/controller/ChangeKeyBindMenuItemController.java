@@ -21,8 +21,8 @@ import de.lessvoid.nifty.input.NiftyInputEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.xml.xpp3.Attributes;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper.KeyBindings;
 import edu.chl.LifeOfAGoblin.model.InputDevice;
-import edu.chl.LifeOfAGoblin.model.KeyBindings;
 import java.util.Properties;
 
 /**
@@ -115,7 +115,9 @@ public class ChangeKeyBindMenuItemController implements Controller, RawInputList
         //Get the event key int and translate, via Trigger, to a String.
         int newKey = evt.getButtonIndex();
         System.out.println(newKey);
-        Trigger temp = KeyBindings.integerToTrigger(newKey, InputDevice.MOUSE_BUTTON);
+        InputManagerWrapper imw = InputManagerWrapper.getInstance();
+        KeyBindings kb = imw.new KeyBindings();
+        Trigger temp = kb.integerToTrigger(newKey, InputDevice.MOUSE_BUTTON);
         endInput();
         textBox.getRenderer(TextRenderer.class).setText(temp.getName());
         String action = textBox.getParent().findElementByName("actionField").getRenderer(TextRenderer.class).getOriginalText();

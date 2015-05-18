@@ -22,24 +22,24 @@ public enum Actions {
     WALK_RIGHT,
     JUMP,
     OPEN_MENU;
-    private HashMap<InputDevice, Integer> keyCodes;
+    private HashMap<Integer, InputDevice> keyCodes;
 
     /**
      * Returns the key codes which invokes the enum.
      * @return a HashMap of Integer/InputDevices pairs that invoke the enum.
      */
-    public HashMap<InputDevice, Integer> getKeyCodes() {
-        return (HashMap<InputDevice, Integer>)keyCodes.clone();
+    public HashMap<Integer, InputDevice> getKeyCodes() {
+        return (HashMap<Integer, InputDevice>)keyCodes.clone();
     }
 
     /**
      * Replaces the current key codes of the enum with new ones.
      * @param newKeyCodes a HashMap of Integer/InputDevice pairs which will invoke the enum.
      */
-    public void setKeyCodes(HashMap<InputDevice, Integer> newKeyCodes) {
+    public void setKeyCodes(HashMap<Integer, InputDevice> newKeyCodes) {
         if (keyCodes != null) {
             keyCodes.clear();
         }
-        keyCodes = (HashMap<InputDevice, Integer>)newKeyCodes.clone();
+        keyCodes = (HashMap<Integer, InputDevice>)newKeyCodes.clone();
     }
 }

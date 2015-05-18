@@ -13,6 +13,8 @@ import com.jme3.input.RawInputListener;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.model.InputDevice;
+import static edu.chl.LifeOfAGoblin.model.InputDevice.KEYBOARD;
+import static edu.chl.LifeOfAGoblin.model.InputDevice.MOUSE_BUTTON;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -84,22 +86,22 @@ public class InputManagerWrapper {
         */
        public void setDefaultKeyBindings() {
 
-           Actions.WALK_LEFT.setKeyCodes(new HashMap<InputDevice, Integer>() {{
-               put(InputDevice.KEYBOARD, KeyInput.KEY_A);
+           Actions.WALK_LEFT.setKeyCodes(new HashMap<Integer, InputDevice>() {{
+               put(KeyInput.KEY_A, InputDevice.KEYBOARD);
            }});
 
-           Actions.WALK_RIGHT.setKeyCodes(new HashMap<InputDevice, Integer>() {{
-               put(InputDevice.KEYBOARD, KeyInput.KEY_D);
+           Actions.WALK_RIGHT.setKeyCodes(new HashMap<Integer, InputDevice>() {{
+               put(KeyInput.KEY_D, InputDevice.KEYBOARD);
            }});
 
-           Actions.JUMP.setKeyCodes(new HashMap<InputDevice, Integer>() {{
-               put(InputDevice.KEYBOARD, KeyInput.KEY_W);
-               put(InputDevice.KEYBOARD, KeyInput.KEY_SPACE);
+           Actions.JUMP.setKeyCodes(new HashMap<Integer, InputDevice>() {{
+               put(KeyInput.KEY_W, InputDevice.KEYBOARD);
+               put(KeyInput.KEY_SPACE, InputDevice.KEYBOARD);
            }});
 
-           Actions.OPEN_MENU.setKeyCodes(new HashMap<InputDevice, Integer>() {{
-               put(InputDevice.KEYBOARD, KeyInput.KEY_P);
-               put(InputDevice.KEYBOARD, KeyInput.KEY_ESCAPE);
+           Actions.OPEN_MENU.setKeyCodes(new HashMap<Integer, InputDevice>() {{
+               put(KeyInput.KEY_P, InputDevice.KEYBOARD);
+               put(KeyInput.KEY_ESCAPE, InputDevice.KEYBOARD);
            }});
        }
 
@@ -134,19 +136,31 @@ public class InputManagerWrapper {
         * @param integers a Map of Integer/InputDevice pairs.
         * @return an array with the corresponding Trigger(s) of the Map.
         */
-       public Trigger[] integersToTriggers(Map<InputDevice, Integer> integers) {
+       public Trigger[] integersToTriggers(Map<Integer, InputDevice> integers) {
            ArrayList<Trigger> temp = new ArrayList<>();
-           for (InputDevice i: integers.keySet()) {
-               switch(i) {
+           for (Integer i: integers.keySet()) {
+               switch(integers.get(i)) {
                    case KEYBOARD:
-                       temp.add(new KeyTrigger(integers.get(i)));
+                       temp.add(new KeyTrigger(i));
                        break;
                    case MOUSE_BUTTON:
-                       temp.add(new MouseButtonTrigger(integers.get(i)));
+                       temp.add(new MouseButtonTrigger(i));
                }
            }
            return temp.toArray(new Trigger[1]);
        }
+       
+        public Trigger integerToTrigger(int key, InputDevice device){
+        Trigger temp = null;
+            switch(device) {
+                case KEYBOARD:
+                    temp = new KeyTrigger(key);
+                    break;
+                case MOUSE_BUTTON:
+                    temp = new MouseButtonTrigger(key);
+            }
+        return temp;
+    }
 
        /**
         * Returns the InputDevice associated with the Trigger.
@@ -173,7 +187,7 @@ public class InputManagerWrapper {
            for (Trigger trigger: triggers) {
                temp.put(getInputDevice(trigger), triggersToIntegers(trigger)[0]);
            }
-           action.setKeyCodes((HashMap<InputDevice, Integer>) temp.clone());
+           action.setKeyCodes((HashMap<Integer, InputDevice>) temp.clone());
            updateKeybinds();
        }
    }
