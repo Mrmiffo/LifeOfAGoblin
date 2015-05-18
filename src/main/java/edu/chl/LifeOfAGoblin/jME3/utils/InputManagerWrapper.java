@@ -9,6 +9,7 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.controls.Trigger;
+import com.jme3.input.RawInputListener;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.model.InputDevice;
@@ -176,4 +177,12 @@ public class InputManagerWrapper {
            updateKeybinds();
        }
    }
+    public void addRawInputListener(RawInputListener ril){
+        im.addRawInputListener(ril);
+        
+    }
+    
+    public void removeRawInputListener(RawInputListener ril){
+        im.removeRawInputListener(ril);
+    }
 }
