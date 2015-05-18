@@ -18,24 +18,11 @@ import java.util.HashMap;
  */
 public enum Actions {
 
-    WALK_LEFT("walkLeft"),
-    WALK_RIGHT("walkRight"),
-    JUMP("jump"),
-    OPEN_MENU("openMenu");
-    private final String description;
+    WALK_LEFT,
+    WALK_RIGHT,
+    JUMP,
+    OPEN_MENU;
     private HashMap<Integer, InputDevice> keyCodes;
-
-    Actions(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Returns the description of the enum.
-     * @return the desctiption of the enum.
-     */
-    public String getDescription() {
-        return description;
-    }
 
     /**
      * Returns the key codes which invokes the enum.

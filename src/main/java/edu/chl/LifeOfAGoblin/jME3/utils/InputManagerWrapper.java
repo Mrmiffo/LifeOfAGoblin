@@ -50,14 +50,14 @@ public class InputManagerWrapper {
      */
     public void registerListener(IKeyListener actionListener){
         for (Actions keyBind : actionListener.getKeyBinds()){
-            im.addListener(actionListener, keyBind.getDescription());
+            im.addListener(actionListener, keyBind.toString());
         }
     }
     
     private void updateKeybinds() {
         for (Actions action : Actions.values()) {
-            System.out.println(action.getDescription() + KeyBindings.integersToTriggers(action.getKeyCodes()));
-            im.addMapping(action.getDescription(), KeyBindings.integersToTriggers(action.getKeyCodes()));
+            im.deleteMapping(action.toString());
+            im.addMapping(action.toString(), KeyBindings.integersToTriggers(action.getKeyCodes()));
         }
         //Does currently not remove existing mappings.
         //Can as of yet not be updated after initializing
