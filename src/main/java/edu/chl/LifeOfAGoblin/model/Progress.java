@@ -17,6 +17,11 @@ public class Progress implements Serializable {
     private int lastVisitedCheckpoint;
     
     //This should be called everytime the player activates a Checkpoint.
+    /**
+     * Updates the progress with the given parameters.
+     * @param currentLevel the level the player is on.
+     * @param currentCheckpoint the checkpoint the player is at.
+     */
     public void update(int currentLevel, int currentCheckpoint) {
         lastVisitedLevel = currentLevel;
         lastVisitedCheckpoint = currentCheckpoint;
@@ -25,14 +30,26 @@ public class Progress implements Serializable {
         }
     }
     
+    /**
+     * Returns the last level the player was on.
+     * @return the last level the player visited.
+     */
     public int getLastVisitedLevel() {
         return lastVisitedLevel;
     }
     
+    /**
+     * Returns the last checkpoint the player was at.
+     * @return the last checkpoint the player visited.
+     */
     public int getLastVisitedCheckpoint() {
         return lastVisitedCheckpoint;
     }
     
+    /**
+     * Returns the furthest level the player has reached.
+     * @return the furthest level the player has reached.
+     */
     public int getLongestProgress() {
         return longestProgress;
     }
