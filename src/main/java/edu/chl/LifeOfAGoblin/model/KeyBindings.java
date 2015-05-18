@@ -8,6 +8,8 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.controls.Trigger;
+import static edu.chl.LifeOfAGoblin.model.InputDevice.KEYBOARD;
+import static edu.chl.LifeOfAGoblin.model.InputDevice.MOUSE_BUTTON;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,6 +71,18 @@ public class KeyBindings implements Serializable {
             }
         }
         return temp.toArray(new Trigger[1]);
+    }
+    
+    public static Trigger integerToTrigger(int key, InputDevice device){
+        Trigger temp = null;
+            switch(device) {
+                case KEYBOARD:
+                    temp = new KeyTrigger(key);
+                    break;
+                case MOUSE_BUTTON:
+                    temp = new MouseButtonTrigger(key);
+            }
+        return temp;
     }
     
     public static InputDevice getInputDevice(Trigger trigger) {
