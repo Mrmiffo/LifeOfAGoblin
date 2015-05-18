@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.bullet.control.CharacterControl;
-import com.jme3.bullet.control.GhostControl;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
