@@ -30,8 +30,6 @@ public class SpawnControl extends AbstractControl implements ISpawnControl{
     this.getSpatial().getParent().attachChild(node);
     node.setLocalTranslation(this.getSpatial().getLocalTranslation());
     node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());
-    System.out.println();
-
    }
 
     @Override
