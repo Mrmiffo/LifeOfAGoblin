@@ -2,14 +2,16 @@ package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.Actions;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Anton
  */
-public class PlayerMoveControl extends AbstractMoveControl implements IKeyListener{    
+public class PlayerMoveControl extends AbstractMoveControl implements IKeyListener{
+    
+    private final Actions[] actions = new Actions[] {
+        Actions.JUMP, Actions.WALK_LEFT, Actions.WALK_RIGHT
+    };
 
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
@@ -31,11 +33,7 @@ public class PlayerMoveControl extends AbstractMoveControl implements IKeyListen
     }
 
     @Override
-    public List<Actions> getKeyBinds() {
-        List<Actions> binds = new ArrayList<>();
-        binds.add(Actions.JUMP);
-        binds.add(Actions.WALK_LEFT);
-        binds.add(Actions.WALK_RIGHT);
-        return binds;
+    public Actions[] getKeyBinds() {
+        return (Actions[])actions.clone();
     }
 }
