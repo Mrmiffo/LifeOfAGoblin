@@ -12,8 +12,6 @@ import com.jme3.input.controls.Trigger;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.model.InputDevice;
-import static edu.chl.LifeOfAGoblin.model.InputDevice.KEYBOARD;
-import static edu.chl.LifeOfAGoblin.model.InputDevice.MOUSE_BUTTON;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,8 +68,6 @@ public class InputManagerWrapper {
             im.deleteMapping(action.toString());
             im.addMapping(action.toString(), keyBindings.integersToTriggers(action.getKeyCodes()));
         }
-        //Does currently not remove existing mappings.
-        //Can as of yet not be updated after initializing
     }
     
     
