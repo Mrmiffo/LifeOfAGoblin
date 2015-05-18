@@ -26,7 +26,7 @@ public class LifeOfAGoblin extends SimpleApplication {
     public void simpleInitApp() {
         //Initialize the game singleton instances.
         NiftyGUIWrapper.getInstance().initialize(this);
-        InputManagerWrapper.getInstance().initialize(inputManager);
+        InputManagerWrapper.initialize(inputManager);
         StateManagerWrapper.getInstance().initialize(stateManager);
         Resources.getInstance().initialize(assetManager);
         LevelManager.getInstance().initialize();

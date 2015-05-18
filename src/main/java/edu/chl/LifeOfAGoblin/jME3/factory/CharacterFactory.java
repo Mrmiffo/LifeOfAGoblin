@@ -35,7 +35,7 @@ class CharacterFactory {
         amc = new PlayerMoveControl();
         //A control which use the player model data to update the game hud health bar.
         node.addControl(new PlayerHealthControl());
-        InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
+        InputManagerWrapper.registerListener((PlayerMoveControl) amc);
     } else {
         amc = new PlayerMoveControl();
     }
