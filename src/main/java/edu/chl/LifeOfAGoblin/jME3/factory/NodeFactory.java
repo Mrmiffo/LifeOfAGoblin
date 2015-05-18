@@ -100,8 +100,6 @@ public class NodeFactory {
         levelNode.addControl(listener);
         levelNode.addControl(landscape);
         
-
-        
     }
         return levelNode;
     }
