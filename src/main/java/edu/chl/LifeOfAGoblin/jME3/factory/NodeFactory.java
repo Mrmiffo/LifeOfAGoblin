@@ -54,9 +54,6 @@ public class NodeFactory {
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
         for(int i = 0; i<nodeList.size(); i++){
-            System.out.println("node är " + nodeList.get(i).toString());
-            System.out.println(nodeList.get(i).getUserDataKeys().toString());
-            System.out.println("noden i childrens localtranslation är " + nodeList.get(i).getLocalTranslation());
             if(((Node)nodeList.get(i)).getUserDataKeys().size() > 0){
                 String type = ((String)((Node)nodeList.get(i)).getUserData("nodeType"));
                 switch(type){
