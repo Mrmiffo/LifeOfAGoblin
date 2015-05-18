@@ -18,41 +18,28 @@ import java.util.HashMap;
  */
 public enum Actions {
 
-    WALK_LEFT("walkLeft"),
-    WALK_RIGHT("walkRight"),
-    JUMP("jump"),
-    OPEN_MENU("openMenu");
-    private final String description;
-    private HashMap<Integer, InputDevice> keyCodes;
-
-    Actions(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Returns the description of the enum.
-     * @return the desctiption of the enum.
-     */
-    public String getDescription() {
-        return description;
-    }
+    WALK_LEFT,
+    WALK_RIGHT,
+    JUMP,
+    OPEN_MENU;
+    private HashMap<InputDevice, Integer> keyCodes;
 
     /**
      * Returns the key codes which invokes the enum.
      * @return a HashMap of Integer/InputDevices pairs that invoke the enum.
      */
-    public HashMap<Integer, InputDevice> getKeyCodes() {
-        return (HashMap<Integer, InputDevice>)keyCodes.clone();
+    public HashMap<InputDevice, Integer> getKeyCodes() {
+        return (HashMap<InputDevice, Integer>)keyCodes.clone();
     }
 
     /**
      * Replaces the current key codes of the enum with new ones.
      * @param newKeyCodes a HashMap of Integer/InputDevice pairs which will invoke the enum.
      */
-    public void setKeyCodes(HashMap<Integer, InputDevice> newKeyCodes) {
+    public void setKeyCodes(HashMap<InputDevice, Integer> newKeyCodes) {
         if (keyCodes != null) {
             keyCodes.clear();
         }
-        keyCodes = (HashMap<Integer, InputDevice>)newKeyCodes.clone();
+        keyCodes = (HashMap<InputDevice, Integer>)newKeyCodes.clone();
     }
 }

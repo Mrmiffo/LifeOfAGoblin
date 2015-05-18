@@ -6,7 +6,6 @@ package edu.chl.LifeOfAGoblin.jME3.controller.interfaces;
 
 import com.jme3.input.controls.ActionListener;
 import edu.chl.LifeOfAGoblin.model.Actions;
-import java.util.List;
 
 /**
  * An interface used when registering an actionlistener to the inputManager.
@@ -18,5 +17,5 @@ public interface IKeyListener extends ActionListener {
      * actionlistener wish to listen to. Used when registering the 
      * actionlistener to the inputManager.
      */
-    public List<Actions> getKeyBinds();
+    public Actions[] getKeyBinds();
 }
