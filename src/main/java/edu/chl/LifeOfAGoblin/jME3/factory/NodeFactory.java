@@ -81,7 +81,7 @@ public class NodeFactory {
                         playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
                         ((Node)nodeList.get(i)).attachChild(playerNode);
                         
-                        playerNode.getControl(CharacterControl.class).warp(nodeList.get(i).getWorldTranslation());
+                        playerNode.setLocalTranslation(nodeList.get(i).getWorldTranslation());
                         levelNode.setLocalTranslation(0f, -5f, 0f);  
                         PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
                         levelNode.addControl(ptc);
