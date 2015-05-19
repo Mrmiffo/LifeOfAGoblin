@@ -1,4 +1,4 @@
-package edu.chl.LifeOfAGoblin.jME3.controller;
+package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
 
 
 import de.lessvoid.nifty.Nifty;
@@ -80,6 +80,10 @@ public class MainMenuController implements ScreenController{
     
     public void settings(){
         NiftyGUIWrapper.getInstance().goToScreen("settingsMenu");
+    }
+    
+    public void profile(){
+        NiftyGUIWrapper.getInstance().goToScreen("profileMenu");
     }
     
     
