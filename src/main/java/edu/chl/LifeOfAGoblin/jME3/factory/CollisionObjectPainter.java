@@ -8,11 +8,9 @@ import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
+import com.jme3.scene.control.Control;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
-import edu.chl.LifeOfAGoblin.model.Checkpoint;
-import edu.chl.LifeOfAGoblin.model.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.SpawnPoint;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
@@ -40,5 +38,8 @@ class CollisionObjectPainter {
         PhysicsWrapper.getInstance().add(ghostControl);
         userDataNode.addControl(modelControl);
         userDataNode.addControl(ghostControl);
+        if (model instanceof SpawnPoint) {
+            userDataNode.addControl((Control)((SpawnPoint)model).getSpawnControl());
+        }
     }
 }

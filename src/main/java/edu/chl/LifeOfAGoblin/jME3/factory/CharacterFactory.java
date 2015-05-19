@@ -16,7 +16,6 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PhysicsTickControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerHealthControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
@@ -25,7 +24,6 @@ import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 
 /**
  *
@@ -34,17 +32,23 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 class CharacterFactory {
     
     static void createPlayer(Node levelNode, Node node, Camera cam) {
+        
+        //Creates the basic Player
         Node playerNode = createCharacter(new Player());
+        
+        //Attaching a camera to the player
         ChaseCamera chaseCam = new ChaseCamera(cam);
         chaseCam.setRotationSensitivity(0);
         chaseCam.setDefaultHorizontalRotation(new Float(FastMath.PI/2));
         chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
         playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
 
+        //Adding the player to the node
         node.attachChild(playerNode);
-
         playerNode.setLocalTranslation(node.getWorldTranslation());
-        levelNode.setLocalTranslation(0f, -5f, 0f);  
+        levelNode.setLocalTranslation(0f, -5f, 0f);
+        
+        //Adding tick controller
         PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
         levelNode.addControl(ptc);
         PhysicsWrapper.getInstance().add(((PhysicsTickListener)ptc));
