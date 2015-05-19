@@ -5,11 +5,11 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.bullet.control.CharacterControl;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.GameHudController;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.model.Player;
-import edu.chl.LifeOfAGoblin.model.Profile;
 
 /**
  *

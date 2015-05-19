@@ -4,7 +4,9 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,15 +15,18 @@ import java.util.List;
  * @author kakan
  */
 public class Profile implements Serializable{
+    public static final long serialVersionUID = 1548033666660605155L;
     private String profileName;
     private Progress progress;
     private HashMap<Actions, HashMap<InputDevice, Integer>> customBindings;
+    private boolean isActiveProfile;
     private static Profile activeProfile;
-    private static List<Profile> listOfProfiles;
+    private static List<Profile> listOfProfiles = new ArrayList<>();
     
     public Profile(String profileName) {
         this.profileName = profileName;
         customBindings = new HashMap();
+        isActiveProfile = false;
 //        listOfProfiles.add(this);
     }
     
@@ -30,7 +35,9 @@ public class Profile implements Serializable{
      * @param newName the name with which the profile will be associated with.
      */
     public void rename(String newName) {
+        SaveLoadManager.getInstance().deleteFile(null, profileName);
         profileName = newName;
+        saveProfile();
     }
     
     /**
@@ -55,6 +62,7 @@ public class Profile implements Serializable{
      */
     public void setCustomBindings(HashMap<Actions, HashMap<InputDevice, Integer>> customBindings) {
         this.customBindings = new HashMap<>(customBindings);
+        saveProfile();
     }
     
     /**
@@ -80,6 +88,7 @@ public class Profile implements Serializable{
             temp.put(inputDevice, keyCode);
             customBindings.put(action, temp);
         }
+        saveProfile();
         
     }
     
@@ -93,6 +102,7 @@ public class Profile implements Serializable{
         if (customBindings.get(action).get(inputDevice) == keyCode) {
             customBindings.get(action).remove(inputDevice);
         }
+        saveProfile();
     }
     
     /**
@@ -122,7 +132,28 @@ public class Profile implements Serializable{
      * @param profile the profile to be active.
      */
     public static void setActiveProfile(Profile profile) {
+        if (activeProfile != null){
+            activeProfile.setIsActiveProfile(false);
+        }
         activeProfile = profile;
+        activeProfile.setIsActiveProfile(true);
+    }
+    
+    /**
+     * Sets the isActiveProfile boolean on the profile instance.
+     * @param isActive 
+     */
+    private void setIsActiveProfile(boolean isActive){
+        isActiveProfile = isActive;
+        saveProfile();
+    }
+    
+    /**
+     * Returns if the profile is the active profile. Used when loading the profile list on startup.
+     * @return if the specific profile is the active profile.
+     */
+    public boolean getIsActiveProfile(){
+        return isActiveProfile;
     }
     
     /**
@@ -140,5 +171,23 @@ public class Profile implements Serializable{
         if (!exists) {
             throw new IllegalArgumentException("In Profile: setActiveProfile(). No profile with such name.");
         }
+    }
+    
+    /**
+     * Used to save the profile to harddrive. is called automatically everytime 
+     * the profile itself is modified. Will need t be called manually when an 
+     * object contained in the profile (progress) is saved or when the profile 
+     * is created. Saves the profile to the default path.
+     */
+    public void saveProfile(){
+        SaveLoadManager.getInstance().saveToFile(this, null, profileName);
+    }
+    
+    public static void addProfile(Profile profile){
+        listOfProfiles.add(profile);
+    }
+    
+    public static List<Profile> getProfiles(){
+        return listOfProfiles;
     }
 }
