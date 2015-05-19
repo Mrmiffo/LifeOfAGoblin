@@ -13,6 +13,7 @@ import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
+import edu.chl.LifeOfAGoblin.jME3.controller.NPCRangeControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerHealthControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
@@ -30,6 +31,7 @@ class CharacterFactory {
     static Node createCharacter(AbstractCharacter nodeToCreate) {
     Node node = new Node();
     AbstractMoveControl amc;
+    NPCRangeControl nrc = null;
     if (nodeToCreate instanceof Player) {
         nodeToCreate = new Player();
         amc = new PlayerMoveControl();
@@ -37,7 +39,8 @@ class CharacterFactory {
         node.addControl(new PlayerHealthControl());
         InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
     } else {
-        amc = new PlayerMoveControl();
+        amc = new NPCMoveControl();
+        nrc = new NPCRangeControl();
     }
 
     Spatial model = Resources.getInstance().getResources(nodeToCreate.getModelName());
@@ -60,6 +63,9 @@ class CharacterFactory {
     node.addControl(mover);
     node.addControl(amc);
     node.addControl(ghost);
+    if (nrc != null) {
+        node.addControl(nrc);
+    }
     
     //sets what to collide with
     if(nodeToCreate instanceof Player){
