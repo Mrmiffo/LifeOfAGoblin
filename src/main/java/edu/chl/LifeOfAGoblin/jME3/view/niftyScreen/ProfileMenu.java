@@ -4,9 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen;
 
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.KeybindNiftyPanel;
-import de.lessvoid.nifty.builder.ControlBuilder;
-import de.lessvoid.nifty.builder.ControlDefinitionBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
@@ -16,81 +13,33 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.listbox.builder.ListBoxBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.tools.Color;
-import edu.chl.LifeOfAGoblin.jME3.controller.ChangeKeyBindMenuItemController;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.SettingsMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.ProfileMenuController;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
 
-
 /**
- * The settings menu is called from the main menu and displays the keybinds. 
- * May later be renamed if more settings are implemented.
+ * The profile menu is the menu in which the user selects which profile to use.
  * @author Anton
  */
-public class SettingsMenu implements INiftyScreen{
-    private String settingsMenuName;
-    private Screen settingsMenu;
-    private SettingsMenuController niftyController;
-
+public class ProfileMenu implements INiftyScreen{
+    Screen screen;
+    String profileMenuName;
+    ProfileMenuController niftyController;
+    
     /**
-     * The default constructor for the settings menu. Will set the name of the 
-     * menu and create all the nifty componentes needed.
+     * Constructor for creating the profile menu. Once run the screen is ready to
+     * use.
      */
-    public SettingsMenu(){ 
-        settingsMenuName = "settingsMenu";
-        setupSettingsMenu();
-        
+    public ProfileMenu(){
+        profileMenuName = "profileMenu";
+        niftyController = new ProfileMenuController();
+        setupProfileMenu();
     }
 
-    @Override
-    public Screen getScreen() {
-        return settingsMenu;
-    }
-
-    @Override
-    public String getScreenName() {
-        return settingsMenuName;
-    }
-
-    private void setupSettingsMenu() {
-        //Create a controller for the screen.
-        niftyController = new SettingsMenuController();
-        //Create a custom control for the keybind box
-        ControlDefinitionBuilder rowControlBuilder = new ControlDefinitionBuilder("row") {{
-          panel(new PanelBuilder() {{
-            childLayoutHorizontal();
-            width("100%");
-            alignCenter();
-            text(new TextBuilder() {{
-                //DO NOT CHANGE ID! Issues with coding xml cause things to be hardcoded to the strings.
-                id("actionField");
-                width("30%");
-                style("base-font");
-            }});
-            text(new TextBuilder() {{
-                //DO NOT CHANGE ID! Issues with coding xml cause things to be hardcoded to the strings.
-                id("triggerField0");
-                width("30%");
-                style("base-font");
-                controller(new ChangeKeyBindMenuItemController());
-                interactOnClick("changeBind()");
-                
-            }});
-            text(new TextBuilder() {{
-                //DO NOT CHANGE ID! Issues with coding xml cause things to be hardcoded to the strings.
-                id("triggerField1");
-                width("30%");
-                style("base-font");
-                controller(new ChangeKeyBindMenuItemController());
-                interactOnClick("changeBind()");
-            }});
-          }});
-        }};
-        rowControlBuilder.registerControlDefintion(NiftyGUIWrapper.getInstance().getNifty());
-        
+    private void setupProfileMenu() {
         //Create a new nifty screen.
-        settingsMenu = new ScreenBuilder(settingsMenuName) {{
+        screen = new ScreenBuilder(profileMenuName) {{
             //Register the controller to the screen. Any actions taken on the screen objects will be resolved in this controller.
             controller(niftyController);
             
@@ -121,7 +70,7 @@ public class SettingsMenu implements INiftyScreen{
                     width("75%");
 
                     text(new TextBuilder() {{
-                        text("Settings");
+                        text("Profile");
                         Resources.getInstance().setTempPath("fonts");
                         font("BradleyHandITC100BOLD.fnt");
                         color(new Color(0f, 0f, 0f, 1f));
@@ -139,9 +88,7 @@ public class SettingsMenu implements INiftyScreen{
                     width("75%");
                     
                     //Create the List box which displays the keybinds
-                    control(new ListBoxBuilder("keybind_box") {{
-                        //Set the list box to use the custom "row" control (see above for the code of the control)
-                        control(new ControlBuilder("row"));
+                    control(new ListBoxBuilder("profile_box") {{
                         displayItems(20);
                         selectionModeSingle();
                         hideHorizontalScrollbar();
@@ -149,9 +96,6 @@ public class SettingsMenu implements INiftyScreen{
                         width("66%");
                         height("100%");
                         childLayoutVertical();
-                        //Set the list box to use the custom class KeybindNiftyPanel 
-                        //to translate the addItem() call.
-                        viewConverterClass(KeybindNiftyPanel.class);
                     }});
                     //TODO add keybinds box
                 }});
@@ -165,9 +109,46 @@ public class SettingsMenu implements INiftyScreen{
                     width("100%");
                     paddingLeft("50%");
 
+                    //Creates a panel which contain the remove button
+                    panel(new PanelBuilder("panel_bottom_left") {{
+                        childLayoutCenter();
+                        alignCenter();
+                        valignCenter();
+                        height("100%");
+                        width("25%");
+                        paddingRight("10%");
+
+                        //The button which removes the selected profile.
+                        control(new ButtonBuilder("RemoveButton", "Remove profile") {{
+                            alignCenter();
+                            valignCenter();
+                            height("100%");
+                            width("100%");
+                            interactOnClick("removeProfile()");
+                        }});//Back button
+                    }});
+                    
+                    //Creates a panel which contain the add profile button
+                    panel(new PanelBuilder("panel_bottom_mid_left") {{
+                        childLayoutCenter();
+                        alignCenter();
+                        valignCenter();
+                        height("100%");
+                        width("25%");
+                        paddingRight("10%");
+
+                        //The button which adds another profile.
+                        control(new ButtonBuilder("addButton", "Create new profile") {{
+                            alignCenter();
+                            valignCenter();
+                            height("100%");
+                            width("100%");
+                            interactOnClick("createProfile()");
+                        }});//Back button
+                    }});
 
                     //Creates a panel which contain the start game button
-                    panel(new PanelBuilder("panel_bottom_left") {{
+                    panel(new PanelBuilder("panel_bottom_mid_right") {{
                         childLayoutCenter();
                         alignCenter();
                         valignCenter();
@@ -183,7 +164,6 @@ public class SettingsMenu implements INiftyScreen{
                             width("100%");
                             interactOnClick("back()");
                         }});//Back button
-
                     }});
                     
                     //A panel for the settings button
@@ -194,7 +174,7 @@ public class SettingsMenu implements INiftyScreen{
                         width("25%");
 
                         //The save buttons which saves the changes
-                        control(new ButtonBuilder("saveButton", "Save") {{
+                        control(new ButtonBuilder("selectButton", "Select profile") {{
                             alignCenter();
                             valignCenter();
                             height("100%");
@@ -204,6 +184,17 @@ public class SettingsMenu implements INiftyScreen{
                     }});//Panel bottom right
                 }}); // panel bottom
             }});//Layer foreground  
-        }}.build(NiftyGUIWrapper.getInstance().getNifty()); //SettingsMenu screen
-    }//Setup settings
+        }}.build(NiftyGUIWrapper.getInstance().getNifty()); //Profile menu screen
+    }//Setup profileview
+    
+
+    @Override
+    public Screen getScreen() {
+        return screen;
+    }
+
+    @Override
+    public String getScreenName() {
+        return profileMenuName;
+    }
 }

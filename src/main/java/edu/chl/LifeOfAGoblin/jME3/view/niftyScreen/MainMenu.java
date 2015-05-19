@@ -15,7 +15,7 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.imageselect.builder.ImageSelectBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.tools.Color;
-import edu.chl.LifeOfAGoblin.jME3.controller.MainMenuController;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.MainMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
@@ -172,6 +172,25 @@ public class MainMenu implements INiftyScreen{
                     }});
 
 
+                    //A panel for the profile button
+                    panel(new PanelBuilder("panel_bottom_middle") {{
+                        childLayoutCenter();
+                        valignCenter();
+                        height("20%");
+                        width("100%");
+                        padding("5%");
+
+                        
+                        // add Button for settings
+                        control(new ButtonBuilder("ProfileButton", "Profiles") {{
+                          alignCenter();
+                          valignCenter();
+                          height("100%");
+                          width("30%");
+                          interactOnClick("profile()");
+                        }});//Profile button
+                    }});
+                    
                     panel(new PanelBuilder("panel_bottom_bottom") {{
                         childLayoutCenter();
                         valignCenter();
