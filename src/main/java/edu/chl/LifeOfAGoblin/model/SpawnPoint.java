@@ -63,4 +63,8 @@ public class SpawnPoint extends AbstractCollisionObject {
         spawner.Spawn(amount, type);
     }
     
+    public ISpawnControl getSpawnControl() {
+        return spawner;
+    }
+    
 }
