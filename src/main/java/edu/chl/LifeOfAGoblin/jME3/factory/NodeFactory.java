@@ -96,7 +96,7 @@ public class NodeFactory {
         RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
         PhysicsWrapper.getInstance().add(landscape);
         CollisionObjectListener listener = new CollisionObjectListener();
-        PhysicsWrapper.getInstance().addCollisonListener(listener);
+        PhysicsWrapper.getInstance().addCollisionListener(listener);
         levelNode.addControl(listener);
         levelNode.addControl(landscape);
         
