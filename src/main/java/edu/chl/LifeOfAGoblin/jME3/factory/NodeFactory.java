@@ -55,42 +55,10 @@ public class NodeFactory {
     public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
-        for(int i = 0; i<nodeList.size(); i++){
-            if(((Node)nodeList.get(i)).getUserDataKeys().size() > 0){
-                String type = ((String)((Node)nodeList.get(i)).getUserData("nodeType"));
-                switch(type){
-                    case("SPAWNPOINT"):
-                        CollisionObjectPainter.paintCollisionObject(NodeType.SPAWNPOINT, ((Node)nodeList.get(i)));
-                        break;
-                    case("CHECKPOINT"):
-                        CollisionObjectPainter.paintCollisionObject(NodeType.CHECKPOINT, ((Node)nodeList.get(i)));
-                        ((Node)nodeList.get(i)).setLocalTranslation(0, 2, 0);
-                        break;
-                    case("FINALCHECKPOINT"):
-                        CollisionObjectPainter.paintCollisionObject(NodeType.FINALCHECKPOINT, ((Node)nodeList.get(i)));
-                        break;
-                    case("GAMEOBJECT"):
-                        CollisionObjectPainter.paintCollisionObject(NodeType.GAMEOBJECT, ((Node)nodeList.get(i)));
-                    case("PLAYER"):  
-                        //Adding the player character to the level
-                        Node playerNode = NodeFactory.createNode(NodeType.PLAYER/*((Level)levelToCreate).getPlayer()*/);
-                        ChaseCamera chaseCam = new ChaseCamera(cam);
-                        chaseCam.setRotationSensitivity(0);
-                        chaseCam.setDefaultHorizontalRotation(new Float(Math.PI/2));
-                        chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
-                        playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
-                        ((Node)nodeList.get(i)).attachChild(playerNode);
-                        
-                        playerNode.setLocalTranslation(nodeList.get(i).getWorldTranslation());
-                        levelNode.setLocalTranslation(0f, -5f, 0f);  
-                        PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
-                        levelNode.addControl(ptc);
-                        PhysicsWrapper.getInstance().add(((PhysicsTickListener)ptc));
-                        
-                        break;
-                }
-            }   
-
+        for(Spatial s: nodeList){
+            LevelNodeIdentifier.indentifyNode(levelNode, (Node)s, cam);
+        }
+        
         //Adding collisionshape
         CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(levelNode);
         RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
@@ -99,8 +67,6 @@ public class NodeFactory {
         PhysicsWrapper.getInstance().addCollisonListener(listener);
         levelNode.addControl(listener);
         levelNode.addControl(landscape);
-        
-    }
         return levelNode;
     }
 }
