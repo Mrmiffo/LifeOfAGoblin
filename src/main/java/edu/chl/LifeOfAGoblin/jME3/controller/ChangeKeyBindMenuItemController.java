@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.SettingsMenuController;
 import com.jme3.input.KeyNames;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.controls.Trigger;

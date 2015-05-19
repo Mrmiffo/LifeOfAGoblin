@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen;
 
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.KeybindNiftyPanel;
 import de.lessvoid.nifty.builder.ControlBuilder;
 import de.lessvoid.nifty.builder.ControlDefinitionBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
@@ -16,7 +17,7 @@ import de.lessvoid.nifty.controls.listbox.builder.ListBoxBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.controller.ChangeKeyBindMenuItemController;
-import edu.chl.LifeOfAGoblin.jME3.controller.SettingsMenuController;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.SettingsMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
@@ -38,7 +39,7 @@ public class SettingsMenu implements INiftyScreen{
      */
     public SettingsMenu(){ 
         settingsMenuName = "settingsMenu";
-        setupSettingsManu();
+        setupSettingsMenu();
         
     }
 
@@ -52,7 +53,7 @@ public class SettingsMenu implements INiftyScreen{
         return settingsMenuName;
     }
 
-    private void setupSettingsManu() {
+    private void setupSettingsMenu() {
         //Create a controller for the screen.
         niftyController = new SettingsMenuController();
         //Create a custom control for the keybind box

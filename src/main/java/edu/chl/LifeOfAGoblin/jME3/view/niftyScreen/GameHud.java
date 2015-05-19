@@ -4,17 +4,13 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen;
 
-import de.lessvoid.nifty.builder.ControlBuilder;
-import de.lessvoid.nifty.builder.ControlDefinitionBuilder;
-import de.lessvoid.nifty.builder.ElementBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.screen.Screen;
-import edu.chl.LifeOfAGoblin.jME3.controller.GameHudController;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.GameHudController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
 
 /**

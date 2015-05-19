@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.GameHudController;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.control.AbstractControl;
