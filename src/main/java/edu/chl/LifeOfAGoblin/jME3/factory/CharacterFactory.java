@@ -19,6 +19,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PhysicsTickControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerHealthControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
+import static edu.chl.LifeOfAGoblin.jME3.factory.CharacterFactory.createCharacter;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
@@ -35,6 +36,9 @@ class CharacterFactory {
         
         //Creates the basic Player
         Node playerNode = createCharacter(new Player());
+        
+        //A control which use the player model data to update the game hud health bar.
+        playerNode.addControl(new PlayerHealthControl());
         
         //Attaching a camera to the player
         ChaseCamera chaseCam = new ChaseCamera(cam);
@@ -56,7 +60,7 @@ class CharacterFactory {
     
     static Node createCharacter(AbstractCharacter nodeToCreate) {
         Node node = new Node();
-        AbstractMoveControl amc;
+        AbstractMoveControl amc = nodeToCreate.getAbstractMoveControl();
 
 
         Spatial model = Resources.getInstance().getResources(nodeToCreate.getModelName());
@@ -76,27 +80,18 @@ class CharacterFactory {
         mover.setJumpSpeed(nodeToCreate.getJumpStrength());
 
         if (nodeToCreate instanceof Player) {
-            nodeToCreate = new Player();
-            amc = new PlayerMoveControl();
-            //A control which use the player model data to update the game hud health bar.
-            node.addControl(new PlayerHealthControl());
             InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
         } else {
-            amc = new PlayerMoveControl();
+            //sets what to collide with
+            ghost.setCollideWithGroups(2);
         }
+        ghost.setCollisionGroup(nodeToCreate.getCollisionGroup());
 
         //Attaching controls:
         node.addControl(mover);
         node.addControl(amc);
         node.addControl(ghost);
 
-        //sets what to collide with
-        if(nodeToCreate instanceof Player){
-            ghost.setCollisionGroup(2);
-        }else{
-            ghost.setCollisionGroup(6);
-            ghost.setCollideWithGroups(2);
-        }
-            return node;
-        }
+        return node;
+    }
 }
