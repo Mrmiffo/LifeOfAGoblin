@@ -59,14 +59,20 @@ public class NodeFactory {
             LevelNodeIdentifier.indentifyNode(levelNode, (Node)s, cam);
         }
         
-        //Adding collisionshape
+        //Creating a CollisionShape that matches the terrain of the level.
         CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(levelNode);
+        
+        //Makes the shape solid.
         RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
         PhysicsWrapper.getInstance().add(landscape);
+        levelNode.addControl(landscape);
+        
+        //----------------------------MOVE------------------------------
+        //Allows object collision.
         CollisionObjectListener listener = new CollisionObjectListener();
         PhysicsWrapper.getInstance().addCollisonListener(listener);
-        levelNode.addControl(listener);
-        levelNode.addControl(landscape);
+        //---------------------------------------------------------------
+        
         return levelNode;
     }
 }
