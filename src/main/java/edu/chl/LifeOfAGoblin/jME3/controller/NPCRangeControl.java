@@ -9,9 +9,7 @@ import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.bullet.collision.shapes.SphereCollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
@@ -25,13 +23,10 @@ public class NPCRangeControl extends GhostControl implements PhysicsCollisionLis
     public NPCRangeControl() {
         super(new SphereCollisionShape(3));
         PhysicsWrapper.getInstance().addCollisonListener(this);
-        
-        
     }
 
     @Override
     public void collision(PhysicsCollisionEvent pce) {
-        
         if (pce.getNodeA() == this.spatial) {
             updateCollisionInfo(pce.getNodeB());
         } else if (pce.getNodeB() == this.spatial) {
