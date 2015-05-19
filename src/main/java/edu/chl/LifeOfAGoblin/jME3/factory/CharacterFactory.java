@@ -48,8 +48,9 @@ class CharacterFactory {
 
     //Moving the model node slightly to fit the CollisionShape
     model.setLocalTranslation(new Vector3f(0, -nodeToCreate.getHeight(), 0));
-    shape = new CapsuleCollisionShape(nodeToCreate.getWidth(), nodeToCreate.getHeight()*2, 1);
+    shape = new CapsuleCollisionShape(nodeToCreate.getWidth(), nodeToCreate.getHeight(), 1);
     mover = new CharacterControl(shape, 0.05f);
+    
     GhostControl ghost = new GhostControl(shape);
     PhysicsWrapper.getInstance().add(mover);
     PhysicsWrapper.getInstance().add(ghost);
