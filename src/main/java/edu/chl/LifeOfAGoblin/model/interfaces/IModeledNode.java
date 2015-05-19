@@ -11,5 +11,11 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
  * @author Anton
  */
 public interface IModeledNode extends INode {
+    
+    
+    /**
+     * Returns the name of the implementor's model.
+     * @return the name of the model
+     */
     public String getModelName();
 }

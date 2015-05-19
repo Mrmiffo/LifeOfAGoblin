@@ -4,24 +4,19 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
-import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.input.ChaseCamera;
-import com.jme3.math.FastMath;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.CollisionObjectListener;
-import edu.chl.LifeOfAGoblin.jME3.controller.PhysicsTickControl;
 import edu.chl.LifeOfAGoblin.model.Level;
-import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.Boss;
 import edu.chl.LifeOfAGoblin.model.Minion;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import java.util.List;
 
 /**
@@ -34,7 +29,8 @@ public class NodeFactory {
     public static Node createNode(NodeType nodetype){
         switch (nodetype) {
             case PLAYER:
-                return CharacterFactory.createCharacter(new Player());
+                throw new InternalError("Error in NodeFactory: createNode(). Player is not allowed.");
+                //return CharacterFactory.createCharacter(new Player());
             case MINION:
                 return CharacterFactory.createCharacter(new Minion());
             case BOSS:
@@ -43,7 +39,15 @@ public class NodeFactory {
             throw new InternalError("Error in NodeFactory: createNode()");
         }
     }
- 
+    
+    public static Node createNode(AbstractNPC character) {
+        return CharacterFactory.createCharacter(character);
+    }
+    
+    public static void createPlayer(Node levelNode, Node node, Camera cam) {
+        CharacterFactory.createPlayer(levelNode, node, cam);
+    } 
+    
     /**
      * Creates a Node represeting a level, gives it everything it needs based
      * on the provided levelObject's children and attaches camera, controls
@@ -55,52 +59,24 @@ public class NodeFactory {
     public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
-        for(int i = 0; i<nodeList.size(); i++){
-            if(((Node)nodeList.get(i)).getUserDataKeys().size() > 0){
-                String type = ((String)((Node)nodeList.get(i)).getUserData("nodeType"));
-                switch(type){
-                    case("SPAWNPOINT"):
-                        CollisionObjectPainter.paintCollisionObject(NodeType.SPAWNPOINT, ((Node)nodeList.get(i)));
-                        break;
-                    case("CHECKPOINT"):
-                        CollisionObjectPainter.paintCollisionObject(NodeType.CHECKPOINT, ((Node)nodeList.get(i)));
-                        ((Node)nodeList.get(i)).setLocalTranslation(0, 2, 0);
-                        break;
-                    case("FINALCHECKPOINT"):
-                        CollisionObjectPainter.paintCollisionObject(NodeType.FINALCHECKPOINT, ((Node)nodeList.get(i)));
-                        break;
-                    case("GAMEOBJECT"):
-                        CollisionObjectPainter.paintCollisionObject(NodeType.GAMEOBJECT, ((Node)nodeList.get(i)));
-                    case("PLAYER"):  
-                        //Adding the player character to the level
-                        Node playerNode = NodeFactory.createNode(NodeType.PLAYER/*((Level)levelToCreate).getPlayer()*/);
-                        ChaseCamera chaseCam = new ChaseCamera(cam);
-                        chaseCam.setRotationSensitivity(0);
-                        chaseCam.setDefaultHorizontalRotation(new Float(Math.PI/2));
-                        chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
-                        playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
-                        ((Node)nodeList.get(i)).attachChild(playerNode);
-                        
-                        playerNode.setLocalTranslation(nodeList.get(i).getWorldTranslation());
-                        levelNode.setLocalTranslation(0f, -5f, 0f);  
-                        PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
-                        levelNode.addControl(ptc);
-                        PhysicsWrapper.getInstance().add(((PhysicsTickListener)ptc));
-                        
-                        break;
-                }
-            }   
-
-        //Adding collisionshape
+        for(Spatial s: nodeList){
+            LevelNodeIdentifier.indentifyNode(levelNode, (Node)s, cam);
+        }
+        
+        //Creating a CollisionShape that matches the terrain of the level.
         CollisionShape sceneShape = CollisionShapeFactory.createMeshShape(levelNode);
+        
+        //Makes the shape solid.
         RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
         PhysicsWrapper.getInstance().add(landscape);
-        CollisionObjectListener listener = new CollisionObjectListener();
-        PhysicsWrapper.getInstance().addCollisionListener(listener);
-        levelNode.addControl(listener);
         levelNode.addControl(landscape);
         
-    }
+        //----------------------------MOVE------------------------------
+        //Allows object collision.
+        CollisionObjectListener listener = new CollisionObjectListener();
+        PhysicsWrapper.getInstance().addCollisionListener(listener);
+        //--------------------------------------------------------------
+        
         return levelNode;
     }
 }

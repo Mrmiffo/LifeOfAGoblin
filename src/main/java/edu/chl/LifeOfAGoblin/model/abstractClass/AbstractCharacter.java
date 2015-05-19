@@ -11,7 +11,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.archive.ISpawnable;
 
 /**
- *
+ * The abstraction of any character. 
  * @author Anton
  */
 public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable, ISpawnable{
@@ -51,21 +51,23 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         Resources.getInstance().loadResource(model, "models");
     }
     
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getModelName(){
         return model;
     }
     /**
-     * Returns the health of the character
-     * @return 
+     * Returns the current health of the character.
+     * @return the health of the character.
      */
     public int getHealth(){
         return health;
     }
     
     /**
-     * A meathod to set the character health. If the health reach 0 or below the die()method will be run.
+     * Sets the character health. If the newHealth <= 0, the die()-method is invoked.
      * @param newHealth 
      */
     public void setHealth(int newHealth){
@@ -91,19 +93,25 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         maxHealth = newMaxHealth;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public float getHeight() {
         return height;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public float getWidth() {
         return width;
     }
     
     /**
-     * Returns the wheigt of the character. Used in the physics engine.
-     * @return 
+     * Returns the weight of the character. Used in the physics engine.
+     * @return the weight of the character.
      */
     public float getWeight() {
         return weight;
@@ -112,15 +120,15 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     /**
      * Returns the base damage for the character. Used when calculating the 
      * damage it does to other character.
-     * @return 
+     * @return the base damage of the character.
      */
     public float getBaseDamage() {
         return baseDamage;
     }
     
     /**
-     * Returns the jump strenght of the character. Used by the physics engine.
-     * @return 
+     * Returns the jump strength of the character. Used by the physics engine.
+     * @return the jump strength of the character.
      */
     public float getJumpStrength() {
         return jumpStrength;
