@@ -8,13 +8,8 @@ import java.util.HashMap;
 
 
 /**
- *
+ * An enum describing all allowed actions, mapped to pairs of  Integer/InputDevice.
  * @author kakan
- */
-
-/**
- * Actions is an enum that contains all the possible actions that can be taken
- * by the player and maps them to a KeyTrigger.
  */
 public enum Actions {
 
