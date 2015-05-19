@@ -119,7 +119,7 @@ public class InputManagerWrapper {
 
             Actions.OPEN_MENU.setKeyCodes(new HashMap<Integer, InputDevice>() {{
                 put(KeyInput.KEY_P, InputDevice.KEYBOARD);
-                put(KeyInput.KEY_ESCAPE, InputDevice.KEYBOARD);
+             //   put(KeyInput.KEY_ESCAPE, InputDevice.KEYBOARD);
             }});
         }
 

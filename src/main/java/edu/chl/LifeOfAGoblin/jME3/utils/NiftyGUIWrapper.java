@@ -90,4 +90,8 @@ public class NiftyGUIWrapper {
     public Nifty getNifty(){
         return nifty;
     }
+    
+    public void showPauseMenu(){
+        goToScreen("mainMenu");
+    }
 }
