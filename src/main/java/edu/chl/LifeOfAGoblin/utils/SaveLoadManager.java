@@ -34,12 +34,12 @@ public class SaveLoadManager {
     public void saveToFile(Serializable objectToSave, String path, String name){
 
             if (path == null){			
-                    new File(System.getProperty("user.home") + "/LifeOfAGoblin/savedFiles").mkdirs();
-                    path = System.getProperty("user.home") + "/LifeOfAGoblin/savedFiles";
+                    new File(System.getProperty("user.home") + File.separator +"LifeOfAGoblin" + File.separator + "savedFiles").mkdirs();
+                    path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
             }
             try{
 
-                    FileOutputStream fout = new FileOutputStream(path + "/" + name);
+                    FileOutputStream fout = new FileOutputStream(path + File.separator + name);
                     ObjectOutputStream oos = new ObjectOutputStream(fout);   
                     oos.writeObject(objectToSave);
                     oos.close();
@@ -55,10 +55,10 @@ public class SaveLoadManager {
      */
     public Serializable loadFile(String path, String name){
             if (path == null){
-                    path = System.getProperty("user.home") + "/LifeOfAGoblin/savedFiles";
+                    path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
             }
             try{
-                FileInputStream fin = new FileInputStream(path + "/" + name);
+                FileInputStream fin = new FileInputStream(path + File.separator + name);
                 ObjectInputStream ois = new ObjectInputStream(fin);
                 Object toReturn= ois.readObject();
                 ois.close();
@@ -77,8 +77,8 @@ public class SaveLoadManager {
     public List<String> getSavedFiles(String path){
         List<String> toReturn = new ArrayList<String>();
         if (path == null){
-                new File(System.getProperty("user.home") + "/LifeOfAGoblin/savedFiles").mkdirs();
-                path = System.getProperty("user.home") + "/LifeOfAGoblin/savedFiles";
+                new File(System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles").mkdirs();
+                path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
         }
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
@@ -98,8 +98,8 @@ public class SaveLoadManager {
      */
     public void deleteFile(String path, String name){	
         if (path == null){
-                new File(System.getProperty("user.home") + "/LifeOfAGoblin/savedFiles").mkdirs();
-                path = System.getProperty("user.home") + "/LifeOfAGoblin/savedFiles";
+                new File(System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles").mkdirs();
+                path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
         }
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
