@@ -5,6 +5,8 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
+import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 
 /**
  * A class representing a checkpoint that is the last checkpoint in the game
@@ -31,8 +33,10 @@ public class FinalCheckpoint extends Checkpoint {
     
     public void collide(){
         super.updateProgress(this.level, this.number);      
-        System.out.println("checkpoint");
+        System.out.println("finalcheckpoint");
         super.setIsActivated(true);
-        //todo add method for ending the level.
+        StateManagerWrapper.getInstance().detachCurrentState();
+        NiftyGUIWrapper.getInstance().showPauseMenu();
+        
     }
 }
