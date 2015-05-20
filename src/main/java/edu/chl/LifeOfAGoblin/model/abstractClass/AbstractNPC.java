@@ -10,6 +10,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.Player;
+import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
 
@@ -22,10 +23,10 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
     protected AIAction activeAction;
     protected float targetDistance;
     protected NodeType targetNodeType;
-    protected String targetDirection;
+    protected Direction targetDirection;
     
     //-----------------------------Fix----------------------
-    private static final AbstractMoveControl npcMoveControl = new PlayerMoveControl(); 
+    private static final AbstractMoveControl npcMoveControl = new NPCMoveControl(); 
     //-------------------------------------------------------
     private static final int collisionGroup = 6;
     
@@ -58,7 +59,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
     
         
     @Override
-    public void updateAIAction(float distance, String direction, NodeType type) {
+    public void updateAIAction(float distance, Direction direction, NodeType type) {
         if (targetDistance <= distance && targetNodeType == type) {
             activeAction = AIAction.MOVETOTARGET;
             targetDirection = direction;
@@ -70,7 +71,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
         return activeAction;
     }
     
-    public String getTargetDirection() {
+    public Direction getTargetDirection() {
         return targetDirection;
     }
 }

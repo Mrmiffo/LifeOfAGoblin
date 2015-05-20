@@ -17,6 +17,7 @@ import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PhysicsTickControl;
+import edu.chl.LifeOfAGoblin.jME3.controller.NPCCollisionControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerHealthControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import static edu.chl.LifeOfAGoblin.jME3.factory.CharacterFactory.createCharacter;
@@ -49,7 +50,7 @@ class CharacterFactory {
         playerNode.addControl(new PlayerHealthControl());
 
         attachChaseCamera(playerNode, cam);
-        attachPhyscisTickControl(levelNode, playerNode);
+        attachPhysicsTickControl(levelNode, playerNode);
         
     }
     
@@ -67,6 +68,7 @@ class CharacterFactory {
         
         makeSolid(node);
         makeMoveable(node);
+        enableReaction(node);
         provideGraphicalRepresentation(node);
         
         return node;
@@ -130,7 +132,7 @@ class CharacterFactory {
     }
     
     /**
-     * Makes the node moveable.
+     * Adds what the character requires to move
      * @param node the node to make moveable.
      */
     private static void makeMoveable(Node node) {
@@ -170,9 +172,18 @@ class CharacterFactory {
     }
 
 
-    private static void attachPhyscisTickControl(Node levelNode, Node playerNode) {
+    private static void attachPhysicsTickControl(Node levelNode, Node playerNode) {
         PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
         levelNode.addControl(ptc);
         PhysicsWrapper.getInstance().add(((PhysicsTickListener)ptc));
+    }
+    
+    /**
+     * Adds a control that checks for collisions.
+     */
+    private static void enableReaction(Node node) {
+        NPCCollisionControl ncc = new NPCCollisionControl();
+        node.addControl(ncc);
+        //Attack control could potentially be added here
     }
 }
