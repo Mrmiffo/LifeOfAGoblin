@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author fredrik
  */
-public class SpawnPointTest {
+public class SpawnpointTest {
     
-    public SpawnPointTest() {
+    public SpawnpointTest() {
     }
     
     @BeforeClass
@@ -42,7 +42,7 @@ public class SpawnPointTest {
     @Test
     public void testGetNodeType() {
         SpawnControl spawn = new SpawnControl();
-        SpawnPoint sp = new SpawnPoint(spawn, 1,NodeType.BOSS,  1f);
+        Spawnpoint sp = new Spawnpoint(spawn, 1,NodeType.BOSS,  1f);
         assertTrue(sp.getNodeType().equals(NodeType.SPAWNPOINT));
     }
 

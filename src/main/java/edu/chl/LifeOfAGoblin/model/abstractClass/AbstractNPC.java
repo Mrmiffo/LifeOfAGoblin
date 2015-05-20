@@ -71,6 +71,10 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
         return activeAction;
     }
     
+    /**
+     * Returns the direction to the NPC's target
+     * @return the direction to the target
+     */
     public Direction getTargetDirection() {
         return targetDirection;
     }

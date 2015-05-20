@@ -20,15 +20,15 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
  * @author fredrik
  */
 
-public class SpawnControl extends AbstractControl implements ISpawnControl{
+public class SpawnControl extends AbstractControl implements ISpawnControl {
    
     @Override
-    public void Spawn(int amount, NodeType type){
-    Node node = NodeFactory.createNode(type);
-    node.setUserData("nodeType", type.toString());
-    this.getSpatial().getParent().attachChild(node);
-    node.setLocalTranslation(this.getSpatial().getLocalTranslation());
-    node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());
+    public void spawn(int amount, NodeType type) {
+        Node node = NodeFactory.createNode(type);
+        node.setUserData("nodeType", type.toString());
+        this.getSpatial().getParent().attachChild(node);
+        node.setLocalTranslation(this.getSpatial().getLocalTranslation());
+        node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());
    }
 
     @Override
@@ -38,6 +38,6 @@ public class SpawnControl extends AbstractControl implements ISpawnControl{
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
-     //probably not needed    
+        //probably not needed    
     }
 }

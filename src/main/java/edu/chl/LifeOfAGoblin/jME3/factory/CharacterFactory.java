@@ -68,7 +68,7 @@ class CharacterFactory {
         
         makeSolid(node);
         makeMoveable(node);
-        enableReaction(node);
+        enableReaction(node); //Adds AI
         provideGraphicalRepresentation(node);
         
         return node;
