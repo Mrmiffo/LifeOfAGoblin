@@ -9,12 +9,16 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IKillable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 import edu.chl.LifeOfAGoblin.archive.ISpawnable;
+import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 
 /**
  * The abstraction of any character. 
  * @author Anton
  */
 public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable, ISpawnable{
+    
+    private AbstractMoveControl amc;
+    private int collisionGroup;
     private int health;
     private int maxHealth;
     private String model;
@@ -29,6 +33,8 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * Default constructor for the abstract character. To be called by subclasses
      * to populate needed values. Also tells the Resource class to load needed model. 
      * This reduce the need of loading resources from harddrive during gameplay.
+     * @param amc the controller of the character's movement.
+     * @param collisionGroup which group of collidable object 
      * @param maxHealth the max health of the character.
      * @param model the model texture to load for the character. Must be placed in the assets/model folder.
      * @param height the height of the character.
@@ -37,9 +43,11 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * @param baseDamage the character's unmodified damage.
      * @param jumpStrength the character reaches by jumping.
      */
-    protected AbstractCharacter(int maxHealth, String model, float height,
+    protected AbstractCharacter(AbstractMoveControl amc, int collisionGroup, int maxHealth, String model, float height,
             float width, float weight, float baseDamage, float jumpStrength) {
         
+        this.amc = amc;
+        this.collisionGroup = collisionGroup;
         this.health = maxHealth; //everything has full health when created
         this.maxHealth = maxHealth;
         this.model = model;
@@ -58,7 +66,24 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     public String getModelName(){
         return model;
     }
+    
     /**
+     * Returns the controller of the character's movement.
+     * @return the controller of the character's movement.
+     */
+    public AbstractMoveControl getAbstractMoveControl() {
+        return amc;
+    }
+    
+    /**
+     * Returns the character's collision group.
+     * @return the character's collision group.
+     */
+    public int getCollisionGroup() {
+        return collisionGroup;
+    }
+        
+     /**
      * Returns the current health of the character.
      * @return the health of the character.
      */

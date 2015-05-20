@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
@@ -16,7 +17,8 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
  */
 public class Player extends AbstractCharacter {
     
-    private static Player instance;
+    private static final PlayerMoveControl playerMoveControl = new PlayerMoveControl();
+    private static final int collsionGroup = 2;
     private static final int maxHealth = 5;
     private static final String model = "Goblin2.j3o";
     private static final float height = 1;
@@ -27,7 +29,7 @@ public class Player extends AbstractCharacter {
     private boolean isDamaged;
     
     public Player(){
-        super(maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        super(playerMoveControl, collsionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         this.isDamaged = false;
     }
 

@@ -12,7 +12,7 @@ import com.jme3.scene.control.Control;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.model.SpawnPoint;
-import edu.chl.LifeOfAGoblin.model.interfaces.INode;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 
 /**
  * A class responsible for "painting" nodes giving them models and adding
@@ -24,22 +24,22 @@ class CollisionObjectPainter {
     /**
      * Paints a node of the type collisionObject
      * @param typeToCreate the specific type of collisionobject to create
-     * @param userDataNode the node to be painted. It also contains all 
+     * @param node the node to be painted. It also contains all 
      * relevant userdata.
      */
     
-    static void paintCollisionObject(INode model, Node userDataNode) {
-        ModelControl modelControl = new ModelControl(model);
-        Vector3f halfExtent = new Vector3f(model.getWidth(),model.getHeight(), 0);
+    static void paintCollisionObject(AbstractCollisionObject collisionObject, Node node) {
+        ModelControl modelControl = new ModelControl(collisionObject);
+        Vector3f halfExtent = new Vector3f(collisionObject.getWidth(),collisionObject.getHeight(), 0);
         BoxCollisionShape checkBox = new BoxCollisionShape(halfExtent);
         GhostControl ghostControl = new GhostControl(checkBox);
         ghostControl.setCollisionGroup(3); //FIX
         ghostControl.setCollideWithGroups(2); //FIX
         PhysicsWrapper.getInstance().add(ghostControl);
-        userDataNode.addControl(modelControl);
-        userDataNode.addControl(ghostControl);
-        if (model instanceof SpawnPoint) {
-            userDataNode.addControl((Control)((SpawnPoint)model).getSpawnControl());
+        node.addControl(modelControl);
+        node.addControl(ghostControl);
+        if (collisionObject instanceof SpawnPoint) {
+            node.addControl((Control)((SpawnPoint)collisionObject).getSpawnControl());
         }
     }
 }
