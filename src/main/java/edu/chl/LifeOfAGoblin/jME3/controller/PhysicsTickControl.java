@@ -19,6 +19,7 @@ import edu.chl.LifeOfAGoblin.model.Player;
 public class PhysicsTickControl extends AbstractControl implements PhysicsTickListener {
     private Node player;
     private float loop = 1;
+    private boolean loopStarted = false;
     public PhysicsTickControl(Node player){
         this.player = player;
     }
@@ -29,11 +30,18 @@ public class PhysicsTickControl extends AbstractControl implements PhysicsTickLi
 
     @Override
     public void physicsTick(PhysicsSpace ps, float f) {
-        this.loop-=1*f;
-        if(this.loop<0){
-           ((Player)player.getControl(ModelControl.class).getModel()).setIsDamaged(false);
-           this.loop = 1;
+        if (((Player)player.getControl(ModelControl.class).getModel()).getIsDamaged()){
+            if (!loopStarted){
+                this.loop = 1;
+                loopStarted = true;
+            }
+            this.loop-=1*f;
+            if(this.loop<0){
+               ((Player)player.getControl(ModelControl.class).getModel()).setIsDamaged(false);
+               loopStarted = false;
+            }
         }
+
     }
 
     @Override
