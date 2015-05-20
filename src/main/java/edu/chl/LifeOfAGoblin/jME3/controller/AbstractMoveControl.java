@@ -10,6 +10,7 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
+import edu.chl.LifeOfAGoblin.model.Direction;
 
 /**
  *
@@ -17,8 +18,7 @@ import com.jme3.scene.control.AbstractControl;
  */
 public abstract class AbstractMoveControl extends AbstractControl {
     
-    protected boolean right;
-    protected boolean left;
+    protected Direction currentDirection;
     private CharacterControl characterControl;
     private float stepWidth;
     
@@ -44,14 +44,21 @@ public abstract class AbstractMoveControl extends AbstractControl {
             characterControl.warp(new Vector3f(currentLocation.x, currentLocation.y, 0));
         }
         
-        if (right) {
-            faceRight();
-            characterControl.setWalkDirection(new Vector3f(stepWidth, 0, 0));
-        } else if (left) {
-            faceLeft();
-            characterControl.setWalkDirection(new Vector3f(-stepWidth, 0, 0));
-        } else {
-            haltCharacter();
+        switch (currentDirection) {
+                case LEFT:
+                    faceLeft();
+                    characterControl.setWalkDirection(new Vector3f(-stepWidth, 0, 0));
+                    break;
+                case RIGHT:
+                    faceRight();
+                    characterControl.setWalkDirection(new Vector3f(stepWidth, 0, 0));
+                    break;
+                case STAND_STILL:
+                    haltCharacter();
+                    break;
+                default:
+                    haltCharacter();
+                    break;
         }
     }
 
