@@ -39,26 +39,20 @@ class CharacterFactory {
         //Creates the basic Player
         Node playerNode = createCharacter(new Player());
         
-        //A control which use the player model data to update the game hud health bar.
-        playerNode.addControl(new PlayerHealthControl());
-        
-        //Attaching a camera to the player
-        ChaseCamera chaseCam = new ChaseCamera(cam);
-        chaseCam.setRotationSensitivity(0);
-        chaseCam.setDefaultHorizontalRotation(new Float(FastMath.PI/2));
-        chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
-        playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
-
-        //Adding the player to the node
-        node.attachChild(playerNode);
         playerNode.setLocalTranslation(node.getWorldTranslation());
         levelNode.setLocalTranslation(0f, -5f, 0f);
         
-        //Adding tick controller
-        PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
-        levelNode.addControl(ptc);
-        PhysicsWrapper.getInstance().add(((PhysicsTickListener)ptc));
+        //Attach the player to the level
+        node.attachChild(playerNode);
+        
+        //A control which use the player model data to update the game hud health bar.
+        playerNode.addControl(new PlayerHealthControl());
+
+        attachCamera(playerNode, cam);
+        attachPhyscisTickControl(levelNode, playerNode);
+        
     }
+    
     
     static Node createCharacter(AbstractCharacter nodeToCreate) {
         //Creates the node which will represent the character
@@ -129,5 +123,20 @@ class CharacterFactory {
         node.attachChild(appearance);
         //Moving the appearnace slightly to fit the CollisionShape
         appearance.setLocalTranslation(new Vector3f(0, -model.getHeight(), 0));
+    }
+    
+    //Attaches a camera to the player
+    private static void attachCamera(Node playerNode, Camera cam) {
+        ChaseCamera chaseCam = new ChaseCamera(cam);
+        chaseCam.setRotationSensitivity(0);
+        chaseCam.setDefaultHorizontalRotation(new Float(FastMath.PI/2));
+        chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
+        playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
+    }
+
+    private static void attachPhyscisTickControl(Node levelNode, Node playerNode) {
+        PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
+        levelNode.addControl(ptc);
+        PhysicsWrapper.getInstance().add(((PhysicsTickListener)ptc));
     }
 }
