@@ -4,13 +4,11 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
-import com.jme3.bullet.collision.PhysicsCollisionEvent;
-import com.jme3.bullet.collision.PhysicsCollisionListener;
-import com.jme3.bullet.collision.shapes.SphereCollisionShape;
-import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.RenderManager;
+import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
+import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
@@ -19,31 +17,16 @@ import edu.chl.LifeOfAGoblin.model.interfaces.INode;
  *
  * @author Ulrika
  */
-public class NPCRangeControl extends GhostControl implements PhysicsCollisionListener {
-
-    public NPCRangeControl() {
-        super(new SphereCollisionShape(3));
-        PhysicsWrapper.getInstance().addCollisonListener(this);
-    }
-
-    @Override
-    public void collision(PhysicsCollisionEvent pce) {
-        if (pce.getNodeA() == this.spatial) {
-            updateCollisionInfo(pce.getNodeB());
-        } else if (pce.getNodeB() == this.spatial) {
-            updateCollisionInfo(pce.getNodeA());
-        }
-    }
-    
+public class NPCCollisionControl extends AbstractControl {
     /**
      * 
      * @param collided the object with which the GhostControl has collided with
      */
-    private void updateCollisionInfo(Spatial collided) {
-        INode n = this.spatial.getControl(ModelControl.class).getModel();
+    private void updateCollisionInfo(Spatial npc, Spatial collided) {
+        INode n = npc.getControl(ModelControl.class).getModel();
         AbstractNPC npcModel = (AbstractNPC)n;
         
-        Vector3f npcLocation = this.spatial.getLocalTranslation();
+        Vector3f npcLocation = npc.getLocalTranslation();
         
         float distance = npcLocation.distance(collided.getLocalTranslation());
         
@@ -58,5 +41,15 @@ public class NPCRangeControl extends GhostControl implements PhysicsCollisionLis
         INode collideModel = collided.getControl(ModelControl.class).getModel();
 
         npcModel.updateAIAction(distance, direction, collideModel.getNodeType());
+    }
+
+    @Override
+    protected void controlUpdate(float f) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    } //TODO Do things here instead?
+
+    @Override
+    protected void controlRender(RenderManager rm, ViewPort vp) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
