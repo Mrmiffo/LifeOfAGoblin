@@ -53,13 +53,17 @@ class CharacterFactory {
         
     }
     
-    
-    static Node createCharacter(AbstractCharacter nodeToCreate) {
+    /**
+     * Creates a node representing any character.
+     * @param character the character which the node will represent.
+     * @return a node representing the character.
+     */
+    static Node createCharacter(AbstractCharacter character) {
         //Creates the node which will represent the character
         Node node = new Node();
         
         //Connects the model to the node
-        node.addControl(new ModelControl(nodeToCreate));
+        node.addControl(new ModelControl(character));
         
         makeSolid(node);
         makeMoveable(node);
@@ -68,18 +72,32 @@ class CharacterFactory {
         return node;
     }
     
+    /**
+     * Makes any node solid provided it has a ModelControl.
+     * @param node the node to make solid.
+     */
     private static void makeSolid(Node node) {
         CapsuleCollisionShape shape = createShape(node);
         attachCharacterControl(node, shape);
         attachGhostControl(node, shape);
         
     }    
-    //Give the character a shape
+
+    /**
+     * Creates a shape after the template of a node.
+     * @param node the template for the shape.
+     * @return the shape created of the template.
+     */
     private static CapsuleCollisionShape createShape(Node node) {
         INode model = node.getControl(ModelControl.class).getModel();
         return new CapsuleCollisionShape(model.getWidth(), model.getHeight(), 1);
     }
     
+    /**
+     * Attaches a CharacterControl to a node. 
+     * @param node the node to attach the CharacterControl to.
+     * @param shape the template for the shape of the CharacterControl.
+     */
     private static void attachCharacterControl(Node node, CapsuleCollisionShape shape) {
         AbstractCharacter character = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
         //NOTE: CharacterControl has been depricated prematurly due to BetterCharacterControl. Although BetterCharacterControl contains major flaws (such as missing step height) that make CharacterControl a better choice for this project.
@@ -89,6 +107,11 @@ class CharacterFactory {
         node.addControl(mover);
     }
     
+    /**
+     * Attaches a GhostControl to the node.
+     * @param node the node to attach the GhostControl to.
+     * @param shape the template for the shape of the GhostControl.
+     */
     private static void attachGhostControl(Node node, CapsuleCollisionShape shape) {
         //Could we use another abstraction? ICollidable? AbstractGameObject?
         AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
@@ -107,16 +130,25 @@ class CharacterFactory {
         node.addControl(ghost);
     }
     
+    /**
+     * Attaches makes the node moveable.
+     * @param node the node to make moveable.
+     */
     private static void makeMoveable(Node node) {
         AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
         AbstractMoveControl amc = model.getAbstractMoveControl();
         if (model instanceof Player) {
             InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
         }
+        
+        //Attaching move control
         node.addControl(amc);
     }
     
-    //Attachs the graphical representation
+    /**
+     * Provides the node with a graphical representation.
+     * @param node the node to be given a graphical representation.
+     */
     private static void giveGraphicalRepresentation(Node node) {
         IModeledNode model = (IModeledNode)node.getControl(ModelControl.class).getModel();
         Spatial appearance = Resources.getInstance().getResources(model.getModelName());
@@ -125,14 +157,19 @@ class CharacterFactory {
         appearance.setLocalTranslation(new Vector3f(0, -model.getHeight(), 0));
     }
     
-    //Attaches a camera to the player
+    /**
+     * Makes the camera follow the provided node.
+     * @param playerNode the node the camera will follow.
+     * @param cam the camera.
+     */
     private static void attachCamera(Node playerNode, Camera cam) {
         ChaseCamera chaseCam = new ChaseCamera(cam);
         chaseCam.setRotationSensitivity(0);
         chaseCam.setDefaultHorizontalRotation(new Float(FastMath.PI/2));
         chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
-        playerNode.addControl(chaseCam); //Adding a camera control to make the camera follow the player
+        playerNode.addControl(chaseCam);
     }
+
 
     private static void attachPhyscisTickControl(Node levelNode, Node playerNode) {
         PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
