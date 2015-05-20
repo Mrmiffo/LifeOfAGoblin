@@ -25,6 +25,8 @@ import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
+import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
+import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
 /**
  *
@@ -59,39 +61,73 @@ class CharacterFactory {
     }
     
     static Node createCharacter(AbstractCharacter nodeToCreate) {
+        //Creates the node which will represent the character
         Node node = new Node();
-        AbstractMoveControl amc = nodeToCreate.getAbstractMoveControl();
-
-
-        Spatial model = Resources.getInstance().getResources(nodeToCreate.getModelName());
-        node.attachChild(model);
+        
+        //Connects the model to the node
         node.addControl(new ModelControl(nodeToCreate));
-        CapsuleCollisionShape shape;
-        CharacterControl mover; //CharacterControl has been depricated prematurly due to BetterCharacterControl. Although BetterCharacterControl contains major flaws (such as missing step height) that make CharacterControl a better choice for this project.
-
-        //Moving the model node slightly to fit the CollisionShape
-        model.setLocalTranslation(new Vector3f(0, -nodeToCreate.getHeight(), 0));
-        shape = new CapsuleCollisionShape(nodeToCreate.getWidth(), nodeToCreate.getHeight(), 1);
-        mover = new CharacterControl(shape, 0.05f);
-
-        GhostControl ghost = new GhostControl(shape);
+        
+        makeSolid(node);
+        makeMoveable(node);
+        giveGraphicalRepresentation(node);
+        
+        return node;
+    }
+    
+    private static void makeSolid(Node node) {
+        CapsuleCollisionShape shape = createShape(node);
+        attachCharacterControl(node, shape);
+        attachGhostControl(node, shape);
+        
+    }    
+    //Give the character a shape
+    private static CapsuleCollisionShape createShape(Node node) {
+        INode model = node.getControl(ModelControl.class).getModel();
+        return new CapsuleCollisionShape(model.getWidth(), model.getHeight(), 1);
+    }
+    
+    private static void attachCharacterControl(Node node, CapsuleCollisionShape shape) {
+        AbstractCharacter character = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
+        //NOTE: CharacterControl has been depricated prematurly due to BetterCharacterControl. Although BetterCharacterControl contains major flaws (such as missing step height) that make CharacterControl a better choice for this project.
+        CharacterControl mover = new CharacterControl(shape, 0.05f);
+        mover.setJumpSpeed(character.getJumpStrength());
         PhysicsWrapper.getInstance().add(mover);
+        node.addControl(mover);
+    }
+    
+    private static void attachGhostControl(Node node, CapsuleCollisionShape shape) {
+        //Could we use another abstraction? ICollidable? AbstractGameObject?
+        AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
+        
+        GhostControl ghost = new GhostControl(shape);
         PhysicsWrapper.getInstance().add(ghost);
-        mover.setJumpSpeed(nodeToCreate.getJumpStrength());
-
-        if (nodeToCreate instanceof Player) {
-            InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
-        } else {
+        ghost.setCollisionGroup(model.getCollisionGroup());
+        
+        //TODO add more special cases
+        if (!(model instanceof Player)) {
             //sets what to collide with
             ghost.setCollideWithGroups(2);
         }
-        ghost.setCollisionGroup(nodeToCreate.getCollisionGroup());
-
-        //Attaching controls:
-        node.addControl(mover);
-        node.addControl(amc);
+        
+        //Attaching ghost control
         node.addControl(ghost);
-
-        return node;
+    }
+    
+    private static void makeMoveable(Node node) {
+        AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
+        AbstractMoveControl amc = model.getAbstractMoveControl();
+        if (model instanceof Player) {
+            InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
+        }
+        node.addControl(amc);
+    }
+    
+    //Attachs the graphical representation
+    private static void giveGraphicalRepresentation(Node node) {
+        IModeledNode model = (IModeledNode)node.getControl(ModelControl.class).getModel();
+        Spatial appearance = Resources.getInstance().getResources(model.getModelName());
+        node.attachChild(appearance);
+        //Moving the appearnace slightly to fit the CollisionShape
+        appearance.setLocalTranslation(new Vector3f(0, -model.getHeight(), 0));
     }
 }
