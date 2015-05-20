@@ -6,6 +6,7 @@ package edu.chl.LifeOfAGoblin.model.interfaces;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
+import edu.chl.LifeOfAGoblin.model.Direction;
 
 /**
  *
@@ -28,5 +29,5 @@ public interface IAI {
      * Recieves the distance to a specified object and the object's NodeType and
      * updates the active action accordingly. The direction can be either left or right.
      */
-    public void updateAIAction(float distance, String direction, NodeType type);
+    public void updateAIAction(float distance, Direction direction, NodeType type);
 }
