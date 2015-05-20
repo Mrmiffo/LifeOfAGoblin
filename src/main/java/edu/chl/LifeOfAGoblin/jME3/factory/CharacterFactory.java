@@ -48,7 +48,7 @@ class CharacterFactory {
         //A control which use the player model data to update the game hud health bar.
         playerNode.addControl(new PlayerHealthControl());
 
-        attachCamera(playerNode, cam);
+        attachChaseCamera(playerNode, cam);
         attachPhyscisTickControl(levelNode, playerNode);
         
     }
@@ -67,7 +67,7 @@ class CharacterFactory {
         
         makeSolid(node);
         makeMoveable(node);
-        giveGraphicalRepresentation(node);
+        provideGraphicalRepresentation(node);
         
         return node;
     }
@@ -80,7 +80,6 @@ class CharacterFactory {
         CapsuleCollisionShape shape = createShape(node);
         attachCharacterControl(node, shape);
         attachGhostControl(node, shape);
-        
     }    
 
     /**
@@ -131,7 +130,7 @@ class CharacterFactory {
     }
     
     /**
-     * Attaches makes the node moveable.
+     * Makes the node moveable.
      * @param node the node to make moveable.
      */
     private static void makeMoveable(Node node) {
@@ -149,7 +148,7 @@ class CharacterFactory {
      * Provides the node with a graphical representation.
      * @param node the node to be given a graphical representation.
      */
-    private static void giveGraphicalRepresentation(Node node) {
+    private static void provideGraphicalRepresentation(Node node) {
         IModeledNode model = (IModeledNode)node.getControl(ModelControl.class).getModel();
         Spatial appearance = Resources.getInstance().getResources(model.getModelName());
         node.attachChild(appearance);
@@ -162,7 +161,7 @@ class CharacterFactory {
      * @param playerNode the node the camera will follow.
      * @param cam the camera.
      */
-    private static void attachCamera(Node playerNode, Camera cam) {
+    private static void attachChaseCamera(Node playerNode, Camera cam) {
         ChaseCamera chaseCam = new ChaseCamera(cam);
         chaseCam.setRotationSensitivity(0);
         chaseCam.setDefaultHorizontalRotation(new Float(FastMath.PI/2));
