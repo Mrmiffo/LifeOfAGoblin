@@ -11,6 +11,7 @@ import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
@@ -47,11 +48,11 @@ public class NPCRangeControl extends GhostControl implements PhysicsCollisionLis
         float distance = npcLocation.distance(collided.getLocalTranslation());
         
         float deltaX = npcLocation.getX() - collided.getLocalTranslation().getX();
-        String direction; //TODO Replace with enum?
+        Direction direction; //TODO Replace with enum?
         if (deltaX >= 0) {
-            direction = "left";
+            direction = Direction.LEFT;
         } else {
-            direction = "right";
+            direction = Direction.RIGHT;
         }
         
         INode collideModel = collided.getControl(ModelControl.class).getModel();

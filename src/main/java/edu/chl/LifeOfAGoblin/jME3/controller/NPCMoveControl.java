@@ -6,6 +6,7 @@ package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.model.AIAction;
+import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
@@ -58,21 +59,17 @@ public class NPCMoveControl extends AbstractMoveControl {
             AIAction action = npcModel.getAIAction();
             switch (action) {
                 case IDLE:
-                    if (idleMoveRange == 0 && left != right) {
-                        right = !right;
-                        left = !left;
-                        idleMoveRange = 2;
+                    if (idleMoveRange <= 0) {
+                        currentDirection = (currentDirection == Direction.LEFT) ?
+                                                Direction.RIGHT : Direction.LEFT;
+                       idleMoveRange = 2; //2 is full idle range
+                    } else {
+                        idleMoveRange -= stepWidth;
                     }
                     break;
                 case MOVETOTARGET:
-                    String direction = npcModel.getTargetDirection();
-                    if (direction.equals("left")) {
-                        left = true;
-                        right = false;
-                    } else if (direction.equals("right")) {
-                        right = true;
-                        left = false;
-                    }
+                    currentDirection = npcModel.getTargetDirection();
+                    break;
             }
             super.controlUpdate(tpf);
         }
