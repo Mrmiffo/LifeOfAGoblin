@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.jME3.controller;
+package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
 
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.SettingsMenuController;
 import com.jme3.input.KeyNames;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.controls.Trigger;
@@ -22,7 +21,10 @@ import de.lessvoid.nifty.input.NiftyInputEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.xml.xpp3.Attributes;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.utils.KeyAndMouseNames;
+import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.model.InputDevice;
+import edu.chl.LifeOfAGoblin.model.Keybind;
 import java.util.Properties;
 
 /**
@@ -112,31 +114,39 @@ public class ChangeKeyBindMenuItemController implements Controller, RawInputList
 
     @Override
     public void onMouseButtonEvent(MouseButtonEvent evt) {
-        //Get the event key int and translate, via Trigger, to a String.
-        int newKey = evt.getButtonIndex();
-        System.out.println(newKey);
-        Trigger temp = InputManagerWrapper.getInstance().integerToTrigger(newKey, InputDevice.MOUSE_BUTTON);
+        //Get the event key int and translate it to a keybind.
+        Keybind keybind = new Keybind(InputDevice.MOUSE_BUTTON, evt.getButtonIndex());
         endInput();
-        textBox.getRenderer(TextRenderer.class).setText(temp.getName());
-        String action = textBox.getParent().findElementByName("actionField").getRenderer(TextRenderer.class).getOriginalText();
-
-        SettingsMenuController.setChangedKeyBind(action, InputDevice.MOUSE_BUTTON, fieldNo, newKey);
+        //Print the key name into the textfield.
+        textBox.getRenderer(TextRenderer.class).setText(KeyAndMouseNames.getInstance().getName(keybind));
+        Actions action = identifyAction();
+        //Register the change in the SettingsMenuController.
+        ((SettingsMenuController)screen.getScreenController()).setChangedKeyBind(action, keybind, fieldNo);
     }
 
     @Override
     public void onKeyEvent(KeyInputEvent evt) {
-        //Get the event key int and translate, via KeyNames, to a String.
-        int newKey = evt.getKeyCode();
+        //Get the event key int and translate it to a keybind.
+        Keybind keybind = new Keybind(InputDevice.KEYBOARD, evt.getKeyCode());
+        //Stop listening to keys.
         endInput();
-        String action = textBox.getParent().findElementByName("actionField").getRenderer(TextRenderer.class).getOriginalText();
-        textBox.getRenderer(TextRenderer.class).setText(keyNames.getName(newKey));
+        //Print the key name into the textfield.
+        textBox.getRenderer(TextRenderer.class).setText(KeyAndMouseNames.getInstance().getName(keybind));
+        Actions action = identifyAction();
         //Update SettingsMenuController with the data.
-        SettingsMenuController.setChangedKeyBind(action, InputDevice.KEYBOARD, fieldNo, newKey);
+        
+        ((SettingsMenuController)screen.getScreenController()).setChangedKeyBind(action, keybind, fieldNo);
     }
 
     @Override
     public void onTouchEvent(TouchEvent evt) {
         
+    }
+    //Identify which action the keybind is related to.
+    private Actions identifyAction() {
+        String actionString = textBox.getParent().findElementByName("actionField").getRenderer(TextRenderer.class).getOriginalText();
+        Actions action = Actions.findActionByName(actionString);
+        return action;
     }
     
 }

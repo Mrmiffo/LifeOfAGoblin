@@ -16,7 +16,7 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.listbox.builder.ListBoxBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.tools.Color;
-import edu.chl.LifeOfAGoblin.jME3.controller.ChangeKeyBindMenuItemController;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.ChangeKeyBindMenuItemController;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.SettingsMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
