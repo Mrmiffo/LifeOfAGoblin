@@ -52,7 +52,6 @@ public class CollisionObjectListenerTest {
         ghost.setCollisionGroup(2);
         node1.addControl(ghost);   
         node1.addControl(mc);
-        
     }
     
     @After
