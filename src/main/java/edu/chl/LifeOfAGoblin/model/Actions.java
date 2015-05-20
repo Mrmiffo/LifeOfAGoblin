@@ -4,39 +4,51 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import java.util.HashMap;
+import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
- * An enum describing all allowed actions, mapped to pairs of  Integer/InputDevice.
- * @author kakan
+ * An enum describing all allowed actions, mapped to currently active keybinds.
+ * @author Anton
  */
-public enum Actions {
+public enum Actions implements Serializable{
 
     WALK_LEFT,
     WALK_RIGHT,
     JUMP,
     OPEN_MENU;
-    private HashMap<Integer, InputDevice> keyCodes;
+    private ArrayList<Keybind> keyCodes;
 
     /**
-     * Returns the key codes which invokes the enum.
+     * Returns the keybinds which invokes the action.
      * @return a HashMap of Integer/InputDevices pairs that invoke the enum.
      */
-    public HashMap<Integer, InputDevice> getKeyCodes() {
-        return (HashMap<Integer, InputDevice>)keyCodes.clone();
+    public ArrayList<Keybind> getKeyCodes() {
+        return (ArrayList<Keybind>)keyCodes.clone();
     }
 
     /**
-     * Replaces the current key codes of the enum with new ones.
+     * Replaces the current keybinds of the action with new ones. Also registers 
+     * the action to the InputManagerWrapper.
      * @param newKeyCodes a HashMap of Integer/InputDevice pairs which will invoke the enum.
      */
-    public void setKeyCodes(HashMap<Integer, InputDevice> newKeyCodes) {
+    public void setKeyCodes(ArrayList<Keybind> newKeyCodes) {
         if (keyCodes != null) {
             keyCodes.clear();
         }
-        keyCodes = (HashMap<Integer, InputDevice>)newKeyCodes.clone();
+        keyCodes = (ArrayList<Keybind>)newKeyCodes.clone();
+        InputManagerWrapper.getInstance().registerAction(this);
     }
+    
+    /**
+     * A method used to get the enum of a specific string. Typically used in the 
+     * GUI where Nifty XML does not allow java code but only strings.
+     * @param actionString the string of the action
+     * @return the action related to the string. If no such action exist will return null.
+     */
     public static Actions findActionByName(String actionString){
         switch (actionString){
             case "WALK_LEFT":
