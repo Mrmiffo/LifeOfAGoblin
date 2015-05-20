@@ -20,7 +20,7 @@ public abstract class AbstractMoveControl extends AbstractControl {
     
     protected Direction currentDirection;
     private CharacterControl characterControl;
-    private float stepWidth;
+    protected float stepWidth;
     
     /**
      * Creates a AbstractMoveControl with a step width of 0.1.
