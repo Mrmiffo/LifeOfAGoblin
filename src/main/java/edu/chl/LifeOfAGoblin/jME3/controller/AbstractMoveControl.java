@@ -26,7 +26,7 @@ public abstract class AbstractMoveControl extends AbstractControl {
      * Creates a AbstractMoveControl with a step width of 0.1.
      */
     public AbstractMoveControl() {
-        this.stepWidth = 0.1f;
+        this(0.1f);
     }
     
     /**
@@ -35,6 +35,7 @@ public abstract class AbstractMoveControl extends AbstractControl {
      */
     public AbstractMoveControl(float stepWidth) {
         this.stepWidth = stepWidth;
+        this.currentDirection = Direction.STAND_STILL;
     }
 
     @Override
