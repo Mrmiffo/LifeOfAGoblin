@@ -21,19 +21,10 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
 /**
- * A class that represents a control that listens to collisions with a player 
- * and an ICollidable and runs collide in the ICollidable
- * if all requirements are fulfilled.
+ * A class that represents a control that listens to all occured collisions.
  */
-public class CollisionObjectListener extends AbstractControl implements PhysicsCollisionListener , 
-        PhysicsCollisionGroupListener {
+public class CollisionListener implements PhysicsCollisionListener, PhysicsCollisionGroupListener {
     
-/**
- * Creates a CollisionObjectListener. 
- */
-    public CollisionObjectListener(){
-        
-    }
 /**
  * runs collide in the abstractCollisonobject if the collision was between it
  * and a player and if it has not yet been activated if that is a requirement.
@@ -69,31 +60,30 @@ public class CollisionObjectListener extends AbstractControl implements PhysicsC
         return false;
     }
     
+    /**
+     * Checks that both objects can collide and tells the current object to collide
+     * with the colliding object.
+     * @param current
+     * @param collided 
+     */
+    
     public void doCollision(Node current, Node collided) {
         INode model = current.getControl(ModelControl.class).getModel();
+        INode collidedModel = collided.getControl(ModelControl.class).getModel();
         
-        if (model instanceof ICollidable) {
-            ICollidable collModel = (ICollidable)model;
-            collModel.collide();
-        }
-                
-         if (model instanceof AbstractNPC) {
-             INode collidedModel = collided.getControl(ModelControl.class).getModel();
+        /*if (model instanceof AbstractNPC) {
              if (collidedModel.getClass() == Player.class) {
                  Player pCollidedModel = (Player)collidedModel;
                  if (!pCollidedModel.getIsDamaged()) {
                      pCollidedModel.collide((AbstractNPC)model);
                  }
              }
-         }
-    }
-
-    @Override
-    protected void controlUpdate(float f) {
-    }
-
-    @Override
-    protected void controlRender(RenderManager rm, ViewPort vp) {
-    }
-     
+        } else */
+        
+        if (model instanceof ICollidable && collidedModel instanceof ICollidable) {
+            ICollidable cModel = (ICollidable)model;
+            ICollidable cCollidedModel = (ICollidable)collidedModel;
+            cModel.collide(cCollidedModel);
+        }
+    }     
 }
