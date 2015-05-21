@@ -6,19 +6,16 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
-import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
-import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
 
 /**
  * The AbstractNPC class is the super class to all characters that use AI.
  * @author Anton
  */
-public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour, IAI {
+public abstract class AbstractNPC extends AbstractCharacter implements IAI {
    
     protected AIAction activeAction;
     protected float targetDistance;
