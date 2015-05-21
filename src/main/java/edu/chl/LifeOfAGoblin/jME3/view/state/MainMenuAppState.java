@@ -41,14 +41,19 @@ public class MainMenuAppState extends AbstractAppState{
         for (Spatial node: ((SimpleApplication)app).getRootNode().getChildren()){
             if (node instanceof AudioNode){
                 ((SimpleApplication)app).getRootNode().detachChild(node);
+                ((AudioNode)node).stop();
             }
         }
 
     }
 
     private void addMusic() {
-//        Resources.getInstance().loadResource("prologue.mp3", "sounds");
-//        menuMusic = (AudioNode)Resources.getInstance().getResources("prologue.mp3");
-//        ((SimpleApplication)app).getRootNode().attachChild(menuMusic);
+        Resources.getInstance().loadSoundResource("prologue.wav", "sounds");
+        menuMusic = (AudioNode) Resources.getInstance().getResources("prologue.wav");
+        ((SimpleApplication)app).getRootNode().attachChild(menuMusic);
+        menuMusic.setPositional(false);
+        menuMusic.setLooping(true);
+        menuMusic.setVolume(2);
+        menuMusic.play();
     }
 }
