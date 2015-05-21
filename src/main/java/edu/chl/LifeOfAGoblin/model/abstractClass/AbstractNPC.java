@@ -6,24 +6,24 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
-import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
-import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
 
 /**
  * The AbstractNPC class is the super class to all characters that use AI.
  * @author Anton
  */
-public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour, IAI {
+public abstract class AbstractNPC extends AbstractCharacter implements IAI {
    
     protected AIAction activeAction;
     protected float targetDistance;
     protected NodeType targetNodeType;
     protected Direction targetDirection;
+    
+    private NodeType target;
+    private float aggresitionRange;
     
     //-----------------------------Fix----------------------
     private static final AbstractMoveControl npcMoveControl = new NPCMoveControl(); 
@@ -39,24 +39,20 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
      * @param weight the weight of the NPC.
      * @param baseDamage the NPC's unmodified damage.
      * @param jumpStrength the height the NPC reaches by jumping.
+     * @param target the target that the NPC should be hostile toward
      */
-    protected AbstractNPC(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage, float jumpStrength){
+    protected AbstractNPC(int maxHealth, String model, float height, float width,
+            float weight, float baseDamage, float jumpStrength, NodeType target){
         
         super(npcMoveControl, collisionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         activeAction = AIAction.IDLE;
-    }
-    
-    @Override
-    public void idleBehaviour() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.target = target;
     }
     
     @Override
     public void updateAIAction() {
         activeAction = AIAction.IDLE;
     }
-    
         
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {

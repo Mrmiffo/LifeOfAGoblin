@@ -4,14 +4,14 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 
 /**
  * The basic boss NPC class. Not yet fully implemented.
  * @author Anton
  */
-public class Boss extends AbstractHostileNPC {
+public class Boss extends AbstractNPC {
     
     private static final int maxHealth = 100;
     private static final String model = "";
