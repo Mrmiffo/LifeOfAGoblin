@@ -23,7 +23,7 @@ public class NPCMoveControl extends AbstractMoveControl {
      * Creates a NPCMoveControl with a default move range and no connected spatial
      */
     public NPCMoveControl() {
-        this.idleMoveRange = 1; //Default start value
+        this.idleMoveRange = 2; //Default start value
     }
     
     /**
@@ -59,10 +59,10 @@ public class NPCMoveControl extends AbstractMoveControl {
             AIAction action = npcModel.getAIAction();
             switch (action) {
                 case IDLE:
-                    if (idleMoveRange <= 0) {
+                    if (idleMoveRange == 0) {
                         currentDirection = (currentDirection == Direction.LEFT) ?
                                                 Direction.RIGHT : Direction.LEFT;
-                       idleMoveRange = 2; //2 is full idle range
+                       idleMoveRange = 4; //2 is full idle range
                     } else {
                         idleMoveRange -= stepWidth;
                     }
@@ -79,7 +79,7 @@ public class NPCMoveControl extends AbstractMoveControl {
     public void setSpatial(Spatial spatial) {
         super.setSpatial(spatial);
         INode n = this.spatial.getControl(ModelControl.class).getModel();
-        if (n.getClass() == AbstractNPC.class) {
+        if (n instanceof AbstractNPC) {
             npcModel = (AbstractNPC)n;
         }
     }
