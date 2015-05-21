@@ -43,8 +43,9 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * @param baseDamage the character's unmodified damage.
      * @param jumpStrength the character reaches by jumping.
      */
-    protected AbstractCharacter(AbstractMoveControl amc, int collisionGroup, int maxHealth, String model, float height,
-            float width, float weight, float baseDamage, float jumpStrength) {
+    protected AbstractCharacter(AbstractMoveControl amc, int collisionGroup,
+            int maxHealth, String model, float height, float width, float weight,
+            float baseDamage, float jumpStrength) {
         
         this.amc = amc;
         this.collisionGroup = collisionGroup;
@@ -159,14 +160,12 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         return jumpStrength;
     }
     
-    
     /**
      * The default behaviour of a character when colliding with something
      */
     @Override
     public void collide() {
-        //TODO add implementation (if necessary)
-        
+        //TODO add implementation (if necessary)  
     }
 
     /**
@@ -178,11 +177,17 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         //animator.runDeathAnimation()  this is what these are actually good for
     }
     
+    /**
+     * {@inheritDoc} 
+     */
     @Override
     public void setIsDead(boolean isDead){
         this.isDead = isDead;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean getIsDead(){
         return this.isDead;
