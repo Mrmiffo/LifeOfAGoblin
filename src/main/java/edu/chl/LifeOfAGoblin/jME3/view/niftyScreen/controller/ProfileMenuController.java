@@ -38,13 +38,18 @@ public class ProfileMenuController implements ScreenController{
     }
 
     private void loadProfiles() {
-        for (Profile profile: Profile.getProfiles()){
-            profileBox.addItem(profile.getProfileName());
-            if (profile.getIsActiveProfile()){
-                profileBox.selectItem(profile.getProfileName());
+        if (!Profile.getProfiles().isEmpty()) {
+            for (Profile profile: Profile.getProfiles()){
+                profileBox.addItem(profile.getProfileName());
+                if (profile.getIsActiveProfile()){
+                    profileBox.selectItem(profile.getProfileName());
+                }
+            }
+            List<String> selectedProfile = profileBox.getSelection();
+            if (selectedProfile.isEmpty()) {
+                profileBox.selectItemByIndex(0);
             }
         }
-        
     }
 
     private void emptyProfiles() {
@@ -65,7 +70,7 @@ public class ProfileMenuController implements ScreenController{
         NiftyGUIWrapper.getInstance().goToScreen("mainMenu");
     }
     
-    public void removeProfile() {
+    public void deleteProfile() {
         //Get the selected profile
         List<String> selectedProfile = profileBox.getSelection();
         String profileName = selectedProfile.get(0);
@@ -73,6 +78,18 @@ public class ProfileMenuController implements ScreenController{
         //Remove the profile from model.
         Profile.removeProfile(Profile.getProfile(profileName));
 
+        //Reload the view.
+        reloadProfiles();
+    }
+    
+    public void createProfile() {
+        //Creates a profile in model. Logic for providing a name is not provided.
+        Profile profile = new Profile("Default profile " + Profile.getProfiles().size());
+        Profile.addProfile(profile);
+        Profile.setActiveProfile(profile);
+        profile.saveProfile();
+        
+        //Reload the view.
         reloadProfiles();
     }
 }

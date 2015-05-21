@@ -22,7 +22,6 @@ public class Profile implements Serializable{
         this.profileName = profileName;
         keybinds = new Keybindings();
         isActiveProfile = false;
-//        listOfProfiles.add(this);
     }
     
     /**
@@ -156,7 +155,7 @@ public class Profile implements Serializable{
     }
     
     public static void removeProfile(Profile profileToRemove){
-        listOfProfiles.remove(activeProfile);
+        listOfProfiles.remove(profileToRemove);
         SaveLoadManager.getInstance().deleteFile(null, profileToRemove.getProfileName());
     }
     
