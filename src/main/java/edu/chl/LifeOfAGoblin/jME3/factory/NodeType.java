@@ -8,7 +8,7 @@ package edu.chl.LifeOfAGoblin.jME3.factory;
  *
  * @author Anton
  */
-public enum NodeType{    
+public enum NodeType {    
     PLAYER("PLAYER", true),
     LEVEL("LEVEL", false),
     MINION("MINION", true),
@@ -21,16 +21,17 @@ public enum NodeType{
     private final String type;
     private final boolean spawnable;
     
-    NodeType(String type, boolean spawnable){
+    NodeType(String type, boolean spawnable) {
     this.type = type;
     this.spawnable = spawnable;
-}
+    }
+    
     @Override
-    public String toString(){
+    public String toString() {
         return this.type;
     }
     
-    public boolean getSpawnable(){
+    public boolean getSpawnable() {
         return this.spawnable;
     }
 }
