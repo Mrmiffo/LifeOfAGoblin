@@ -10,7 +10,7 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 
 /**
- * The player calss represent the player character in the game. The class 
+ * The player class represents the player character in the game. The class 
  * contains methods and values related to the player, such as health, jumpStrength,
  * size etc. 
  * @author Anton
@@ -50,7 +50,7 @@ public class Player extends AbstractCharacter {
     }
     
     /**
-     * Descibes what happens when the player collides with an NPC.
+     * Describes what happens when the player collides with an NPC.
      * @param enemy the NPC the player collides with.
      */
     public void collide(AbstractNPC enemy){
@@ -69,11 +69,10 @@ public class Player extends AbstractCharacter {
     }
     
     /**
-     * Returns wether the player is currently taking damage or not.
-     * @return wether the player is currently taking damage or not.
+     * Returns whether the player is currently taking damage or not.
+     * @return whether the player is currently taking damage or not.
      */
     public boolean getIsDamaged(){
         return this.isDamaged;
-    }
-    
+    }   
 }
