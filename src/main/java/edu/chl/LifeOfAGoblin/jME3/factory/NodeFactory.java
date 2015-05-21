@@ -60,7 +60,7 @@ public class NodeFactory {
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
         for(Spatial s: nodeList){
-            LevelNodeIdentifier.indentifyNode(levelNode, (Node)s, cam);
+            LevelNodeIdentifier.identifyNode(levelNode, (Node)s, cam);
         }
         
         //Creating a CollisionShape that matches the terrain of the level.
