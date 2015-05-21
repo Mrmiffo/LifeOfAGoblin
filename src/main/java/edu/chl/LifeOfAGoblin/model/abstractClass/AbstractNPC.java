@@ -25,6 +25,9 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
     protected NodeType targetNodeType;
     protected Direction targetDirection;
     
+    private NodeType target;
+    private float aggresitionRange;
+    
     //-----------------------------Fix----------------------
     private static final AbstractMoveControl npcMoveControl = new NPCMoveControl(); 
     //-------------------------------------------------------
@@ -39,12 +42,14 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
      * @param weight the weight of the NPC.
      * @param baseDamage the NPC's unmodified damage.
      * @param jumpStrength the height the NPC reaches by jumping.
+     * @param target the target that the NPC should be hostile toward
      */
-    protected AbstractNPC(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage, float jumpStrength){
+    protected AbstractNPC(int maxHealth, String model, float height, float width,
+            float weight, float baseDamage, float jumpStrength, NodeType target){
         
         super(npcMoveControl, collisionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         activeAction = AIAction.IDLE;
+        this.target = target;
     }
     
     @Override
