@@ -5,9 +5,7 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
-import com.jme3.bullet.collision.PhysicsCollisionGroupListener;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
-import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
@@ -16,7 +14,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 /**
  * A class that represents a control that listens to all occured collisions.
  */
-public class CollisionListener implements PhysicsCollisionListener, PhysicsCollisionGroupListener {
+public class CollisionListener implements PhysicsCollisionListener {
     
 /**
  * runs collide in the abstractCollisonobject if the collision was between it
@@ -26,31 +24,12 @@ public class CollisionListener implements PhysicsCollisionListener, PhysicsColli
     @Override
     public void collision(PhysicsCollisionEvent pce) {
         if (pce.getNodeA().getUserDataKeys().contains("nodeType")) {
-            if (collide(pce.getObjectA(), pce.getObjectB())) {
-                doCollision(pce.getNodeA(), pce.getNodeB());
-            }
+            doCollision(pce.getNodeA(), pce.getNodeB());
         }
         
         if (pce.getNodeB().getUserDataKeys().contains("nodeType")) {
-            if (collide(pce.getObjectB(), pce.getObjectA())) {
-                doCollision(pce.getNodeB(), pce.getNodeA());
-            }
+            doCollision(pce.getNodeB(), pce.getNodeA());
         }
-    }
-/**
- * checks if the two collisionobjects are set to collide with eachother
- * @param pco the first collisionObject
- * @param pco1 the second collisionObject
- * @return true if they are set to collide with eachother, false otherwise.
- */
-    @Override
-    public boolean collide(PhysicsCollisionObject pco, PhysicsCollisionObject pco1) {
-        if (pco.getCollideWithGroups() > 1 || pco1.getCollisionGroup() > 1) {        
-            if (pco.getCollideWithGroups() == (pco1.getCollisionGroup()) || pco1.getCollideWithGroups() == (pco.getCollisionGroup())){
-                return true;
-            }
-        }
-        return false;
     }
     
     /**
