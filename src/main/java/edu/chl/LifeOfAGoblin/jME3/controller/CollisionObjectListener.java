@@ -12,9 +12,12 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import com.jme3.scene.control.AbstractControl;
+import edu.chl.LifeOfAGoblin.model.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.Player;
+import edu.chl.LifeOfAGoblin.model.Spawnpoint;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
 /**
@@ -23,7 +26,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.INode;
  * if all requirements are fulfilled.
  */
 public class CollisionObjectListener extends AbstractControl implements PhysicsCollisionListener , 
-        PhysicsCollisionGroupListener{
+        PhysicsCollisionGroupListener {
     
 /**
  * Creates a CollisionObjectListener. 
@@ -69,11 +72,9 @@ public class CollisionObjectListener extends AbstractControl implements PhysicsC
     public void doCollision(Node current, Node collided) {
         INode model = current.getControl(ModelControl.class).getModel();
         
-        if (model instanceof AbstractCollisionObject) {
-            AbstractCollisionObject ACOmodel = (AbstractCollisionObject)model;
-            if (!ACOmodel.isActivated()) {
-                ACOmodel.collide();
-            }
+        if (model instanceof ICollidable) {
+            ICollidable collModel = (ICollidable)model;
+            collModel.collide();
         }
                 
          if (model instanceof AbstractNPC) {
