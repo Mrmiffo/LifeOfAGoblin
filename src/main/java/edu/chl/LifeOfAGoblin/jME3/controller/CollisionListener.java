@@ -9,6 +9,8 @@ import com.jme3.bullet.collision.PhysicsCollisionGroupListener;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
@@ -26,13 +28,13 @@ public class CollisionListener implements PhysicsCollisionListener, PhysicsColli
     public void collision(PhysicsCollisionEvent pce) {
         if (pce.getNodeA().getUserDataKeys().contains("nodeType")) {
             if (collide(pce.getObjectA(), pce.getObjectB())) {
-                doCollision((Node)pce.getNodeA(), (Node)pce.getNodeB());
+                doCollision(pce.getNodeA(), pce.getNodeB());
             }
         }
         
         if (pce.getNodeB().getUserDataKeys().contains("nodeType")) {
             if (collide(pce.getObjectB(), pce.getObjectA())) {
-                doCollision((Node)pce.getNodeB(), (Node)pce.getNodeA());
+                doCollision(pce.getNodeB(), pce.getNodeA());
             }
         }
     }
@@ -59,7 +61,7 @@ public class CollisionListener implements PhysicsCollisionListener, PhysicsColli
      * @param collided 
      */
     
-    public void doCollision(Node current, Node collided) {
+    public void doCollision(Spatial current, Spatial collided) {
         INode model = current.getControl(ModelControl.class).getModel();
         INode collidedModel = collided.getControl(ModelControl.class).getModel();
         
@@ -70,7 +72,11 @@ public class CollisionListener implements PhysicsCollisionListener, PhysicsColli
                      pCollidedModel.collide((AbstractNPC)model);
                  }
              }
-        } else */
+        }*/
+        
+        if (model instanceof AbstractNPC) {
+            current.getControl(NPCCollisionControl.class).updateCollisionInfo(current, collided);
+        }
         
         if (model instanceof ICollidable && collidedModel instanceof ICollidable) {
             ICollidable cModel = (ICollidable)model;
