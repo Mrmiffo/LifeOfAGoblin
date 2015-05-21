@@ -4,8 +4,12 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+import com.jme3.math.FastMath;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.model.interfaces.IActivatable;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**
  * A class representing a checkpoint that is responsible for updating progress
@@ -13,9 +17,13 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
  * @author fredrik
  */
 
-public class Checkpoint extends AbstractCollisionObject {
+public class Checkpoint extends AbstractGameObject implements ICollidable, IActivatable {
+    
+    private final static float height = 100;
     private int level;
     private int number;
+    private float width;
+    private boolean activated;
     
      /**
      * constructor for creating a checkpoint
@@ -25,7 +33,7 @@ public class Checkpoint extends AbstractCollisionObject {
      */
     
         public Checkpoint(int level, int number, float width ){
-        super(width);
+        this.width = width;
         this.level = level;
         this.number = number;
     }
@@ -42,9 +50,10 @@ public class Checkpoint extends AbstractCollisionObject {
     @Override
     
     public void collide(){
-        updateProgress(this.level, this.number);      
-        System.out.println("checkpoint");
-        super.setIsActivated(true);
+        if (!activated) {
+            updateProgress(this.level, this.number);
+            this.activate();
+        }
     }
     
     /**
@@ -56,6 +65,31 @@ public class Checkpoint extends AbstractCollisionObject {
     
     public void updateProgress(int level, int number) {
         //progress.getInstance().update(level, number);
+    }
+
+    @Override
+    public float getHeight() {
+        return height;
+    }
+
+    @Override
+    public float getWidth() {
+        return width;
+    }
+
+    @Override
+    public void activate() {
+        activated = true;
+    }
+
+    @Override
+    public void inactivate() {
+        activated = false;
+    }
+
+    @Override
+    public boolean isActivated() {
+        return activated;
     }
     
 }

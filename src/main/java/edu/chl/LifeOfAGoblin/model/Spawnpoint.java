@@ -6,6 +6,9 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.model.interfaces.IActivatable;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
 
 /**
@@ -13,11 +16,14 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
  * spawnables in the game when a player collides with it.
  * @author fredrik
  */
-public class Spawnpoint extends AbstractCollisionObject {
+public class Spawnpoint extends AbstractGameObject implements ICollidable, IActivatable {
     
+    private final static float height = 100;
     private int amount;
     private NodeType type;
     private ISpawnControl spawner;
+    private boolean activated;
+    private float width;
     
      /**
      * Constructor for creating a Spawnpoint
@@ -26,10 +32,10 @@ public class Spawnpoint extends AbstractCollisionObject {
      * @param type what type of spawnable should spawn
      */
      public Spawnpoint(ISpawnControl spawner, int amount, NodeType type, float width) {
-         super(width);
          this.spawner = spawner;
          this.amount = amount;
          this.type = type;
+         this.width = width;
     }
     
     @Override
@@ -43,9 +49,10 @@ public class Spawnpoint extends AbstractCollisionObject {
      */
     @Override
     public void collide() {
-        spawn(amount, type);
-        System.out.println("spawnpoint");
-        super.setIsActivated(true);
+        if (!activated) {
+            spawn(amount, type);
+            this.activate();
+        }
     }
     /**
      * Tells this objects spawner to create a number of new spawnables in the
@@ -63,6 +70,31 @@ public class Spawnpoint extends AbstractCollisionObject {
      */
     public ISpawnControl getSpawnControl() {
         return spawner;
+    }
+
+    @Override
+    public boolean isActivated() {
+        return activated;
+    }
+
+    @Override
+    public void activate() {
+        activated = true;
+    }
+
+    @Override
+    public void inactivate() {
+        activated = false;
+    }
+
+    @Override
+    public float getHeight() {
+        return height;
+    }
+
+    @Override
+    public float getWidth() {
+        return width;
     }
     
 }

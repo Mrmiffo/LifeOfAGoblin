@@ -34,7 +34,7 @@ public class FinalCheckpoint extends Checkpoint {
     public void collide(){
         super.updateProgress(this.level, this.number);      
         System.out.println("finalcheckpoint");
-        super.setIsActivated(true);
+        super.activate();
         StateManagerWrapper.getInstance().detachCurrentState();
         NiftyGUIWrapper.getInstance().showPauseMenu();
         
