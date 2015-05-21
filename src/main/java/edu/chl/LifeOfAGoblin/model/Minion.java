@@ -6,6 +6,7 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**
  * A basic minion NPC. Not yet fully implemented.
@@ -48,13 +49,14 @@ public class Minion extends AbstractHostileNPC {
         targetNodeType = NodeType.PLAYER;
         targetDistance = 2;
     }
+    
     @Override
     public NodeType getNodeType() {
         return NodeType.MINION;
     }
     
     @Override
-    public void collide(){
+    public void collide(ICollidable collided){
         //todo add methods for colliding with a minion
     }
 }

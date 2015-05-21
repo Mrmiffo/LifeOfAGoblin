@@ -48,9 +48,8 @@ public class Checkpoint extends AbstractGameObject implements ICollidable, IActi
      * updateProgress with this object's level and number and sets IsActivated to true
      */
     @Override
-    
-    public void collide(){
-        if (!activated) {
+    public void collide(ICollidable collided){
+        if (!activated && collided.getClass() == Player.class) {
             updateProgress(this.level, this.number);
             this.activate();
         }

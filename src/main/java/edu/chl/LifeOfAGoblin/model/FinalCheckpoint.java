@@ -7,6 +7,7 @@ package edu.chl.LifeOfAGoblin.model;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**
  * A class representing a checkpoint that is the last checkpoint in the game
@@ -24,19 +25,19 @@ public class FinalCheckpoint extends Checkpoint {
     public NodeType getNodeType() {
         return NodeType.FINALCHECKPOINT;
     }
-         /**
-     * Is called when a player collides with this finalCheckpoint. Runs 
+    
+     /**
+     * Is called when an ICollidable collides with this finalCheckpoint. Runs 
      * updateProgress with this object's level and number, sets 
-     * IsActivated to true and tells the level to end.
+     * IsActivated to true and tells the level to end if the object is a Player.
      */
     @Override
-    
-    public void collide(){
-        super.updateProgress(this.level, this.number);      
-        System.out.println("finalcheckpoint");
-        super.activate();
-        StateManagerWrapper.getInstance().detachCurrentState();
-        NiftyGUIWrapper.getInstance().showPauseMenu();
-        
+    public void collide(ICollidable collided) {
+        if (collided.getClass() == Player.class) {
+            super.updateProgress(this.level, this.number);
+            super.activate();
+            StateManagerWrapper.getInstance().detachCurrentState();
+            NiftyGUIWrapper.getInstance().showPauseMenu();
+        }
     }
 }

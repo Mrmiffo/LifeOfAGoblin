@@ -8,6 +8,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**
  * The player calss represent the player character in the game. The class 
@@ -39,7 +40,11 @@ public class Player extends AbstractCharacter {
     } 
      
     @Override
-    public void collide(){
+    public void collide(ICollidable collided) {
+        if (collided instanceof AbstractNPC) {
+            setIsDamaged(true);
+            super.setHealth(super.getHealth);
+        }
         //todo add methods for colliding with a player
     }
     

@@ -6,6 +6,7 @@ package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**
  * The basic boss NPC class. Not yet fully implemented.
@@ -52,7 +53,7 @@ public class Boss extends AbstractHostileNPC {
     }
     
     @Override
-    public void collide(){
+    public void collide(ICollidable collided){
         //todo add methods for colliding with a boss
     }
 }
