@@ -22,38 +22,26 @@ public class CollisionListener implements PhysicsCollisionListener {
  * @param pce the physicsCollisionEvent
  */
     @Override
-    public void collision(PhysicsCollisionEvent pce) {
-        if (pce.getNodeA().getUserDataKeys().contains("nodeType")) {
-            doCollision(pce.getNodeA(), pce.getNodeB());
-        }
+    public void collision(PhysicsCollisionEvent pce) { 
+        Spatial nodeA = pce.getNodeA();
+        Spatial nodeB = pce.getNodeB();
         
-        if (pce.getNodeB().getUserDataKeys().contains("nodeType")) {
-            doCollision(pce.getNodeB(), pce.getNodeA());
+        if (nodeA.getControl(ModelControl.class) != null
+                && nodeB.getControl(ModelControl.class) != null) {
+            
+            INode modelA = nodeA.getControl(ModelControl.class).getModel();
+            INode modelB = nodeB.getControl(ModelControl.class).getModel();
+            
+            if (modelA instanceof ICollidable && modelB instanceof ICollidable) {
+                if (modelA instanceof AbstractNPC) {
+                    nodeA.getControl(NPCCollisionControl.class).updateCollisionInfo(nodeA, nodeB);
+                } else if (modelB instanceof AbstractNPC) {
+                    nodeB.getControl(NPCCollisionControl.class).updateCollisionInfo(nodeB, nodeA);
+                }
+
+                ((ICollidable)modelA).collide((ICollidable)modelB);
+                ((ICollidable)modelB).collide((ICollidable)modelA);
+            }
         }
     }
-    
-    /**
-     * Checks that both objects can collide and tells the current object to collide
-     * with the colliding object.
-     * @param current
-     * @param collided 
-     */
-    
-    private void doCollision(Spatial current, Spatial collided) {
-        if (collided.getControl(ModelControl.class) == null){
-            return;
-        }
-        INode model = current.getControl(ModelControl.class).getModel();
-        INode collidedModel = collided.getControl(ModelControl.class).getModel();
-        
-        if (model instanceof AbstractNPC) {
-            current.getControl(NPCCollisionControl.class).updateCollisionInfo(current, collided);
-        }
-        
-        if (model instanceof ICollidable && collidedModel instanceof ICollidable) {
-            ICollidable cModel = (ICollidable)model;
-            ICollidable cCollidedModel = (ICollidable)collidedModel;
-            cModel.collide(cCollidedModel);
-        }
-    }     
 }
