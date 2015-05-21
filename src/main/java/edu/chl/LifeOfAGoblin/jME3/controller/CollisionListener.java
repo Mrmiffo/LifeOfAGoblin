@@ -8,7 +8,6 @@ import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionGroupListener;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
-import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
@@ -64,15 +63,6 @@ public class CollisionListener implements PhysicsCollisionListener, PhysicsColli
     public void doCollision(Spatial current, Spatial collided) {
         INode model = current.getControl(ModelControl.class).getModel();
         INode collidedModel = collided.getControl(ModelControl.class).getModel();
-        
-        /*if (model instanceof AbstractNPC) {
-             if (collidedModel.getClass() == Player.class) {
-                 Player pCollidedModel = (Player)collidedModel;
-                 if (!pCollidedModel.getIsDamaged()) {
-                     pCollidedModel.collide((AbstractNPC)model);
-                 }
-             }
-        }*/
         
         if (model instanceof AbstractNPC) {
             current.getControl(NPCCollisionControl.class).updateCollisionInfo(current, collided);
