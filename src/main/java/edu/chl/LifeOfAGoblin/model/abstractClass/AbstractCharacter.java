@@ -103,6 +103,53 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     }
     
     /**
+     * Decreases the character's health with 1. If the health becomes
+     * equal to 0 the character dies. 
+     */
+    public void decreaseHealth() {
+        if (health > 0) {
+            health -= 1;
+        }
+        
+        if (health == 0) {
+            this.die();
+        }
+    }
+    
+    /**
+     * Decreases the character's health with a specified amount. If the health becomes
+     * equal to or below 0 the character dies. 
+     * @param change the amount to decrease
+     */
+    public void decreaseHealth(int change) {
+        health -= change;
+        if (health <= 0) {
+            health = 0;
+            this.die();
+        }
+    }
+    
+    /**
+     * Increases the character's health with 1.
+     */
+    public void increaseHealth() {
+        if (health < maxHealth) {
+            health += 1;
+        }
+    }
+    
+    /**
+     * Increases the character's health with a specified amount.
+     * @param change the amount to decrease
+     */
+    public void increaseHealth(int change) {
+        health += change;
+        if (health > maxHealth) {
+            health = maxHealth;
+        }
+    }
+    
+    /**
      * Returns the max health of the character.
      * @return the character max health.
      */
@@ -158,16 +205,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     public float getJumpStrength() {
         return jumpStrength;
     }
-    
-    
-    /**
-     * The default behaviour of a character when colliding with something
-     */
-    @Override
-    public void collide() {
-        //TODO add implementation (if necessary)
-        
-    }
 
     /**
      * The default operation when a character dies.
@@ -184,7 +221,7 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     }
     
     @Override
-    public boolean getIsDead(){
+    public boolean isDead(){
         return this.isDead;
     }
 }
