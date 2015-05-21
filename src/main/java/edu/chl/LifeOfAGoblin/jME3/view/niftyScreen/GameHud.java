@@ -9,6 +9,7 @@ import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.screen.Screen;
+import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.GameHudController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
@@ -47,8 +48,16 @@ public class GameHud implements INiftyScreen{
         gameHudController = new GameHudController();
         //Create the hud screen.
         gameHudScreen = new ScreenBuilder(gameHudName) {{
-            //attach the controller.
+            //attach the controller.z
             controller(gameHudController);
+            layer(new LayerBuilder("background") {{
+                childLayoutVertical();
+                panel(new PanelBuilder("backgroundPanel") {{
+                    backgroundColor(new Color(0, 0, 0, 0));
+                    height("100%");
+                    width("100%");
+                }});
+            }});
             //Add the foreground layer.
             layer(new LayerBuilder("foreground") {{
                 childLayoutVertical();

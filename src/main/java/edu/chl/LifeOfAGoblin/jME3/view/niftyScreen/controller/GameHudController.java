@@ -7,10 +7,14 @@ package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
+import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -41,6 +45,7 @@ public class GameHudController implements ScreenController{
     
     public static void updateHudHealthbar(int currentHealth, int maxHealth){
         //Loop through all the images in the healthbar.
+        
         for (int i = 0; i<screen.findElementByName("healthPanel").getElements().size(); i++){
             //Find the image element
             Element flowerElement = screen.findElementByName("flower"+i);
@@ -63,5 +68,21 @@ public class GameHudController implements ScreenController{
             
             
         }
-    }    
+    }
+    
+    public static void flashOnDamage(int currentHealth, int previousHealth) {
+        if (currentHealth < previousHealth) {
+            long timerDelay = 500; //Time in milliseconds
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+
+                @Override
+                public void run() {
+                    screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0, 0, 0, 0));
+                }
+            }, timerDelay);
+            
+            screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(215/255f, 44/255f, 44/255f, 0.4f));
+        }
+    }
 }
