@@ -24,11 +24,15 @@ public class SpawnControl extends AbstractControl implements ISpawnControl{
    
     @Override
     public void Spawn(int amount, NodeType type){
-    Node node = NodeFactory.createNode(type);
-    node.setUserData("nodeType", type.toString());
-    this.getSpatial().getParent().attachChild(node);
-    node.setLocalTranslation(this.getSpatial().getLocalTranslation());
-    node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());
+        if(amount > 0 && type.getSpawnable()){
+            for(int i = 0; i<amount; i++){
+                Node node = NodeFactory.createNode(type);
+                node.setUserData("nodeType", type.toString());
+                this.getSpatial().getParent().attachChild(node);
+                node.setLocalTranslation(this.getSpatial().getLocalTranslation());
+                node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());
+            }
+        }
    }
 
     @Override
