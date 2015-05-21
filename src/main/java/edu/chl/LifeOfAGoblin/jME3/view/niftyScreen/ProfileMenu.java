@@ -109,7 +109,7 @@ public class ProfileMenu implements INiftyScreen{
                     width("100%");
                     paddingLeft("50%");
 
-                    //Creates a panel which contain the remove button
+                    //Creates a panel which contain the delete button
                     panel(new PanelBuilder("panel_bottom_left") {{
                         childLayoutCenter();
                         alignCenter();
@@ -118,13 +118,13 @@ public class ProfileMenu implements INiftyScreen{
                         width("25%");
                         paddingRight("10%");
 
-                        //The button which removes the selected profile.
-                        control(new ButtonBuilder("RemoveButton", "Remove profile") {{
+                        //The button which deletes the selected profile.
+                        control(new ButtonBuilder("DeleteButton", "Delete profile") {{
                             alignCenter();
                             valignCenter();
                             height("100%");
                             width("100%");
-                            interactOnClick("removeProfile()");
+                            interactOnClick("deleteProfile()");
                         }});//Back button
                     }});
                     
