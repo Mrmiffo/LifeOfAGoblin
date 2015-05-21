@@ -65,7 +65,7 @@ public class ProfileMenuController implements ScreenController{
         NiftyGUIWrapper.getInstance().goToScreen("mainMenu");
     }
     
-    public void removeProfile() {
+    public void deleteProfile() {
         //Get the selected profile
         List<String> selectedProfile = profileBox.getSelection();
         String profileName = selectedProfile.get(0);
@@ -73,6 +73,7 @@ public class ProfileMenuController implements ScreenController{
         //Remove the profile from model.
         Profile.removeProfile(Profile.getProfile(profileName));
 
+        //Reload the view.
         reloadProfiles();
     }
 }
