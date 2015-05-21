@@ -26,8 +26,10 @@ public interface IAI {
     public void updateAIAction();
     
     /**
-     * Recieves the distance to a specified object and the object's NodeType and
-     * updates the active action accordingly. The direction can be either left or right.
+     * Updates the active action when the implementor collides with an object.
+     * @param distance the distance to the collider.
+     * @param direction the direction to the collider.
+     * @param type the type of the collider.
      */
     public void updateAIAction(float distance, Direction direction, NodeType type);
 }

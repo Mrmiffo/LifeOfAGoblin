@@ -16,7 +16,8 @@ public enum NodeType {
     CHECKPOINT("CHECKPOINT", false),
     SPAWNPOINT("SPAWNPOINT", false),
     GAMEOBJECT("GAMEOBJECT", true), 
-    FINALCHECKPOINT("FINALCHECKPOINT", false);
+    FINALCHECKPOINT("FINALCHECKPOINT", false),
+    BOX("BOX", true);
     
     private final String type;
     private final boolean spawnable;

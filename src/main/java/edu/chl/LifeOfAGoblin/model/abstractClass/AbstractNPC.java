@@ -10,22 +10,22 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
-import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
 
 /**
  * The AbstractNPC class is the super class to all characters that use AI.
  * @author Anton
  */
-public abstract class AbstractNPC extends AbstractCharacter implements IIdleBehaviour, IAI {
+public abstract class AbstractNPC extends AbstractCharacter implements IAI {
    
     protected AIAction activeAction;
     protected float targetDistance;
     protected NodeType targetNodeType;
     protected Direction targetDirection;
     
-    //-----------------------------Fix----------------------
+    private NodeType target;
+    private float aggresitionRange;
+    
     private static final AbstractMoveControl npcMoveControl = new NPCMoveControl(); 
-    //-------------------------------------------------------
     private static final int collisionGroup = 6;
     
     /**
@@ -37,25 +37,27 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
      * @param weight the weight of the NPC.
      * @param baseDamage the NPC's unmodified damage.
      * @param jumpStrength the height the NPC reaches by jumping.
+     * @param target the target that the NPC should be hostile toward
      */
-    protected AbstractNPC(int maxHealth, String model, float height,
-            float width, float weight, float baseDamage, float jumpStrength){
+    protected AbstractNPC(int maxHealth, String model, float height, float width,
+            float weight, float baseDamage, float jumpStrength, NodeType target){
         
         super(npcMoveControl, collisionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         activeAction = AIAction.IDLE;
+        this.target = target;
     }
     
-    @Override
-    public void idleBehaviour() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateAIAction() {
         activeAction = AIAction.IDLE;
     }
-    
-        
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
         if (targetDistance <= distance && targetNodeType == type) {
@@ -64,14 +66,21 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
         }
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AIAction getAIAction() {
         return activeAction;
     }
     
     /**
+<<<<<<< HEAD
      * Returns the direction to the NPC's target
      * @return the direction to the target
+=======
+     * {@inheritDoc}
+>>>>>>> 10f0f8332cd5553d17ec162647994d1c56741187
      */
     public Direction getTargetDirection() {
         return targetDirection;

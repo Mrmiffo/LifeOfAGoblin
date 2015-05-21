@@ -38,21 +38,39 @@ public class CollisionObjectListener extends AbstractControl implements PhysicsC
  */
     @Override
     public void collision(PhysicsCollisionEvent pce) {
-        if(pce.getNodeB().getUserDataKeys().contains("nodeType")){
+        if(pce.getNodeB().getUserDataKeys().contains("nodeType") && pce.getNodeA().getUserDataKeys().contains("nodeType")){
             if(collide(pce.getObjectA(), pce.getObjectB())){
-                if(pce.getNodeB().getControl(ModelControl.class).getModel() instanceof AbstractCollisionObject)
-                if(!((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsActivated()){
+                if(pce.getNodeB().getControl(ModelControl.class).getModel() instanceof AbstractCollisionObject){
+                    if(!((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsActivated()){
                         ((AbstractCollisionObject)pce.getNodeB().getControl(ModelControl.class).getModel()).collide();
-                    }
+                    }       
+                } 
                 
-                if(pce.getNodeB().getControl(ModelControl.class).getModel() instanceof AbstractNPC){
+                else if(pce.getNodeA().getControl(ModelControl.class).getModel() instanceof AbstractCollisionObject){
+                    System.out.println(pce.getNodeA().getControl(ModelControl.class).toString());
+                    if(!((AbstractCollisionObject)pce.getNodeA().getControl(ModelControl.class).getModel()).getIsActivated()){
+                        ((AbstractCollisionObject)pce.getNodeA().getControl(ModelControl.class).getModel()).collide();
+                    }
+                }
+            
+                
+                else if(pce.getNodeB().getControl(ModelControl.class).getModel() instanceof AbstractNPC){
                     if(!((Player)pce.getNodeA().getControl(ModelControl.class).getModel()).getIsDamaged()){
                         ((Player)pce.getNodeA().getControl(ModelControl.class).getModel()).collide((AbstractNPC) pce.getNodeB().getControl(ModelControl.class).getModel());
+                    } 
+                }
+                    
+                else if(pce.getNodeA().getControl(ModelControl.class).getModel() instanceof AbstractNPC){
+                    if(!((Player)pce.getNodeB().getControl(ModelControl.class).getModel()).getIsDamaged()){
+                        ((Player)pce.getNodeB().getControl(ModelControl.class).getModel()).collide((AbstractNPC) pce.getNodeA().getControl(ModelControl.class).getModel());
                     }   
                 }
+                
             }
         }
-    }
+        }
+        
+    
 /**
  * checks if the two collisionobjects are set to collide with eachother
  * @param pco the first collisionObject

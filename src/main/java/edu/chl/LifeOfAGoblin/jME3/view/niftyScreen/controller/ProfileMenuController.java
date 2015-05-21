@@ -10,6 +10,7 @@ import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.model.Profile;
+import java.util.List;
 
 /**
  *
@@ -50,6 +51,11 @@ public class ProfileMenuController implements ScreenController{
         profileBox.removeAllItems(profileBox.getItems());
     }
     
+    private void reloadProfiles() {
+        emptyProfiles();
+        loadProfiles();
+    }
+    
     public void save(){
         Profile.setActiveProfile((String)profileBox.getSelection().get(0));
         back();
@@ -59,4 +65,14 @@ public class ProfileMenuController implements ScreenController{
         NiftyGUIWrapper.getInstance().goToScreen("mainMenu");
     }
     
+    public void removeProfile() {
+        //Get the selected profile
+        List<String> selectedProfile = profileBox.getSelection();
+        String profileName = selectedProfile.get(0);
+        
+        //Remove the profile from model.
+        Profile.removeProfile(Profile.getProfile(profileName));
+
+        reloadProfiles();
+    }
 }

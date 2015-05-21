@@ -1,31 +1,26 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
- *
- * @author kakan
+ * The profile class contains all the profile data of the user, such as keybinds 
+ * and progress.
+ * @author Anton
  */
 public class Profile implements Serializable{
-    public static final long serialVersionUID = 1548033666660605155L;
     private String profileName;
     private Progress progress;
-    private HashMap<Actions, HashMap<InputDevice, Integer>> customBindings;
+    private Keybindings keybinds;
     private boolean isActiveProfile;
     private static Profile activeProfile;
     private static List<Profile> listOfProfiles = new ArrayList<>();
     
     public Profile(String profileName) {
         this.profileName = profileName;
-        customBindings = new HashMap();
+        keybinds = new Keybindings();
         isActiveProfile = false;
 //        listOfProfiles.add(this);
     }
@@ -55,53 +50,20 @@ public class Profile implements Serializable{
     public Progress getProgress() {
         return progress;
     }
-    
-    /**
-     * Replaces the current key bindings associated with the profile with new ones.
-     * @param customBindings the mapping of new key bindings.
-     */
-    public void setCustomBindings(HashMap<Actions, HashMap<InputDevice, Integer>> customBindings) {
-        this.customBindings = new HashMap<>(customBindings);
-        saveProfile();
-    }
-    
-    /**
-     * Returns the current key bindings associated with the profile.
-     * @return the mapping of the current key bindings.
-     */
-    public HashMap<Actions, HashMap<InputDevice, Integer>> getCustomBindings() {
-        return (HashMap<Actions, HashMap<InputDevice, Integer>>) customBindings.clone();
-    }
-    
+
     /**
      * Adds a new key binding to the specified action.
      * @param action the action which to add the key binding to.
-     * @param keyCode the key code of the new key binding.
-     * @param inputDevice the input device used for the key binding-
+     * ArrayList<Keybind> the new keybinds associated with the action.
      */
-    public void addCustomBinding(Actions action, InputDevice inputDevice, Integer keyCode) {
-        //Check if the action already exist, if so add the new mapping. Else create a new map for the action.
-        if (customBindings.containsKey(action)){
-            customBindings.get(action).put(inputDevice, keyCode);
-        } else {
-            HashMap<InputDevice, Integer> temp = new HashMap<>();
-            temp.put(inputDevice, keyCode);
-            customBindings.put(action, temp);
-        }
+    public void addCustomBinding(Actions action, ArrayList<Keybind> newBindings) {
+        keybinds.setKeybind(action, newBindings);
         saveProfile();
-        
     }
     
-    /**
-     * Removes an existing key binding from the specified action.
-     * @param action the action which to remove the key binding from.
-     * @param keyCode the key code of the to-be removed key binding.
-     * @param inputDevice the input device used by the to-be removed key binding.
-     */
-    public void removeCustomBinding(Actions action, InputDevice inputDevice, Integer keyCode) {
-        if (customBindings.get(action).get(inputDevice) == keyCode) {
-            customBindings.get(action).remove(inputDevice);
-        }
+    public void resetDefaultBindings(){
+        keybinds.setDefaultKeyBindings();
+        keybinds.updateBindings();
         saveProfile();
     }
     
@@ -146,6 +108,12 @@ public class Profile implements Serializable{
     private void setIsActiveProfile(boolean isActive){
         isActiveProfile = isActive;
         saveProfile();
+        if (isActive && keybinds != null){
+            keybinds.updateBindings();
+        } else if (isActive){
+            throw new NullPointerException("No keybindings to load, most like due to corrupted saved file.");
+        }
+        
     }
     
     /**
@@ -185,6 +153,11 @@ public class Profile implements Serializable{
     
     public static void addProfile(Profile profile){
         listOfProfiles.add(profile);
+    }
+    
+    public static void removeProfile(Profile profileToRemove){
+        listOfProfiles.remove(activeProfile);
+        SaveLoadManager.getInstance().deleteFile(null, profileToRemove.getProfileName());
     }
     
     public static List<Profile> getProfiles(){

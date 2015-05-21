@@ -114,6 +114,7 @@ public class CollisionObjectListenerTest {
         PhysicsCollisionEvent pce3 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node7.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce4 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node8.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce5 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node1.getControl(GhostControl.class), new ManifoldPoint());
+        PhysicsCollisionEvent pce6 = new PhysicsCollisionEvent(1, node5.getControl(GhostControl.class), node1.getControl(GhostControl.class), new ManifoldPoint());
 
         // tests that AbstractCollisionObjects run collide after collisions, 
         // which means that they run setIsActivated.
@@ -150,6 +151,12 @@ public class CollisionObjectListenerTest {
         
         listener.collision(pce5);
         verify(((Player)node1.getControl(ModelControl.class).getModel()), times(0)).collide();
+        
+        //tests collisions with indata in the other order.
+        when(testCheck.getIsActivated()).thenReturn(false).thenReturn(true);
+        listener.collision(pce6);
+        verify(testCheck, times(3)).collide();
+    
     }
 
     @Test
