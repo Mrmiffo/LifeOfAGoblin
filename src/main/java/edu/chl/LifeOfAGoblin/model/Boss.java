@@ -22,14 +22,12 @@ public class Boss extends AbstractHostileNPC {
     private static final float jumpStrength = 0;
     
     /**
-     *
      * {@inheritDoc}
      */
     public Boss(){
         this(NodeType.PLAYER);
     }
     /**
-     * 
      * {@inheritDoc}
      */
     public Boss(NodeType target) {
@@ -37,7 +35,6 @@ public class Boss extends AbstractHostileNPC {
     }
     
     /**
-     *
      * {@inheritDoc}
      * @param healthMultiplier the multiplier to make the Boss tougher.
      */
@@ -46,11 +43,17 @@ public class Boss extends AbstractHostileNPC {
                 baseDamage, jumpStrength, target);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NodeType getNodeType() {
         return NodeType.BOSS;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collide(){
         //todo add methods for colliding with a boss
