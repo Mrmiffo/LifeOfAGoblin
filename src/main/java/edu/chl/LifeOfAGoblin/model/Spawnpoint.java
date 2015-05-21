@@ -15,7 +15,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
  * spawnables in the game when a player collides with it.
  * @author fredrik
  */
-public class SpawnPoint extends AbstractGameObject implements ICollidable, IActivatable {
+public class Spawnpoint extends AbstractGameObject implements ICollidable, IActivatable {
     
     private final static float height = 100;
     private int amount;
@@ -30,7 +30,7 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
      * @param amount how many spawnable should spawn
      * @param type what type of spawnable should spawn
      */
-     public SpawnPoint(ISpawnControl spawner, int amount, NodeType type, float width) {
+     public Spawnpoint(ISpawnControl spawner, int amount, NodeType type, float width) {
          this.spawner = spawner;
          this.amount = amount;
          this.type = type;
