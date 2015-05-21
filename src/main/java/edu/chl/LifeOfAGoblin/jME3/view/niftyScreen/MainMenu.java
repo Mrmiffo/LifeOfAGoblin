@@ -53,7 +53,7 @@ public class MainMenu implements INiftyScreen{
     //Set up the main menu components, register the controller and sets button actions.
     private void setupMainMenu() {     
         //Create a controller for the screen.
-        niftyController = new MainMenuController(this);
+        niftyController = new MainMenuController();
         //Create a new nifty screen.
         screen = new ScreenBuilder(mainMenuName) {{
             //Register the controler to the screen. Any actions taken on the screen objects will be resolved in this controller.

@@ -40,6 +40,9 @@ public class CollisionListener implements PhysicsCollisionListener {
      */
     
     private void doCollision(Spatial current, Spatial collided) {
+        if (collided.getControl(ModelControl.class) == null){
+            return;
+        }
         INode model = current.getControl(ModelControl.class).getModel();
         INode collidedModel = collided.getControl(ModelControl.class).getModel();
         

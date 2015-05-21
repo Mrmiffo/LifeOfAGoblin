@@ -2,6 +2,7 @@ package edu.chl.LifeOfAGoblin.jME3.utils;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.asset.plugins.FileLocator;
+import com.jme3.audio.AudioNode;
 import com.jme3.scene.Spatial;
 import java.io.File;
 import java.util.HashMap;
@@ -49,5 +50,10 @@ public class Resources {
     
     public void setTempPath(String path){
         assetManager.registerLocator(defaultPath + File.separator + path, FileLocator.class);
+    }
+    
+    public void loadSoundResource(String name, String folder){
+        assetManager.registerLocator(defaultPath + File.separator + folder, FileLocator.class);
+        addResource(name, new AudioNode(assetManager, name));
     }
 }

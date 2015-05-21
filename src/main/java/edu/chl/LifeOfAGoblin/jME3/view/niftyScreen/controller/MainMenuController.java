@@ -11,6 +11,7 @@ import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
+import edu.chl.LifeOfAGoblin.jME3.view.state.MainMenuAppState;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class MainMenuController implements ScreenController{
     private Screen screen;
     private List<String> displayedLevels;
     
-    public MainMenuController(MainMenu mainMenu){
+    public MainMenuController(){
 
     }
    
@@ -61,12 +62,14 @@ public class MainMenuController implements ScreenController{
         //Get the selected level.
         ImageSelect levelSelectBox = screen.findNiftyControl("levelSelectBox", ImageSelect.class);
         int selectedLevel = levelSelectBox.getSelectedImageIndex()+1; //+1 is used as the levelSelectBox start at 0 but the first level is 1
-        //Create a new hud and display it.
-        GameHud hud = new GameHud();
-        NiftyGUIWrapper.getInstance().addScreen(hud.getScreenName(), hud.getScreen());
-        NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
-        //Create the GameAppState with a selected level. Might need rework for pause and restart to work...
-        StateManagerWrapper.getInstance().addState(new GameAppState(selectedLevel));
+        
+        //Get the gameAppState and set the level to start. Might need rework for pause and restart to work...
+        StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
+        GameAppState appState = (GameAppState)StateManagerWrapper.getInstance().getAvailableState(GameAppState.class);
+        appState.setLevelToStart(selectedLevel);
+        StateManagerWrapper.getInstance().activateState(appState);
+        appState.startLevel();
+        
         
     }
     /**

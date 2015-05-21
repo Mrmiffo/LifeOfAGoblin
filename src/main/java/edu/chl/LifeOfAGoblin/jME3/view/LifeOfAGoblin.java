@@ -7,12 +7,16 @@ package edu.chl.LifeOfAGoblin.jME3.view;
 import com.jme3.app.SimpleApplication;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
+import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.ProfileMenu;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.SettingsMenu;
+import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
+import edu.chl.LifeOfAGoblin.jME3.view.state.MainMenuAppState;
+import edu.chl.LifeOfAGoblin.jME3.view.state.PauseAppState;
 import edu.chl.LifeOfAGoblin.model.Profile;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
 import java.util.List;
@@ -34,14 +38,14 @@ public class LifeOfAGoblin extends SimpleApplication {
         StateManagerWrapper.getInstance().initialize(stateManager);
         Resources.getInstance().initialize(assetManager);
         LevelManager.getInstance().initialize();
+        PhysicsWrapper.getInstance();
         setupProfile();
+        setupAppStates();
+        //
+        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
         
-        //Create an instance of the main menu, add it to nifty and display it.
-        MainMenu mainMenu = new MainMenu();
-        SettingsMenu settingsMenu = new SettingsMenu();
-        ProfileMenu profileMenu = new ProfileMenu();
-        NiftyGUIWrapper.getInstance().addScreen(mainMenu.getScreenName(), mainMenu.getScreen());
-        NiftyGUIWrapper.getInstance().goToScreen(mainMenu.getScreenName());
+        
+
         
         //Disables the built-in flyCam
         this.flyCam.setEnabled(false);
@@ -65,5 +69,18 @@ public class LifeOfAGoblin extends SimpleApplication {
                 }
             }
         }
+    }
+
+    /**
+     * A method to setup the app states and register them to the list of available 
+     * states in the state manager.
+     */
+    private void setupAppStates() {
+        GameAppState gameState = new GameAppState();
+        PauseAppState pauseState = new PauseAppState();
+        MainMenuAppState mainMenu = new MainMenuAppState();
+        StateManagerWrapper.getInstance().addState(gameState);
+        StateManagerWrapper.getInstance().addState(pauseState);
+        StateManagerWrapper.getInstance().addState(mainMenu);
     }
 }

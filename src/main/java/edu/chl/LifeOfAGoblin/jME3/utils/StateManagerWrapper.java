@@ -6,7 +6,9 @@ package edu.chl.LifeOfAGoblin.jME3.utils;
 
 import com.jme3.app.state.AppState;
 import com.jme3.app.state.AppStateManager;
+import edu.chl.LifeOfAGoblin.jME3.view.state.PauseAppState;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is a wrapper class intended to move state managment from LifeOfAGoblin class.
@@ -33,16 +35,38 @@ public class StateManagerWrapper {
     }
     
     public void addState(AppState as){
-        sm.attach(as);
         states.add(as);
     }
     
     public void removeState(AppState as){
+        states.remove(as);
+    }
+    
+    public void activateState(AppState as){
+        sm.attach(as);
+    }
+    
+    public void deactivateState(AppState as){
         sm.detach(as);
     }
     
-    public void detachCurrentState(){
-        sm.detach(this.states.get(1));
+    public ArrayList<AppState> getStates(){
+        return (ArrayList<AppState>)states.clone();
+    }
+    
+    public AppState getAvailableState(Class<? extends AppState> appStateType){
+        AppState toReturn = null;
+        for (AppState state: states){
+            if (state.getClass() == appStateType){
+                toReturn = state;
+                break;
+            }
+        }
+        return toReturn;
+    }
+    
+    public AppState getActiveState(Class<? extends AppState> appStateType){
+        return sm.getState(appStateType);
     }
    
 }
