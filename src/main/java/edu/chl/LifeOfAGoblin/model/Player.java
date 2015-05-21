@@ -27,11 +27,11 @@ public class Player extends AbstractCharacter {
     private static final float weight = 10;
     private static final float baseDamage = 1;
     private static final float jumpStrength = 12;
-    private boolean isDamaged;
+    private boolean invulnerable;
     
     public Player(){
         super(playerMoveControl, collsionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
-        this.isDamaged = false;
+        this.invulnerable = false;
     }
     
     /**
@@ -47,8 +47,8 @@ public class Player extends AbstractCharacter {
      */
     @Override
     public void collide(ICollidable collided) {
-        if (collided instanceof AbstractNPC) {
-            setIsDamaged(true);
+        if (!invulnerable && collided instanceof AbstractNPC) {
+            setInvulnerablility(true);
             this.decreaseHealth();
         }
         //todo add methods for colliding with a player
@@ -61,7 +61,7 @@ public class Player extends AbstractCharacter {
     @Deprecated
     public void collide(AbstractNPC enemy){
         System.out.println("player");
-        setIsDamaged(true);
+        setInvulnerablility(true);
         this.decreaseHealth();
         //todo add methods for colliding with a player
     }
@@ -70,15 +70,15 @@ public class Player extends AbstractCharacter {
      * Sets whether the player is currently taking damage or not.
      * @param b wether the player is currently taking damage or not.
      */
-    public void setIsDamaged(boolean b) {
-        this.isDamaged = b;
+    public void setInvulnerablility(boolean b) {
+        this.invulnerable = b;
     }
     
     /**
      * Returns whether the player is currently taking damage or not.
      * @return whether the player is currently taking damage or not.
      */
-    public boolean getIsDamaged(){
-        return this.isDamaged;
+    public boolean isInvulnerable(){
+        return this.invulnerable;
     }   
 }
