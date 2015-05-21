@@ -28,7 +28,7 @@ public class PlayerHealthControl extends AbstractControl {
             lastHealth = player.getHealth();
             lastMaxHealth = player.getMaxHealth();
         }
-        if (player.getIsDead()) {
+        if (player.isDead()) {
             for (int i = 0; i < spatial.getParent().getParent().getChildren().size(); i++) {
                 if (spatial.getParent().getParent().getChildren().get(i).getUserDataKeys().contains("nodeType")) {
                     if (spatial.getParent().getParent().getChildren().get(i).getUserData("nodeType").equals("CHECKPOINT")) {
