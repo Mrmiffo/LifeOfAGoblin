@@ -21,7 +21,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.INode;
  */
 public class LevelNodeIdentifier {
     
-    public static void indentifyNode(Node levelNode, Node node, Camera cam) {
+    public static void identifyNode(Node levelNode, Node node, Camera cam) {
         if(node.getUserDataKeys().size() > 0) {
             INode model = nodeToModel(node);
             if (model instanceof Player) {
