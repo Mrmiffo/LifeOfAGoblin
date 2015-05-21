@@ -43,15 +43,16 @@ public class Player extends AbstractCharacter {
     public void collide(ICollidable collided) {
         if (collided instanceof AbstractNPC) {
             setIsDamaged(true);
-            super.setHealth(super.getHealth);
+            this.decreaseHealth();
         }
         //todo add methods for colliding with a player
     }
     
+    @Deprecated
     public void collide(AbstractNPC enemy){
         System.out.println("player");
         setIsDamaged(true);
-        super.setHealth(super.getHealth()-1);
+        this.decreaseHealth();
         //todo add methods for colliding with a player
     }
 
