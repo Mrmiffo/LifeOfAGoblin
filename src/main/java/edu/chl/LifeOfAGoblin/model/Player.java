@@ -32,17 +32,27 @@ public class Player extends AbstractCharacter {
         super(playerMoveControl, collsionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         this.isDamaged = false;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NodeType getNodeType() {
         return NodeType.PLAYER;
-    } 
-     
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collide(){
         //todo add methods for colliding with a player
     }
     
+    /**
+     * Descibes what happens when the player collides with an NPC.
+     * @param enemy the NPC the player collides with.
+     */
     public void collide(AbstractNPC enemy){
         System.out.println("player");
         setIsDamaged(true);
@@ -50,10 +60,18 @@ public class Player extends AbstractCharacter {
         //todo add methods for colliding with a player
     }
 
+    /**
+     * Sets whether the player is currently taking damage or not.
+     * @param b wether the player is currently taking damage or not.
+     */
     public void setIsDamaged(boolean b) {
         this.isDamaged = b;
     }
     
+    /**
+     * Returns wether the player is currently taking damage or not.
+     * @return wether the player is currently taking damage or not.
+     */
     public boolean getIsDamaged(){
         return this.isDamaged;
     }
