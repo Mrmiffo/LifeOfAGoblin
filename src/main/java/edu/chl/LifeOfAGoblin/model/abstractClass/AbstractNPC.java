@@ -6,10 +6,8 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
-import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 import edu.chl.LifeOfAGoblin.model.interfaces.IIdleBehaviour;
@@ -25,9 +23,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
     protected NodeType targetNodeType;
     protected Direction targetDirection;
     
-    //-----------------------------Fix----------------------
     private static final AbstractMoveControl npcMoveControl = new NPCMoveControl(); 
-    //-------------------------------------------------------
     private static final int collisionGroup = 6;
     
     /**
@@ -52,12 +48,17 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateAIAction() {
         activeAction = AIAction.IDLE;
     }
     
-        
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
         if (targetDistance <= distance && targetNodeType == type) {
@@ -66,11 +67,17 @@ public abstract class AbstractNPC extends AbstractCharacter implements IIdleBeha
         }
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AIAction getAIAction() {
         return activeAction;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public Direction getTargetDirection() {
         return targetDirection;
     }
