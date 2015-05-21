@@ -10,7 +10,7 @@ import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.jME3.controller.CollisionObjectListener;
+import edu.chl.LifeOfAGoblin.jME3.controller.CollisionListener;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
@@ -73,7 +73,7 @@ public class NodeFactory {
         
         //----------------------------MOVE------------------------------
         //Allows object collision.
-        CollisionObjectListener listener = new CollisionObjectListener();
+        CollisionListener listener = new CollisionListener();
         PhysicsWrapper.getInstance().addCollisionListener(listener);
         //--------------------------------------------------------------
         

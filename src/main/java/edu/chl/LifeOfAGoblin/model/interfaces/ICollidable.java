@@ -14,5 +14,5 @@ public interface ICollidable extends INode{
     /**
      * is Called when another ICollidable collides with this object. 
      */
-    public void collide();
+    public void collide(ICollidable collided);
 }

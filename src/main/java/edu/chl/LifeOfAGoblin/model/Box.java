@@ -36,7 +36,7 @@ public class Box extends AbstractMovableObject implements ICollidable{
     }
 
     @Override
-    public void collide() {
+    public void collide(ICollidable collided) {
         // add stufzz
     }
     

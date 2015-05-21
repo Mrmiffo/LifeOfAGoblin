@@ -13,6 +13,7 @@ import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.Spawnpoint;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 
 /**
@@ -28,8 +29,8 @@ public class LevelNodeIdentifier {
                 NodeFactory.createPlayer(levelNode, node, cam);
             } else if (model instanceof AbstractNPC) {
                 NodeFactory.createNode((AbstractNPC) model);
-            } else if (model instanceof AbstractCollisionObject){
-                CollisionObjectPainter.paintCollisionObject((AbstractCollisionObject)model, node);
+            } else if (model instanceof ICollidable){
+                CollisionObjectPainter.paintCollisionObject((ICollidable)model, node);
             }
         }
     }

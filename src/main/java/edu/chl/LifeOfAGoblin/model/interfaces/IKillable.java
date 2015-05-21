@@ -17,13 +17,13 @@ public interface IKillable {
     
     /**
      * Sets whether the implementor is dead or not.
-     * @param isDead whether the implementor is dead or not.
+     * @param b whether the implementor is dead or not.
      */
-    public void setIsDead(boolean isDead);
+    public void setIsDead(boolean b);
     
     /**
      * Returns whether the implementor is dead or not.
      * @return whether the implementor is dead or not.
      */
-    public boolean getIsDead();
+    public boolean isDead();
 }

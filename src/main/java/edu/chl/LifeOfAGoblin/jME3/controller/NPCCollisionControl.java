@@ -22,7 +22,7 @@ public class NPCCollisionControl extends AbstractControl {
      * 
      * @param collided the object with which the GhostControl has collided with
      */
-    private void updateCollisionInfo(Spatial npc, Spatial collided) {
+    public void updateCollisionInfo(Spatial npc, Spatial collided) {
         INode n = npc.getControl(ModelControl.class).getModel();
         AbstractNPC npcModel = (AbstractNPC)n;
         

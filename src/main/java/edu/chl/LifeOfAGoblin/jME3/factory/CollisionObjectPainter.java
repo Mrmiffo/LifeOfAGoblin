@@ -13,6 +13,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.model.Spawnpoint;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
+import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**
  * A class responsible for "painting" nodes giving them models and adding
@@ -28,16 +29,20 @@ class CollisionObjectPainter {
      * relevant userdata.
      */
     
-    static void paintCollisionObject(AbstractCollisionObject collisionObject, Node node) {
+    static void paintCollisionObject(ICollidable collisionObject, Node node) {
         ModelControl modelControl = new ModelControl(collisionObject);
-        Vector3f halfExtent = new Vector3f(collisionObject.getWidth(),collisionObject.getHeight(), 0);
+        Vector3f halfExtent = new Vector3f(collisionObject.getWidth(), collisionObject.getHeight(), 0);
         BoxCollisionShape checkBox = new BoxCollisionShape(halfExtent);
         GhostControl ghostControl = new GhostControl(checkBox);
+        
         ghostControl.setCollisionGroup(3); //FIX
         ghostControl.setCollideWithGroups(2); //FIX
+        
         PhysicsWrapper.getInstance().add(ghostControl);
+        
         node.addControl(modelControl);
         node.addControl(ghostControl);
+        
         if (collisionObject instanceof Spawnpoint) {
             node.addControl((Control)((Spawnpoint)collisionObject).getSpawnControl());
         }
