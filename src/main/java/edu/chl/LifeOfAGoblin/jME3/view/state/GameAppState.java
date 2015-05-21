@@ -4,13 +4,16 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.audio.AudioNode;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
+import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
 import edu.chl.LifeOfAGoblin.model.Actions;
@@ -26,6 +29,9 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     private int levelToStart;
     private Level level;
     private GameHud hud;
+    private final Actions[] actions = new Actions[] {
+        Actions.OPEN_MENU
+    };
     
     /**
      * Creates a GameAppState with a default first level 
@@ -40,6 +46,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     public GameAppState(int firstLevelToStart){
         setLevelToStart(firstLevelToStart);
         hud = new GameHud();
+        NiftyGUIWrapper.getInstance().addScreen(hud.getScreenName(), hud.getScreen());
     }
     
     @Override
@@ -48,21 +55,19 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         rootNode = ((SimpleApplication)app).getRootNode();
         this.app = app;
         InputManagerWrapper.getInstance().registerListener(this);
-        
         //Starts the level and sets the background
-        startLevel();
-        app.getViewPort().setBackgroundColor(ColorRGBA.Cyan);
+//        startLevel();
+        
     }
     
     @Override
     public void cleanup() {
         super.cleanup();
-
+        rootNode.detachAllChildren();
     }
     
     @Override
     public void setEnabled(boolean enabled) {
-        
     }
     
     @Override
@@ -84,15 +89,21 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
      */
     public void startLevel() {
         //Create a new hud and display it.
-        NiftyGUIWrapper.getInstance().addScreen(hud.getScreenName(), hud.getScreen());
+        app.getViewPort().setBackgroundColor(ColorRGBA.Cyan);
         NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
         Node levelNode = NodeFactory.createModeledLevelNode(level, app.getCamera());
+        //Temporarly adding a default background sound to the level node.
+        Resources.getInstance().loadSoundResource("magical_theme.wav", "sounds");
+        AudioNode gameMusic = (AudioNode) Resources.getInstance().getResources("magical_theme.wav");
+        gameMusic.setPositional(false);
+        gameMusic.setLooping(true);
+        gameMusic.setVolume(10);
+        gameMusic.play();
+        levelNode.attachChild(gameMusic);
         rootNode.attachChild(levelNode);
     }
 
-    private final Actions[] actions = new Actions[] {
-        Actions.OPEN_MENU
-    };
+
 
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
