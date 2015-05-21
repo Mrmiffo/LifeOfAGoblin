@@ -15,7 +15,7 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.Player;
-import edu.chl.LifeOfAGoblin.model.SpawnPoint;
+import edu.chl.LifeOfAGoblin.model.Spawnpoint;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,7 +52,6 @@ public class CollisionObjectListenerTest {
         ghost.setCollisionGroup(2);
         node1.addControl(ghost);   
         node1.addControl(mc);
-        
     }
     
     @After
@@ -64,7 +63,7 @@ public class CollisionObjectListenerTest {
         // Setup test.
         Checkpoint testCheck = mock(Checkpoint.class);
         when(testCheck.getIsActivated()).thenReturn(false).thenReturn(true);
-        SpawnPoint testSpawn = mock(SpawnPoint.class);
+        Spawnpoint testSpawn = mock(Spawnpoint.class);
         when(testSpawn.getIsActivated()).thenReturn(false).thenReturn(true);
         FinalCheckpoint testFCheck = mock(FinalCheckpoint.class);
         when(testFCheck.getIsActivated()).thenReturn(false).thenReturn(true);
@@ -169,7 +168,7 @@ public class CollisionObjectListenerTest {
         node2.addControl(checkMc);
         node2.addControl(checkGhost);
         node3.setUserData("nodeType", "SPAWNPOINT");
-        SpawnPoint sp = new SpawnPoint(new SpawnControl(),1, NodeType.MINION, 1f);
+        Spawnpoint sp = new Spawnpoint(new SpawnControl(),1, NodeType.MINION, 1f);
         ModelControl spawnMc = new ModelControl(sp);
         BoxCollisionShape spawnBox = new BoxCollisionShape(new Vector3f(1,1,1));
         GhostControl spawnGhost = new GhostControl(spawnBox);

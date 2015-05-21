@@ -17,5 +17,5 @@ public interface ISpawnControl {
      * @param amount The number of spawnables to spawn
      * @param type The type of spawnables to spawn
      */
-    public void Spawn(int amount, NodeType type);
+    public void spawn(int amount, NodeType type);
 }

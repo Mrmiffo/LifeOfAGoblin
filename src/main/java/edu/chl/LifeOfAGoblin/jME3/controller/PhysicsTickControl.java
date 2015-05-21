@@ -30,13 +30,13 @@ public class PhysicsTickControl extends AbstractControl implements PhysicsTickLi
 
     @Override
     public void physicsTick(PhysicsSpace ps, float f) {
-        if (((Player)player.getControl(ModelControl.class).getModel()).getIsDamaged()){
-            if (!loopStarted){
+        if (((Player)player.getControl(ModelControl.class).getModel()).getIsDamaged()) {
+            if (!loopStarted) {
                 this.loop = 1;
                 loopStarted = true;
             }
-            this.loop-=1*f;
-            if(this.loop<0){
+            this.loop -= 1*f;
+            if (this.loop < 0) {
                ((Player)player.getControl(ModelControl.class).getModel()).setIsDamaged(false);
                loopStarted = false;
             }

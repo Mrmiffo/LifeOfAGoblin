@@ -13,30 +13,24 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
  * spawnables in the game when a player collides with it.
  * @author fredrik
  */
-public class SpawnPoint extends AbstractCollisionObject {
+public class Spawnpoint extends AbstractCollisionObject {
+    
     private int amount;
     private NodeType type;
     private ISpawnControl spawner;
-       /**
+    
+     /**
      * Constructor for creating a Spawnpoint
      * @param spawner the control responsible for creating the spawnables
      * @param amount how many spawnable should spawn
      * @param type what type of spawnable should spawn
      */
-        public SpawnPoint(ISpawnControl spawner, int amount, NodeType type,
-        float width){
-        super(width);
-        this.spawner = spawner;
-        this.amount = amount;
-        this.type = type;
+     public Spawnpoint(ISpawnControl spawner, int amount, NodeType type, float width) {
+         super(width);
+         this.spawner = spawner;
+         this.amount = amount;
+         this.type = type;
     }
-    
-    /**
-     * Sets wheter or not this spawnpoint has been activated
-     * in this game.
-     * @param isActivated true if the player has collided with this 
-     * spawnpoint during this game.
-     */
     
     @Override
     public NodeType getNodeType() {
@@ -48,8 +42,8 @@ public class SpawnPoint extends AbstractCollisionObject {
      * this object's amount and type and sets IsActivated to true
      */
     @Override
-    public void collide(){
-        Spawn(amount, type);
+    public void collide() {
+        spawn(amount, type);
         System.out.println("spawnpoint");
         super.setIsActivated(true);
     }
@@ -59,10 +53,14 @@ public class SpawnPoint extends AbstractCollisionObject {
      * @param amount the number of spawnables to be created
      * @param type the type of spawnable to be created
      */
-    private void Spawn(int amount, NodeType type) {
-        spawner.Spawn(amount, type);
+    private void spawn(int amount, NodeType type) {
+        spawner.spawn(amount, type);
     }
     
+    /**
+     * Returns the SpawnControl of the spawn point
+     * @return the SpawnControl
+     */
     public ISpawnControl getSpawnControl() {
         return spawner;
     }
