@@ -10,7 +10,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
 import edu.chl.LifeOfAGoblin.model.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.Player;
-import edu.chl.LifeOfAGoblin.model.SpawnPoint;
+import edu.chl.LifeOfAGoblin.model.Spawnpoint;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
@@ -57,11 +57,11 @@ public class LevelNodeIdentifier {
             String spawnType = node.getUserData("TYPE");
             switch(spawnType) {
                 case "PLAYER":
-                    return new SpawnPoint(new SpawnControl(), amount, NodeType.PLAYER, width);
+                    return new Spawnpoint(new SpawnControl(), amount, NodeType.PLAYER, width);
                 case "BOSS":
-                    return new SpawnPoint(new SpawnControl(), amount, NodeType.BOSS, width);
+                    return new Spawnpoint(new SpawnControl(), amount, NodeType.BOSS, width);
                 case "MINION":
-                    return new SpawnPoint(new SpawnControl(), amount, NodeType.MINION, width);
+                    return new Spawnpoint(new SpawnControl(), amount, NodeType.MINION, width);
             }
             
         } else if (type.equals("GAMEOBJECT")) {
