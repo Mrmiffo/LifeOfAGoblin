@@ -11,9 +11,6 @@ import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.ProfileMenu;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.SettingsMenu;
 import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.view.state.MainMenuAppState;
 import edu.chl.LifeOfAGoblin.jME3.view.state.PauseAppState;
@@ -82,5 +79,7 @@ public class LifeOfAGoblin extends SimpleApplication {
         StateManagerWrapper.getInstance().addState(gameState);
         StateManagerWrapper.getInstance().addState(pauseState);
         StateManagerWrapper.getInstance().addState(mainMenu);
+        StateManagerWrapper.getInstance().activateState(gameState);
+//        StateManagerWrapper.getInstance().deactivateState(gameState);
     }
 }
