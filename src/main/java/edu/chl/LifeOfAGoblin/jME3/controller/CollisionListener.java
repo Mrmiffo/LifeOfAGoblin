@@ -39,7 +39,7 @@ public class CollisionListener implements PhysicsCollisionListener {
      * @param collided 
      */
     
-    public void doCollision(Spatial current, Spatial collided) {
+    private void doCollision(Spatial current, Spatial collided) {
         INode model = current.getControl(ModelControl.class).getModel();
         INode collidedModel = collided.getControl(ModelControl.class).getModel();
         

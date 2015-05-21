@@ -28,10 +28,10 @@ import static org.mockito.Mockito.*;
  *
  * @author fredrik
  */
-public class CollisionObjectListenerTest {
+public class CollisionListenerTest {
     Node node1 = new Node();
     
-    public CollisionObjectListenerTest() {
+    public CollisionListenerTest() {
     }
      
     @BeforeClass
@@ -61,12 +61,12 @@ public class CollisionObjectListenerTest {
     @Test
     public void testCollision() {
         // Setup test.
-        /*Checkpoint testCheck = mock(Checkpoint.class);
-        when(testCheck.getIsActivated()).thenReturn(false).thenReturn(true);
+        Checkpoint testCheck = mock(Checkpoint.class);
+        when(testCheck.isActivated()).thenReturn(false).thenReturn(true);
         Spawnpoint testSpawn = mock(Spawnpoint.class);
-        when(testSpawn.getIsActivated()).thenReturn(false).thenReturn(true);
+        when(testSpawn.isActivated()).thenReturn(false).thenReturn(true);
         FinalCheckpoint testFCheck = mock(FinalCheckpoint.class);
-        when(testFCheck.getIsActivated()).thenReturn(false).thenReturn(true);
+        when(testFCheck.isActivated()).thenReturn(false).thenReturn(true);
         Checkpoint testFaultyCheck = mock(Checkpoint.class);
         Node node5 = new Node();
         Node node6 = new Node();
@@ -108,7 +108,7 @@ public class CollisionObjectListenerTest {
         node8.addControl(mockFaultycheckMc);
         node8.addControl(mockFaultycheckGhost);
         
-        CollisionObjectListener listener = new CollisionObjectListener();
+        CollisionListener listener = new CollisionListener();
         PhysicsCollisionEvent pce1 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node5.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce2 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node6.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce3 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node7.getControl(GhostControl.class), new ManifoldPoint());
@@ -118,7 +118,7 @@ public class CollisionObjectListenerTest {
         // tests that AbstractCollisionObjects run collide after collisions, 
         // which means that they run setIsActivated.
 
-        listener.collision(pce1);
+        /*listener.collision(pce1);
         listener.collision(pce2);
         listener.collision(pce3);
         verify(testCheck, times(1)).collide();
@@ -127,9 +127,9 @@ public class CollisionObjectListenerTest {
         
         // tests that collide is not run in an activated AbstractCollisionObject
         
-        when(testCheck.getIsActivated()).thenReturn(false).thenReturn(true);
-        when(testSpawn.getIsActivated()).thenReturn(false).thenReturn(true);
-        when(testFCheck.getIsActivated()).thenReturn(false).thenReturn(true);
+        when(testCheck.isActivated()).thenReturn(false).thenReturn(true);
+        when(testSpawn.isActivated()).thenReturn(false).thenReturn(true);
+        when(testFCheck.isActivated()).thenReturn(false).thenReturn(true);
 
         listener.collision(pce1);
         listener.collision(pce2);
