@@ -11,7 +11,6 @@ import java.util.List;
  * @author Anton
  */
 public class Profile implements Serializable{
-    public static final long serialVersionUID = 1548033666660605155L;
     private String profileName;
     private Progress progress;
     private Keybindings keybinds;
