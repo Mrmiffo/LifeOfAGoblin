@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
@@ -10,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * The profile class contains all the profile data of the user, such as keybinds 
+ * and progress.
  * @author Anton
  */
 public class Profile implements Serializable{
@@ -112,8 +109,10 @@ public class Profile implements Serializable{
     private void setIsActiveProfile(boolean isActive){
         isActiveProfile = isActive;
         saveProfile();
-        if (isActive){
+        if (isActive && keybinds != null){
             keybinds.updateBindings();
+        } else if (isActive){
+            throw new NullPointerException("No keybindings to load, most like due to corrupted saved file.");
         }
         
     }

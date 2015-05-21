@@ -4,7 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,7 +11,7 @@ import java.util.Objects;
  * A simple class representing a mouse or keyboard keybind.
  * @author Anton
  */
-public class Keybind implements Serializable, Cloneable{
+public class Keybind implements Serializable{
     private InputDevice inputDevice;
     private int key;
     
@@ -56,10 +55,4 @@ public class Keybind implements Serializable, Cloneable{
         hash = 73 * hash + this.key;
         return hash;
     }
-    
-    @Override
-    public Object clone(){
-        return new Keybind(this.getInputDevice(), this.getKey());
-    }
-    
 }
