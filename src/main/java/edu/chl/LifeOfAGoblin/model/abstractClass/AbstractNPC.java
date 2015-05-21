@@ -25,9 +25,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     private NodeType target;
     private float aggresitionRange;
     
-    //-----------------------------Fix----------------------
     private static final AbstractMoveControl npcMoveControl = new NPCMoveControl(); 
-    //-------------------------------------------------------
     private static final int collisionGroup = 6;
     
     /**
@@ -49,11 +47,17 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
         this.target = target;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateAIAction() {
         activeAction = AIAction.IDLE;
     }
-        
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
         if (targetDistance <= distance && targetNodeType == type) {
@@ -62,11 +66,17 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
         }
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AIAction getAIAction() {
         return activeAction;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public Direction getTargetDirection() {
         return targetDirection;
     }

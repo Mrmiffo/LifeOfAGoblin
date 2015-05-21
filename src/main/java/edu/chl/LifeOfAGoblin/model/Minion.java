@@ -22,14 +22,12 @@ public class Minion extends AbstractNPC {
     private static final float jumpStrength = 12;
 
     /**
-     *
      * {@inheritDoc}
      */
     public Minion() {
         this(NodeType.PLAYER);
     }
     /**
-     *
      * {@inheritDoc}
      */
     public Minion(NodeType target){
@@ -37,7 +35,6 @@ public class Minion extends AbstractNPC {
     }
     
     /**
-     *
      * {@inheritDoc}
      * @param healthMultiplyer the multiplier to make the Minion tougher.
      */
@@ -48,11 +45,18 @@ public class Minion extends AbstractNPC {
         targetNodeType = NodeType.PLAYER;
         targetDistance = 2;
     }
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NodeType getNodeType() {
         return NodeType.MINION;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void collide(){
         //todo add methods for colliding with a minion

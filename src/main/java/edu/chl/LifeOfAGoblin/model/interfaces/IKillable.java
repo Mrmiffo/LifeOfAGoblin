@@ -5,7 +5,7 @@
 package edu.chl.LifeOfAGoblin.model.interfaces;
 
 /**
- *
+ * An interface for all killable characters.
  * @author kakan
  */
 public interface IKillable {
@@ -14,9 +14,16 @@ public interface IKillable {
      * Is called when the inheritor dies.
      */
     public void die();
+    
+    /**
+     * Sets whether the implementor is dead or not.
+     * @param isDead whether the implementor is dead or not.
+     */
     public void setIsDead(boolean isDead);
+    
+    /**
+     * Returns whether the implementor is dead or not.
+     * @return whether the implementor is dead or not.
+     */
     public boolean getIsDead();
-
-    
-    
 }
