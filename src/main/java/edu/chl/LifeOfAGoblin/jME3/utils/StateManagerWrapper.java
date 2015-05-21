@@ -8,6 +8,7 @@ import com.jme3.app.state.AppState;
 import com.jme3.app.state.AppStateManager;
 import edu.chl.LifeOfAGoblin.jME3.view.state.PauseAppState;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is a wrapper class intended to move state managment from LifeOfAGoblin class.
@@ -53,7 +54,7 @@ public class StateManagerWrapper {
         return (ArrayList<AppState>)states.clone();
     }
     
-    public AppState getState(Class<? extends AppState> appStateType){
+    public AppState getAvailableState(Class<? extends AppState> appStateType){
         AppState toReturn = null;
         for (AppState state: states){
             if (state.getClass() == appStateType){
@@ -63,9 +64,9 @@ public class StateManagerWrapper {
         }
         return toReturn;
     }
-
-    public void activateState(Class<PauseAppState> aClass) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public AppState getActiveState(Class<? extends AppState> appStateType){
+        return sm.getState(appStateType);
     }
    
 }

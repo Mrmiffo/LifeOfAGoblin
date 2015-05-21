@@ -64,8 +64,8 @@ public class MainMenuController implements ScreenController{
         int selectedLevel = levelSelectBox.getSelectedImageIndex()+1; //+1 is used as the levelSelectBox start at 0 but the first level is 1
         
         //Get the gameAppState and set the level to start. Might need rework for pause and restart to work...
-        StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getState(MainMenuAppState.class));
-        GameAppState appState = (GameAppState)StateManagerWrapper.getInstance().getState(GameAppState.class);
+        StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
+        GameAppState appState = (GameAppState)StateManagerWrapper.getInstance().getAvailableState(GameAppState.class);
         appState.setLevelToStart(selectedLevel);
         StateManagerWrapper.getInstance().activateState(appState);
         appState.startLevel();

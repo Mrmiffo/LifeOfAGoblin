@@ -42,7 +42,7 @@ public class LifeOfAGoblin extends SimpleApplication {
         setupProfile();
         setupAppStates();
         //
-        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getState(MainMenuAppState.class));
+        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
         
         
 

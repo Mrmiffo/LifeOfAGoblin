@@ -37,8 +37,8 @@ public class FinalCheckpoint extends Checkpoint {
         super.updateProgress(this.level, this.number);      
         System.out.println("finalcheckpoint");
         super.setIsActivated(true);
-        StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getState(GameAppState.class));
-        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getState(MainMenuAppState.class));
+        StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(GameAppState.class));
+        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
         
     }
 }

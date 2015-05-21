@@ -104,7 +104,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     public void pause(){
         System.out.println("pause");
         StateManagerWrapper.getInstance().deactivateState(this);
-        StateManagerWrapper.getInstance().activateState(PauseAppState.class);
+        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(PauseAppState.class));
     }
 
     @Override
