@@ -52,8 +52,8 @@ public class LifeOfAGoblin extends SimpleApplication {
      */
     private void setupProfile() {
         List<String> allSavedFiles = SaveLoadManager.getInstance().getSavedFiles(null);
-        if (allSavedFiles.size() == 0){
-            Profile defaultProfile = new Profile("defaultProfile");
+        if (allSavedFiles.isEmpty()){
+            Profile defaultProfile = new Profile("Default profile");
             Profile.addProfile(defaultProfile);
             Profile.setActiveProfile(defaultProfile);
         } else {
@@ -66,5 +66,4 @@ public class LifeOfAGoblin extends SimpleApplication {
             }
         }
     }
-    
 }
