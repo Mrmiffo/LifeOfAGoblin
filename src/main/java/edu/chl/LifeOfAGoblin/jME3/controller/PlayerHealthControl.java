@@ -25,6 +25,7 @@ public class PlayerHealthControl extends AbstractControl {
         Player player = (Player) spatial.getControl(ModelControl.class).getModel();
         if (player.getHealth() != lastHealth || player.getMaxHealth() != lastMaxHealth) {
             GameHudController.updateHudHealthbar(player.getHealth(), player.getMaxHealth());
+            GameHudController.flashOnDamage(player.getHealth(), lastHealth);
             lastHealth = player.getHealth();
             lastMaxHealth = player.getMaxHealth();
         }
