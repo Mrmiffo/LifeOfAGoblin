@@ -4,14 +4,14 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractHostileNPC;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 
 /**
  * A basic minion NPC. Not yet fully implemented.
  * @author Anton
  */
-public class Minion extends AbstractHostileNPC {
+public class Minion extends AbstractNPC {
     
     private static final int maxHealth = 1;
     private static final String model = "Goblin2.j3o"; //temporary model for testing purposesdd
