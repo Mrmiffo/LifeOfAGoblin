@@ -55,11 +55,20 @@ public class SettingsMenuController implements ScreenController{
     private void fillKeyBindBox(){
         keybindBox =  screen.findNiftyControl("keybind_box", ListBox.class);
         keybindBox.addAllItems(Arrays.asList(Actions.values()));
-        
+    }
+    
+    private void reloadSettingsMenu() {
+        emptyKeyBindBox();
+        fillKeyBindBox();
     }
     
     public void back(){
         NiftyGUIWrapper.getInstance().goToScreen("mainMenu");
+    }
+    
+    public void resetKeyBindings() {
+        Profile.getActiveProfile().resetDefaultBindings();
+        reloadSettingsMenu();
     }
     
     public void save(){

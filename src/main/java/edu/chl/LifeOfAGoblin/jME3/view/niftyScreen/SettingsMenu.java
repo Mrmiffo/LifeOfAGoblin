@@ -186,6 +186,27 @@ public class SettingsMenu implements INiftyScreen{
 
                     }});
                     
+                    //Creates a panel which contain the reset button
+                    panel(new PanelBuilder("panel_bottom_mid") {{
+                        childLayoutCenter();
+                        alignCenter();
+                        valignCenter();
+                        height("100%");
+                        width("25%");
+                        paddingRight("10%");
+
+                        //The back button which returns the user to the main menu.
+                        control(new ButtonBuilder("restetButton", "Reset to default") {{
+                            alignCenter();
+                            valignCenter();
+                            height("100%");
+                            width("100%");
+                            interactOnClick("resetKeyBindings()");
+                        }});//Reset button
+
+                    }});
+                    
+
                     //A panel for the settings button
                     panel(new PanelBuilder("panel_bottom_right") {{
                         childLayoutCenter();
