@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.IActivatable;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
@@ -48,8 +47,8 @@ public class Spawnpoint extends AbstractGameObject implements ICollidable, IActi
      * this object's amount and type and sets IsActivated to true
      */
     @Override
-    public void collide() {
-        if (!activated) {
+    public void collide(ICollidable collided) {
+        if (!activated && collided.getClass() == Player.class) {
             spawn(amount, type);
             this.activate();
         }
