@@ -50,15 +50,9 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     }
     
     @Override
-    public void idleBehaviour() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
     public void updateAIAction() {
         activeAction = AIAction.IDLE;
     }
-    
         
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
