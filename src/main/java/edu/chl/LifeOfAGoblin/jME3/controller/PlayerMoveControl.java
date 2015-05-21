@@ -3,7 +3,6 @@ package edu.chl.LifeOfAGoblin.jME3.controller;
 import edu.chl.LifeOfAGoblin.jME3.controller.interfaces.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.model.Direction;
-import edu.chl.LifeOfAGoblin.model.Player;
 
 /**
  *
