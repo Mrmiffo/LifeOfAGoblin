@@ -12,6 +12,7 @@ import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
 import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
@@ -23,19 +24,22 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     private Node rootNode;
     private Application app;
     private int levelToStart;
+    private Level level;
+    private GameHud hud;
     
     /**
      * Creates a GameAppState with a default first level 
      */
     public GameAppState() {
-        levelToStart = 1;
+        this(1);
     }
     
     /**
      * Creates a GameAppState with a specified first level 
      */
     public GameAppState(int firstLevelToStart){
-        levelToStart = firstLevelToStart;
+        setLevelToStart(firstLevelToStart);
+        hud = new GameHud();
     }
     
     @Override
@@ -70,15 +74,18 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
      * Updates the the next level that should start.
      * @param levelno the number of the next level
      */
-    public void updateLevelToStart(int levelno) {
+    public void setLevelToStart(int levelno) {
         levelToStart = levelno;
+        level = LevelManager.getInstance().getLevel(levelToStart);
     }
 
     /**
-     * Starts the level specified by updateLevelToStart.
+     * Starts the level specified by setLevelToStart.
      */
-    private void startLevel() {
-        Level level = LevelManager.getInstance().getLevel(levelToStart);
+    public void startLevel() {
+        //Create a new hud and display it.
+        NiftyGUIWrapper.getInstance().addScreen(hud.getScreenName(), hud.getScreen());
+        NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
         Node levelNode = NodeFactory.createModeledLevelNode(level, app.getCamera());
         rootNode.attachChild(levelNode);
     }
@@ -96,8 +103,8 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     
     public void pause(){
         System.out.println("pause");
-        NiftyGUIWrapper.getInstance().showPauseMenu();
-        StateManagerWrapper.getInstance().detachCurrentState();
+        StateManagerWrapper.getInstance().deactivateState(this);
+        StateManagerWrapper.getInstance().activateState(PauseAppState.class);
     }
 
     @Override

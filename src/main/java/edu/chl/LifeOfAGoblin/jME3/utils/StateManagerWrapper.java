@@ -6,6 +6,7 @@ package edu.chl.LifeOfAGoblin.jME3.utils;
 
 import com.jme3.app.state.AppState;
 import com.jme3.app.state.AppStateManager;
+import edu.chl.LifeOfAGoblin.jME3.view.state.PauseAppState;
 import java.util.ArrayList;
 
 /**
@@ -33,16 +34,38 @@ public class StateManagerWrapper {
     }
     
     public void addState(AppState as){
-        sm.attach(as);
         states.add(as);
     }
     
     public void removeState(AppState as){
+        states.remove(as);
+    }
+    
+    public void activateState(AppState as){
+        sm.attach(as);
+    }
+    
+    public void deactivateState(AppState as){
         sm.detach(as);
     }
     
-    public void detachCurrentState(){
-        sm.detach(this.states.get(1));
+    public ArrayList<AppState> getStates(){
+        return (ArrayList<AppState>)states.clone();
+    }
+    
+    public AppState getState(Class<? extends AppState> appStateType){
+        AppState toReturn = null;
+        for (AppState state: states){
+            if (state.getClass() == appStateType){
+                toReturn = state;
+                break;
+            }
+        }
+        return toReturn;
+    }
+
+    public void activateState(Class<PauseAppState> aClass) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
 }

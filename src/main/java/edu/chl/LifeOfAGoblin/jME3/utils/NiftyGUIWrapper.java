@@ -91,7 +91,7 @@ public class NiftyGUIWrapper {
         return nifty;
     }
     
-    public void showPauseMenu(){
-        goToScreen("mainMenu");
-    }
+//    public void showPauseMenu(){
+//        goToScreen("mainMenu");
+//    }
 }

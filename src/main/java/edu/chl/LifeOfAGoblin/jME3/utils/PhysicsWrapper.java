@@ -19,7 +19,7 @@ public class PhysicsWrapper {
     
     private PhysicsWrapper() {
         bulletAppState = new BulletAppState();
-        StateManagerWrapper.getInstance().addState(bulletAppState);
+        StateManagerWrapper.getInstance().activateState(bulletAppState);
     }
         public static synchronized PhysicsWrapper getInstance(){
         if (instance == null) {
