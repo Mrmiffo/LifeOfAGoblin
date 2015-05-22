@@ -15,6 +15,7 @@ public class Progress implements Serializable {
     private int longestProgress;
     private int lastVisitedLevel;
     private int lastVisitedCheckpoint;
+    private static final long serialVersionUID = -9078773734400478680L;
     
     //This should be called everytime the player activates a Checkpoint.
     /**
