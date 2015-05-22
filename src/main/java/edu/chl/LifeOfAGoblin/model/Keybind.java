@@ -14,6 +14,7 @@ import java.util.Objects;
 public class Keybind implements Serializable{
     private InputDevice inputDevice;
     private int key;
+    private static final long serialVersionUID = -1499800738716923957L;
     
     /**
      * The basic constructor of Keybind. Will create an immutable Keybind object.
@@ -22,9 +23,7 @@ public class Keybind implements Serializable{
      */
     public Keybind(InputDevice inputDevice, int key){
         this.inputDevice = inputDevice;
-        this.key = key;
-
-        
+        this.key = key; 
     }
     
     public InputDevice getInputDevice(){
