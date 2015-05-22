@@ -38,14 +38,21 @@ public class Keybind implements Serializable{
     
     @Override
     public boolean equals(Object other){
-        if (other.getClass() != Keybind.class){
-            return false;
-        } else if (this == other){
-            return true;
-        } else if (this.getInputDevice() == ((Keybind)other).getInputDevice() && this.getKey() == ((Keybind)other).getKey()){
+        if (this == other) {
             return true;
         }
-        return false;
+        
+        if (other == null) {
+            return false;
+        }
+        
+        if (other.getClass() != this.getClass()) {
+            return false;
+        }
+        
+        Keybind otherKeybind = (Keybind)other;
+        return this.getInputDevice() == (otherKeybind.getInputDevice()) &&
+                this.getKey() == otherKeybind.getKey();
     }
 
     @Override
