@@ -16,6 +16,7 @@ import java.util.HashMap;
  */
 public class Keybindings implements Serializable{
     private HashMap<Actions, ArrayList<Keybind>> keybindings;
+    private static final long serialVersionUID = -4717637321337813595L;
     
     public Keybindings(){
         setDefaultKeyBindings();
@@ -42,7 +43,6 @@ public class Keybindings implements Serializable{
         keybindings.put(Actions.OPEN_MENU, new ArrayList<Keybind>() {{
             add(new Keybind(InputDevice.KEYBOARD, KeyInput.KEY_P));
         }});
-        
     }
     
     /**
@@ -68,5 +68,4 @@ public class Keybindings implements Serializable{
         keybindings.put(action, keybinds);
         updateBinding(action, keybinds);
     }
-    
 }
