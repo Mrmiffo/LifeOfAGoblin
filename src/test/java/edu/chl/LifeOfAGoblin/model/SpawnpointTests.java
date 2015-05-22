@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author fredrik
  */
-public class SpawnpointTest {
+public class SpawnpointTests {
     
-    public SpawnpointTest() {
+    public SpawnpointTests() {
     }
     
     @BeforeClass
