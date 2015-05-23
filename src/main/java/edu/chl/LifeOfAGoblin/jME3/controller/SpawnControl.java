@@ -10,7 +10,7 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
 
 /**

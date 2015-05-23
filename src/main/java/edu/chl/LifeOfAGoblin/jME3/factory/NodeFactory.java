@@ -5,6 +5,7 @@
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
 import com.jme3.audio.AudioNode;
+import edu.chl.LifeOfAGoblin.model.NodeType;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;

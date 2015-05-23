@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import com.jme3.scene.Node;
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
