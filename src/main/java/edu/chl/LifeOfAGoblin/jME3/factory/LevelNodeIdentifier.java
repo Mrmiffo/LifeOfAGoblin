@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
+import edu.chl.LifeOfAGoblin.model.NodeType;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;

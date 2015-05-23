@@ -4,7 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
 
     

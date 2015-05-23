@@ -5,7 +5,7 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.app.state.AppStateManager;
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

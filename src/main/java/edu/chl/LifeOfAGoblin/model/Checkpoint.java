@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.model;
 
 import com.jme3.math.FastMath;
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.IActivatable;

@@ -11,7 +11,7 @@ import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.NodeType;
 
 /**
  *

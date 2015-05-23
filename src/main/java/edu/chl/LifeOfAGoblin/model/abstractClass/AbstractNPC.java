@@ -6,7 +6,7 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
-import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
+import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.Direction;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
