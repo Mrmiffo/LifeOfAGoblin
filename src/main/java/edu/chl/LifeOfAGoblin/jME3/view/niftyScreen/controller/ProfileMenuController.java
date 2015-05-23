@@ -18,12 +18,10 @@ import java.util.List;
  */
 public class ProfileMenuController implements ScreenController{
 
-    Screen screen;
     ListBox profileBox;
     
     @Override
     public void bind(Nifty nifty, Screen screen) {
-        this.screen = screen;
         profileBox = screen.findNiftyControl("profile_box", ListBox.class);
     }
 
@@ -83,7 +81,7 @@ public class ProfileMenuController implements ScreenController{
     }
     
     public void createProfile() {
-        //Creates a profile in model. Logic for providing a name is not provided.
+        //Creates a profile in model. Logic for naming a profile is not provided.
         Profile profile = new Profile("Default profile " + Profile.getProfiles().size());
         Profile.addProfile(profile);
         Profile.setActiveProfile(profile);
