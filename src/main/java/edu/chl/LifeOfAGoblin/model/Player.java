@@ -49,7 +49,6 @@ public class Player extends AbstractCharacter {
             setInvulnerablility(true);
             this.decreaseHealth();
         }
-        //todo add methods for colliding with a player
     }
     
     /**
