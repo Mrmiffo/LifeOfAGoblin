@@ -18,6 +18,7 @@ public class Boss extends AbstractNPC {
     private static final String model = "";
     private static final float height = 10;
     private static final float width = 7;
+    private static final float collisionHeight = 1;
     private static final float weight = 1000;
     private static final float baseDamage = 10;
     private static final float jumpStrength = 0;
@@ -32,17 +33,18 @@ public class Boss extends AbstractNPC {
      * {@inheritDoc}
      */
     public Boss(NodeType target) {
-        this(target, 1, 3);
+        this(target, 1, 10, 5);
     }
     
     /**
      * {@inheritDoc}
      * @param healthMultiplier the multiplier to make the Boss tougher.
+     * @param collisionWidth the range that objects collide with the Boss' area
      * @param aggressionRange the range that the boss reacts to the player
      */
-    public Boss(NodeType target, float healthMultiplier, float aggressionRange) {
-        super((int)healthMultiplier * maxHealth, model, height, width, weight,
-                baseDamage, jumpStrength, target, aggressionRange);
+    public Boss(NodeType target, float healthMultiplier, float collisionWidth, float aggressionRange) {
+        super((int)healthMultiplier * maxHealth, model, height, width, collisionHeight,
+                collisionWidth, weight, baseDamage, jumpStrength, target, aggressionRange);
     }
     
     /**

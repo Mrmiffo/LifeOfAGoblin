@@ -23,6 +23,8 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     private String model;
     private float height;
     private float width;
+    private float collisionHeight;
+    private float collisionWidth;
     private float weight;
     private float baseDamage;
     private float jumpStrength;
@@ -43,7 +45,8 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * @param jumpStrength the character reaches by jumping.
      */
     protected AbstractCharacter(AbstractMoveControl amc,
-            int maxHealth, String model, float height, float width, float weight,
+            int maxHealth, String model, float height, float width,
+            float collisionHeight, float collisionWidth, float weight,
             float baseDamage, float jumpStrength) {
         
         this.amc = amc;
@@ -52,6 +55,8 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         this.model = model;
         this.height = height;
         this.width = width;
+        this.collisionHeight = collisionHeight;
+        this.collisionWidth = collisionWidth;
         this.weight = weight;
         this.baseDamage = baseDamage;
         this.jumpStrength = jumpStrength;
@@ -157,17 +162,17 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     }
     
     /**
-     * {@inheritDoc}
+     * Returns the height of the object's model.
+     * @return the height of the model
      */
-    @Override
     public float getHeight() {
         return height;
     }
     
     /**
-     * {@inheritDoc}
+     * Returns the width of the object's model.
+     * @return the width of the model.
      */
-    @Override
     public float getWidth() {
         return width;
     }
@@ -205,6 +210,16 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         //TODO add implementation (if necessary)  
     }
 
+    @Override
+    public float getCollisionHeight() {
+        return collisionHeight;
+    }
+    
+    @Override
+    public float getCollisionWidth() {
+        return collisionWidth;
+    }
+    
     /**
      * The default operation when a character dies.
      */

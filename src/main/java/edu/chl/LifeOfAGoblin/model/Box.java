@@ -26,18 +26,18 @@ public class Box extends AbstractMovableObject implements ICollidable{
     }
 
     @Override
-    public float getHeight() {
+    public void collide(ICollidable collided) {
+        // add stufzz
+    }
+
+    @Override
+    public float getCollisionHeight() {
         return this.height;
     }
 
     @Override
-    public float getWidth() {
+    public float getCollisionWidth() {
         return this.width;
-    }
-
-    @Override
-    public void collide(ICollidable collided) {
-        // add stufzz
     }
     
 }

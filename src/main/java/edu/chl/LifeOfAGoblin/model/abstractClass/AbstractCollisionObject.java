@@ -28,12 +28,12 @@ public abstract class AbstractCollisionObject extends AbstractGameObject impleme
     }
      
     @Override
-    public float getWidth(){
+    public float getCollisionWidth(){
         return this.width;
     }
     
     @Override
-    public float getHeight(){
+    public float getCollisionHeight(){
         return this.height;
     }
     

@@ -33,9 +33,12 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      * @param target the target that the NPC should be hostile toward
      */
     protected AbstractNPC(int maxHealth, String model, float height, float width,
-            float weight, float baseDamage, float jumpStrength, NodeType target, float aggressionRange){
+                          float collisionHeight, float collisionWidth, float weight,
+                          float baseDamage, float jumpStrength, NodeType target,
+                          float aggressionRange){
         
-        super(new NPCMoveControl(), maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        super(new NPCMoveControl(), maxHealth, model, height, width, collisionHeight,
+                collisionWidth, weight, baseDamage, jumpStrength);
         this.targetNodeType = target;
         this.aggressionRange = aggressionRange;
         activeAction = AIAction.IDLE;

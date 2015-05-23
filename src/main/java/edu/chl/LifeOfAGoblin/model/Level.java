@@ -33,16 +33,6 @@ public class Level extends AbstractInanimateObject {
     public NodeType getNodeType() {
         return NodeType.LEVEL;
     }
-
-    @Override
-    public float getHeight() {
-        return 1f; //is this really nessecary?
-    }
-
-    @Override
-    public float getWidth() {
-        return 1f; //is this really nessecary?
-    }
     
     /**
      * An identical method to getModelName(), but with a more logical name.

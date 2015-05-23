@@ -31,7 +31,7 @@ class CollisionObjectPainter {
     
     static void paintCollisionObject(ICollidable collisionObject, Node node) {
         ModelControl modelControl = new ModelControl(collisionObject);
-        Vector3f halfExtent = new Vector3f(collisionObject.getWidth(), collisionObject.getHeight(), 0);
+        Vector3f halfExtent = new Vector3f(collisionObject.getCollisionWidth(), collisionObject.getCollisionHeight(), 0);
         BoxCollisionShape checkBox = new BoxCollisionShape(halfExtent);
         GhostControl ghostControl = new GhostControl(checkBox);
         

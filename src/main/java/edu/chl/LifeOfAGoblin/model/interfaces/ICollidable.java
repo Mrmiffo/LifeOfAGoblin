@@ -16,14 +16,14 @@ public interface ICollidable extends INode {
     public void collide(ICollidable collided);
     
     /**
-     * Returns the height of the implementor's model.
-     * @return the height of the model
+     * Returns the height of the object's collision area.
+     * @return the height of the collision area
      */
     public float getCollisionHeight();
     
     /**
-     * Returns the width of the implementor's model.
-     * @return the width of the model.
+     * Returns the width of the object's collision size.
+     * @return the width of the collision area
      */
     public float getCollisionWidth();
 }

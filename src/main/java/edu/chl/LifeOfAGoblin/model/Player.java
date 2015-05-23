@@ -28,7 +28,7 @@ public class Player extends AbstractCharacter {
     private boolean invulnerable;
     
     public Player(){
-        super(new PlayerMoveControl(), maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        super(new PlayerMoveControl(), maxHealth, model, height, width, height, width, weight, baseDamage, jumpStrength);
         this.invulnerable = false;
     }
     

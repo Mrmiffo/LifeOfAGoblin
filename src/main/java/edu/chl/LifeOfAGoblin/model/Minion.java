@@ -15,9 +15,12 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 public class Minion extends AbstractNPC {
     
     private static final int maxHealth = 1;
+    private static final float aggressionRange = 5;
     private static final String model = "Goblin2.j3o"; //temporary model for testing purposesdd
     private static final float height = 1;
     private static final float width = 0.4f;
+    private static final float collisionHeight = 1;
+    private static final float collisionWidth = aggressionRange;
     private static final float weight = 10;
     private static final float baseDamage = 1;
     private static final float jumpStrength = 12;
@@ -32,7 +35,7 @@ public class Minion extends AbstractNPC {
      * {@inheritDoc}
      */
     public Minion(NodeType target){
-        this(target, 1, 5);   
+        this(target, 1, aggressionRange);   
     }
     
     /**
@@ -40,8 +43,9 @@ public class Minion extends AbstractNPC {
      * @param healthMultiplyer the multiplier to make the Minion tougher.
      */
     public Minion(NodeType target, float healthMultiplyer, float aggressionRange) {
-        super((int)healthMultiplyer * maxHealth, model, height, width, weight,
-                baseDamage, jumpStrength, target, aggressionRange);
+        super((int)healthMultiplyer * maxHealth, model, height, width,
+                collisionHeight, collisionWidth, weight, baseDamage, jumpStrength,
+                target, aggressionRange);
     }
     
 
