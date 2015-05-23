@@ -93,12 +93,12 @@ public class PhysicsWrapperTest {
         //tests that an incomplete control is not added, exception will be 
         //thrown if test fails
         GhostControl faultyControl = new GhostControl();
-      //  PhysicsWrapper.getInstance().add(faultyControl);
-       // assertFalse(((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList().contains(faultyControl));
+        PhysicsWrapper.getInstance().add(faultyControl);
+        assertFalse(((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList().contains(faultyControl));
         
         //tests that a non PhysicsControl can't be added, exception will be 
         //thrown if test fails
-      //  PhysicsWrapper.getInstance().add(updateControl);
+        PhysicsWrapper.getInstance().add(updateControl);
         
         //tests that the same control cannot be added twice
         PhysicsWrapper.getInstance().add(ghostControl);
@@ -118,7 +118,7 @@ public class PhysicsWrapperTest {
         assertTrue(((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList().isEmpty());
         
         // tests that it can handle non PhysicsObect, should not throw exception. 
-       // PhysicsWrapper.getInstance().remove(12);
+       PhysicsWrapper.getInstance().remove(12);
     
         // tests that it can handle removing objects that don't exist in the 
         //physicsspace, should not throw exception.
