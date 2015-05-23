@@ -12,7 +12,6 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
-import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 
 /**
  *
@@ -21,10 +20,7 @@ import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
  * level?? to spawn a certain type of minion.
  * 
  */
-public class SpawnPointControl extends Node implements PhysicsCollisionListener {
-    private NodeType minion;
-    private Vector3f halfExtent;
-    
+public class SpawnPointControl extends Node implements PhysicsCollisionListener {    
     /**
      * Creates a SpawnPointControl object,
      * @param halfExtent the size of the collisionbody from the center of the 
@@ -32,16 +28,13 @@ public class SpawnPointControl extends Node implements PhysicsCollisionListener 
      * @param minion  the type of minion associated with this 
      * SpawnPointControl
      */
-    public SpawnPointControl(Vector3f halfExtent, NodeType minion ){
+    public SpawnPointControl(Vector3f halfExtent){
         this.setUserData("objectType", "Checkpoint");
-        this.minion = minion;
         //PhysicsWrapper.getInstance().getBulletAppState().getPhysicsSpace().addCollisionListener(this);
         BoxCollisionShape box = new BoxCollisionShape(halfExtent);
         GhostControl ghost = new GhostControl(box);
         this.getParent().addControl(ghost);
     }
-    
-    
     
 //        @Override
 //    public Map<String, Object> getNodeData() {
@@ -55,8 +48,6 @@ public class SpawnPointControl extends Node implements PhysicsCollisionListener 
     public void collision(PhysicsCollisionEvent pce) {
         if (((INode)pce.getNodeA()).getNodeType().equals(NodeType.PLAYER)){
         //Todo notify level
-        }   
-          
-    }
-     
+        }     
+    }    
 }
