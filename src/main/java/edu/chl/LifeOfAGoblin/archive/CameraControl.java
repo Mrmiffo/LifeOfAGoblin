@@ -35,12 +35,12 @@ public class CameraControl extends AbstractControl {
         }
     }
     
-    private void setFixedCamera(Vector3f origin, int borderRadius, int cameraMoveSteps) {
-        currentFixedPoint = origin;
-        //calculate border
-        numberOfMoveSteps = cameraMoveSteps;
-        moveStepsCompleted = 0;   
-    }
+//    private void setFixedCamera(Vector3f origin, int borderRadius, int cameraMoveSteps) {
+//        currentFixedPoint = origin;
+//        //calculate border
+//        numberOfMoveSteps = cameraMoveSteps;
+//        moveStepsCompleted = 0;   
+//    }
     
     private void moveCameraOneStep() {
         if (moveStepsCompleted == 0) {
