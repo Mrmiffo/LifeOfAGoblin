@@ -18,14 +18,12 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 public abstract class AbstractNPC extends AbstractCharacter implements IAI {
    
     protected AIAction activeAction;
-    protected float targetDistance;
+    protected float targetDistance = 2;
     protected NodeType targetNodeType;
     protected Direction targetDirection;
     
-    private NodeType target;
-    private float aggresitionRange;
+    private float aggressionRange = 3;
     
-    private static final AbstractMoveControl npcMoveControl = new NPCMoveControl(); 
     private static final int collisionGroup = 6;
     
     /**
@@ -42,9 +40,8 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     protected AbstractNPC(int maxHealth, String model, float height, float width,
             float weight, float baseDamage, float jumpStrength, NodeType target){
         
-        super(npcMoveControl, collisionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        super(new NPCMoveControl(), collisionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         activeAction = AIAction.IDLE;
-        this.target = target;
     }
     
     /**
@@ -60,10 +57,17 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      */
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
-        if (targetDistance <= distance && targetNodeType == type) {
-            activeAction = AIAction.MOVETOTARGET;
-            targetDirection = direction;
+        if (aggressionRange <= distance && targetNodeType == type) {
+            if (distance <= 0.5f) {
+                activeAction = AIAction.HALT;
+            } else {
+                activeAction = AIAction.MOVETOTARGET;
+            }
+        } else {
+            activeAction = AIAction.IDLE;
         }
+        System.out.println(activeAction);
+        targetDirection = direction;
     }
     
     /**
@@ -75,12 +79,8 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     }
     
     /**
-<<<<<<< HEAD
      * Returns the direction to the NPC's target
      * @return the direction to the target
-=======
-     * {@inheritDoc}
->>>>>>> 10f0f8332cd5553d17ec162647994d1c56741187
      */
     public Direction getTargetDirection() {
         return targetDirection;

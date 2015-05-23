@@ -12,5 +12,6 @@ public enum AIAction {
     IDLE,
     MOVETOTARGET,
     MELEE_ATTACK,
-    RANGED_ATTACK;
+    RANGED_ATTACK,
+    HALT;
 }

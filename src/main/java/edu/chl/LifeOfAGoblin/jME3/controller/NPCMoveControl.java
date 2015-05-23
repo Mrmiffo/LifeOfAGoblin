@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
+import com.jme3.math.FastMath;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.Direction;
@@ -23,7 +24,7 @@ public class NPCMoveControl extends AbstractMoveControl {
      * Creates a NPCMoveControl with a default move range and no connected spatial
      */
     public NPCMoveControl() {
-        this.idleMoveRange = 2; //Default start value
+        this(4); //Default start value
     }
     
     /**
@@ -32,25 +33,7 @@ public class NPCMoveControl extends AbstractMoveControl {
      */
     public NPCMoveControl(float idleMoveRange) {
         this.idleMoveRange = idleMoveRange;
-    }
-    
-    /**
-     * Creates a NPCMoveControl with a default move range and connects a spatial
-     * @param spatial the spatial to put the control on
-     */
-    public NPCMoveControl(Spatial spatial) {
-        this();
-        this.setSpatial(spatial);
-    }
-    
-    /**
-     * Creates a NPCMoveControl with a specified move range and connects a spatial
-     * @param idleMoveRange the move range 
-     * @param spatial the spatial to put the control on
-     */
-    public NPCMoveControl(float idleMoveRange, Spatial spatial) {
-        this(idleMoveRange);
-        this.setSpatial(spatial);
+        this.currentDirection = Direction.LEFT;
     }
     
     @Override
@@ -59,16 +42,20 @@ public class NPCMoveControl extends AbstractMoveControl {
             AIAction action = npcModel.getAIAction();
             switch (action) {
                 case IDLE:
-                    if (idleMoveRange == 0) {
+                    if (FastMath.abs(idleMoveRange) < 0.1f) {
                         currentDirection = (currentDirection == Direction.LEFT) ?
                                                 Direction.RIGHT : Direction.LEFT;
-                       idleMoveRange = 4; //2 is full idle range
+                       idleMoveRange = 8; //2 is full idle range
                     } else {
                         idleMoveRange -= stepWidth;
+                        System.out.println(idleMoveRange);
                     }
                     break;
                 case MOVETOTARGET:
                     currentDirection = npcModel.getTargetDirection();
+                    break;
+                case HALT:
+                    currentDirection = Direction.STAND_STILL;
                     break;
             }
             super.controlUpdate(tpf);
