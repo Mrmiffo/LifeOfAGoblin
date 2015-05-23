@@ -10,7 +10,8 @@ import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 
 /**
- *
+ * A wrapper class for the Nifty instance for the NiftyGUI screens. Used to create
+ * a single input channel for all registrations and transfers between nifty screens.
  * @author Anton
  */
 public class NiftyGUIWrapper {
@@ -90,8 +91,4 @@ public class NiftyGUIWrapper {
     public Nifty getNifty(){
         return nifty;
     }
-    
-//    public void showPauseMenu(){
-//        goToScreen("mainMenu");
-//    }
 }

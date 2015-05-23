@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
 
 import de.lessvoid.nifty.Nifty;
@@ -13,7 +9,8 @@ import edu.chl.LifeOfAGoblin.model.Profile;
 import java.util.List;
 
 /**
- *
+ * The ProfilMenuController is the controller for the Profile menu screen.
+ * This class will handle the events of the buttons in the screen.
  * @author Anton
  */
 public class ProfileMenuController implements ScreenController{
@@ -35,6 +32,9 @@ public class ProfileMenuController implements ScreenController{
         emptyProfiles();
     }
 
+    /**
+     * Fetches all the profiles and displays them in the profileBox.
+     */
     private void loadProfiles() {
         if (!Profile.getProfiles().isEmpty()) {
             for (Profile profile: Profile.getProfiles()){
@@ -50,24 +50,39 @@ public class ProfileMenuController implements ScreenController{
         }
     }
 
+    /**
+     * WIll empyt the profile box
+     */
     private void emptyProfiles() {
         profileBox.removeAllItems(profileBox.getItems());
     }
     
+    /**
+     * Will empty and load the profile box.
+     */
     private void reloadProfiles() {
         emptyProfiles();
         loadProfiles();
     }
     
+    /**
+     * Action for the save button. Will set the new active profile in the Profile class.
+     */
     public void save(){
         Profile.setActiveProfile((String)profileBox.getSelection().get(0));
         back();
     }
     
+    /**
+     * Return to main menu.
+     */
     public void back(){
         NiftyGUIWrapper.getInstance().goToScreen("mainMenu");
     }
     
+    /**
+     * Delete the profile from disk and the list of profiles.
+     */
     public void deleteProfile() {
         //Get the selected profile
         List<String> selectedProfile = profileBox.getSelection();
@@ -80,6 +95,10 @@ public class ProfileMenuController implements ScreenController{
         reloadProfiles();
     }
     
+    /**
+     * Create a new profile.
+     * TODO: Add ability to change profile name on creation.
+     */
     public void createProfile() {
         //Creates a profile in model. Logic for naming a profile is not provided.
         Profile profile = new Profile("Default profile " + Profile.getProfiles().size());

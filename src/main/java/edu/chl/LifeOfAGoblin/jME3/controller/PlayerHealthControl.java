@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.bullet.control.CharacterControl;
@@ -12,8 +8,8 @@ import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.model.Player;
 
 /**
- *
- * @author Anton
+ * A control for updating the game hud. Also checks if player is dead, if so respawn the character.
+ * @author Anton & Fredrik
  */
 public class PlayerHealthControl extends AbstractControl {
     
@@ -23,9 +19,13 @@ public class PlayerHealthControl extends AbstractControl {
     @Override
     protected void controlUpdate(float tpf) {
         Player player = (Player) spatial.getControl(ModelControl.class).getModel();
+        //Checks if the health is the same as the last time the update method was run, if unchanged do nothing, if changed set the new health as last health and update hud.
         if (player.getHealth() != lastHealth || player.getMaxHealth() != lastMaxHealth) {
             GameHudController.updateHudHealthbar(player.getHealth(), player.getMaxHealth());
-            GameHudController.flashOnDamage(player.getHealth(), lastHealth);
+            //Checks if the player took damage, if so flash the screen.
+            if (player.getHealth() < lastHealth){
+                GameHudController.flashOnDamage();
+            }
             lastHealth = player.getHealth();
             lastMaxHealth = player.getMaxHealth();
         }

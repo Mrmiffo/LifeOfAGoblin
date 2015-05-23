@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.view;
 
 import com.jme3.app.SimpleApplication;
@@ -13,7 +9,7 @@ import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.view.state.MainMenuAppState;
-import edu.chl.LifeOfAGoblin.jME3.view.state.PauseAppState;
+import edu.chl.LifeOfAGoblin.archive.PauseAppState;
 import edu.chl.LifeOfAGoblin.model.Profile;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
 import java.util.List;
@@ -21,8 +17,9 @@ import java.util.List;
 
 /**
  * The LifeOfAGoblin class is the game itself. This class will insitialize all 
- * needed singletons and extends the jME3 simple Application. During use the start()
+ * needed singletons and extends the jME3 simple Application. Use the start()
  * method to run the game and the user will be presented with the main menu.
+ * This will also run all the initialize methods for all the helper classes.
  * @author Anton
  */
 public class LifeOfAGoblin extends SimpleApplication {

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * This is a wrapper clas for the inputManager intended to move actionlistener
  * registration out of the LifeOfAGoblin class.
- * @author kakan
+ * @author Anton
  */
 public class InputManagerWrapper {
     private static InputManagerWrapper instance;
@@ -61,16 +61,31 @@ public class InputManagerWrapper {
         }
     }
     
+    /**
+     * A method used to register an action to be available in the inputManager.
+     * The action contains the key which the inputManager should listen to and 
+     * once the key is pressed the corresponding action will be triggered.
+     * @param action 
+     */
     public void registerAction(Actions action) {
         im.deleteMapping(action.toString());
         im.addMapping(action.toString(), TriggerConverter.keybindsToTriggers(action.getKeyCodes()));
     }
     
+    /**
+     * Registers a raw input listener to the input manager. 
+     * Used when a class need to listen to any possible key, independent of which 
+     * actions are registered.
+     * @param ril the raw input listener which want to start listen.
+     */
     public void addRawInputListener(RawInputListener ril){
         im.addRawInputListener(ril);
         
     }
-    
+    /*
+     * Removes the speciified RawInputListener. The input listener will no longer
+     * receive triggers.
+     */
     public void removeRawInputListener(RawInputListener ril){
         im.removeRawInputListener(ril);
     }

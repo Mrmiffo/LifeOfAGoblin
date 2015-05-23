@@ -12,7 +12,6 @@ import edu.chl.LifeOfAGoblin.model.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.Player;
 import edu.chl.LifeOfAGoblin.model.SpawnPoint;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCollisionObject;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.INode;

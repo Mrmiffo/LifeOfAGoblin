@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen;
 
 import de.lessvoid.nifty.builder.ImageBuilder;
@@ -23,7 +19,13 @@ public class GameHud implements INiftyScreen{
 
     private String gameHudName;
     private Screen gameHudScreen;
-    GameHudController gameHudController;
+    private GameHudController gameHudController;
+    /**noOfHealthDisplayed adds 20 images slots for the healthbar. The value is a "magic 
+    * number" and can be set to anything. The Controller will loop 
+    * through these slots and add the correct image depending on the 
+    * characters' health and maxhealth.
+    */
+    private final int noOfHealthDisplayed = 20;
     
     /**
      * Default constructor for the game hud. Will set the name and setup the hud
@@ -44,12 +46,16 @@ public class GameHud implements INiftyScreen{
         return gameHudName;
     }
 
+    /**
+     * Creates all the components of the game hud.
+     */
     private void setupGameHud() {
         gameHudController = new GameHudController();
         //Create the hud screen.
         gameHudScreen = new ScreenBuilder(gameHudName) {{
-            //attach the controller.z
+            //attach the controller.
             controller(gameHudController);
+            //Create a background layer (used to flash when player take damage)
             layer(new LayerBuilder("background") {{
                 childLayoutVertical();
                 panel(new PanelBuilder("backgroundPanel") {{
@@ -58,7 +64,7 @@ public class GameHud implements INiftyScreen{
                     width("100%");
                 }});
             }});
-            //Add the foreground layer.
+            //Add the foreground layer. Will be used to add the healthbar.
             layer(new LayerBuilder("foreground") {{
                 childLayoutVertical();
                 //Add the panel att the top which is the health bar.
@@ -67,30 +73,18 @@ public class GameHud implements INiftyScreen{
                     childLayoutHorizontal();
                     height("50px");
                     width("100%");
-                /**Adds 20 images slots for the healthbar. The value is a "magic 
-                * number" and can be set to anything. The Controller will loop 
-                * through these slots and add the correct image depending on the 
-                * characters' health and maxhealth.
-                */
-                for (int i = 0; i < 20;i++){
-                    image(new ImageBuilder("flower"+i){{
-                        height("50px");
-                        width("50px");
+                    //Create image objects to be loaded with images to display hte health.
+                    for (int i = 0; i < noOfHealthDisplayed;i++){
+                        image(new ImageBuilder("flower"+i){{
+                            height("50px");
+                            width("50px");
                     }});
                 }
-//                {{
-//                    Resources.getInstance().setTempPath("images");
-//                    filename("Red-Sticker-Flowers_transparent.png");
-//                }});
-//                image(new ImageBuilder(){{
-//                    Resources.getInstance().setTempPath("images");
-//                    filename("Red-Sticker-Flowers_transparent_greyscale.png");
-//                }});
             }});
 
                 
             }});
-        }}.build(NiftyGUIWrapper.getInstance().getNifty()); //mainMenu
+        }}.build(NiftyGUIWrapper.getInstance().getNifty()); //Builds the screen.
     }
 
 }

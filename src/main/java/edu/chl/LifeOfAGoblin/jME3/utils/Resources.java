@@ -15,6 +15,8 @@ import java.util.Map;
  * All j3o files are loaded into the game when Resources is initialized. 
  * Images and fonts used by NiftyGUI are loaded when needed by nifty methods 
  * using the setTempPath method in Resources.
+ * NOTICE: the jME3 assetManager is NOT thread safe and loading resources in multiple 
+ * threads at the same time may cause issues.
  * @author Anton
  */
 public class Resources {
@@ -33,7 +35,11 @@ public class Resources {
         }
         return instance;
     }
-    
+    /**
+     * The initialize method will setup the assetManager and load any needed j3o
+     * resources.
+     * @param assetManager the assetManager from the simpler application
+     */
     public void initialize(AssetManager assetManager){
         this.assetManager = assetManager;
 //        loadImages();
@@ -43,10 +49,21 @@ public class Resources {
 //        loadTextures();
     }
     
+    /**
+     * Add a resource to list of loaded resources.
+     * @param name the name of the resource. Will be used to identify the resource.
+     * @param resource 
+     */
     private void addResource(String name, Spatial resource){
         geometries.put(name, resource.clone());
     }
     
+    /**
+     * Loads the resource from a file into a jME3 spatial and adds it to the 
+     * list of available resrouces.
+     * @param files the file names of the files to load.
+     * @param path the path where the files are located.
+     */
     private void loadResources(List<String> files, String path){
         assetManager.registerLocator(path, FileLocator.class);
         for (String name: files){
@@ -56,14 +73,31 @@ public class Resources {
         }
     }
     
+    /**
+     * A method to get a resource file that is already loaded into the memory.
+     * @param name the name of the resource to load.
+     * @return the spatial of the resource file.
+     */
     public Spatial getResources(String name){
         return geometries.get(name).clone();
     }
     
+    /**
+     * The setTempPath method is used by Nifty screens to load resources as nifty 
+     * use internal methods involving the assetManager. This method changes the 
+     * default path of the assetManager temporarly to fit that file path.
+     * @param folder 
+     */
     public void setTempPath(String folder){
         assetManager.registerLocator(defaultPath + File.separator + folder, FileLocator.class);
     }
     
+    /**
+     * The load sounds resource will load an audioNode instead of a normal node 
+     * into the list of available resrouces.
+     * @param files the file names to load.
+     * @param path the path where the files are located.
+     */
     private void loadSoundResources(List<String> files, String path){
         assetManager.registerLocator(path, FileLocator.class);
         for (String name:files){
@@ -71,11 +105,6 @@ public class Resources {
         }
     }
 
-//    private void loadImages() {
-//        String imagePath = defaultPath + File.separator + "images";
-//        List<String> images = SaveLoadManager.getInstance().getSavedFiles(imagePath);
-//        loadResources(images, imagePath);
-//    }
 
     private void loadModels() {
         String modelPath = defaultPath + File.separator + "models";

@@ -1,5 +1,6 @@
 package edu.chl.LifeOfAGoblin.jME3.view.state;
 
+import edu.chl.LifeOfAGoblin.archive.PauseAppState;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -13,7 +14,6 @@ import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
 import edu.chl.LifeOfAGoblin.model.Actions;

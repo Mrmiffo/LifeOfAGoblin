@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen;
 
 import de.lessvoid.nifty.builder.ImageBuilder;
@@ -49,6 +45,7 @@ public class ProfileMenu implements INiftyScreen{
                 
                 // add image
                 image(new ImageBuilder() {{
+                    //Set a temporary path for the assetManager. Nitfy use built in logic to find the specified file from selected path.
                     Resources.getInstance().setTempPath("images");
                     filename("forest-wallpaper-free-picture.jpg");
                     height("100%");
@@ -71,16 +68,16 @@ public class ProfileMenu implements INiftyScreen{
 
                     text(new TextBuilder() {{
                         text("Profile");
+                        //Set a temporary path for the assetManager. Nitfy use built in logic to find the specified file from selected path.
                         Resources.getInstance().setTempPath("fonts");
                         font("BradleyHandITC100BOLD.fnt");
                         color(new Color(0f, 0f, 0f, 1f));
-//                        color(new Color(0f, 0.3529f, 0f, 1f));
                         height("50%");
                         width("100%");
                     }});
                 }}); //Panel top
 
-                //Create the center panel which will contain the level select field. 
+                //Create the center panel which will contain the profile select field. 
                 panel(new PanelBuilder("panel_mid") {{
                     childLayoutCenter();
                     alignCenter();
@@ -166,14 +163,14 @@ public class ProfileMenu implements INiftyScreen{
                         }});//Back button
                     }});
                     
-                    //A panel for the settings button
+                    //A panel for the select profile button
                     panel(new PanelBuilder("panel_bottom_right") {{
                         childLayoutCenter();
                         valignCenter();
                         height("100%");
                         width("25%");
 
-                        //The save buttons which saves the changes
+                        //The select profile buttons which saves the change of profile.
                         control(new ButtonBuilder("selectButton", "Select profile") {{
                             alignCenter();
                             valignCenter();
@@ -184,7 +181,7 @@ public class ProfileMenu implements INiftyScreen{
                     }});//Panel bottom right
                 }}); // panel bottom
             }});//Layer foreground  
-        }}.build(NiftyGUIWrapper.getInstance().getNifty()); //Profile menu screen
+        }}.build(NiftyGUIWrapper.getInstance().getNifty()); //Builds the Profile menu screen
     }//Setup profileview
     
 

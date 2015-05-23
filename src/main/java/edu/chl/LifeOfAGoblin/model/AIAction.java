@@ -5,7 +5,7 @@
 package edu.chl.LifeOfAGoblin.model;
 
 /**
- *
+ * The actions available for an AI
  * @author Ulrika
  */
 public enum AIAction {

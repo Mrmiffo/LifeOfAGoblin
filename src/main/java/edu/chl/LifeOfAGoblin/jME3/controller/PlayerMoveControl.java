@@ -5,15 +5,19 @@ import edu.chl.LifeOfAGoblin.model.Actions;
 import edu.chl.LifeOfAGoblin.model.Direction;
 
 /**
- *
- * @author Anton
+ * The player move control listens for keyaction related to movement and tell the 
+ * character which way to move. The actual moving of the character is done in the 
+ * super class AbstractMoveControl
+ * @author kakan
  */
 public class PlayerMoveControl extends AbstractMoveControl implements IKeyListener{
     
+    //Declare which actions the control listen for.
     private final Actions[] actions = new Actions[] {
         Actions.JUMP, Actions.WALK_LEFT, Actions.WALK_RIGHT
     };
 
+    //Translate action to movement command.
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
         if (name.equals(Actions.WALK_RIGHT.toString())){

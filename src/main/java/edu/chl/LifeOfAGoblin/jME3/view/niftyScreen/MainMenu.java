@@ -1,10 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen;
-
-
 
 import de.lessvoid.nifty.builder.ImageBuilder;
 import de.lessvoid.nifty.builder.LayerBuilder;
@@ -21,12 +15,9 @@ import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
-
-
-
-
 /**
- * The MainMenu is the menu from which the player will select level, start the game, go to settings and exit the game.
+ * The MainMenu is the menu from which the player will select level, start the 
+ * game, go to settings, profile and exit the game.
  * @author Anton
  */
 public class MainMenu implements INiftyScreen{
@@ -35,7 +26,7 @@ public class MainMenu implements INiftyScreen{
     private MainMenuController niftyController;
 
     /**
-     * Default constructor for the main menu. WIll load all files and build all the interface components.
+     * Default constructor for the main menu. Will load all files and build all the interface components.
      * Use the getScreen to load it into nifty.
      */
     public MainMenu() {  
@@ -56,7 +47,7 @@ public class MainMenu implements INiftyScreen{
         niftyController = new MainMenuController();
         //Create a new nifty screen.
         screen = new ScreenBuilder(mainMenuName) {{
-            //Register the controler to the screen. Any actions taken on the screen objects will be resolved in this controller.
+            //Register the controller to the screen. Any actions taken on the screen objects will be resolved in this controller.
             controller(niftyController);
             
             //Create the background layer that covers the whole screen and set a background image.
@@ -65,6 +56,7 @@ public class MainMenu implements INiftyScreen{
                 
                 // add image
                 image(new ImageBuilder() {{
+                    //Set a temporary path for the assetManager. (Nifty built in functionalit will use the asset manager to load the images)
                     Resources.getInstance().setTempPath("images");
                     filename("forest-wallpaper-free-picture.jpg");
                     height("100%");
@@ -87,19 +79,19 @@ public class MainMenu implements INiftyScreen{
                     // add text
                     text(new TextBuilder() {{
                         text("Welcome to");
+                        //Set a temporary path for the assetManager. (Nifty built in functionalit will use the asset manager to load the fonts)
                         Resources.getInstance().setTempPath("fonts");
                         font("BradleyHandITC100BOLD.fnt");
                         color(new Color(0f, 0f, 0f, 1f));
-//                        color(new Color(0f, 0.3529f, 0f, 1f));
                         height("50%");
                         width("100%");
                     }});
                     text(new TextBuilder() {{
                         text("Life of a Goblin");
+                        //Set a temporary path for the assetManager. (Nifty built in functionalit will use the asset manager to load the fonts)
                         Resources.getInstance().setTempPath("fonts");
                         font("BradleyHandITC100BOLD.fnt");
                         color(new Color(0f, 0f, 0.f, 1f));
-//                        color(new Color(0f, 0.3529f, 0f, 1f));
                         height("50%");
                         width("100%");
                     }});
@@ -112,15 +104,17 @@ public class MainMenu implements INiftyScreen{
                     height("30%");
                     width("75%");
                     
+                    //The level select box.
                     control(new ImageSelectBuilder("levelSelectBox") {{
                         height("100%");
                         width("50%");
+                        //Set a temporary path for the assetManager. (Nifty built in functionalit will use the asset manager to load the images)
                         Resources.getInstance().setTempPath("images");
+                        //Add all the images for the levels.
                         for (final String name: LevelManager.getInstance().getAllLevelNames()){
                             addImage(name + ".png");
                         }
                         pixels(100);
-//                        interactOnClick("");
                     }});
 
                 }});
@@ -181,7 +175,7 @@ public class MainMenu implements INiftyScreen{
                         padding("5%");
 
                         
-                        // add Button for settings
+                        // add Button for profile
                         control(new ButtonBuilder("ProfileButton", "Profiles") {{
                           alignCenter();
                           valignCenter();
@@ -190,7 +184,7 @@ public class MainMenu implements INiftyScreen{
                           interactOnClick("profile()");
                         }});//Profile button
                     }});
-                    
+                    //A panel for the quit button
                     panel(new PanelBuilder("panel_bottom_bottom") {{
                         childLayoutCenter();
                         valignCenter();
@@ -198,7 +192,7 @@ public class MainMenu implements INiftyScreen{
                         width("100%");
                         padding("5%");
 
-                        // add control
+                        // add quit button
                         control(new ButtonBuilder("QuitButton", "Quit") {{
                           alignCenter();
                           valignCenter();
@@ -206,10 +200,10 @@ public class MainMenu implements INiftyScreen{
                           width("30%");
                           interactOnClick("quitGame()");
                         }});//Quit button
-                    }});//Panel bottom right
+                    }});//Panel bottom bottom
                 }}); // panel bottom
             }}); //forground layer
-        }}.build(NiftyGUIWrapper.getInstance().getNifty()); //mainMenu
+        }}.build(NiftyGUIWrapper.getInstance().getNifty()); //Build the main menu
          
         
     }

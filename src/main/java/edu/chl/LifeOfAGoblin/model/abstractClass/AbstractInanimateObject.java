@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
@@ -9,7 +5,7 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
 
 /**
  * The abstract inanimate object class is the super class for all objects in the
- * game that have a visual represnetaion but are not consider "living" 
+ * game that have a visual representaion but are not consider "living" 
  * (such as characters).
  * @author Anton
  */

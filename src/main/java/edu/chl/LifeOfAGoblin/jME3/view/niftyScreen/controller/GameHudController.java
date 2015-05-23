@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
 
 import de.lessvoid.nifty.Nifty;
@@ -17,7 +13,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- *
+ * The controller class for the game hud. Should only exist in on instance. 
+ * Used to update the displayed player health and to flash the screen when the 
+ * player take damage.
  * @author Anton
  */
 public class GameHudController implements ScreenController{
@@ -42,9 +40,13 @@ public class GameHudController implements ScreenController{
         
     }
     
+    /**
+     * A method used to change how the health is displayed in the hud. 
+     * @param currentHealth How many "health left" icons to display.
+     * @param maxHealth  how many "health missing" icons to display.
+     */
     public static void updateHudHealthbar(int currentHealth, int maxHealth){
         //Loop through all the images in the healthbar.
-        
         for (int i = 0; i<screen.findElementByName("healthPanel").getElements().size(); i++){
             //Find the image element
             Element flowerElement = screen.findElementByName("flower"+i);
@@ -61,26 +63,26 @@ public class GameHudController implements ScreenController{
                 imageToAdd = "Red-Sticker-Flowers_transparent_greyscale.png";
                 flowerRenderer.setImage(NiftyGUIWrapper.getInstance().getNifty().createImage(imageToAdd, false));
             } else {
-                //If the character have less that 20 HP max, no image will be displayed.
+                //If the character have less then noOfHealthDisplayed (see GameHud class) HP max, no image will be displayed.
                 flowerRenderer.setImage(null);
             }
         }
     }
-    
-    public static void flashOnDamage(int currentHealth, int previousHealth) {
-        if (currentHealth < previousHealth) {
-            long timerDelay = 500; //Time in milliseconds
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
+    /**
+     * A method used to flash the screen when the played take damage.
+     */
+    public static void flashOnDamage() {
+        long timerDelay = 500; //Time in milliseconds
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
 
-                @Override
-                public void run() {
-                    screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0, 0, 0, 0));
-                    this.cancel();
-                }
-            }, timerDelay);
-            
-            screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(215/255f, 44/255f, 44/255f, 0.4f));
-        }
+            @Override
+            public void run() {
+                screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0, 0, 0, 0));
+                this.cancel();
+            }
+        }, timerDelay);
+
+        screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(215/255f, 44/255f, 44/255f, 0.4f));
     }
 }
