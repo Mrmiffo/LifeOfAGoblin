@@ -28,6 +28,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     private Application app;
     private int levelToStart;
     private Level level;
+    private Node levelNode;
     private GameHud hud;
     private final Actions[] actions = new Actions[] {
         Actions.OPEN_MENU
@@ -63,7 +64,16 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     @Override
     public void cleanup() {
         super.cleanup();
+        stopMusic();
         rootNode.detachAllChildren();
+    }
+    
+    private void stopMusic() {
+        for (Spatial node: (levelNode.getChildren())){
+            if (node instanceof AudioNode){
+                ((AudioNode)node).stop();
+            }
+        }
     }
     
     @Override
@@ -91,15 +101,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         //Create a new hud and display it.
         app.getViewPort().setBackgroundColor(ColorRGBA.Cyan);
         NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
-        Node levelNode = NodeFactory.createModeledLevelNode(level, app.getCamera());
-        //Temporarly adding a default background sound to the level node.
-        Resources.getInstance().loadSoundResource("magical_theme.wav", "sounds");
-        AudioNode gameMusic = (AudioNode) Resources.getInstance().getResources("magical_theme.wav");
-        gameMusic.setPositional(false);
-        gameMusic.setLooping(true);
-        gameMusic.setVolume(10);
-        gameMusic.play();
-        levelNode.attachChild(gameMusic);
+        levelNode = NodeFactory.createModeledLevelNode(level, app.getCamera());
         rootNode.attachChild(levelNode);
     }
 
