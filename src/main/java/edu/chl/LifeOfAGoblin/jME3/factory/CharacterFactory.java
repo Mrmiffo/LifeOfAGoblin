@@ -26,7 +26,9 @@ import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.Player;
+import edu.chl.LifeOfAGoblin.model.Weapon;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 /**
  *
  * @author kakan
@@ -66,7 +68,10 @@ class CharacterFactory {
         
         makeSolid(node);
         makeMoveable(node);
-        enableReaction(node); //Adds AI
+        if (character instanceof AbstractNPC) {
+            enableReaction(node); //Adds AI
+            addWeapon(node, (AbstractNPC)character);
+        }
         provideGraphicalRepresentation(node);
         
         return node;
@@ -193,6 +198,25 @@ class CharacterFactory {
     private static void enableReaction(Node node) {
         NPCCollisionControl ncc = new NPCCollisionControl();
         node.addControl(ncc);
+    }
+    
+    private static void addWeapon(Node node, AbstractNPC npc) {
+                
+        Node weaponNode = new Node();
+        Weapon weapon = npc.getWeapon();
+        
+        weaponNode.addControl(new ModelControl(weapon));
+        
+        BoxCollisionShape ghostShape = new BoxCollisionShape(new Vector3f(weapon.getCollisionWidth(),
+                                                             weapon.getCollisionHeight(), 1));
+        
+        GhostControl ghost = new GhostControl(ghostShape);
+        PhysicsWrapper.getInstance().add(ghost);
+        
+        weaponNode.addControl(ghost);
+        
+        node.attachChild(weaponNode);
+
         //Attack control could potentially be added here
     }
 }
