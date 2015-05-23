@@ -22,6 +22,7 @@ public class Profile implements Serializable{
         this.profileName = profileName;
         keybinds = new Keybindings();
         isActiveProfile = false;
+        this.progress = new Progress();
     }
     
     /**
