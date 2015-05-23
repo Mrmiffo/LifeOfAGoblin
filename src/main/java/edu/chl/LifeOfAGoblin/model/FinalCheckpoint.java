@@ -38,8 +38,9 @@ public class FinalCheckpoint extends Checkpoint {
         if (collided.getClass() == Player.class) {
             super.updateProgress(this.level, this.number);
             super.activate();
-            StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(GameAppState.class));
-            StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
+            //todo fix this properly
+//            StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(GameAppState.class));
+//            StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
         }
     }
 }
