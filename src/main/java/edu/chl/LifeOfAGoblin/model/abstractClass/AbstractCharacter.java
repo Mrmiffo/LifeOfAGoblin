@@ -7,8 +7,8 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IKillable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.archive.ISpawnable;
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
+import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
 
 /**
  * The abstraction of any character. 
