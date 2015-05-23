@@ -32,16 +32,17 @@ public class Boss extends AbstractNPC {
      * {@inheritDoc}
      */
     public Boss(NodeType target) {
-        this(target, 1);
+        this(target, 1, 3);
     }
     
     /**
      * {@inheritDoc}
      * @param healthMultiplier the multiplier to make the Boss tougher.
+     * @param aggressionRange the range that the boss reacts to the player
      */
-    public Boss(NodeType target, float healthMultiplier) {
+    public Boss(NodeType target, float healthMultiplier, float aggressionRange) {
         super((int)healthMultiplier * maxHealth, model, height, width, weight,
-                baseDamage, jumpStrength, target);
+                baseDamage, jumpStrength, target, aggressionRange);
     }
     
     /**

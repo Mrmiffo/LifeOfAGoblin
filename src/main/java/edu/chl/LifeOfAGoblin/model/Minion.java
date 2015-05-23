@@ -32,19 +32,16 @@ public class Minion extends AbstractNPC {
      * {@inheritDoc}
      */
     public Minion(NodeType target){
-        this(target, 1);   
+        this(target, 1, 3);   
     }
     
     /**
      * {@inheritDoc}
      * @param healthMultiplyer the multiplier to make the Minion tougher.
      */
-    public Minion(NodeType target, float healthMultiplyer) {
+    public Minion(NodeType target, float healthMultiplyer, float aggressionRange) {
         super((int)healthMultiplyer * maxHealth, model, height, width, weight,
-                baseDamage, jumpStrength, target);
-        
-        targetNodeType = NodeType.PLAYER;
-        targetDistance = 2;
+                baseDamage, jumpStrength, target, aggressionRange);
     }
     
 

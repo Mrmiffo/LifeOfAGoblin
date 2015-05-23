@@ -4,7 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
-import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
@@ -18,13 +17,9 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 public abstract class AbstractNPC extends AbstractCharacter implements IAI {
    
     protected AIAction activeAction;
-    protected float targetDistance = 2;
-    protected NodeType targetNodeType;
-    protected Direction targetDirection;
-    
-    private float aggressionRange = 3;
-    
-    private static final int collisionGroup = 6;
+    private NodeType targetNodeType;
+    private Direction targetDirection;
+    private float aggressionRange;
     
     /**
      *
@@ -38,9 +33,11 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      * @param target the target that the NPC should be hostile toward
      */
     protected AbstractNPC(int maxHealth, String model, float height, float width,
-            float weight, float baseDamage, float jumpStrength, NodeType target){
+            float weight, float baseDamage, float jumpStrength, NodeType target, float aggressionRange){
         
-        super(new NPCMoveControl(), collisionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        super(new NPCMoveControl(), maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        this.targetNodeType = target;
+        this.aggressionRange = aggressionRange;
         activeAction = AIAction.IDLE;
     }
     
@@ -57,8 +54,9 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      */
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
+        System.out.println(distance);
         if (aggressionRange <= distance && targetNodeType == type) {
-            if (distance <= 0.5f) {
+            if (distance <= 1) {
                 activeAction = AIAction.HALT;
             } else {
                 activeAction = AIAction.MOVETOTARGET;

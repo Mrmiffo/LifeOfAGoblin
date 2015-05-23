@@ -18,7 +18,6 @@ import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable, ISpawnable{
     
     private AbstractMoveControl amc;
-    private int collisionGroup;
     private int health;
     private int maxHealth;
     private String model;
@@ -43,12 +42,11 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * @param baseDamage the character's unmodified damage.
      * @param jumpStrength the character reaches by jumping.
      */
-    protected AbstractCharacter(AbstractMoveControl amc, int collisionGroup,
+    protected AbstractCharacter(AbstractMoveControl amc,
             int maxHealth, String model, float height, float width, float weight,
             float baseDamage, float jumpStrength) {
         
         this.amc = amc;
-        this.collisionGroup = collisionGroup;
         this.health = maxHealth; //everything has full health when created
         this.maxHealth = maxHealth;
         this.model = model;
@@ -74,14 +72,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      */
     public AbstractMoveControl getAbstractMoveControl() {
         return amc;
-    }
-    
-    /**
-     * Returns the character's collision group.
-     * @return the character's collision group.
-     */
-    public int getCollisionGroup() {
-        return collisionGroup;
     }
         
      /**
