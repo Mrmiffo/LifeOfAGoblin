@@ -166,8 +166,8 @@ class CharacterFactory {
     private static void attachChaseCamera(Node playerNode, Camera cam) {
         ChaseCamera chaseCam = new ChaseCamera(cam);
         chaseCam.setRotationSensitivity(0);
-        chaseCam.setDefaultHorizontalRotation(new Float(FastMath.PI/2));
-        chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
+        chaseCam.setDefaultHorizontalRotation(FastMath.PI/2);
+        chaseCam.setDefaultVerticalRotation(FastMath.PI/9); //20 degrees
         playerNode.addControl(chaseCam);
     }
 

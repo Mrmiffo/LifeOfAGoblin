@@ -24,7 +24,6 @@ import java.util.ArrayList;
  */
 public class InputManagerWrapper {
     private static InputManagerWrapper instance;
-    private TriggerConverter triggerConverter;
     private InputManager im;
 
     
@@ -48,7 +47,6 @@ public class InputManagerWrapper {
      */
     public void initialize(InputManager inputManager){
         this.im = inputManager;
-        triggerConverter = new TriggerConverter();
     }
     
     
@@ -65,7 +63,7 @@ public class InputManagerWrapper {
     
     public void registerAction(Actions action) {
         im.deleteMapping(action.toString());
-        im.addMapping(action.toString(), triggerConverter.keybindsToTriggers(action.getKeyCodes()));
+        im.addMapping(action.toString(), TriggerConverter.keybindsToTriggers(action.getKeyCodes()));
     }
     
     public void addRawInputListener(RawInputListener ril){
@@ -82,13 +80,13 @@ public class InputManagerWrapper {
     * The TriggerConverter class converts the model keybind to jME3 trigger.
     * @author kakan
     */
-   private class TriggerConverter {
+   private static class TriggerConverter {
         /**
          * Returns the corresponing Integer value of one or more triggers.
          * @param triggers one or more Triggers.
          * @return an array with the corresponding integer value(s) of the Trigger(s).
          */
-        public Keybind[] triggersToKeybinds(Trigger... triggers) {
+        private static Keybind[] triggersToKeybinds(Trigger... triggers) {
             ArrayList<Keybind> temp = new ArrayList<>();
             for (Trigger trigger: triggers) {
                 temp.add(new Keybind(getInputDevice(trigger), trigger.triggerHashCode()));
@@ -101,7 +99,7 @@ public class InputManagerWrapper {
          * @param keybinds a Map of Integer/InputDevice pairs.
          * @return an array with the corresponding Trigger(s) of the Map.
          */
-        public Trigger[] keybindsToTriggers(ArrayList<Keybind> keybinds) {
+        private static Trigger[] keybindsToTriggers(ArrayList<Keybind> keybinds) {
             ArrayList<Trigger> temp = new ArrayList<>();
             for (Keybind keybind: keybinds) {
                 temp.add(keybindToTrigger(keybind));
@@ -114,7 +112,7 @@ public class InputManagerWrapper {
          * @param keybind the keybind to convert.
          * @return the corresponding jME3 trigger.
          */
-        public  Trigger keybindToTrigger(Keybind keybind){
+        private static Trigger keybindToTrigger(Keybind keybind){
         Trigger temp = null;
             switch(keybind.getInputDevice()) {
                 case KEYBOARD:
@@ -132,7 +130,7 @@ public class InputManagerWrapper {
          * @param trigger the Trigger which to analyze.
          * @return the associated InputDevice of the Trigger.
          */
-        public InputDevice getInputDevice(Trigger trigger) {
+        private static InputDevice getInputDevice(Trigger trigger) {
             if (trigger.getClass() == KeyTrigger.class) {
                 return InputDevice.KEYBOARD;
             } else if (trigger.getClass() == MouseButtonTrigger.class){

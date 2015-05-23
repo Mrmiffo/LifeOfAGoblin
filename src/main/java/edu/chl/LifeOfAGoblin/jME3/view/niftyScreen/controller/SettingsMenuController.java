@@ -25,9 +25,6 @@ import java.util.Map;
 public class SettingsMenuController implements ScreenController{
 
     private Map<Actions, Map<Integer, Keybind>> changedKeyBinds;
-    
-    
-    private Nifty nifty;
     private Screen screen;
     private ListBox keybindBox;
     
@@ -37,9 +34,7 @@ public class SettingsMenuController implements ScreenController{
     
     @Override
     public void bind(Nifty nifty, Screen screen) {
-       this.nifty = nifty;
        this.screen = screen;
-       
     }
 
     @Override

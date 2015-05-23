@@ -4,9 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
 
-import com.jme3.input.KeyNames;
 import com.jme3.input.RawInputListener;
-import com.jme3.input.controls.Trigger;
 import com.jme3.input.event.JoyAxisEvent;
 import com.jme3.input.event.JoyButtonEvent;
 import com.jme3.input.event.KeyInputEvent;
@@ -37,12 +35,8 @@ import java.util.Properties;
 public class ChangeKeyBindMenuItemController implements Controller, RawInputListener{
     private Element textBox;
     private boolean listenToInput;
-    private KeyNames keyNames;
-    private String originalValue;
-    private SettingsMenuController controller;
     private int fieldNo;
     private Screen screen;
-    
 
     /**
      * Method run when user click on the textbox. Will change the text of the 
@@ -60,7 +54,6 @@ public class ChangeKeyBindMenuItemController implements Controller, RawInputList
     public void bind(Nifty nifty, Screen screen, Element element, Properties parameter, Attributes controlDefinitionAttributes) {
         this.textBox = element;
         fieldNo = Integer.parseInt(textBox.getId().substring(12, 13));
-        keyNames = new KeyNames();
         this.screen = screen;
     }
 

@@ -10,7 +10,6 @@ import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.state.MainMenuAppState;
-import java.util.List;
 
 /**
  * The MainMenuController is the control class for the main menu. It provides 
@@ -18,9 +17,7 @@ import java.util.List;
  * @author Anton
  */
 public class MainMenuController implements ScreenController{
-    private Nifty nifty;
     private Screen screen;
-    private List<String> displayedLevels;
     
     public MainMenuController(){
 
@@ -33,7 +30,6 @@ public class MainMenuController implements ScreenController{
      */
     @Override
     public void bind(Nifty nifty, Screen screen) {
-        this.nifty = nifty;
         this.screen = screen;
     }
 
@@ -67,21 +63,14 @@ public class MainMenuController implements ScreenController{
         appState.setLevelToStart(selectedLevel);
         appState.startLevel();
         StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
-        
-        
-        
-        
-        
-        
-        
     }
+    
     /**
      * Method run by the Quit button, shuts down the game.
      */
     public void quitGame(){
         System.out.println("Shutting down...");
         Main.shutDown();
-        
     }
     
     public void settings(){
@@ -91,6 +80,4 @@ public class MainMenuController implements ScreenController{
     public void profile(){
         NiftyGUIWrapper.getInstance().goToScreen("profileMenu");
     }
-    
-    
 }

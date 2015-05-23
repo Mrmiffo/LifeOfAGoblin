@@ -17,6 +17,7 @@ public class Profile implements Serializable{
     private boolean isActiveProfile;
     private static Profile activeProfile;
     private static List<Profile> listOfProfiles = new ArrayList<>();
+    private static final long serialVersionUID = -4203703890649981438L;
     
     public Profile(String profileName) {
         this.profileName = profileName;
@@ -111,8 +112,7 @@ public class Profile implements Serializable{
             keybinds.updateBindings();
         } else if (isActive){
             throw new NullPointerException("No keybindings to load, most like due to corrupted saved file.");
-        }
-        
+        } 
     }
     
     /**
