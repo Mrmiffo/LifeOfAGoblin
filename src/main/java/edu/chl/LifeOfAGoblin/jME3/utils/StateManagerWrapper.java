@@ -44,6 +44,7 @@ public class StateManagerWrapper {
     
     public void activateState(AppState as){
         sm.attach(as);
+        states.add(as);
     }
     
     public void deactivateState(AppState as){
@@ -51,7 +52,7 @@ public class StateManagerWrapper {
     }
     
     public ArrayList<AppState> getStates(){
-        return (ArrayList<AppState>)states.clone();
+        return states;
     }
     
     public AppState getAvailableState(Class<? extends AppState> appStateType){
