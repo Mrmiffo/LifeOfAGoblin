@@ -14,8 +14,10 @@ import org.junit.Test;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.LifeOfAGoblin;
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.scene.Node;
 import com.jme3.system.JmeSystem;
+import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 
 /**
@@ -51,18 +53,27 @@ public class SpawnControlTest {
     
     @After
     public void tearDown() {
-    }
+        for(Object obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList()){
+            PhysicsWrapper.getInstance().remove(obj);
+        }
+
+        for(Object obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getCharacterList()){
+            PhysicsWrapper.getInstance().remove(obj);
+        }
+        for(Object obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getRigidBodyList()){
+            PhysicsWrapper.getInstance().remove(obj);
+        }        
+     }
 
 
     @Test
     
     public void testSpawn() {
         SpawnControl control = new SpawnControl();
-
+        this.loag.getRootNode().attachChild(lvl);
         lvl.addControl(control);
         control.spawn(1, NodeType.MINION);
 
+
     }
-
-
 }

@@ -4,7 +4,8 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
+import edu.chl.LifeOfAGoblin.model.NodeType;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author fredrik
  */
-public class SpawnpointTests {
+public class BossTest {
     
-    public SpawnpointTests() {
+    public BossTest() {
     }
     
     @BeforeClass
@@ -31,7 +32,6 @@ public class SpawnpointTests {
     
     @Before
     public void setUp() {
-
     }
     
     @After
@@ -40,17 +40,13 @@ public class SpawnpointTests {
 
     @Test
     public void testGetNodeType() {
-        SpawnControl spawn = new SpawnControl();
-        //Spawnpoint sp = new Spawnpoint(spawn, 1,NodeType.BOSS,  1f);
-        //assertTrue(sp.getNodeType().equals(NodeType.SPAWNPOINT));
+        // setup
+        Boss boss1 = new Boss();
+        AbstractGameObject boss2 = new Boss();
+        
+        //tests that a boss's nodetype is boss
+        assertTrue(boss1.getNodeType().equals(NodeType.BOSS));
+        assertTrue(boss2.getNodeType().equals(NodeType.BOSS));
     }
 
-    @Test
-    public void testCollide() {
-        /*Checkpoint cp = new Checkpoint(1, 1, 1f);
-        cp.collide();
-        assertTrue(cp.getIsActivated());
-        cp.collide();
-        assertTrue(cp.getIsActivated());*/
-    }
 }

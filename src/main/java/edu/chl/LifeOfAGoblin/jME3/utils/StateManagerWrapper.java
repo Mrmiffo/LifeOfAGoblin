@@ -60,10 +60,12 @@ public class StateManagerWrapper {
      */
     public void activateState(AppState as){
         sm.attach(as);
+
         if (!states.contains(as)){
             states.add(as);
         }
     }
+
     
     /**
      * Deactivates the states. NOTE: State will still be available in the list of available states.
@@ -73,8 +75,10 @@ public class StateManagerWrapper {
         sm.detach(as);
     }
     
+
     public ArrayList<AppState> getAvailableStates(){
         return (ArrayList<AppState>)states.clone();
+
     }
     
     public AppState getAvailableState(Class<? extends AppState> appStateType){

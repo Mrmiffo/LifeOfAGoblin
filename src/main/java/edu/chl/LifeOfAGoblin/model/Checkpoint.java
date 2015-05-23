@@ -56,7 +56,7 @@ public class Checkpoint extends AbstractGameObject implements ICollidable, IActi
      */
     
     public void updateProgress(int level, int number) {
-        //progress.getInstance().update(level, number);
+        Profile.getActiveProfile().getProgress().update(level, number);
     }
 
     @Override

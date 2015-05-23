@@ -4,13 +4,15 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
-
-import com.jme3.input.*;
-import com.jme3.input.awt.AwtKeyInput;
-import com.jme3.input.awt.AwtMouseInput;
-import com.jme3.input.lwjgl.JInputJoyInput;
+import com.jme3.app.state.AppStateManager;
+import com.jme3.asset.AssetManager;
+import com.jme3.input.RawInputListener;
+import com.jme3.input.TouchInput;
+import com.jme3.system.JmeSystem;
 import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.view.LifeOfAGoblin;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,14 +25,16 @@ import static org.junit.Assert.*;
  *
  * @author fredrik
  */
-public class CheckpointTest {
+public class FinalCheckpointTest {
+    private LifeOfAGoblin loag;
+    AssetManager assetManager = null;
+    AppStateManager stateManager = null;
     
-    public CheckpointTest() {
+    public FinalCheckpointTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
-
     }
     
     @AfterClass
@@ -39,12 +43,11 @@ public class CheckpointTest {
     
     @Before
     public void setUp() {
-        /**
-         * You need a TouchInput to create an Inputmanager and the only class in 
-         * jme3 that implements TouchInput cannot be imported, and that is 
-         * the reason this exists 
-         */
-
+        this.loag = new LifeOfAGoblin();
+        this.assetManager = JmeSystem.newAssetManager(Thread.currentThread().getContextClassLoader().getResource("com/jme3/asset/Desktop.cfg"));
+        this.stateManager = new AppStateManager(loag);
+        StateManagerWrapper.getInstance().initialize(stateManager);
+        Resources.getInstance().initialize(assetManager);
         class TestTouchInput implements TouchInput{
 
             @Override
@@ -94,10 +97,10 @@ public class CheckpointTest {
             public long getInputTimeNanos() {
                 return 1;
             }
-            
-        }
-    InputManagerWrapper.getInstance().initialize(new InputManager(new AwtMouseInput(), new AwtKeyInput(), new JInputJoyInput(), new TestTouchInput()));
+        }  
+    
     }
+   
     
     @After
     public void tearDown() {
@@ -105,25 +108,23 @@ public class CheckpointTest {
 
     @Test
     public void testGetNodeType() {
-        // setup
-        Checkpoint cp1 = new Checkpoint(1,1,1.0f);
-        AbstractGameObject cp2 = new Checkpoint(1,1,1.0f);
+                // setup
+        FinalCheckpoint cp1 = new FinalCheckpoint(1,1,1.0f);
+        AbstractGameObject cp2 = new FinalCheckpoint(1,1,1.0f);
         Checkpoint cp3 = new FinalCheckpoint(1,1,1.0f);
         
-        //tests that a checkpoint's nodetype is checkpoint
-        assertTrue(cp1.getNodeType().equals(NodeType.CHECKPOINT));
-        assertTrue(cp2.getNodeType().equals(NodeType.CHECKPOINT));
-        assertFalse(cp3.getNodeType().equals(NodeType.CHECKPOINT));
-
+        //tests that a checkpoints nodetype is checkpoint
+        assertTrue(cp1.getNodeType().equals(NodeType.FINALCHECKPOINT));
+        assertTrue(cp2.getNodeType().equals(NodeType.FINALCHECKPOINT));
+        assertTrue(cp3.getNodeType().equals(NodeType.FINALCHECKPOINT));
     }
 
     @Test
     public void testCollide() {
-        //setup 
         Profile testProfile = new Profile("testProfile");
         Profile.setActiveProfile(testProfile);
-        Checkpoint cp1 = new Checkpoint(1,1,1.0f);
-        Checkpoint cp2 = new Checkpoint(2,2,1.0f);
+        Checkpoint cp1 = new FinalCheckpoint(1,1,1.0f);
+        Checkpoint cp2 = new FinalCheckpoint(2,2,1.0f);
         
         // tests that collide is not run on an activated checkpoint
         cp1.collide(new Player());
@@ -145,35 +146,5 @@ public class CheckpointTest {
        cp1.collide(new Player());
        assertTrue(cp1.isActivated());
        
-       
-       
     }
-
-    @Test
-    public void testActivate() {
-        // setup
-        Checkpoint cp1 = new Checkpoint(1,1,1.0f);
-        
-        //tests that the checkpoint is activated correctly
-        assertFalse(cp1.isActivated());
-        cp1.activate();
-        assertTrue(cp1.isActivated());
-        cp1.activate();
-        assertTrue(cp1.isActivated());
-    }
-
-    @Test
-    public void testInactivate() {
-        // setup
-        Checkpoint cp1 = new Checkpoint(1,1,1.0f);
-        
-        //tests that the checkpoint is deactivated correctly
-        cp1.activate();
-        assertTrue(cp1.isActivated());
-        cp1.inactivate();
-        assertFalse(cp1.isActivated());
-        cp1.inactivate();
-        assertFalse(cp1.isActivated());
-    }
-
 }
