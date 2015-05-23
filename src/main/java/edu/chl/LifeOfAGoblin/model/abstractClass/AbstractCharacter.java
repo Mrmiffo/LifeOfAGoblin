@@ -4,7 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IKillable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
@@ -57,7 +56,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         this.weight = weight;
         this.baseDamage = baseDamage;
         this.jumpStrength = jumpStrength;
-        Resources.getInstance().loadResource(model, "models");
     }
     
     /**

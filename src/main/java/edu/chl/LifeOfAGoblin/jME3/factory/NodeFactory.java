@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
+import com.jme3.audio.AudioNode;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -76,6 +77,14 @@ public class NodeFactory {
         CollisionListener listener = new CollisionListener();
         PhysicsWrapper.getInstance().addCollisionListener(listener);
         //--------------------------------------------------------------
+        
+        //Add the sound to the level
+        AudioNode gameMusic = (AudioNode) Resources.getInstance().getResources("magical_theme.wav");
+        gameMusic.setPositional(false);
+        gameMusic.setLooping(true);
+        gameMusic.setVolume(10);
+        gameMusic.play();
+        levelNode.attachChild(gameMusic);
         
         return levelNode;
     }

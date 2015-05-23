@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
@@ -14,6 +10,8 @@ import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
  */
 public class Level extends AbstractInanimateObject {
     private int levelNo;
+    private String backgroundSound;
+    private String levelName;
     
     /**
      * Defaul contstructor for the level. Typically called from the LevelManager 
@@ -23,10 +21,12 @@ public class Level extends AbstractInanimateObject {
      * @param levelName the name of the level that should be created
      * @param levelno the player instance to load into the level.
      */
-    public Level(String levelName, int levelNo){
+    public Level(String levelName, int levelNo, String backgroundSound){
         //Save the scene file to load.
-        super(levelName+".j3o", "scenes");
+        super(levelName+".j3o");
+        this.levelName = levelName;
         this.levelNo = levelNo;
+        this.backgroundSound = backgroundSound;
     }
     
     @Override
@@ -44,12 +44,8 @@ public class Level extends AbstractInanimateObject {
         return 1f; //is this really nessecary?
     }
     
-    /**
-     * An identical method to getModelName(), but with a more logical name.
-     * @return the name of the level (same as model name).
-     */
     public String getLevelName(){
-        return getModelName();
+        return levelName;
     }
     
     /**
@@ -58,5 +54,13 @@ public class Level extends AbstractInanimateObject {
      */
     public int getLevelNo(){
         return levelNo;
+    }
+    
+    /**
+     * 
+     * @return the file name of the sound.
+     */
+    public String getBackgroundSoundName(){
+        return backgroundSound;
     }
 }

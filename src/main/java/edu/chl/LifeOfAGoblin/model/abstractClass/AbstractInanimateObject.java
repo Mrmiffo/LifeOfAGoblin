@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 
 
 /**
@@ -19,17 +18,6 @@ public abstract class AbstractInanimateObject extends AbstractGameObject impleme
     
    protected AbstractInanimateObject(String modelName) {
        this.model = modelName;
-       Resources.getInstance().loadResource(model, "models");
-   }
-   
-   /**
-    * A constructor used to speicfy the path for where the model i found. TYpicallu used for scenes.
-    * @param modelName the name of the model.
-    * @param otherPath the folder in which the model is located.
-    */
-   protected AbstractInanimateObject(String modelName, String otherPath){
-        this.model = modelName;
-        Resources.getInstance().loadResource(model, otherPath);
    }
 
     @Override

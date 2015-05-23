@@ -8,19 +8,15 @@ import edu.chl.LifeOfAGoblin.model.Level;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class conatins a list of all the levels in the game. All requests for 
- * the level model should be done from this class. Levels will not be created 
- * with the LevelManager class, but will instead be created once they are needed 
- * to save memory.
+ * the level model should be done from this class. 
  * @author Anton
  */
 public class LevelManager {
-    private Map<Integer, String> levelList;
+    private HashMap<Integer, Level> levelList;
     private static LevelManager instance;
-    private List<Level> createdLevels;
     
     private LevelManager(){
         
@@ -34,14 +30,12 @@ public class LevelManager {
     }
     
     /**
-     * Initialize the levelList. No Level objects will be created until a get 
-     * method is called
+     * Initialize the levelList. 
      */
     public void initialize(){
         levelList = new HashMap<>();
-        levelList.put(1, "Level1");
-        levelList.put(2, "testScene");
-        createdLevels = new ArrayList<>();
+        levelList.put(1, new Level("Level1",1, "magical_theme.wav"));
+        levelList.put(2, new Level("testScene", 2, "magical_theme.wav"));
     }
     
     /**
@@ -52,16 +46,11 @@ public class LevelManager {
     public synchronized Level getLevel(int levelno){
         Level toReturn = null;
         //First check if the level has already been loaded. If so: return it
-        for (Level level: createdLevels){
-            if (level.getLevelNo() == levelno){
-                toReturn = level;
+        for (int level: levelList.keySet()){
+            if (level == levelno){
+                toReturn = levelList.get(level);
                 break;
             }
-        }
-        //If the level has not loaded and it is a vali level: Create the level.
-        if (toReturn == null && levelList.containsKey(levelno)){
-            toReturn = new Level(levelList.get(levelno), levelno);
-            createdLevels.add(toReturn);
         }
         return toReturn;
             
@@ -86,7 +75,7 @@ public class LevelManager {
     public List<String> getAllLevelNames(){
         List<String> toReturn = new ArrayList<>();
         for (int i: levelList.keySet()){
-            toReturn.add(levelList.get(i));
+            toReturn.add(levelList.get(i).getLevelName());
         }
         return toReturn;
     }
