@@ -1,8 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package edu.chl.LifeOfAGoblin.jME3.view.state;
+package edu.chl.LifeOfAGoblin.archive;
 
 import com.jme3.app.Application;
 import com.jme3.app.state.AppState;
@@ -10,7 +6,7 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.renderer.RenderManager;
 
 /**
- *
+ * The pause menu appstate is not yet implemented. This is intended to load 
  * @author Anton
  */
 public class PauseAppState implements AppState {

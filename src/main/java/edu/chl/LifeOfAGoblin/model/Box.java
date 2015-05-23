@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model;
 
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractMovableObject;
+import edu.chl.LifeOfAGoblin.archive.AbstractMovableObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**

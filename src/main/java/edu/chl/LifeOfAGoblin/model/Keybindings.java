@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model;
 
 import com.jme3.input.KeyInput;
@@ -64,6 +60,11 @@ public class Keybindings implements Serializable{
         action.setKeyCodes(bindings);
     }
     
+    /**
+     * Sets a keybind to the saved keybinds.
+     * @param action
+     * @param keybinds 
+     */
     public void setKeybind(Actions action, ArrayList<Keybind> keybinds){
         keybindings.put(action, keybinds);
         updateBinding(action, keybinds);

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
 
 import de.lessvoid.nifty.controls.ListBox;
@@ -13,11 +9,11 @@ import edu.chl.LifeOfAGoblin.model.Keybind;
 import java.util.ArrayList;
 
 /**
- * The KeyBindNiftyPanel is used by the Keybind list box to translate the KeyBind
+ * The KeybindRowControlConverter is used by the Keybind list box to translate the Actions
  * enum into text to display in the different panels in the list box custom control "row".
  * @author Anton
  */
-public class KeybindNiftyPanel implements ListBox.ListBoxViewConverter<Actions> {
+public class KeybindRowControlConverter implements ListBox.ListBoxViewConverter<Actions> {
 
     @Override
     public void display(Element listBoxItem, Actions item) {

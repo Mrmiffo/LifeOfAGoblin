@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
@@ -11,8 +7,9 @@ import edu.chl.LifeOfAGoblin.archive.ISpawnable;
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 
 /**
- * The abstraction of any character. 
- * @author Anton
+ * The abstraction of any character. Contains information such as the visual model 
+ * of the character and size of the same. Also contains some value for the character behavior.
+ * @author Anton & kakan
  */
 public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable, ISpawnable{
     

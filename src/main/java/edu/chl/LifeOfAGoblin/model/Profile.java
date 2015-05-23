@@ -61,6 +61,9 @@ public class Profile implements Serializable{
         saveProfile();
     }
     
+    /**
+     * Resets the saved keybindings to the default ones.
+     */
     public void resetDefaultBindings(){
         keybinds.setDefaultKeyBindings();
         keybinds.updateBindings();
@@ -150,15 +153,27 @@ public class Profile implements Serializable{
         SaveLoadManager.getInstance().saveToFile(this, null, profileName);
     }
     
+    /**
+     * Adds the new profile to the list of profiles.
+     * @param profile 
+     */
     public static void addProfile(Profile profile){
         listOfProfiles.add(profile);
     }
     
+    /**
+     * Removes the profile from the list of profiles.
+     * @param profileToRemove 
+     */
     public static void removeProfile(Profile profileToRemove){
         listOfProfiles.remove(profileToRemove);
         SaveLoadManager.getInstance().deleteFile(null, profileToRemove.getProfileName());
     }
     
+    /**
+     * Returns a list of all the profiles.
+     * @return 
+     */
     public static List<Profile> getProfiles(){
         return listOfProfiles;
     }

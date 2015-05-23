@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
 
 import com.jme3.input.RawInputListener;
@@ -28,7 +24,7 @@ import java.util.Properties;
 /**
  * The ChangeKeyBindMenuItemController class is a controller added to each of 
  * the textboxes in the Settings menu keybinding listbox. It listens to events 
- * from the textboxes and then to keyboard and mouse events to set the changed 
+ * from the textboxes to active a change key bind state and then to keyboard and mouse events to set the changed 
  * keybindings in the Settings Menu Controller.
  * @author Anton
  */
@@ -40,7 +36,8 @@ public class ChangeKeyBindMenuItemController implements Controller, RawInputList
 
     /**
      * Method run when user click on the textbox. Will change the text of the 
-     * textbox and start listen to keyboard and mouse inputs.
+     * textbox and start listen to keyboard and mouse inputs. These inputs will be 
+     * used to set the new keybind.
      */
     public void changeBind(){
         if (!listenToInput){
@@ -78,12 +75,18 @@ public class ChangeKeyBindMenuItemController implements Controller, RawInputList
         return false;
     }
 
+    /**
+     * Sets the field to start listen to input and register the listener to the input manager.
+     */
     @Override
     public void beginInput() {
         listenToInput = true;
         InputManagerWrapper.getInstance().addRawInputListener(this);
     }
 
+    /**
+     * Sets the field to stop listening to input and removes the listener from the input manager.
+     */
     @Override
     public void endInput() {
         listenToInput = false;
@@ -107,27 +110,29 @@ public class ChangeKeyBindMenuItemController implements Controller, RawInputList
 
     @Override
     public void onMouseButtonEvent(MouseButtonEvent evt) {
+        //Stop listening to inputs.
+        endInput();
         //Get the event key int and translate it to a keybind.
         Keybind keybind = new Keybind(InputDevice.MOUSE_BUTTON, evt.getButtonIndex());
-        endInput();
         //Print the key name into the textfield.
         textBox.getRenderer(TextRenderer.class).setText(KeyAndMouseNames.getInstance().getName(keybind));
+        //Identify which action was changed.
         Actions action = identifyAction();
-        //Register the change in the SettingsMenuController.
+        //Register the change in the SettingsMenuController. Changes will be sent to profiel first when user press save.
         ((SettingsMenuController)screen.getScreenController()).setChangedKeyBind(action, keybind, fieldNo);
     }
 
     @Override
     public void onKeyEvent(KeyInputEvent evt) {
+        //Stop listening to input.
+        endInput();
         //Get the event key int and translate it to a keybind.
         Keybind keybind = new Keybind(InputDevice.KEYBOARD, evt.getKeyCode());
-        //Stop listening to keys.
-        endInput();
         //Print the key name into the textfield.
         textBox.getRenderer(TextRenderer.class).setText(KeyAndMouseNames.getInstance().getName(keybind));
+        //Identify which action was changed.
         Actions action = identifyAction();
         //Update SettingsMenuController with the data.
-        
         ((SettingsMenuController)screen.getScreenController()).setChangedKeyBind(action, keybind, fieldNo);
     }
 

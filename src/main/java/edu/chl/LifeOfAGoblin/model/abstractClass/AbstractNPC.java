@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
 import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
@@ -75,12 +71,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     }
     
     /**
-<<<<<<< HEAD
      * Returns the direction to the NPC's target
-     * @return the direction to the target
-=======
-     * {@inheritDoc}
->>>>>>> 10f0f8332cd5553d17ec162647994d1c56741187
      */
     public Direction getTargetDirection() {
         return targetDirection;

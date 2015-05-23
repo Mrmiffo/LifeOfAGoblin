@@ -5,7 +5,9 @@
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
 /**
- *
+ * The node type enum declares all the possible nods that the author of a level 
+ * may put in the level through scene composer. The level node identifier will 
+ * use the node type to know which kind of node to create.
  * @author Anton
  */
 public enum NodeType {    

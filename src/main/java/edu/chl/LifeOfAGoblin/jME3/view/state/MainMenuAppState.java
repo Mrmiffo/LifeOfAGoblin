@@ -6,7 +6,6 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.audio.AudioNode;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenu;
@@ -14,7 +13,7 @@ import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.ProfileMenu;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.SettingsMenu;
 
 /**
- *
+ * The mainMenuAppstate will create and display the main menu once activated.
  * @author Anton
  */
 public class MainMenuAppState extends AbstractAppState{

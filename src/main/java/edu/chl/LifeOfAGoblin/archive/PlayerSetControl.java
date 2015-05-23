@@ -2,24 +2,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.jME3.controller;
+package edu.chl.LifeOfAGoblin.archive;
 
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.archive.controller.abstractClass.AbstractGetControl;
+import edu.chl.LifeOfAGoblin.archive.controller.abstractClass.AbstractSetControl;
 
 /**
  *
  * @author Anton
  */
-public class PlayerGetControl extends AbstractGetControl {
+public class PlayerSetControl extends AbstractSetControl{
     
-    public PlayerGetControl(){
+    public PlayerSetControl(){
         
     }
 
-    
     /** This method is called when the control is added to the spatial,
     * and when the control is removed from the spatial (setting a null value).
     * It can be used for both initialization and cleanup. */    
@@ -39,12 +38,14 @@ public class PlayerGetControl extends AbstractGetControl {
         
     }
     
-    public int getHealth(){
-        return spatial.getUserData("health");
+    public void setHealth(int health){
+        spatial.setUserData("health", health);
     }
     
-    public int getMaxHealth(){
-        return spatial.getUserData("maxHealth");
+    public void setMaxHealth(int maxHealth){
+        spatial.setUserData("maxHealth", maxHealth);
     }
+    
+    
     
 }

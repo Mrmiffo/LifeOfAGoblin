@@ -37,7 +37,7 @@ public class SpawnControl extends AbstractControl implements ISpawnControl {
 
     @Override
     protected void controlUpdate(float f) {
-        //probably not needed, active mvc ftw
+        //probably not needed
     }
 
     @Override
