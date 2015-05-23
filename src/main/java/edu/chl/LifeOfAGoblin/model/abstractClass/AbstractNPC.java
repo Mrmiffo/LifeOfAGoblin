@@ -8,6 +8,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.Direction;
+import edu.chl.LifeOfAGoblin.model.Weapon;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 
 /**
@@ -20,6 +21,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     private NodeType targetNodeType;
     private Direction targetDirection;
     private float aggressionRange;
+    private Weapon weapon;
     
     /**
      *
@@ -35,12 +37,13 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     protected AbstractNPC(int maxHealth, String model, float height, float width,
                           float collisionHeight, float collisionWidth, float weight,
                           float baseDamage, float jumpStrength, NodeType target,
-                          float aggressionRange){
+                          float aggressionRange, Weapon weapon){
         
         super(new NPCMoveControl(), maxHealth, model, height, width, collisionHeight,
                 collisionWidth, weight, baseDamage, jumpStrength);
         this.targetNodeType = target;
         this.aggressionRange = aggressionRange;
+        this.weapon = weapon;
         activeAction = AIAction.IDLE;
     }
     
@@ -57,16 +60,19 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      */
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
-        if (aggressionRange <= distance && targetNodeType == type) {
-            if (distance <= 1) {
-                activeAction = AIAction.HALT;
+        if (targetNodeType == type) {
+            if (aggressionRange >= distance && targetNodeType == type) {
+                if (distance <= 1) {
+                    activeAction = AIAction.HALT;
+                } else {
+                    activeAction = AIAction.MOVETOTARGET;
+                }
             } else {
-                activeAction = AIAction.MOVETOTARGET;
+                activeAction = AIAction.IDLE;
             }
-        } else {
-            activeAction = AIAction.IDLE;
+            System.out.println(activeAction);
+            targetDirection = direction;
         }
-        targetDirection = direction;
     }
     
     /**
@@ -75,6 +81,10 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     @Override
     public AIAction getAIAction() {
         return activeAction;
+    }
+    
+    public Weapon getWeapon() {
+        return weapon;
     }
     
     /**

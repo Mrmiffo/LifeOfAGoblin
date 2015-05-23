@@ -44,7 +44,7 @@ public class Boss extends AbstractNPC {
      */
     public Boss(NodeType target, float healthMultiplier, float collisionWidth, float aggressionRange) {
         super((int)healthMultiplier * maxHealth, model, height, width, collisionHeight,
-                collisionWidth, weight, baseDamage, jumpStrength, target, aggressionRange);
+                collisionWidth, weight, baseDamage, jumpStrength, target, aggressionRange, new MeleeWeapon());
     }
     
     /**

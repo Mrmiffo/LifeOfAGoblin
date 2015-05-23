@@ -45,7 +45,7 @@ public class Player extends AbstractCharacter {
      */
     @Override
     public void collide(ICollidable collided) {
-        if (!invulnerable && collided instanceof AbstractNPC) {
+        if (!invulnerable && collided instanceof Weapon) {
             setInvulnerablility(true);
             this.decreaseHealth();
         }
