@@ -18,8 +18,6 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
  */
 public class Player extends AbstractCharacter {
     
-    private static final PlayerMoveControl playerMoveControl = new PlayerMoveControl();
-    private static final int collsionGroup = 2;
     private static final int maxHealth = 5;
     private static final String model = "Goblin2.j3o";
     private static final float height = 1;
@@ -30,7 +28,7 @@ public class Player extends AbstractCharacter {
     private boolean invulnerable;
     
     public Player(){
-        super(playerMoveControl, collsionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        super(new PlayerMoveControl(), maxHealth, model, height, width, weight, baseDamage, jumpStrength);
         this.invulnerable = false;
     }
     

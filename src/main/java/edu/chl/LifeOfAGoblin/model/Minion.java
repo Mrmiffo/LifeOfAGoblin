@@ -32,7 +32,7 @@ public class Minion extends AbstractNPC {
      * {@inheritDoc}
      */
     public Minion(NodeType target){
-        this(target, 1, 3);   
+        this(target, 1, 5);   
     }
     
     /**

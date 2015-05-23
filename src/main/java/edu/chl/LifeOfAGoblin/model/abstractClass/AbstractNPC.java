@@ -54,7 +54,6 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      */
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
-        System.out.println(distance);
         if (aggressionRange <= distance && targetNodeType == type) {
             if (distance <= 1) {
                 activeAction = AIAction.HALT;
@@ -64,7 +63,6 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
         } else {
             activeAction = AIAction.IDLE;
         }
-        System.out.println(activeAction);
         targetDirection = direction;
     }
     
