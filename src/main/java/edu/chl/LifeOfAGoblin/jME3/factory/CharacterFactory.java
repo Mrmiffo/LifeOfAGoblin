@@ -119,7 +119,6 @@ class CharacterFactory {
         
         GhostControl ghost = new GhostControl(shape);
         PhysicsWrapper.getInstance().add(ghost);
-        ghost.setCollisionGroup(model.getCollisionGroup());
         
         //TODO add more special cases
         if (!(model instanceof Player)) {
