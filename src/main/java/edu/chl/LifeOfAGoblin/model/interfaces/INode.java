@@ -17,16 +17,4 @@ public interface INode {
      * @return the nodetype of the implementor.
      */
     public NodeType getNodeType(); //Is this needed? Node types are added directly to the Node in the current design(150515)...
-    
-    /**
-     * Returns the height of the implementor's model.
-     * @return the height of the model
-     */
-    public float getHeight(); //Should this method be part of the IModeledNode interface?
-    
-    /**
-     * Returns the width of the implementor's model.
-     * @return the width of the model.
-     */
-    public float getWidth(); //Should this method be part of the IModeldNode interface?
 }
