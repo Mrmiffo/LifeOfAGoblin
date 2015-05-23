@@ -21,15 +21,14 @@ import java.util.TimerTask;
  * @author Anton
  */
 public class GameHudController implements ScreenController{
-    private static Nifty nifty;
     private static Screen screen;
+    
     public GameHudController() {
         
     }
 
     @Override
     public void bind(Nifty nifty, Screen screen) {
-        this.nifty = nifty;
         this.screen = screen;
     }
 
@@ -65,8 +64,6 @@ public class GameHudController implements ScreenController{
                 //If the character have less that 20 HP max, no image will be displayed.
                 flowerRenderer.setImage(null);
             }
-            
-            
         }
     }
     
@@ -79,6 +76,7 @@ public class GameHudController implements ScreenController{
                 @Override
                 public void run() {
                     screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0, 0, 0, 0));
+                    this.cancel();
                 }
             }, timerDelay);
             
