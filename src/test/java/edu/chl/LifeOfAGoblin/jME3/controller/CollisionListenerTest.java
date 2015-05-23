@@ -11,10 +11,6 @@ import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
-<<<<<<< HEAD
-import edu.chl.LifeOfAGoblin.model.NodeType;
-=======
->>>>>>> serioustesting
 import edu.chl.LifeOfAGoblin.model.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.Minion;
@@ -159,8 +155,5 @@ public class CollisionListenerTest {
         listener.collision(pce8);
         verify(((Player)node1.getControl(ModelControl.class).getModel()), times(1)).collide(((ICollidable)node10.getControl(ModelControl.class).getModel()));
         verify(testMinion, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
-
-        
-    }      
-
+    }
 }
