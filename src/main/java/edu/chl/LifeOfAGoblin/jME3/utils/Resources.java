@@ -23,8 +23,6 @@ public class Resources {
     private String defaultPath;
     private AssetManager assetManager;
     
-
-    
     private Resources(){
         defaultPath = "src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets";
     }
@@ -42,7 +40,7 @@ public class Resources {
         loadModels();
         loadScenes();
         loadSounds();
-        loadTextures();
+//        loadTextures();
     }
     
     private void addResource(String name, Spatial resource){
@@ -98,9 +96,9 @@ public class Resources {
         loadSoundResources(sounds, soundsPath);
     }
 
-    private void loadTextures() {
-        String texturesPath = defaultPath + File.separator + "textures";
-        List<String> textures = SaveLoadManager.getInstance().getSavedFiles(texturesPath);
-        loadSoundResources(textures, texturesPath);
-    }
+//    private void loadTextures() {
+//        String texturesPath = defaultPath + File.separator + "textures";
+//        List<String> textures = SaveLoadManager.getInstance().getSavedFiles(texturesPath);
+//        loadSoundResources(textures, texturesPath);
+//    }
 }
