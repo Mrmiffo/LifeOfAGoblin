@@ -33,11 +33,11 @@ public class CollisionListener implements PhysicsCollisionListener {
             INode modelB = nodeB.getControl(ModelControl.class).getModel();
             
             if (modelA instanceof ICollidable && modelB instanceof ICollidable) {
-                if (modelA instanceof AbstractNPC) {
+                /*if (modelA instanceof AbstractNPC) {
                     nodeA.getControl(NPCCollisionControl.class).updateCollisionInfo(nodeA, nodeB);
                 } else if (modelB instanceof AbstractNPC) {
                     nodeB.getControl(NPCCollisionControl.class).updateCollisionInfo(nodeB, nodeA);
-                }
+                }*/
 
                 ((ICollidable)modelA).collide((ICollidable)modelB);
                 ((ICollidable)modelB).collide((ICollidable)modelA);
