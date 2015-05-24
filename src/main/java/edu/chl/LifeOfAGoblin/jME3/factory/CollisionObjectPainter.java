@@ -10,6 +10,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.control.Control;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
+import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.model.SpawnPoint;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
@@ -43,7 +44,9 @@ class CollisionObjectPainter {
         node.addControl(ghostControl);
         
         if (collisionObject instanceof SpawnPoint) {
-            node.addControl((Control)((SpawnPoint)collisionObject).getSpawnControl());
+            SpawnControl sc = new SpawnControl();
+            node.addControl(sc);
+            sc.initialize();
         }
     }
 }
