@@ -3,7 +3,6 @@ package edu.chl.LifeOfAGoblin.model;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.IActivatable;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
-import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnControl;
 
 /**
  * A class representing a spawnpoint that is responsible for creating new 
@@ -15,7 +14,6 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
     private final static float height = 100;
     private int amount;
     private NodeType type;
-    private ISpawnControl spawner;
     private boolean activated;
     private float width;
     
@@ -25,8 +23,7 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
      * @param amount how many spawnable should spawn
      * @param type what type of spawnable should spawn
      */
-     public SpawnPoint(ISpawnControl spawner, int amount, NodeType type, float width) {
-         this.spawner = spawner;
+     public SpawnPoint(int amount, NodeType type, float width) {
          this.amount = amount;
          this.type = type;
          this.width = width;
@@ -44,8 +41,7 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
     @Override
     public void collide(ICollidable collided) {
         if (!activated && collided.getClass() == Player.class) {
-            spawn(amount, type);
-            this.activate();
+            spawn();
         }
     }
     /**
@@ -54,17 +50,10 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
      * @param amount the number of spawnables to be created
      * @param type the type of spawnable to be created
      */
-    private void spawn(int amount, NodeType type) {
-        spawner.spawn(amount, type);
+    private void spawn() {
+        this.activate();
     }
     
-    /**
-     * Returns the SpawnControl of the spawn point
-     * @return the SpawnControl
-     */
-    public ISpawnControl getSpawnControl() {
-        return spawner;
-    }
 
     @Override
     public boolean isActivated() {
@@ -89,6 +78,14 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
     @Override
     public float getWidth() {
         return width;
+    }
+    
+    public NodeType getType(){
+        return this.type;
+    }
+    
+    public int getAmount(){
+        return this.amount;
     }
     
 }
