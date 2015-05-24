@@ -105,8 +105,8 @@ class CharacterFactory {
      */
     private static BoxCollisionShape createGhostShape(Node node) {
         AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
-        return new BoxCollisionShape(new Vector3f(model.getCollisionWidth(),
-                                                  model.getCollisionHeight(), 1));
+        return new BoxCollisionShape(new Vector3f(1,
+                                                  model.getCollisionHeight(), model.getCollisionWidth()));
     }
     
     /**
@@ -180,8 +180,8 @@ class CharacterFactory {
     private static void attachChaseCamera(Node playerNode, Camera cam) {
         ChaseCamera chaseCam = new ChaseCamera(cam);
         chaseCam.setRotationSensitivity(0);
-        chaseCam.setDefaultHorizontalRotation(new Float(FastMath.PI/2));
-        chaseCam.setDefaultVerticalRotation(new Float(FastMath.PI/9)); //20 degrees
+        chaseCam.setDefaultHorizontalRotation(FastMath.PI/2);
+        chaseCam.setDefaultVerticalRotation(FastMath.PI/9); //20 degrees
         playerNode.addControl(chaseCam);
     }
 
@@ -214,9 +214,6 @@ class CharacterFactory {
         PhysicsWrapper.getInstance().add(ghost);
         
         weaponNode.addControl(ghost);
-        
         node.attachChild(weaponNode);
-
-        //Attack control could potentially be added here
     }
 }
