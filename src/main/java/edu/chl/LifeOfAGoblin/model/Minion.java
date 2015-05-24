@@ -15,12 +15,12 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 public class Minion extends AbstractNPC {
     
     private static final int maxHealth = 1;
-    private static final float aggressionRange = 100;
+    private static final float aggressionRange = 4;
     private static final String model = "Goblin2.j3o"; //temporary model for testing purposesdd
     private static final float height = 1;
     private static final float width = 0.4f;
     private static final float collisionHeight = 1;
-    private static final float collisionWidth = aggressionRange;
+    private static final float collisionWidth = aggressionRange * 2;
     private static final float weight = 10;
     private static final float baseDamage = 1;
     private static final float jumpStrength = 12;
