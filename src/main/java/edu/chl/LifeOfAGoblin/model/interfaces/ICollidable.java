@@ -1,14 +1,25 @@
 package edu.chl.LifeOfAGoblin.model.interfaces;
 
 /**
- * Interface for Collidable objects, objects implementing this interface 
- * have methods describing what happens when it collides with another 
- * ICollidable
- * @author fredrik
+ * Interface for collidable objects. Has methods for colliding and
+ * for getting the height and width of the collision area.
+ * @author Ulrika Uddeborg
  */
-public interface ICollidable extends INode{
+public interface ICollidable extends INode {
     /**
-     * is Called when another ICollidable collides with this object. 
+     * Is called when another ICollidable collides with this object. 
      */
     public void collide(ICollidable collided);
+    
+    /**
+     * Returns the height of the object's collision area.
+     * @return the height of the collision area
+     */
+    public float getCollisionHeight();
+    
+    /**
+     * Returns the width of the object's collision size.
+     * @return the width of the collision area
+     */
+    public float getCollisionWidth();
 }

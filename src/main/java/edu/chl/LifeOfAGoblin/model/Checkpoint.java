@@ -60,12 +60,12 @@ public class Checkpoint extends AbstractGameObject implements ICollidable, IActi
     }
 
     @Override
-    public float getHeight() {
+    public float getCollisionHeight() {
         return height;
     }
 
     @Override
-    public float getWidth() {
+    public float getCollisionWidth() {
         return width;
     }
 

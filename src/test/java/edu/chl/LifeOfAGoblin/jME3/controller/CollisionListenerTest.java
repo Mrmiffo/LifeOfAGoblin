@@ -15,7 +15,7 @@ import edu.chl.LifeOfAGoblin.model.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.Minion;
 import edu.chl.LifeOfAGoblin.model.Player;
-import edu.chl.LifeOfAGoblin.model.SpawnPoint;
+//import edu.chl.LifeOfAGoblin.model.SpawnPoint;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -64,7 +64,7 @@ public class CollisionListenerTest {
     public void testCollision() {
         // Setup test.
         Checkpoint testCheck = mock(Checkpoint.class);
-        SpawnPoint testSpawn = mock(SpawnPoint.class);
+//        SpawnPoint testSpawn = mock(SpawnPoint.class);
         FinalCheckpoint testFCheck = mock(FinalCheckpoint.class);
         Checkpoint testFaultyCheck = mock(Checkpoint.class);
         Minion testMinion = mock(Minion.class);
@@ -83,10 +83,10 @@ public class CollisionListenerTest {
         node5.addControl(mockcheckGhost);  
         
         node6.setUserData("nodeType", "SPAWNPOINT");
-        ModelControl mockSpawnMc = new ModelControl(testSpawn);
+//        ModelControl mockSpawnMc = new ModelControl(testSpawn);
         BoxCollisionShape mockSpawnBox = new BoxCollisionShape(new Vector3f(1,1,1));
         GhostControl mockSpawnGhost = new GhostControl(mockSpawnBox);
-        node6.addControl(mockSpawnMc);
+//        node6.addControl(mockSpawnMc);
         node6.addControl(mockSpawnGhost);
         
         node7.setUserData("nodeType", "FINALCHECKPOINT");
@@ -130,7 +130,7 @@ public class CollisionListenerTest {
         listener.collision(pce2);
         listener.collision(pce3);
         verify(testCheck, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
-        verify(testSpawn, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
+//        verify(testSpawn, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
         verify(testFCheck, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
         
      

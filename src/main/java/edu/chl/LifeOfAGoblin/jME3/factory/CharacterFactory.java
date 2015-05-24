@@ -5,6 +5,7 @@
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
 import com.jme3.bullet.PhysicsTickListener;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.GhostControl;
@@ -25,10 +26,9 @@ import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.Player;
+import edu.chl.LifeOfAGoblin.model.Weapon;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
-import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.model.interfaces.INode;
-
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 /**
  * The character factory is used to create and decorate player and NPC character nodes.
  * @author kakan
@@ -68,7 +68,10 @@ class CharacterFactory {
         
         makeSolid(node);
         makeMoveable(node);
-        enableReaction(node); //Adds AI
+        if (character instanceof AbstractNPC) {
+            enableReaction(node); //Adds AI
+            addWeapon(node, (AbstractNPC)character);
+        }
         provideGraphicalRepresentation(node);
         
         return node;
@@ -79,9 +82,10 @@ class CharacterFactory {
      * @param node the node to make solid.
      */
     private static void makeSolid(Node node) {
-        CapsuleCollisionShape shape = createShape(node);
+        CapsuleCollisionShape shape = createModelShape(node);
+        BoxCollisionShape ghostShape = createGhostShape(node);
         attachCharacterControl(node, shape);
-        attachGhostControl(node, shape);
+        attachGhostControl(node, ghostShape);
     }    
 
     /**
@@ -89,9 +93,20 @@ class CharacterFactory {
      * @param node the template for the shape.
      * @return the shape created of the template.
      */
-    private static CapsuleCollisionShape createShape(Node node) {
-        INode model = node.getControl(ModelControl.class).getModel();
+    private static CapsuleCollisionShape createModelShape(Node node) {
+        AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
         return new CapsuleCollisionShape(model.getWidth(), model.getHeight(), 1);
+    }
+    
+    /**
+     * Creates a shape after the template of a node.
+     * @param node the template for the shape.
+     * @return the shape created of the template.
+     */
+    private static BoxCollisionShape createGhostShape(Node node) {
+        AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
+        return new BoxCollisionShape(new Vector3f(1,
+                                                  model.getCollisionHeight(), model.getCollisionWidth()));
     }
     
     /**
@@ -113,13 +128,12 @@ class CharacterFactory {
      * @param node the node to attach the GhostControl to.
      * @param shape the template for the shape of the GhostControl.
      */
-    private static void attachGhostControl(Node node, CapsuleCollisionShape shape) {
+    private static void attachGhostControl(Node node, BoxCollisionShape shape) {
         //Could we use another abstraction? ICollidable? AbstractGameObject?
         AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
         
         GhostControl ghost = new GhostControl(shape);
         PhysicsWrapper.getInstance().add(ghost);
-        ghost.setCollisionGroup(model.getCollisionGroup());
         
         //TODO add more special cases
         if (!(model instanceof Player)) {
@@ -151,7 +165,7 @@ class CharacterFactory {
      * @param node the node to be given a graphical representation.
      */
     private static void provideGraphicalRepresentation(Node node) {
-        IModeledNode model = (IModeledNode)node.getControl(ModelControl.class).getModel();
+        AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
         Spatial appearance = Resources.getInstance().getResources(model.getModelName());
         node.attachChild(appearance);
         //Moving the appearnace slightly to fit the CollisionShape
@@ -184,6 +198,22 @@ class CharacterFactory {
     private static void enableReaction(Node node) {
         NPCCollisionControl ncc = new NPCCollisionControl();
         node.addControl(ncc);
-        //Attack control could potentially be added here
+    }
+    
+    private static void addWeapon(Node node, AbstractNPC npc) {
+                
+        Node weaponNode = new Node();
+        Weapon weapon = npc.getWeapon();
+        
+        weaponNode.addControl(new ModelControl(weapon));
+        
+        BoxCollisionShape ghostShape = new BoxCollisionShape(new Vector3f(weapon.getCollisionWidth(),
+                                                             weapon.getCollisionHeight(), 1));
+        
+        GhostControl ghost = new GhostControl(ghostShape);
+        PhysicsWrapper.getInstance().add(ghost);
+        
+        weaponNode.addControl(ghost);
+        node.attachChild(weaponNode);
     }
 }

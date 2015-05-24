@@ -1,10 +1,10 @@
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
-import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
 import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.Direction;
+import edu.chl.LifeOfAGoblin.model.Weapon;
 import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 
 /**
@@ -14,15 +14,10 @@ import edu.chl.LifeOfAGoblin.model.interfaces.IAI;
 public abstract class AbstractNPC extends AbstractCharacter implements IAI {
    
     protected AIAction activeAction;
-    protected float targetDistance;
-    protected NodeType targetNodeType;
-    protected Direction targetDirection;
-    
-    private NodeType target;
-    private float aggresitionRange;
-    
-    private static final AbstractMoveControl npcMoveControl = new NPCMoveControl(); 
-    private static final int collisionGroup = 6;
+    private NodeType targetNodeType;
+    private Direction targetDirection;
+    private float aggressionRange;
+    private Weapon weapon;
     
     /**
      *
@@ -36,11 +31,16 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      * @param target the target that the NPC should be hostile toward
      */
     protected AbstractNPC(int maxHealth, String model, float height, float width,
-            float weight, float baseDamage, float jumpStrength, NodeType target){
+                          float collisionHeight, float collisionWidth, float weight,
+                          float baseDamage, float jumpStrength, NodeType target,
+                          float aggressionRange, Weapon weapon){
         
-        super(npcMoveControl, collisionGroup, maxHealth, model, height, width, weight, baseDamage, jumpStrength);
+        super(new NPCMoveControl(), maxHealth, model, height, width, collisionHeight,
+                collisionWidth, weight, baseDamage, jumpStrength);
+        this.targetNodeType = target;
+        this.aggressionRange = aggressionRange;
+        this.weapon = weapon;
         activeAction = AIAction.IDLE;
-        this.target = target;
     }
     
     /**
@@ -56,8 +56,16 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      */
     @Override
     public void updateAIAction(float distance, Direction direction, NodeType type) {
-        if (targetDistance <= distance && targetNodeType == type) {
-            activeAction = AIAction.MOVETOTARGET;
+        if (targetNodeType == type) {
+            if (aggressionRange >= distance) {
+                if (distance <= 1) {
+                    activeAction = AIAction.HALT;
+                } else {
+                    activeAction = AIAction.MOVETOTARGET;
+                }
+            } else {
+                activeAction = AIAction.IDLE;
+            }
             targetDirection = direction;
         }
     }
@@ -70,8 +78,16 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
         return activeAction;
     }
     
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    
     /**
      * Returns the direction to the NPC's target
+<<<<<<< HEAD
+=======
+     * @return the direction to the target
+>>>>>>> CorrectNPCAI
      */
     public Direction getTargetDirection() {
         return targetDirection;

@@ -14,12 +14,13 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
 public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable, ISpawnable{
     
     private AbstractMoveControl amc;
-    private int collisionGroup;
     private int health;
     private int maxHealth;
     private String model;
     private float height;
     private float width;
+    private float collisionHeight;
+    private float collisionWidth;
     private float weight;
     private float baseDamage;
     private float jumpStrength;
@@ -39,17 +40,19 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * @param baseDamage the character's unmodified damage.
      * @param jumpStrength the character reaches by jumping.
      */
-    protected AbstractCharacter(AbstractMoveControl amc, int collisionGroup,
-            int maxHealth, String model, float height, float width, float weight,
+    protected AbstractCharacter(AbstractMoveControl amc,
+            int maxHealth, String model, float height, float width,
+            float collisionHeight, float collisionWidth, float weight,
             float baseDamage, float jumpStrength) {
         
         this.amc = amc;
-        this.collisionGroup = collisionGroup;
         this.health = maxHealth; //everything has full health when created
         this.maxHealth = maxHealth;
         this.model = model;
         this.height = height;
         this.width = width;
+        this.collisionHeight = collisionHeight;
+        this.collisionWidth = collisionWidth;
         this.weight = weight;
         this.baseDamage = baseDamage;
         this.jumpStrength = jumpStrength;
@@ -69,14 +72,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      */
     public AbstractMoveControl getAbstractMoveControl() {
         return amc;
-    }
-    
-    /**
-     * Returns the character's collision group.
-     * @return the character's collision group.
-     */
-    public int getCollisionGroup() {
-        return collisionGroup;
     }
         
      /**
@@ -162,17 +157,17 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     }
     
     /**
-     * {@inheritDoc}
+     * Returns the height of the object's model.
+     * @return the height of the model
      */
-    @Override
     public float getHeight() {
         return height;
     }
     
     /**
-     * {@inheritDoc}
+     * Returns the width of the object's model.
+     * @return the width of the model.
      */
-    @Override
     public float getWidth() {
         return width;
     }
@@ -210,6 +205,16 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
         //TODO add implementation (if necessary)  
     }
 
+    @Override
+    public float getCollisionHeight() {
+        return collisionHeight;
+    }
+    
+    @Override
+    public float getCollisionWidth() {
+        return collisionWidth;
+    }
+    
     /**
      * The default operation when a character dies.
      */

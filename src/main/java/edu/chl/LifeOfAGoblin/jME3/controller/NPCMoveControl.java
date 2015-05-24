@@ -17,13 +17,14 @@ import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 public class NPCMoveControl extends AbstractMoveControl {
  
     private AbstractNPC npcModel;
-    private float idleMoveRange;
+    private float maximumIdleMoveRange;
+    private float currentMoveRange;
     
     /**
      * Creates a NPCMoveControl with a default move range and no connected spatial
      */
     public NPCMoveControl() {
-        this.idleMoveRange = 1; //Default start value
+        this(20); //Default start value
     }
     
     /**
@@ -31,26 +32,10 @@ public class NPCMoveControl extends AbstractMoveControl {
      * @param idleMoveRange the move range
      */
     public NPCMoveControl(float idleMoveRange) {
-        this.idleMoveRange = idleMoveRange;
-    }
-    
-    /**
-     * Creates a NPCMoveControl with a default move range and connects a spatial
-     * @param spatial the spatial to put the control on
-     */
-    public NPCMoveControl(Spatial spatial) {
-        this();
-        this.setSpatial(spatial);
-    }
-    
-    /**
-     * Creates a NPCMoveControl with a specified move range and connects a spatial
-     * @param idleMoveRange the move range 
-     * @param spatial the spatial to put the control on
-     */
-    public NPCMoveControl(float idleMoveRange, Spatial spatial) {
-        this(idleMoveRange);
-        this.setSpatial(spatial);
+        super(0.08f);
+        this.maximumIdleMoveRange = idleMoveRange;
+        this.currentMoveRange = maximumIdleMoveRange/2;
+        this.currentDirection = Direction.LEFT;
     }
     
     @Override
@@ -59,16 +44,22 @@ public class NPCMoveControl extends AbstractMoveControl {
             AIAction action = npcModel.getAIAction();
             switch (action) {
                 case IDLE:
-                    if (idleMoveRange <= 0) {
+                    if (Math.abs(currentMoveRange) < 0.05f) {
                         currentDirection = (currentDirection == Direction.LEFT) ?
                                                 Direction.RIGHT : Direction.LEFT;
-                       idleMoveRange = 2; //2 is full idle range
+                       currentMoveRange = maximumIdleMoveRange; //10 is full idle range
                     } else {
-                        idleMoveRange -= stepWidth;
+                        currentMoveRange -= stepWidth;
                     }
                     break;
                 case MOVETOTARGET:
                     currentDirection = npcModel.getTargetDirection();
+                    break;
+                case HALT:
+                    currentDirection = Direction.STAND_STILL;
+                    break;
+                default:
+                    currentDirection = Direction.STAND_STILL;
                     break;
             }
             super.controlUpdate(tpf);
@@ -79,7 +70,7 @@ public class NPCMoveControl extends AbstractMoveControl {
     public void setSpatial(Spatial spatial) {
         super.setSpatial(spatial);
         INode n = this.spatial.getControl(ModelControl.class).getModel();
-        if (n.getClass() == AbstractNPC.class) {
+        if (n instanceof AbstractNPC) {
             npcModel = (AbstractNPC)n;
         }
     }
