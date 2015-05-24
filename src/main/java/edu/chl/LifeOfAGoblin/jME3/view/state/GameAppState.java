@@ -57,7 +57,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         this.app = app;
         InputManagerWrapper.getInstance().registerListener(this);
         //Starts the level and sets the background
-//        startLevel();
+        startLevel();
         
     }
     

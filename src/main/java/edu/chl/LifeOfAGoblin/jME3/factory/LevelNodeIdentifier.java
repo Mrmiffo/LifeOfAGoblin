@@ -57,11 +57,11 @@ public class LevelNodeIdentifier {
             String spawnType = node.getUserData("TYPE");
             switch(spawnType) {
                 case "PLAYER":
-                    return new SpawnPoint(new SpawnControl(), amount, NodeType.PLAYER, width);
+                    return new SpawnPoint(amount, NodeType.PLAYER, width);
                 case "BOSS":
-                    return new SpawnPoint(new SpawnControl(), amount, NodeType.BOSS, width);
+                    return new SpawnPoint(amount, NodeType.BOSS, width);
                 case "MINION":
-                    return new SpawnPoint(new SpawnControl(), amount, NodeType.MINION, width);
+                    return new SpawnPoint(amount, NodeType.MINION, width);
             }
             
         } else if (type.equals("GAMEOBJECT")) {
