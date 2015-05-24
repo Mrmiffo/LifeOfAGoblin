@@ -4,7 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
-import com.jme3.math.FastMath;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.Direction;
@@ -18,13 +17,14 @@ import edu.chl.LifeOfAGoblin.model.interfaces.INode;
 public class NPCMoveControl extends AbstractMoveControl {
  
     private AbstractNPC npcModel;
-    private float idleMoveRange;
+    private float maximumIdleMoveRange;
+    private float currentMoveRange;
     
     /**
      * Creates a NPCMoveControl with a default move range and no connected spatial
      */
     public NPCMoveControl() {
-        this(4); //Default start value
+        this(20); //Default start value
     }
     
     /**
@@ -32,7 +32,9 @@ public class NPCMoveControl extends AbstractMoveControl {
      * @param idleMoveRange the move range
      */
     public NPCMoveControl(float idleMoveRange) {
-        this.idleMoveRange = idleMoveRange;
+        super(0.08f);
+        this.maximumIdleMoveRange = idleMoveRange;
+        this.currentMoveRange = maximumIdleMoveRange/2;
         this.currentDirection = Direction.LEFT;
     }
     
@@ -42,19 +44,21 @@ public class NPCMoveControl extends AbstractMoveControl {
             AIAction action = npcModel.getAIAction();
             switch (action) {
                 case IDLE:
-                    if (FastMath.abs(idleMoveRange) < 0.1f) {
+                    if (Math.abs(currentMoveRange) < 0.05f) {
                         currentDirection = (currentDirection == Direction.LEFT) ?
                                                 Direction.RIGHT : Direction.LEFT;
-                       idleMoveRange = 8; //2 is full idle range
+                       currentMoveRange = maximumIdleMoveRange; //10 is full idle range
                     } else {
-                        idleMoveRange -= stepWidth;
-                        System.out.println(idleMoveRange);
+                        currentMoveRange -= stepWidth;
                     }
                     break;
                 case MOVETOTARGET:
                     currentDirection = npcModel.getTargetDirection();
                     break;
                 case HALT:
+                    currentDirection = Direction.STAND_STILL;
+                    break;
+                default:
                     currentDirection = Direction.STAND_STILL;
                     break;
             }
