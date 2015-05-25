@@ -37,20 +37,23 @@ public class NPCCollisionControl extends AbstractControl {
         Vector3f npcLocation = npc.getControl(CharacterControl.class).getPhysicsLocation();
         
         float distance;
+        Direction direction;
         float npcX = npcLocation.getX();
         float collidedX = collided.getControl(CharacterControl.class).getPhysicsLocation().getX();
         if (npcX > collidedX) {
-            distance = collidedX - npcX;
-        } else {
             distance = npcX - collidedX;
+            direction = Direction.LEFT;
+        } else {
+            distance = collidedX - npcX;
+            direction = Direction.RIGHT;
         }
         
-        Direction direction;
+        /*Direction direction;
         if (distance >= 0) {
             direction = Direction.LEFT;
         } else {
             direction = Direction.RIGHT;
-        }
+        }*/
         
         INode collideModel = collided.getControl(ModelControl.class).getModel();
 
