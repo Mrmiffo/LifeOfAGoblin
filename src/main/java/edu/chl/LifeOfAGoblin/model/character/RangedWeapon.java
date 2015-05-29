@@ -14,7 +14,7 @@ public class RangedWeapon extends Weapon {
      * Creates a default ranged weapon.
      */
     public RangedWeapon() {
-        this(2, 5, 5);
+        this(2, 5);
     }
     
     /**
@@ -23,8 +23,8 @@ public class RangedWeapon extends Weapon {
      * @param collisionWidth the width of the collision area
      * @param range the range of the weapon
      */
-    public RangedWeapon(float collisionHeight, float collisionWidth, float range) {
-        super(collisionHeight, collisionWidth, range);
+    public RangedWeapon(float collisionHeight, float collisionWidth) {
+        super(collisionHeight, collisionWidth);
     }
     
 }
