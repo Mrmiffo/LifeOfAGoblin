@@ -7,7 +7,7 @@ package edu.chl.LifeOfAGoblin.jME3.controller;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.control.AbstractControl;
-import edu.chl.LifeOfAGoblin.model.interfaces.INode;
+import edu.chl.LifeOfAGoblin.model.INode;
 
 /**
  * A control for a node which contains and provides the model object in the node.

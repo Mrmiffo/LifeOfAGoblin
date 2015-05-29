@@ -1,6 +1,6 @@
 package edu.chl.LifeOfAGoblin.utils;
 
-import edu.chl.LifeOfAGoblin.model.Level;
+import edu.chl.LifeOfAGoblin.model.gameObject.Level;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

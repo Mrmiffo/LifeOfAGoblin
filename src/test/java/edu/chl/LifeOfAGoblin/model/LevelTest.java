@@ -4,8 +4,8 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.model.gameObject.Level;
 import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

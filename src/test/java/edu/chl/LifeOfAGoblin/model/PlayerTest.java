@@ -4,9 +4,11 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.model.character.MeleeWeapon;
+import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
+import edu.chl.LifeOfAGoblin.model.character.Minion;
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -59,7 +61,7 @@ public class PlayerTest {
         
         
         //tests that collide works
-        player1.collide((ICollidable)new Minion());
+        player1.collide((ICollidable)new MeleeWeapon());
         assertTrue(player1.isInvulnerable());
         assertTrue(player1.getHealth()<maxHealth);
         

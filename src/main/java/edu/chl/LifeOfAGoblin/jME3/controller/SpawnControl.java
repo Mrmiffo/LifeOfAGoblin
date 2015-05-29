@@ -11,10 +11,8 @@ import com.jme3.scene.Node;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.model.SpawnPoint;
-import edu.chl.LifeOfAGoblin.model.interfaces.IActivatable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import edu.chl.LifeOfAGoblin.model.gameObject.IActivatable;
+import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
 
 /**
  * A control that belongs to a SpawnPoint. It is responsible for creating new

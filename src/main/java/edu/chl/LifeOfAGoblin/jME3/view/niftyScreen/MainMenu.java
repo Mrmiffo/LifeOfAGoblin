@@ -9,9 +9,9 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.imageselect.builder.ImageSelectBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.tools.Color;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.MainMenuController;
-import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import edu.chl.LifeOfAGoblin.jME3.controller.nifty.MainMenuController;
+import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
+import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
 
