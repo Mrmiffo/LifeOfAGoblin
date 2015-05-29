@@ -2,8 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.gameObject;
 
+import edu.chl.LifeOfAGoblin.model.NodeType;
+import edu.chl.LifeOfAGoblin.model.character.Player;
+import edu.chl.LifeOfAGoblin.model.profile.Profile;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

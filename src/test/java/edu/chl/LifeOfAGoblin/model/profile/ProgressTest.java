@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.profile;
 
-import edu.chl.LifeOfAGoblin.model.profile.Progress;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

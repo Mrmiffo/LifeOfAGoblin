@@ -4,7 +4,8 @@
  */
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
-import edu.chl.LifeOfAGoblin.model.Player;
+import edu.chl.LifeOfAGoblin.model.character.AbstractCharacter;
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

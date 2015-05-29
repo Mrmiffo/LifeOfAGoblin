@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author fredrik
  */
-public class WeaponTest {
+public class BoxTest {
     
-    public WeaponTest() {
+    public BoxTest() {
     }
     
     @BeforeClass
@@ -40,16 +41,11 @@ public class WeaponTest {
     @Test
     public void testGetNodeType() {
         // setup
-        Weapon weapon1 = new RangedWeapon();
-        Weapon weapon2 = new MeleeWeapon();
+        Box box1 = new Box("");
+        AbstractGameObject box2 = new Box("");
         
-        //tests that a Weapon's nodetype is Weapon
-        assertTrue(weapon1.getNodeType().equals(NodeType.WEAPON));
-        assertTrue(weapon2.getNodeType().equals(NodeType.WEAPON));
+        //tests that a Box's nodetype is Box
+        assertTrue(box1.getNodeType().equals(NodeType.BOX));
+        assertTrue(box2.getNodeType().equals(NodeType.BOX));
     }
-
-    @Test
-    public void testCollide() {
-    }
-
 }

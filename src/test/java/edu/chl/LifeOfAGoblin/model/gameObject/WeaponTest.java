@@ -2,10 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.character.Boss;
 import edu.chl.LifeOfAGoblin.model.NodeType;
+import edu.chl.LifeOfAGoblin.model.character.MeleeWeapon;
+import edu.chl.LifeOfAGoblin.model.character.RangedWeapon;
+import edu.chl.LifeOfAGoblin.model.character.Weapon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,9 +19,9 @@ import static org.junit.Assert.*;
  *
  * @author fredrik
  */
-public class BossTest {
+public class WeaponTest {
     
-    public BossTest() {
+    public WeaponTest() {
     }
     
     @BeforeClass
@@ -41,12 +43,16 @@ public class BossTest {
     @Test
     public void testGetNodeType() {
         // setup
-        Boss boss1 = new Boss();
-        AbstractGameObject boss2 = new Boss();
+        Weapon weapon1 = new RangedWeapon();
+        Weapon weapon2 = new MeleeWeapon();
         
-        //tests that a boss's nodetype is boss
-        assertTrue(boss1.getNodeType().equals(NodeType.BOSS));
-        assertTrue(boss2.getNodeType().equals(NodeType.BOSS));
+        //tests that a Weapon's nodetype is Weapon
+        assertTrue(weapon1.getNodeType().equals(NodeType.WEAPON));
+        assertTrue(weapon2.getNodeType().equals(NodeType.WEAPON));
+    }
+
+    @Test
+    public void testCollide() {
     }
 
 }

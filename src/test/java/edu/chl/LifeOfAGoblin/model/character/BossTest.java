@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.gameObject.Box;
+import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author fredrik
  */
-public class BoxTest {
+public class BossTest {
     
-    public BoxTest() {
+    public BossTest() {
     }
     
     @BeforeClass
@@ -40,11 +41,12 @@ public class BoxTest {
     @Test
     public void testGetNodeType() {
         // setup
-        Box box1 = new Box("");
-        AbstractGameObject box2 = new Box("");
+        Boss boss1 = new Boss();
+        AbstractGameObject boss2 = new Boss();
         
-        //tests that a Box's nodetype is Box
-        assertTrue(box1.getNodeType().equals(NodeType.BOX));
-        assertTrue(box2.getNodeType().equals(NodeType.BOX));
+        //tests that a boss's nodetype is boss
+        assertTrue(boss1.getNodeType().equals(NodeType.BOSS));
+        assertTrue(boss2.getNodeType().equals(NodeType.BOSS));
     }
+
 }
