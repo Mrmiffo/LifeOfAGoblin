@@ -41,7 +41,7 @@ public class ProgressTest {
         //setup
         Progress progress1 = new Progress();       
         
-        //tests that Update updates progress's fields
+        //tests that Update updates the fields of progress properly
         progress1.update(1, 1);
         assertTrue(progress1.getLastVisitedCheckpoint()==1);
         assertTrue(progress1.getLastVisitedLevel()==1);
@@ -57,8 +57,6 @@ public class ProgressTest {
         assertTrue(progress1.getLastVisitedLevel()==1); 
         assertTrue(progress1.getLongestProgress()==2);
         
-        
-
     }
 
 }
