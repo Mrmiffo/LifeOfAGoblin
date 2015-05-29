@@ -32,7 +32,6 @@ public class NodeFactory {
     
     public static Node createNode(ISpawnable type){
         Node node = new Node();
-        
         if (type instanceof AbstractCharacter) {
             if (type instanceof AbstractNPC) {
                 if (type instanceof Minion) {
@@ -58,9 +57,9 @@ public class NodeFactory {
     public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
-                System.out.println(nodeList.size());
         for(Spatial s: nodeList){
-            LevelNodeBuilder.identifyNode(levelNode, (Node)s, cam);
+//            System.out.println(s.getUserData("nodeType"));
+            LevelNodeBuilder.paintNode((Node)s, cam);
         }
         
         //Creating a CollisionShape that matches the terrain of the level.

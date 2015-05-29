@@ -55,7 +55,6 @@ class CharacterFactory {
      * @return a node representing the character.
      */
     static void createCharacter(Node node, AbstractCharacter character) {
-        
         //Connects the model to the node
         node.addControl(new ModelControl(character));
         
@@ -96,8 +95,7 @@ class CharacterFactory {
      */
     private static BoxCollisionShape createGhostShape(Node node) {
         AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
-        return new BoxCollisionShape(new Vector3f(1,
-                                                  model.getCollisionHeight(), model.getCollisionWidth()));
+        return new BoxCollisionShape(new Vector3f(1, model.getCollisionHeight(), model.getCollisionWidth()));
     }
     
     /**

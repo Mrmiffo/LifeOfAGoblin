@@ -55,8 +55,6 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         rootNode = ((SimpleApplication)app).getRootNode();
         this.app = app;
         InputManagerWrapper.getInstance().registerListener(this);
-        //Starts the level and sets the background
-        startLevel();
         
     }
     

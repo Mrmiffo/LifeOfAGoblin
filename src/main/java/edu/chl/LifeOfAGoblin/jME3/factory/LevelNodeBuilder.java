@@ -22,7 +22,7 @@ import edu.chl.LifeOfAGoblin.model.character.Minion;
  */
 public class LevelNodeBuilder {
     
-    public static void identifyNode(Node levelNode, Node node, Camera cam) {
+    public static void paintNode(Node node, Camera cam) {
         if(node.getUserDataKeys().size() > 0) {
             INode model = nodeToModel(node);
             if (model instanceof Player) {
