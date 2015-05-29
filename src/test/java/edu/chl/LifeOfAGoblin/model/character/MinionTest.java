@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.character.Minion;
+import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
