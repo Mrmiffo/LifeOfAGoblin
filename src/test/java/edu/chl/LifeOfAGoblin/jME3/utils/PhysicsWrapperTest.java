@@ -104,6 +104,8 @@ public class PhysicsWrapperTest {
         PhysicsWrapper.getInstance().add(ghostControl);
         assertTrue(((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList().size() == 1);
         
+        //tests that method can handle null input
+        PhysicsWrapper.getInstance().add((GhostControl)null);
     }
 
 
@@ -123,6 +125,9 @@ public class PhysicsWrapperTest {
         // tests that it can handle removing objects that don't exist in the 
         //physicsspace, should not throw exception.
         PhysicsWrapper.getInstance().remove(control);
+        
+        //tests that method can handle null input
+        PhysicsWrapper.getInstance().remove(null);
     }
 
 } 
