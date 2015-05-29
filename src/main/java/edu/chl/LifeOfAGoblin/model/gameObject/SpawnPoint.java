@@ -4,6 +4,7 @@ import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
+import edu.chl.LifeOfAGoblin.model.ISpawnable;
 
 
 /**
@@ -15,9 +16,9 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
     
     private final static float height = 100;
     private int amount;
-    private NodeType type;
     private boolean activated;
     private float width;
+    private ISpawnable spawnType;
     
      /**
      * Constructor for creating a Spawnpoint
@@ -25,9 +26,9 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
      * @param amount how many spawnable should spawn
      * @param type what type of spawnable should spawn
      */
-     public SpawnPoint(int amount, NodeType type, float width) {
+     public SpawnPoint(int amount, ISpawnable spawnType, float width) {
          this.amount = amount;
-         this.type = type;
+         this.spawnType = spawnType;
          this.width = width;
     }
     
@@ -82,8 +83,8 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
         return width;
     }
     
-    public NodeType getType(){
-        return this.type;
+    public ISpawnable getType(){
+        return this.spawnType;
     }
     
     public int getAmount(){

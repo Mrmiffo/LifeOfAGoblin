@@ -10,6 +10,7 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
+import edu.chl.LifeOfAGoblin.model.ISpawnable;
 import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.gameObject.IActivatable;
 import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
@@ -29,15 +30,18 @@ public class SpawnControl extends AbstractControl{
      * @param amount the number of spawnables to put in the game
      * @param type the type of spawnable to put in the game
      */
-    public synchronized void spawn(int amount, NodeType type) {
-        if (amount > 0 && type.getSpawnable()) {
+    public synchronized void spawn(int amount, ISpawnable type) {
+        if (amount > 0) {
         for (int i = 0; i<amount; i++) {
-                Node node = new Node();
-                NodeFactory.createNode(node, type);
-                node.setUserData("nodeType", type.toString());
+            System.out.println("Kaka");
+                Node node = NodeFactory.createNode(type);
+                System.out.println("Spatial: " + this.getSpatial());
+                System.out.println("Parent: " + this.getSpatial().getParent());
+                System.out.println("Node: " + node);
+                System.out.println("Kaka");
                 this.getSpatial().getParent().attachChild(node);
              //   node.setLocalTranslation(this.getSpatial().getLocalTranslation());
-                node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());                notifyAll();
+                node.getControl(CharacterControl.class).warp(this.getSpatial().getLocalTranslation());
             }
         }
    }
@@ -51,7 +55,7 @@ public class SpawnControl extends AbstractControl{
             this.hasSpawned = true;
             this.activatable.inactivate();
             if(this.activatable instanceof SpawnPoint){
-                NodeType type = ((SpawnPoint)this.activatable).getType();
+                ISpawnable type = ((SpawnPoint)this.activatable).getType();
                 int amount = ((SpawnPoint)this.activatable).getAmount();  
                 spawn(amount, type);
             }

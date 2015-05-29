@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.app.state.AppStateManager;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,6 +19,7 @@ import com.jme3.bullet.objects.PhysicsGhostObject;
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.scene.Node;
 import com.jme3.system.JmeSystem;
+import edu.chl.LifeOfAGoblin.model.character.Minion;
 import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 
@@ -75,7 +75,7 @@ public class SpawnControlTest {
         SpawnControl control = new SpawnControl();
         this.loag.getRootNode().attachChild(lvl);
         lvl.addControl(control);
-        control.spawn(1, NodeType.MINION);
+        control.spawn(1, new Minion());
 
 
     }
