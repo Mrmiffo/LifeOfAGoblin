@@ -9,7 +9,6 @@ import com.jme3.asset.AssetManager;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.TouchInput;
 import com.jme3.system.JmeSystem;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.LifeOfAGoblin;
@@ -146,5 +145,8 @@ public class FinalCheckpointTest {
        cp1.collide(new Player());
        assertTrue(cp1.isActivated());
        
+        //tests that method can handle null input
+       cp1.collide(null);
+
     }
 }
