@@ -2,13 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.profile;
 
-import edu.chl.LifeOfAGoblin.model.profile.InputDevice;
-import edu.chl.LifeOfAGoblin.model.profile.Keybind;
-import edu.chl.LifeOfAGoblin.model.profile.Profile;
 import com.jme3.input.KeyInput;
-import edu.chl.LifeOfAGoblin.model.profile.Actions;
 import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import java.util.ArrayList;
 import org.junit.After;
