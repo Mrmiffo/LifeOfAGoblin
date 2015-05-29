@@ -28,7 +28,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * Default constructor for the abstract character. To be called by subclasses
      * to populate needed values. Also tells the Resource class to load needed model. 
      * This reduce the need of loading resources from harddrive during gameplay.
-     * @param amc the controller of the character's movement.
      * @param collisionGroup which group of collidable object 
      * @param maxHealth the max health of the character.
      * @param model the model texture to load for the character. Must be placed in the assets/model folder.

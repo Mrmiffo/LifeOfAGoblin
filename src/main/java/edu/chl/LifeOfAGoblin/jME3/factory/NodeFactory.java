@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
 import com.jme3.audio.AudioNode;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
@@ -13,12 +12,15 @@ import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.CollisionListener;
+import edu.chl.LifeOfAGoblin.model.ISpawnable;
+import edu.chl.LifeOfAGoblin.model.character.AbstractCharacter;
+import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.gameObject.Level;
 import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.character.Boss;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
-import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import java.util.List;
 
 /**
@@ -28,18 +30,20 @@ import java.util.List;
  */
 public class NodeFactory {
     
-    public static Node createNode(NodeType nodetype){
-        switch (nodetype) {
-            case PLAYER:
-                throw new InternalError("Error in NodeFactory: createNode(). Player is not allowed.");
-                //return CharacterFactory.createCharacter(new Player());
-            case MINION:
-                return CharacterFactory.createCharacter(new Minion());
-            case BOSS:
-                return CharacterFactory.createCharacter(new Boss());
-            default:
-            throw new InternalError("Error in NodeFactory: createNode()");
+    public static Node createNode(ISpawnable type){
+        Node node = new Node();
+        if (type instanceof AbstractCharacter) {
+            if (type instanceof AbstractNPC) {
+                if (type instanceof Minion) {
+                    CharacterFactory.createCharacter(node, new Minion());
+                } else if (type instanceof Boss) {
+                    CharacterFactory.createCharacter(node, new Boss());
+                } 
+            } else if (type instanceof Player) {
+                CharacterFactory.createPlayer(node, null);
+            }
         }
+        return node;
     }
     
     /**
@@ -53,9 +57,9 @@ public class NodeFactory {
     public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
-                System.out.println(nodeList.size());
         for(Spatial s: nodeList){
-            LevelNodeBuilder.identifyNode(levelNode, (Node)s, cam);
+//            System.out.println(s.getUserData("nodeType"));
+            LevelNodeBuilder.paintNode((Node)s, cam);
         }
         
         //Creating a CollisionShape that matches the terrain of the level.

@@ -4,10 +4,8 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
-import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
 import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.character.Player;
@@ -15,6 +13,8 @@ import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
 import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 import edu.chl.LifeOfAGoblin.model.INode;
+import edu.chl.LifeOfAGoblin.model.character.Boss;
+import edu.chl.LifeOfAGoblin.model.character.Minion;
 
 /**
  *
@@ -22,13 +22,13 @@ import edu.chl.LifeOfAGoblin.model.INode;
  */
 public class LevelNodeBuilder {
     
-    public static void identifyNode(Node levelNode, Node node, Camera cam) {
+    public static void paintNode(Node node, Camera cam) {
         if(node.getUserDataKeys().size() > 0) {
             INode model = nodeToModel(node);
             if (model instanceof Player) {
-                CharacterFactory.createPlayer(levelNode, node, cam);
+                CharacterFactory.createPlayer(node, cam);
             } else if (model instanceof AbstractNPC) {
-                CharacterFactory.createCharacter((AbstractNPC) model);
+                CharacterFactory.createCharacter(node, (AbstractNPC) model);
             } else if (model instanceof ICollidable){
                 CollisionObjectPainter.paintCollisionObject((ICollidable)model, node);
             }
@@ -57,11 +57,11 @@ public class LevelNodeBuilder {
             String spawnType = node.getUserData("TYPE");
             switch(spawnType) {
                 case "PLAYER":
-                    return new SpawnPoint(amount, NodeType.PLAYER, width);
+                    return new SpawnPoint(amount, new Player(), width);
                 case "BOSS":
-                    return new SpawnPoint(amount, NodeType.BOSS, width);
+                    return new SpawnPoint(amount, new Boss(), width);
                 case "MINION":
-                    return new SpawnPoint(amount, NodeType.MINION, width);
+                    return new SpawnPoint(amount, new Minion(), width);
             }
             
         } else if (type.equals("GAMEOBJECT")) {
