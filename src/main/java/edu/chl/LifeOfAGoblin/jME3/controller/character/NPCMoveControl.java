@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.jME3.character;
+package edu.chl.LifeOfAGoblin.jME3.controller.character;
 
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;

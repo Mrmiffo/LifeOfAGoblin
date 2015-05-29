@@ -1,4 +1,4 @@
-package edu.chl.LifeOfAGoblin.jME3.character;
+package edu.chl.LifeOfAGoblin.jME3.controller.character;
 
 import com.jme3.bullet.control.CharacterControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.nifty.GameHudController;

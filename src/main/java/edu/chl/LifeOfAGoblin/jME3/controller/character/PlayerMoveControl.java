@@ -1,4 +1,4 @@
-package edu.chl.LifeOfAGoblin.jME3.character;
+package edu.chl.LifeOfAGoblin.jME3.controller.character;
 
 import edu.chl.LifeOfAGoblin.utils.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.profile.Actions;
