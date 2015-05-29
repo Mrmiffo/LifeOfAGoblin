@@ -25,7 +25,7 @@ public class LevelNodeBuilder {
         if(node.getUserDataKeys().size() > 0) {
             INode model = nodeToModel(node);
             if (model instanceof Player) {
-                CharacterFactory.createPlayer(levelNode, node, cam);
+                CharacterFactory.createPlayer(node, cam);
             } else if (model instanceof AbstractNPC) {
                 CharacterFactory.createCharacter(node, (AbstractNPC) model);
             } else if (model instanceof ICollidable){

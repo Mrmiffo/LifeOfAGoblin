@@ -36,7 +36,7 @@ import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
  */
 class CharacterFactory {
     
-    static void createPlayer(Node levelNode, Node node, Camera cam) {
+    static void createPlayer(Node node, Camera cam) {
         
         //Creates the basic Player
         createCharacter(node, new Player());
@@ -45,7 +45,7 @@ class CharacterFactory {
         node.addControl(new PlayerHealthControl());
 
         attachChaseCamera(node, cam);
-        attachPhysicsTickControl(levelNode, node);
+        attachPhysicsTickControl(node);
     }
     
     /**
@@ -183,9 +183,9 @@ class CharacterFactory {
     }
 
 
-    private static void attachPhysicsTickControl(Node levelNode, Node playerNode) {
+    private static void attachPhysicsTickControl(Node playerNode) {
         PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
-        levelNode.addControl(ptc);
+        playerNode.addControl(ptc);
         PhysicsWrapper.getInstance().add(((PhysicsTickListener)ptc));
     }
     
