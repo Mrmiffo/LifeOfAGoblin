@@ -96,11 +96,6 @@ public class CollisionListenerTest {
         node7.addControl(mockFcheckMc);
         node7.addControl(mockFcheckGhost);
         
-        ModelControl mockFaultycheckMc = new ModelControl(testFaultyCheck);
-        BoxCollisionShape mockFaultycheckBox = new BoxCollisionShape(new Vector3f(1,1,1));
-        GhostControl mockFaultycheckGhost = new GhostControl(mockFaultycheckBox);
-        node8.addControl(mockFaultycheckMc);
-        node8.addControl(mockFaultycheckGhost);
         
         node9.setUserData("NodeType", "CHECKPOINT");
         BoxCollisionShape mockFaultyobjectBox = new BoxCollisionShape(new Vector3f(1,1,1));
@@ -119,7 +114,6 @@ public class CollisionListenerTest {
         PhysicsCollisionEvent pce1 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node5.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce2 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node6.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce3 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node7.getControl(GhostControl.class), new ManifoldPoint());
-        PhysicsCollisionEvent pce4 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node8.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce6 = new PhysicsCollisionEvent(1, node5.getControl(GhostControl.class), node1.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce7 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node9.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce8 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node10.getControl(GhostControl.class), new ManifoldPoint());
@@ -133,13 +127,6 @@ public class CollisionListenerTest {
         verify(testFCheck, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
         
      
-        
-        // tests that collision can handle objects with no userData
-        
-        listener.collision(pce4);
-        //TODO fixed error in test. Method head for test changed.
-//        verify(testFaultyCheck, times(0)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
-        
         
         //tests collisions with indata in the other order.
 

@@ -56,6 +56,7 @@ public class SpawnControlTest {
     
     @After
     public void tearDown() {
+        System.out.println(" detta borde inte vara noll??" + ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList());
         for(PhysicsGhostObject obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList()){
             PhysicsWrapper.getInstance().remove(obj);
         }
