@@ -96,19 +96,6 @@ public class InputManagerWrapper {
     */
    private static class TriggerConverter {
         /**
-         * Returns the corresponing Integer value of one or more triggers.
-         * @param triggers one or more Triggers.
-         * @return an array with the corresponding integer value(s) of the Trigger(s).
-         */
-        private static Keybind[] triggersToKeybinds(Trigger... triggers) {
-            ArrayList<Keybind> temp = new ArrayList<>();
-            for (Trigger trigger: triggers) {
-                temp.add(new Keybind(getInputDevice(trigger), trigger.triggerHashCode()));
-            }
-            return temp.toArray(new Keybind[1]);
-        }
-
-        /**
          * Returns the corresponding Trigger for each Integer/InputDevice pair in the Map.
          * @param keybinds a Map of Integer/InputDevice pairs.
          * @return an array with the corresponding Trigger(s) of the Map.
