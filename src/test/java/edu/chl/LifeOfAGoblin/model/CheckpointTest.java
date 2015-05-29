@@ -9,7 +9,6 @@ import com.jme3.input.*;
 import com.jme3.input.awt.AwtKeyInput;
 import com.jme3.input.awt.AwtMouseInput;
 import com.jme3.input.lwjgl.JInputJoyInput;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import org.junit.After;
@@ -145,7 +144,8 @@ public class CheckpointTest {
        cp1.collide(new Player());
        assertTrue(cp1.isActivated());
        
-       
+       //tests that method can handle null input
+       cp1.collide(null);
        
     }
 
