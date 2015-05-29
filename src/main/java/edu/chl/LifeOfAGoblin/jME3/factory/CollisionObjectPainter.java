@@ -10,9 +10,9 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.control.Control;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
-import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
-import edu.chl.LifeOfAGoblin.model.SpawnPoint;
-import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
+import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
+import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 /**
  * A class responsible for "painting" nodes giving them models and adding

@@ -15,21 +15,20 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
+import edu.chl.LifeOfAGoblin.jME3.character.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.PhysicsTickControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.NPCCollisionControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.PlayerHealthControl;
-import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
-import static edu.chl.LifeOfAGoblin.jME3.factory.CharacterFactory.createCharacter;
-import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import edu.chl.LifeOfAGoblin.jME3.character.PhysicsTickControl;
+import edu.chl.LifeOfAGoblin.jME3.character.NPCCollisionControl;
+import edu.chl.LifeOfAGoblin.jME3.character.NPCMoveControl;
+import edu.chl.LifeOfAGoblin.jME3.character.PlayerHealthControl;
+import edu.chl.LifeOfAGoblin.jME3.character.PlayerMoveControl;
+import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
+import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.character.Player;
-import edu.chl.LifeOfAGoblin.model.Weapon;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
+import edu.chl.LifeOfAGoblin.model.character.Weapon;
+import edu.chl.LifeOfAGoblin.model.character.AbstractCharacter;
+import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
 
 /**
  * The character factory is used to create and decorate player and NPC character nodes.

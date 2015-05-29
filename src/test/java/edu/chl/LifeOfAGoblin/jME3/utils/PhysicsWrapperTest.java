@@ -4,6 +4,8 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.utils;
 
+import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.control.CharacterControl;

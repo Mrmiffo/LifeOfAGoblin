@@ -5,14 +5,16 @@
 package edu.chl.LifeOfAGoblin.model;
 
 
+import edu.chl.LifeOfAGoblin.model.profile.Profile;
+import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
+import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import com.jme3.input.*;
 import com.jme3.input.awt.AwtKeyInput;
 import com.jme3.input.awt.AwtMouseInput;
 import com.jme3.input.lwjgl.JInputJoyInput;
 import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -7,9 +7,9 @@ package edu.chl.LifeOfAGoblin.jME3.controller;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
-import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
-import edu.chl.LifeOfAGoblin.model.interfaces.INode;
+import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
+import edu.chl.LifeOfAGoblin.model.ICollidable;
+import edu.chl.LifeOfAGoblin.model.INode;
 
 /**
  * A class that represents a control that listens to all occured collisions.

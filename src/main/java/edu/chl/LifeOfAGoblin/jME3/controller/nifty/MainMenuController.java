@@ -5,11 +5,11 @@ import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.ImageSelect;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import edu.chl.LifeOfAGoblin.jME3.main.Main;
-import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
-import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
-import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
-import edu.chl.LifeOfAGoblin.jME3.view.state.MainMenuAppState;
+import edu.chl.LifeOfAGoblin.jME3.game.Main;
+import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
+import edu.chl.LifeOfAGoblin.jME3.game.GameAppState;
+import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.game.MainMenuAppState;
 
 /**
  * The MainMenuController is the control class for the main menu. It provides 

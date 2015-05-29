@@ -1,9 +1,7 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.MeleeWeapon;
 import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
-import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
+import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 /**
  * The basic boss NPC class. Not yet fully implemented.

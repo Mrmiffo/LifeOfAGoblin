@@ -7,8 +7,8 @@ import de.lessvoid.nifty.elements.render.PanelRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import de.lessvoid.nifty.tools.Color;
-import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
+import edu.chl.LifeOfAGoblin.utils.Resources;
 import java.util.Timer;
 import java.util.TimerTask;
 

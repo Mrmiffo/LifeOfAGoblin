@@ -13,12 +13,12 @@ import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.CollisionListener;
-import edu.chl.LifeOfAGoblin.model.Level;
-import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
+import edu.chl.LifeOfAGoblin.model.gameObject.Level;
+import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.character.Boss;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
+import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
 import java.util.List;
 
 /**
@@ -42,14 +42,6 @@ public class NodeFactory {
         }
     }
     
-    public static Node createNode(AbstractNPC character) {
-        return CharacterFactory.createCharacter(character);
-    }
-    
-    public static void createPlayer(Node levelNode, Node node, Camera cam) {
-        CharacterFactory.createPlayer(levelNode, node, cam);
-    } 
-    
     /**
      * Creates a Node represeting a level, gives it everything it needs based
      * on the provided levelObject's children and attaches camera, controls
@@ -63,7 +55,7 @@ public class NodeFactory {
         List<Spatial> nodeList = levelNode.getChildren();
                 System.out.println(nodeList.size());
         for(Spatial s: nodeList){
-            LevelNodeIdentifier.identifyNode(levelNode, (Node)s, cam);
+            LevelNodeBuilder.identifyNode(levelNode, (Node)s, cam);
         }
         
         //Creating a CollisionShape that matches the terrain of the level.

@@ -1,11 +1,8 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
+import edu.chl.LifeOfAGoblin.jME3.character.PlayerMoveControl;
 import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.model.Weapon;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
-import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
+import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 /**
  * The player class represents the player character in the game. The class 

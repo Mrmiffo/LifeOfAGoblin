@@ -4,6 +4,9 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.model.profile.Profile;
+import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
+import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
@@ -11,10 +14,9 @@ import com.jme3.input.RawInputListener;
 import com.jme3.input.TouchInput;
 import com.jme3.system.JmeSystem;
 import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
-import edu.chl.LifeOfAGoblin.jME3.view.LifeOfAGoblin;
-import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.utils.Resources;
+import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
+import edu.chl.LifeOfAGoblin.jME3.game.LifeOfAGoblin;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

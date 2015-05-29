@@ -4,8 +4,8 @@ import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
-import edu.chl.LifeOfAGoblin.model.Profile;
+import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
+import edu.chl.LifeOfAGoblin.model.profile.Profile;
 import java.util.List;
 
 /**

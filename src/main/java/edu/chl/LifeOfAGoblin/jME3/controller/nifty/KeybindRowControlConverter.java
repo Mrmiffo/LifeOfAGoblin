@@ -3,9 +3,9 @@ package edu.chl.LifeOfAGoblin.jME3.controller.nifty;
 import de.lessvoid.nifty.controls.ListBox;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.TextRenderer;
-import edu.chl.LifeOfAGoblin.jME3.utils.KeyAndMouseNames;
-import edu.chl.LifeOfAGoblin.model.Actions;
-import edu.chl.LifeOfAGoblin.model.Keybind;
+import edu.chl.LifeOfAGoblin.utils.KeyAndMouseNames;
+import edu.chl.LifeOfAGoblin.model.profile.Actions;
+import edu.chl.LifeOfAGoblin.model.profile.Keybind;
 import java.util.ArrayList;
 
 /**

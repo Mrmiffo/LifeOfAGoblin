@@ -11,8 +11,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import edu.chl.LifeOfAGoblin.jME3.view.LifeOfAGoblin;
+import edu.chl.LifeOfAGoblin.utils.Resources;
+import edu.chl.LifeOfAGoblin.jME3.game.LifeOfAGoblin;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.objects.PhysicsCharacter;
@@ -20,8 +20,8 @@ import com.jme3.bullet.objects.PhysicsGhostObject;
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.scene.Node;
 import com.jme3.system.JmeSystem;
-import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
+import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
+import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 
 /**
  *

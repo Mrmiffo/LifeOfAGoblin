@@ -14,11 +14,11 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.input.NiftyInputEvent;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.xml.xpp3.Attributes;
-import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
-import edu.chl.LifeOfAGoblin.jME3.utils.KeyAndMouseNames;
-import edu.chl.LifeOfAGoblin.model.Actions;
-import edu.chl.LifeOfAGoblin.model.InputDevice;
-import edu.chl.LifeOfAGoblin.model.Keybind;
+import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
+import edu.chl.LifeOfAGoblin.utils.KeyAndMouseNames;
+import edu.chl.LifeOfAGoblin.model.profile.Actions;
+import edu.chl.LifeOfAGoblin.model.profile.InputDevice;
+import edu.chl.LifeOfAGoblin.model.profile.Keybind;
 import java.util.Properties;
 
 /**
