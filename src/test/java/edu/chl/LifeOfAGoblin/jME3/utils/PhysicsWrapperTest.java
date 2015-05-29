@@ -9,6 +9,9 @@ import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.bullet.control.GhostControl;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.objects.PhysicsCharacter;
+import com.jme3.bullet.objects.PhysicsGhostObject;
+import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.control.UpdateControl;
@@ -51,14 +54,14 @@ public class PhysicsWrapperTest {
     
     @After
     public void tearDown() {
-        for(Object obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList()){
+        for(PhysicsGhostObject obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList()){
             PhysicsWrapper.getInstance().remove(obj);
         }
 
-        for(Object obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getCharacterList()){
+        for(PhysicsCharacter obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getCharacterList()){
             PhysicsWrapper.getInstance().remove(obj);
         }
-        for(Object obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getRigidBodyList()){
+        for(PhysicsRigidBody obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getRigidBodyList()){
             PhysicsWrapper.getInstance().remove(obj);
         }        
      }
@@ -98,7 +101,7 @@ public class PhysicsWrapperTest {
         
         //tests that a non PhysicsControl can't be added, exception will be 
         //thrown if test fails
-        PhysicsWrapper.getInstance().add(updateControl);
+//        PhysicsWrapper.getInstance().add(updateControl);
         
         //tests that the same control cannot be added twice
         PhysicsWrapper.getInstance().add(ghostControl);
@@ -118,7 +121,7 @@ public class PhysicsWrapperTest {
         assertTrue(((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList().isEmpty());
         
         // tests that it can handle non PhysicsObect, should not throw exception. 
-       PhysicsWrapper.getInstance().remove(12);
+//       PhysicsWrapper.getInstance().remove(12);
     
         // tests that it can handle removing objects that don't exist in the 
         //physicsspace, should not throw exception.

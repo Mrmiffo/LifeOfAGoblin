@@ -5,6 +5,7 @@
 package edu.chl.LifeOfAGoblin.model;
 
 
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import com.jme3.input.*;
 import com.jme3.input.awt.AwtKeyInput;
 import com.jme3.input.awt.AwtMouseInput;

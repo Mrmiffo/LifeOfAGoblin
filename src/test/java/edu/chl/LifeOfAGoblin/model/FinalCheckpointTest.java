@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.RawInputListener;
