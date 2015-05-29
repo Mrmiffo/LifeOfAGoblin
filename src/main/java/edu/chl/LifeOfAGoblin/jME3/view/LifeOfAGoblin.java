@@ -35,12 +35,13 @@ public class LifeOfAGoblin extends SimpleApplication {
         PhysicsWrapper.getInstance();
         setupProfile();
         setupAppStates();
-        //
+        
         StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
         
-        
+        //Removes statistics
+        setDisplayFps(false);
+        setDisplayStatView(false);
 
-        
         //Disables the built-in flyCam
         this.flyCam.setEnabled(false);
     }
