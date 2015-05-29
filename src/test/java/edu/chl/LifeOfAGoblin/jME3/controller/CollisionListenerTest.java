@@ -123,7 +123,6 @@ public class CollisionListenerTest {
         PhysicsCollisionEvent pce6 = new PhysicsCollisionEvent(1, node5.getControl(GhostControl.class), node1.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce7 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node9.getControl(GhostControl.class), new ManifoldPoint());
         PhysicsCollisionEvent pce8 = new PhysicsCollisionEvent(1, node1.getControl(GhostControl.class), node10.getControl(GhostControl.class), new ManifoldPoint());
-
         // tests that AbstractCollisionObjects run collide after collisions, 
 
         listener.collision(pce1);
@@ -156,5 +155,7 @@ public class CollisionListenerTest {
         listener.collision(pce8);
         verify(((Player)node1.getControl(ModelControl.class).getModel()), times(1)).collide(((ICollidable)node10.getControl(ModelControl.class).getModel()));
         verify(testMinion, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
+    
+        
     }
 }

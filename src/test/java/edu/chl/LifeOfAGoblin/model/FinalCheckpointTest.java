@@ -17,6 +17,7 @@ import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.game.LifeOfAGoblin;
+import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -149,5 +150,8 @@ public class FinalCheckpointTest {
        cp1.collide(new Player());
        assertTrue(cp1.isActivated());
        
+        //tests that method can handle null input
+       cp1.collide(null);
+
     }
 }

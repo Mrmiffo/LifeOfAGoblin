@@ -94,20 +94,7 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
             this.die();
         }
     }
-    
-    /**
-     * Decreases the character's health with a specified amount. If the health becomes
-     * equal to or below 0 the character dies. 
-     * @param change the amount to decrease
-     */
-    public void decreaseHealth(int change) {
-        health -= change;
-        if (health <= 0) {
-            health = 0;
-            this.die();
-        }
-    }
-    
+        
     /**
      * Increases the character's health with 1.
      */
@@ -116,18 +103,7 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
             health += 1;
         }
     }
-    
-    /**
-     * Increases the character's health with a specified amount.
-     * @param change the amount to decrease
-     */
-    public void increaseHealth(int change) {
-        health += change;
-        if (health > maxHealth) {
-            health = maxHealth;
-        }
-    }
-    
+        
     /**
      * Returns the max health of the character.
      * @return the character max health.

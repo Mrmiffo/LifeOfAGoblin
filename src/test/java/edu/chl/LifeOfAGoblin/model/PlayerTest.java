@@ -9,6 +9,8 @@ import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.NodeType;
+import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.model.ICollidable;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -68,7 +70,10 @@ public class PlayerTest {
         //tests that a player does not take damage from nonNPCs
         player2.collide(new Checkpoint(1,1,1.0f));
         assertFalse(player2.isInvulnerable());
-        assertFalse(player2.getHealth()<maxHealth);        
+        assertFalse(player2.getHealth()<maxHealth); 
+        
+        //tests that method can handle null input
+        player2.collide((ICollidable)null);
         
         
     }
