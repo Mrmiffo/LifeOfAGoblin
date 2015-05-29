@@ -1,7 +1,6 @@
 package edu.chl.LifeOfAGoblin.model.profile;
 
 import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -9,7 +8,7 @@ import java.util.ArrayList;
  * An enum describing all allowed actions, mapped to currently active keybinds.
  * @author Anton
  */
-public enum Actions implements Serializable{
+public enum Actions {
 
     WALK_LEFT,
     WALK_RIGHT,
