@@ -114,7 +114,7 @@ public class AbstractCharacterTest {
         assertTrue(p.isDead());
         
         //tests that a player lives again
-        p.setIsDead(true);
+        p.setIsDead(false);
         assertFalse(p.isDead());
         
     }
