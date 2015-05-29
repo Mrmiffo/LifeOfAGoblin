@@ -7,7 +7,6 @@ package edu.chl.LifeOfAGoblin.jME3.factory;
 import edu.chl.LifeOfAGoblin.model.NodeType;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
-import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
 import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.character.Player;
@@ -28,7 +27,7 @@ public class LevelNodeBuilder {
             if (model instanceof Player) {
                 CharacterFactory.createPlayer(levelNode, node, cam);
             } else if (model instanceof AbstractNPC) {
-                CharacterFactory.createCharacter((AbstractNPC) model);
+                CharacterFactory.createCharacter(node, (AbstractNPC) model);
             } else if (model instanceof ICollidable){
                 CollisionObjectPainter.paintCollisionObject((ICollidable)model, node);
             }

@@ -32,7 +32,8 @@ public class SpawnControl extends AbstractControl{
     public synchronized void spawn(int amount, NodeType type) {
         if (amount > 0 && type.getSpawnable()) {
         for (int i = 0; i<amount; i++) {
-                Node node = NodeFactory.createNode(type);
+                Node node = new Node();
+                NodeFactory.createNode(node, type);
                 node.setUserData("nodeType", type.toString());
                 this.getSpatial().getParent().attachChild(node);
              //   node.setLocalTranslation(this.getSpatial().getLocalTranslation());

@@ -18,7 +18,6 @@ import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.character.Boss;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
-import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
 import java.util.List;
 
 /**
@@ -28,17 +27,17 @@ import java.util.List;
  */
 public class NodeFactory {
     
-    public static Node createNode(NodeType nodetype){
+    public static void createNode(Node node, NodeType nodetype){
         switch (nodetype) {
             case PLAYER:
                 throw new InternalError("Error in NodeFactory: createNode(). Player is not allowed.");
                 //return CharacterFactory.createCharacter(new Player());
             case MINION:
-                return CharacterFactory.createCharacter(new Minion());
+                CharacterFactory.createCharacter(node, new Minion());
             case BOSS:
-                return CharacterFactory.createCharacter(new Boss());
+                CharacterFactory.createCharacter(node, new Boss());
             default:
-            throw new InternalError("Error in NodeFactory: createNode()");
+            //throw new InternalError("Error in NodeFactory: createNode()");
         }
     }
     

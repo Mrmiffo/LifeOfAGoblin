@@ -39,30 +39,22 @@ class CharacterFactory {
     static void createPlayer(Node levelNode, Node node, Camera cam) {
         
         //Creates the basic Player
-        Node playerNode = createCharacter(new Player());
-        
-        playerNode.setLocalTranslation(node.getWorldTranslation());
-        levelNode.setLocalTranslation(0f, -5f, 0f);
-        
-        //Attach the player to the level
-        node.attachChild(playerNode);
+        createCharacter(node, new Player());
         
         //A control which use the player model data to update the game hud health bar.
-        playerNode.addControl(new PlayerHealthControl());
+        node.addControl(new PlayerHealthControl());
 
-        attachChaseCamera(playerNode, cam);
-        attachPhysicsTickControl(levelNode, playerNode);
-        
+        attachChaseCamera(node, cam);
+        attachPhysicsTickControl(levelNode, node);
     }
     
     /**
      * Creates a node representing any character.
+     * @param node the node which will represent the character
      * @param character the character which the node will represent.
      * @return a node representing the character.
      */
-    static Node createCharacter(AbstractCharacter character) {
-        //Creates the node which will represent the character
-        Node node = new Node();
+    static void createCharacter(Node node, AbstractCharacter character) {
         
         //Connects the model to the node
         node.addControl(new ModelControl(character));
@@ -74,8 +66,6 @@ class CharacterFactory {
             addWeapon(node, (AbstractNPC)character);
         }
         provideGraphicalRepresentation(node);
-        
-        return node;
     }
     
     /**
