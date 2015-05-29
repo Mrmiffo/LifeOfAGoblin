@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.gameObject;
 
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
 import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
@@ -13,11 +13,11 @@ import com.jme3.asset.AssetManager;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.TouchInput;
 import com.jme3.system.JmeSystem;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.game.LifeOfAGoblin;
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
+import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
