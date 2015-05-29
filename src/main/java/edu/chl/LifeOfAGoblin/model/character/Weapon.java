@@ -13,12 +13,10 @@ public abstract class Weapon extends AbstractGameObject implements ICollidable {
 
     private float collisionHeight;
     private float collisionWidth;
-    private float range;
     
-    public Weapon(float collisionHeight, float collisionWidth, float range) {
+    public Weapon(float collisionHeight, float collisionWidth) {
         this.collisionHeight = collisionHeight;
         this.collisionWidth = collisionWidth;
-        this.range = range; //collsionWidth == range?
     }
     
     @Override
