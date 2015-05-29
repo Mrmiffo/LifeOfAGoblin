@@ -30,10 +30,6 @@ public class ProfileTest {
     
     @BeforeClass
     public static void setUpClass() {
-        for(Profile profile: Profile.getProfiles()){
-            Profile.removeProfile(profile);
-        
-    }
     }
     
     @AfterClass
@@ -44,13 +40,11 @@ public class ProfileTest {
     public void setUp() {
         p = new Profile("Test");
         mockP = mock(Profile.class);
-        for(Profile p: Profile.getProfiles()){
-            Profile.removeProfile(p);
-        }
     }
     
     @After
     public void tearDown() {
+        Profile.getProfiles().clear();
     }
 
     @Test
@@ -69,8 +63,8 @@ public class ProfileTest {
         
         //tests that method can handle empty strings
         p.rename("");
-        assertTrue(p.getProfileName().equals(""));
-        assertTrue(SaveLoadManager.getInstance().getSavedFiles(null).contains(""));
+        assertFalse(p.getProfileName().equals(""));
+        assertFalse(SaveLoadManager.getInstance().getSavedFiles(null).contains(""));
 
         
     }
@@ -197,24 +191,21 @@ public class ProfileTest {
         assertFalse(Actions.OPEN_MENU.getKeyCodes().contains(testKeyBind1));
         assertFalse(Actions.WALK_LEFT.getKeyCodes().contains(testKeyBind1));
         assertFalse(Actions.WALK_RIGHT.getKeyCodes().contains(testKeyBind1));
-
         for(TestDefaultKey tdk: defaultKeyList){
             for(Actions A: actionsList){
-                if(tdk.keys.size()>1){
+                if(tdk.getAction().equals(A)&& tdk.keys.size()>1){
                     if((A.getKeyCodes().get(0).getKey()!=tdk.keys.get(0)&&A.getKeyCodes().get(0).getKey()!=tdk.keys.get(1))
                             || (A.getKeyCodes().get(1).getKey()!=tdk.keys.get(0)&&A.getKeyCodes().get(1).getKey()!=tdk.keys.get(1))){
                         fail();
                     }
                 }
-                else{
+                if(tdk.getAction().equals(A)){
                     if(A.getKeyCodes().get(0).getKey()!=tdk.keys.get(0)){
                         fail();
                     }
                 }
             }
-        }
-        
-        
+        }  
     }
 
 
@@ -224,18 +215,18 @@ public class ProfileTest {
         Profile.setActiveProfile(p);
         assertTrue(Profile.getActiveProfile().equals(p));
         
-        //tests that active profile is changed.
+        //tests that method can handle null input.
         Profile.setActiveProfile((Profile)null);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testSetActiveProfile_String() {
         //tests that active profile is changed.
         Profile.addProfile(p);
         Profile.setActiveProfile("Test");
         assertTrue(Profile.getActiveProfile().getProfileName().equals("Test"));
     
-        //tests that method ccan handle an empty string
+        //tests that method can handle an empty string
         Profile.setActiveProfile("");
         assertTrue(Profile.getActiveProfile().getProfileName().equals("Test"));
         

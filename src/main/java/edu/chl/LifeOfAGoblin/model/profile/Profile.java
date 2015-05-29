@@ -28,12 +28,16 @@ public class Profile implements Serializable{
     
     /**
      * Replaces the current name associated with the profile with the new name.
+     * string cannot be empty.
      * @param newName the name with which the profile will be associated with.
      */
     public void rename(String newName) {
-        SaveLoadManager.getInstance().deleteFile(null, profileName);
-        profileName = newName;
-        saveProfile();
+        if (newName != null && !newName.isEmpty()) {
+                SaveLoadManager.getInstance().deleteFile(null, profileName);
+                profileName = newName;
+                saveProfile();
+            
+        }
     }
     
     /**
@@ -58,8 +62,12 @@ public class Profile implements Serializable{
      * ArrayList<Keybind> the new keybinds associated with the action.
      */
     public void addCustomBinding(Actions action, ArrayList<Keybind> newBindings) {
-        keybinds.setKeybind(action, newBindings);
-        saveProfile();
+        for(int i = 0; i<newBindings.size();i++){
+            if(((Keybind)newBindings.get(i)).getKey()>1){
+                keybinds.setKeybind(action, newBindings);
+                saveProfile();
+            }
+        }
     }
     
     /**
@@ -98,11 +106,13 @@ public class Profile implements Serializable{
      * @param profile the profile to be active.
      */
     public static void setActiveProfile(Profile profile) {
-        if (activeProfile != null){
-            activeProfile.setIsActiveProfile(false);
+        if(profile!=null){
+            if (activeProfile != null){
+                activeProfile.setIsActiveProfile(false);
+            }
+            activeProfile = profile;
+            activeProfile.setIsActiveProfile(true);
         }
-        activeProfile = profile;
-        activeProfile.setIsActiveProfile(true);
     }
     
     /**

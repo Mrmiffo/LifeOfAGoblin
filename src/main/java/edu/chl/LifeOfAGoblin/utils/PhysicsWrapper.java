@@ -49,7 +49,9 @@ public class PhysicsWrapper {
     }
 
     public void remove(PhysicsCollisionObject object){
-        this.bulletAppState.getPhysicsSpace().remove(object);
+        if(object != null){
+            this.bulletAppState.getPhysicsSpace().remove(object);
+        }
     }
 
     public void add(PhysicsTickListener listener){
