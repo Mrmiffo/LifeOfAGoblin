@@ -21,7 +21,7 @@ public class Player extends AbstractCharacter {
     private static final float width = 0.4f;
     private static final float weight = 10;
     private static final float baseDamage = 1;
-    private static final float jumpStrength = 12;
+    private static final float jumpStrength = 14;
     private boolean invulnerable;
     
     public Player(){

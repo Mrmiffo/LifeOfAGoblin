@@ -61,6 +61,7 @@ public class NodeFactory {
     public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
+                System.out.println(nodeList.size());
         for(Spatial s: nodeList){
             LevelNodeIdentifier.identifyNode(levelNode, (Node)s, cam);
         }

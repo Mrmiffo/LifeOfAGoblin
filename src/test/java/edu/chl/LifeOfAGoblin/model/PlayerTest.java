@@ -61,7 +61,7 @@ public class PlayerTest {
         
         
         //tests that collide works
-        player1.collide((ICollidable)new Minion());
+        player1.collide((ICollidable)new MeleeWeapon());
         assertTrue(player1.isInvulnerable());
         assertTrue(player1.getHealth()<maxHealth);
         
