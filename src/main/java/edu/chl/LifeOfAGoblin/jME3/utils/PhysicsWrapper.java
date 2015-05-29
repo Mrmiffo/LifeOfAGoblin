@@ -7,6 +7,12 @@ package edu.chl.LifeOfAGoblin.jME3.utils;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
+import com.jme3.bullet.collision.PhysicsCollisionObject;
+import com.jme3.bullet.control.CharacterControl;
+import com.jme3.bullet.control.GhostControl;
+import com.jme3.bullet.control.PhysicsControl;
+import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 
 /**
@@ -28,15 +34,21 @@ public class PhysicsWrapper {
         return instance;
     }
         
-    public void add(Control control){
-        this.bulletAppState.getPhysicsSpace().add(control);
+    public void add(PhysicsControl control){
+        //This check is supposed to be done in jME3 as it accepts any type of object, but if the object is missing the collision shape it will throw an error.
+        if ((control instanceof GhostControl && ((GhostControl)control).getCollisionShape() != null) ||
+                (control instanceof RigidBodyControl && ((RigidBodyControl)control).getCollisionShape() != null) ||
+                    (control instanceof CharacterControl && ((CharacterControl)control).getCollisionShape() != null)){
+                        this.bulletAppState.getPhysicsSpace().add(control);
+        }
+
     }
 
     public void addCollisionListener(PhysicsCollisionListener listener){
         this.bulletAppState.getPhysicsSpace().addCollisionListener(listener);
     }
 
-    public void remove(Object object){
+    public void remove(PhysicsCollisionObject object){
         this.bulletAppState.getPhysicsSpace().remove(object);
     }
 

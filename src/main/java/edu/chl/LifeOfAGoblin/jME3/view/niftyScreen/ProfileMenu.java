@@ -11,7 +11,7 @@ import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.tools.Color;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.ProfileMenuController;
+import edu.chl.LifeOfAGoblin.jME3.controller.nifty.ProfileMenuController;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;
 
 /**

@@ -1,6 +1,6 @@
 package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen;
 
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.KeybindRowControlConverter;
+import edu.chl.LifeOfAGoblin.jME3.controller.nifty.KeybindRowControlConverter;
 import de.lessvoid.nifty.builder.ControlBuilder;
 import de.lessvoid.nifty.builder.ControlDefinitionBuilder;
 import de.lessvoid.nifty.builder.ImageBuilder;
@@ -12,8 +12,8 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.listbox.builder.ListBoxBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.tools.Color;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.ChangeKeyBindMenuItemController;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.SettingsMenuController;
+import edu.chl.LifeOfAGoblin.jME3.controller.nifty.ChangeKeyBindMenuItemController;
+import edu.chl.LifeOfAGoblin.jME3.controller.nifty.SettingsMenuController;
 import edu.chl.LifeOfAGoblin.jME3.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.INiftyScreen;

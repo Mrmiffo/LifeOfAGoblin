@@ -1,4 +1,4 @@
-package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
+package edu.chl.LifeOfAGoblin.jME3.controller.nifty;
 
 import com.jme3.input.RawInputListener;
 import com.jme3.input.event.JoyAxisEvent;

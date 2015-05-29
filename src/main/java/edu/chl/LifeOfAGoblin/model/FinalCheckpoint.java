@@ -1,5 +1,6 @@
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
@@ -30,12 +31,10 @@ public class FinalCheckpoint extends Checkpoint {
      */
     @Override
     public void collide(ICollidable collided) {
-        if (collided.getClass() == Player.class) {
-            super.updateProgress(this.level, this.number);
-            super.activate();
-            //todo fix this properly
+        super.collide(collided);
+        
+        //TODO fix this properly
 //            StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(GameAppState.class));
 //            StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
-        }
     }
 }

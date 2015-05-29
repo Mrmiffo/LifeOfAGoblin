@@ -19,16 +19,18 @@ import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PhysicsTickControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.NPCCollisionControl;
+import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerHealthControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
 import static edu.chl.LifeOfAGoblin.jME3.factory.CharacterFactory.createCharacter;
 import edu.chl.LifeOfAGoblin.jME3.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import edu.chl.LifeOfAGoblin.model.Player;
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.Weapon;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
+
 /**
  * The character factory is used to create and decorate player and NPC character nodes.
  * @author kakan
@@ -151,13 +153,19 @@ class CharacterFactory {
      */
     private static void makeMoveable(Node node) {
         AbstractCharacter model = (AbstractCharacter)node.getControl(ModelControl.class).getModel();
-        AbstractMoveControl amc = model.getAbstractMoveControl();
+        AbstractMoveControl amc = null;
         if (model instanceof Player) {
+            amc = new PlayerMoveControl();
             InputManagerWrapper.getInstance().registerListener((PlayerMoveControl) amc);
+        } else if (model instanceof AbstractNPC){
+            amc = new NPCMoveControl();
         }
         
-        //Attaching move control
-        node.addControl(amc);
+        if (amc != null){
+            //Attaching move control
+            node.addControl(amc);
+        }
+
     }
     
     /**

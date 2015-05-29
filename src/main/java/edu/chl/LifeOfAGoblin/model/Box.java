@@ -1,13 +1,13 @@
 package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.archive.AbstractMovableObject;
+import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractInanimateObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 
 /**
  *
  * @author fredrik
  */
-public class Box extends AbstractMovableObject implements ICollidable{
+public class Box extends AbstractInanimateObject implements ICollidable{
     private float width;
     private float height;
     

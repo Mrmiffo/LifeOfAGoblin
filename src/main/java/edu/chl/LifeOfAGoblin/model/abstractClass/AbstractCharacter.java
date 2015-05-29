@@ -3,7 +3,6 @@ package edu.chl.LifeOfAGoblin.model.abstractClass;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IKillable;
 import edu.chl.LifeOfAGoblin.model.interfaces.IModeledNode;
-import edu.chl.LifeOfAGoblin.jME3.controller.AbstractMoveControl;
 import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
 
 /**
@@ -13,7 +12,6 @@ import edu.chl.LifeOfAGoblin.model.interfaces.ISpawnable;
  */
 public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable, ISpawnable{
     
-    private AbstractMoveControl amc;
     private int health;
     private int maxHealth;
     private String model;
@@ -40,12 +38,10 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * @param baseDamage the character's unmodified damage.
      * @param jumpStrength the character reaches by jumping.
      */
-    protected AbstractCharacter(AbstractMoveControl amc,
-            int maxHealth, String model, float height, float width,
+    protected AbstractCharacter(int maxHealth, String model, float height, float width,
             float collisionHeight, float collisionWidth, float weight,
             float baseDamage, float jumpStrength) {
         
-        this.amc = amc;
         this.health = maxHealth; //everything has full health when created
         this.maxHealth = maxHealth;
         this.model = model;
@@ -64,14 +60,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     @Override
     public String getModelName(){
         return model;
-    }
-    
-    /**
-     * Returns the controller of the character's movement.
-     * @return the controller of the character's movement.
-     */
-    public AbstractMoveControl getAbstractMoveControl() {
-        return amc;
     }
         
      /**

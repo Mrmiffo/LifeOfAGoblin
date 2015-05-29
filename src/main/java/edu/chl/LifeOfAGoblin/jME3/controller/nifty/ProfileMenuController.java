@@ -1,4 +1,4 @@
-package edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller;
+package edu.chl.LifeOfAGoblin.jME3.controller.nifty;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.ListBox;

@@ -9,7 +9,6 @@ import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import edu.chl.LifeOfAGoblin.jME3.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.state.GameAppState;
 import edu.chl.LifeOfAGoblin.jME3.view.state.MainMenuAppState;
-import edu.chl.LifeOfAGoblin.archive.PauseAppState;
 import edu.chl.LifeOfAGoblin.model.Profile;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
 import java.util.List;
@@ -72,10 +71,8 @@ public class LifeOfAGoblin extends SimpleApplication {
      */
     private void setupAppStates() {
         GameAppState gameState = new GameAppState();
-        PauseAppState pauseState = new PauseAppState();
         MainMenuAppState mainMenu = new MainMenuAppState();
         StateManagerWrapper.getInstance().addState(gameState);
-        StateManagerWrapper.getInstance().addState(pauseState);
         StateManagerWrapper.getInstance().addState(mainMenu);
         StateManagerWrapper.getInstance().activateState(gameState);
 //        StateManagerWrapper.getInstance().deactivateState(gameState);

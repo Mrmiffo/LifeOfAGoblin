@@ -1,6 +1,5 @@
 package edu.chl.LifeOfAGoblin.model.abstractClass;
 
-import edu.chl.LifeOfAGoblin.jME3.controller.NPCMoveControl;
 import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.AIAction;
 import edu.chl.LifeOfAGoblin.model.Direction;
@@ -35,7 +34,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
                           float baseDamage, float jumpStrength, NodeType target,
                           float aggressionRange, Weapon weapon){
         
-        super(new NPCMoveControl(), maxHealth, model, height, width, collisionHeight,
+        super(maxHealth, model, height, width, collisionHeight,
                 collisionWidth, weight, baseDamage, jumpStrength);
         this.targetNodeType = target;
         this.aggressionRange = aggressionRange;

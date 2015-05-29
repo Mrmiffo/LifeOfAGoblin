@@ -1,6 +1,8 @@
-package edu.chl.LifeOfAGoblin.model;
+package edu.chl.LifeOfAGoblin.model.character;
 
 import edu.chl.LifeOfAGoblin.jME3.controller.PlayerMoveControl;
+import edu.chl.LifeOfAGoblin.model.NodeType;
+import edu.chl.LifeOfAGoblin.model.Weapon;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;
@@ -23,7 +25,7 @@ public class Player extends AbstractCharacter {
     private boolean invulnerable;
     
     public Player(){
-        super(new PlayerMoveControl(), maxHealth, model, height, width, height, width, weight, baseDamage, jumpStrength);
+        super(maxHealth, model, height, width, height, width, weight, baseDamage, jumpStrength);
         this.invulnerable = false;
     }
     

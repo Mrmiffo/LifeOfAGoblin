@@ -1,11 +1,11 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import com.jme3.bullet.control.CharacterControl;
-import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.controller.GameHudController;
+import edu.chl.LifeOfAGoblin.jME3.controller.nifty.GameHudController;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.control.AbstractControl;
-import edu.chl.LifeOfAGoblin.model.Player;
+import edu.chl.LifeOfAGoblin.model.character.Player;
 
 /**
  * A control for updating the game hud. Also checks if player is dead, if so respawn the character.

@@ -1,5 +1,6 @@
 package edu.chl.LifeOfAGoblin.model;
 
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.interfaces.IActivatable;
 import edu.chl.LifeOfAGoblin.model.interfaces.ICollidable;

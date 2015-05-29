@@ -1,6 +1,5 @@
 package edu.chl.LifeOfAGoblin.jME3.view.state;
 
-import edu.chl.LifeOfAGoblin.archive.PauseAppState;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -115,9 +114,9 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     }
     
     public void pause(){
-        System.out.println("pause");
-        StateManagerWrapper.getInstance().deactivateState(this);
-        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(PauseAppState.class));
+//        System.out.println("pause");
+//        StateManagerWrapper.getInstance().deactivateState(this);
+//        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(PauseAppState.class));
     }
 
     @Override

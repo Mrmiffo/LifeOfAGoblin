@@ -16,8 +16,8 @@ import edu.chl.LifeOfAGoblin.jME3.controller.CollisionListener;
 import edu.chl.LifeOfAGoblin.model.Level;
 import edu.chl.LifeOfAGoblin.jME3.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.jME3.utils.Resources;
-import edu.chl.LifeOfAGoblin.model.Boss;
-import edu.chl.LifeOfAGoblin.model.Minion;
+import edu.chl.LifeOfAGoblin.model.character.Boss;
+import edu.chl.LifeOfAGoblin.model.character.Minion;
 import edu.chl.LifeOfAGoblin.model.abstractClass.AbstractNPC;
 import java.util.List;
 
