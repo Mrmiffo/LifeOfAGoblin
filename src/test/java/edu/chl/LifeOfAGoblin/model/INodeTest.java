@@ -41,9 +41,5 @@ public class INodeTest {
     }
 
     public class INodeImpl implements INode {
-
-        public NodeType getNodeType() {
-            return null;
-        }
     }
 }

@@ -1,8 +1,4 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
-
-import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.model.gameObject.AbstractInanimateObject;
-
     
 /**
  * The level model. Contains the model data of the level and the scene and background sound name.

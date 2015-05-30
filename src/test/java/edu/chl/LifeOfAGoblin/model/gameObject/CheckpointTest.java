@@ -15,7 +15,6 @@ import com.jme3.input.awt.AwtMouseInput;
 import com.jme3.input.lwjgl.JInputJoyInput;
 import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

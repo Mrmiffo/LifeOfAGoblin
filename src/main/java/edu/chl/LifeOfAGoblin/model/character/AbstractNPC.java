@@ -1,7 +1,5 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
-
 /**
  * The AbstractNPC class is the super class to all characters that use AI.
  * @author Anton

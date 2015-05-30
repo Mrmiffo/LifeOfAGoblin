@@ -1,8 +1,6 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
 import edu.chl.LifeOfAGoblin.model.ICollidable;
-import edu.chl.LifeOfAGoblin.model.NodeType;
-
 
 /**
  * A class representing a checkpoint that is the last checkpoint in the game

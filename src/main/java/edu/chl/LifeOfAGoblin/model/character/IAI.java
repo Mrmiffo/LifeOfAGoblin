@@ -1,7 +1,5 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
-
 /**
  *
  * @author Ulrika
