@@ -25,5 +25,5 @@ public interface IAI {
      * @param direction the direction to the collider.
      * @param type the type of the collider.
      */
-    public void updateAIAction(float distance, Direction direction, NodeType type);
+    public void updateAIAction(float distance, Direction direction, String type);
 }

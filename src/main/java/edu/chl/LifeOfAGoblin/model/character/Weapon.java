@@ -1,7 +1,6 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 
@@ -17,11 +16,6 @@ public abstract class Weapon extends AbstractGameObject implements ICollidable {
     public Weapon(float collisionHeight, float collisionWidth) {
         this.collisionHeight = collisionHeight;
         this.collisionWidth = collisionWidth;
-    }
-    
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.WEAPON;
     }
 
     @Override

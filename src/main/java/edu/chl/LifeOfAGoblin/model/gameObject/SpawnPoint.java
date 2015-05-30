@@ -31,11 +31,6 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
          this.spawnType = spawnType;
          this.width = width;
     }
-    
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.SPAWNPOINT;
-    }
 
     /**
      * Is called when a player collides with the Spawnpoint. Runs spawn with 

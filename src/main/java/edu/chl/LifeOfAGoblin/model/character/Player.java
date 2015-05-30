@@ -30,14 +30,6 @@ public class Player extends AbstractCharacter {
      * {@inheritDoc}
      */
     @Override
-    public NodeType getNodeType() {
-        return NodeType.PLAYER;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void collide(ICollidable collided) {
         if (!invulnerable && collided instanceof Weapon) {
             setInvulnerablility(true);

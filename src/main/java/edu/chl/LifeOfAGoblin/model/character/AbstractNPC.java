@@ -9,7 +9,7 @@ import edu.chl.LifeOfAGoblin.model.NodeType;
 public abstract class AbstractNPC extends AbstractCharacter implements IAI {
    
     protected AIAction activeAction;
-    private NodeType targetNodeType;
+    private String targetNodeType;
     private Direction targetDirection;
     private float aggressionRange;
     private Weapon weapon;
@@ -27,7 +27,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      */
     protected AbstractNPC(int maxHealth, String model, float height, float width,
                           float collisionHeight, float collisionWidth, float weight,
-                          float baseDamage, float jumpStrength, NodeType target,
+                          float baseDamage, float jumpStrength, String target,
                           float aggressionRange, Weapon weapon){
         
         super(maxHealth, model, height, width, collisionHeight,
@@ -50,8 +50,8 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
      * {@inheritDoc}
      */
     @Override
-    public void updateAIAction(float distance, Direction direction, NodeType type) {
-        if (targetNodeType == type) {
+    public void updateAIAction(float distance, Direction direction, String type) {
+        if (targetNodeType.equals(type)) {
             if (aggressionRange >= distance) {
                 if (distance <= 1) {
                     activeAction = AIAction.HALT;
@@ -79,10 +79,7 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI {
     
     /**
      * Returns the direction to the NPC's target
-<<<<<<< HEAD
-=======
      * @return the direction to the target
->>>>>>> CorrectNPCAI
      */
     public Direction getTargetDirection() {
         return targetDirection;

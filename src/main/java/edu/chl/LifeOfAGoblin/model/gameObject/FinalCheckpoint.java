@@ -1,10 +1,6 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.character.Player;
-import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
-import edu.chl.LifeOfAGoblin.jME3.game.GameAppState;
-import edu.chl.LifeOfAGoblin.jME3.game.MainMenuAppState;
 import edu.chl.LifeOfAGoblin.model.NodeType;
 
 
@@ -18,11 +14,6 @@ public class FinalCheckpoint extends Checkpoint {
     private int number;
     public FinalCheckpoint(int level, int number, float width){
         super(level, number, width);
-    }
-    
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.FINALCHECKPOINT;
     }
     
      /**

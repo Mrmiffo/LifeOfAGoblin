@@ -30,11 +30,6 @@ public class Level extends AbstractInanimateObject {
         this.backgroundSound = backgroundSound;
     }
     
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.LEVEL;
-    }
-    
     public String getLevelName(){
         return levelName;
     }

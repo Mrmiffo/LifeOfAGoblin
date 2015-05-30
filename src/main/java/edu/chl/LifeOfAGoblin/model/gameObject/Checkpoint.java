@@ -1,6 +1,5 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
@@ -31,11 +30,6 @@ public class Checkpoint extends AbstractGameObject implements ICollidable, IActi
         this.width = width;
         this.level = level;
         this.number = number;
-    }
-    
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.CHECKPOINT;
     }
     
      /**

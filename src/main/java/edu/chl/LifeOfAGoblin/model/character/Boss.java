@@ -22,13 +22,13 @@ public class Boss extends AbstractNPC {
      * {@inheritDoc}
      */
     public Boss(){
-        this(NodeType.PLAYER);
+        this("PLAYER");
     }
     /**
      * {@inheritDoc}
      */
-    public Boss(NodeType target) {
-        this(target, 1, 10, 5);
+    public Boss(String target) {
+        this(target.toUpperCase(), 1, 10, 5);
     }
     
     /**
@@ -37,17 +37,9 @@ public class Boss extends AbstractNPC {
      * @param collisionWidth the range that objects collide with the Boss' area
      * @param aggressionRange the range that the boss reacts to the player
      */
-    public Boss(NodeType target, float healthMultiplier, float collisionWidth, float aggressionRange) {
+    public Boss(String target, float healthMultiplier, float collisionWidth, float aggressionRange) {
         super((int)healthMultiplier * maxHealth, model, height, width, collisionHeight,
                 collisionWidth, weight, baseDamage, jumpStrength, target, aggressionRange, new MeleeWeapon());
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.BOSS;
     }
     
     /**
