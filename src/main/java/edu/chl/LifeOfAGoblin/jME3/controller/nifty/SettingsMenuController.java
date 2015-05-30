@@ -61,12 +61,7 @@ public class SettingsMenuController implements ScreenController{
     }
     
     public void resetKeyBindings() {
-        try {
-            Profile.getActiveProfile().resetDefaultBindings();
-        } catch (IOException ex) {
-            //TODO add error message
-            System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
-        }
+        Profile.getActiveProfile().resetDefaultBindings();
         reloadSettingsMenu();
     }
     
@@ -80,13 +75,8 @@ public class SettingsMenuController implements ScreenController{
             for (Integer field: changedKeyBinds.get(action).keySet()){
                 keybinds.add(changedKeyBinds.get(action).get(field));
             }
-            try {
-                //Add the keybind to the profile.
-                Profile.getActiveProfile().addCustomBinding(action, keybinds);
-            } catch (IOException ex) {
-                //TODO Add error message.
-                System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
-            }
+            //Add the keybind to the profile.
+            Profile.getActiveProfile().addCustomBinding(action, keybinds);
         }
         //Reset the changedKeyBinds and return to main menu.
         changedKeyBinds = new HashMap<>();

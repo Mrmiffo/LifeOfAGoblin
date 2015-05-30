@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The profile class contains all the profile data of the user, such as keybinds 
@@ -32,7 +34,7 @@ public class Profile implements Serializable{
      * string cannot be empty.
      * @param newName the name with which the profile will be associated with.
      */
-    public void rename(String newName) throws IOException {
+    public void rename(String newName){
         if (newName != null && !newName.isEmpty()) {
                 SaveLoadManager.getInstance().deleteFile(null, profileName);
                 profileName = newName;
@@ -62,7 +64,7 @@ public class Profile implements Serializable{
      * @param action the action which to add the key binding to.
      * ArrayList<Keybind> the new keybinds associated with the action.
      */
-    public void addCustomBinding(Actions action, ArrayList<Keybind> newBindings) throws IOException {
+    public void addCustomBinding(Actions action, ArrayList<Keybind> newBindings){
         for(int i = 0; i<newBindings.size();i++){
             if(((Keybind)newBindings.get(i)).getKey()>1){
                 keybinds.setKeybind(action, newBindings);
@@ -74,7 +76,7 @@ public class Profile implements Serializable{
     /**
      * Resets the saved keybindings to the default ones.
      */
-    public void resetDefaultBindings() throws IOException{
+    public void resetDefaultBindings(){
         keybinds.setDefaultKeyBindings();
         keybinds.updateBindings();
         saveProfile();
@@ -106,7 +108,7 @@ public class Profile implements Serializable{
      * Sets the profile as the active profile.
      * @param profile the profile to be active.
      */
-    public static void setActiveProfile(Profile profile) throws IOException {
+    public static void setActiveProfile(Profile profile){
         if(profile!=null){
             if (activeProfile != null){
                 activeProfile.setIsActiveProfile(false);
@@ -120,7 +122,7 @@ public class Profile implements Serializable{
      * Sets the isActiveProfile boolean on the profile instance.
      * @param isActive 
      */
-    private void setIsActiveProfile(boolean isActive) throws IOException{
+    private void setIsActiveProfile(boolean isActive){
         isActiveProfile = isActive;
         saveProfile();
         if (isActive && keybinds != null){
@@ -142,7 +144,7 @@ public class Profile implements Serializable{
      * Sets the profile associated with the profile name as the active profile.
      * @param profileName the name of the profile to be active.
      */
-    public static void setActiveProfile(String profileName) throws IOException {
+    public static void setActiveProfile(String profileName){
         boolean exists = false;
         for (Profile p: listOfProfiles) {
             if (p.getProfileName().equals(profileName)) {
@@ -161,8 +163,13 @@ public class Profile implements Serializable{
      * object contained in the profile (progress) is saved or when the profile 
      * is created. Saves the profile to the default path.
      */
-    public void saveProfile() throws IOException{
-        SaveLoadManager.getInstance().saveToFile(this, null, profileName);
+    public void saveProfile(){
+        try {
+            SaveLoadManager.getInstance().saveToFile(this, null, profileName);
+        } catch (IOException ex) {
+            //TODO Throw error.
+            System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
+        }
     }
     
     /**

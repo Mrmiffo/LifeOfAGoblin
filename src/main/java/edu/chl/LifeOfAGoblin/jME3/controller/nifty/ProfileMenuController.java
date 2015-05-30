@@ -70,12 +70,7 @@ public class ProfileMenuController implements ScreenController{
      * Action for the save button. Will set the new active profile in the Profile class.
      */
     public void save(){
-        try {
-            Profile.setActiveProfile((String)profileBox.getSelection().get(0));
-        } catch (IOException ex) {
-            //TODO add error message
-            System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
-        }
+        Profile.setActiveProfile((String)profileBox.getSelection().get(0));
         back();
     }
     
@@ -109,13 +104,8 @@ public class ProfileMenuController implements ScreenController{
         //Creates a profile in model. Logic for naming a profile is not provided.
         Profile profile = new Profile("Default profile " + Profile.getProfiles().size());
         Profile.addProfile(profile);
-        try {
-            Profile.setActiveProfile(profile);
-            profile.saveProfile();
-        } catch (IOException ex) {
-            //TODO Add error message
-            System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
-        }
+        Profile.setActiveProfile(profile);
+        profile.saveProfile();
 
         
         //Reload the view.
