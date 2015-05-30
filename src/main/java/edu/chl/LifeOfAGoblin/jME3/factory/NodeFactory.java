@@ -40,7 +40,7 @@ public class NodeFactory {
                     CharacterFactory.createCharacter(node, new Boss());
                 } 
             } else if (type instanceof Player) {
-                CharacterFactory.createPlayer(node, null);
+                CharacterFactory.createCharacter(node, new Player());
             }
         }
         return node;
@@ -57,8 +57,7 @@ public class NodeFactory {
     public static Node createLevelNode(Level levelToCreate, Camera cam){
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
-        for(Spatial s: nodeList){
-//            System.out.println(s.getUserData("nodeType"));
+        for (Spatial s: nodeList) {
             LevelNodeBuilder.paintNode((Node)s, cam);
         }
         

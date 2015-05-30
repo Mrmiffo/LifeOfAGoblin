@@ -35,19 +35,7 @@ import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
  * @author kakan
  */
 class CharacterFactory {
-    
-    static void createPlayer(Node node, Camera cam) {
         
-        //Creates the basic Player
-        createCharacter(node, new Player());
-        
-        //A control which use the player model data to update the game hud health bar.
-        node.addControl(new PlayerHealthControl());
-
-        attachChaseCamera(node, cam);
-        attachPhysicsTickControl(node);
-    }
-    
     /**
      * Creates a node representing any character.
      * @param node the node which will represent the character
@@ -60,11 +48,25 @@ class CharacterFactory {
         
         makeSolid(node);
         makeMoveable(node);
+        if (character.getClass() == Player.class) {
+            createPlayer(node);
+        }
         if (character instanceof AbstractNPC) {
-            enableReaction(node); //Adds AI
-            addWeapon(node, (AbstractNPC)character);
+            createNPC(node, (AbstractNPC)character);
         }
         provideGraphicalRepresentation(node);
+    }
+    
+    static void createPlayer(Node node) {
+        //A control which use the player model data to update the game hud health bar.
+        node.addControl(new PlayerHealthControl());
+
+        attachPhysicsTickControl(node);
+    }
+        
+    static void createNPC(Node node, AbstractNPC character) {
+        enableReaction(node); //Adds AI
+        addWeapon(node, character);
     }
     
     /**
@@ -166,20 +168,6 @@ class CharacterFactory {
         //Moving the appearnace slightly to fit the CollisionShape
         appearance.setLocalTranslation(new Vector3f(0, -model.getHeight(), 0));
     }
-    
-    /**
-     * Makes the camera follow the provided node.
-     * @param playerNode the node the camera will follow.
-     * @param cam the camera.
-     */
-    private static void attachChaseCamera(Node playerNode, Camera cam) {
-        ChaseCamera chaseCam = new ChaseCamera(cam);
-        chaseCam.setRotationSensitivity(0);
-        chaseCam.setDefaultHorizontalRotation(FastMath.PI/2);
-        chaseCam.setDefaultVerticalRotation(FastMath.PI/9); //20 degrees
-        playerNode.addControl(chaseCam);
-    }
-
 
     private static void attachPhysicsTickControl(Node playerNode) {
         PhysicsTickControl ptc = new PhysicsTickControl(playerNode);
