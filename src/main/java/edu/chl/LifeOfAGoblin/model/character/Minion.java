@@ -1,6 +1,5 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 /**
@@ -24,32 +23,23 @@ public class Minion extends AbstractNPC {
      * {@inheritDoc}
      */
     public Minion() {
-        this(NodeType.PLAYER);
+        this("PLAYER");
     }
     /**
      * {@inheritDoc}
      */
-    public Minion(NodeType target){
-        this(target, 1, aggressionRange, new MeleeWeapon());   
+    public Minion(String target){
+        this(target.toUpperCase(), 1, aggressionRange, new MeleeWeapon());   
     }
     
     /**
      * {@inheritDoc}
      * @param healthMultiplyer the multiplier to make the Minion tougher.
      */
-    public Minion(NodeType target, float healthMultiplyer, float aggressionRange, Weapon weapon) {
+    public Minion(String target, float healthMultiplyer, float aggressionRange, Weapon weapon) {
         super((int)healthMultiplyer * maxHealth, model, height, width,
                 collisionHeight, collisionWidth, weight, baseDamage, jumpStrength,
                 target, aggressionRange, weapon);
-    }
-    
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.MINION;
     }
     
     /**

@@ -4,8 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,17 +34,6 @@ public class MinionTest {
     
     @After
     public void tearDown() {
-    }
-
-    @Test
-    public void testGetNodeType() {
-        // setup
-        Minion minion1 = new Minion();
-        AbstractGameObject minion2 = new Minion();
-        
-        //tests that a minion's nodetype is minion
-        assertTrue(minion1.getNodeType().equals(NodeType.MINION));
-        assertTrue(minion2.getNodeType().equals(NodeType.MINION));
     }
 
     @Test

@@ -4,8 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,17 +34,6 @@ public class BossTest {
     
     @After
     public void tearDown() {
-    }
-
-    @Test
-    public void testGetNodeType() {
-        // setup
-        Boss boss1 = new Boss();
-        AbstractGameObject boss2 = new Boss();
-        
-        //tests that a boss's nodetype is boss
-        assertTrue(boss1.getNodeType().equals(NodeType.BOSS));
-        assertTrue(boss2.getNodeType().equals(NodeType.BOSS));
     }
 
     @Test

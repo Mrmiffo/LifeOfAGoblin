@@ -15,7 +15,6 @@ import com.jme3.input.awt.AwtMouseInput;
 import com.jme3.input.lwjgl.JInputJoyInput;
 import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -105,20 +104,6 @@ public class CheckpointTest {
     
     @After
     public void tearDown() {
-    }
-
-    @Test
-    public void testGetNodeType() {
-        // setup
-        Checkpoint cp1 = new Checkpoint(1,1,1.0f);
-        AbstractGameObject cp2 = new Checkpoint(1,1,1.0f);
-        Checkpoint cp3 = new FinalCheckpoint(1,1,1.0f);
-        
-        //tests that a checkpoint's nodetype is checkpoint
-        assertTrue(cp1.getNodeType().equals(NodeType.CHECKPOINT));
-        assertTrue(cp2.getNodeType().equals(NodeType.CHECKPOINT));
-        assertFalse(cp3.getNodeType().equals(NodeType.CHECKPOINT));
-
     }
 
     @Test

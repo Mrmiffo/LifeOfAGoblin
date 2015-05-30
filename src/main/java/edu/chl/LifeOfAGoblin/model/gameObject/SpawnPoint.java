@@ -1,6 +1,5 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
@@ -30,11 +29,6 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
          this.amount = amount;
          this.spawnType = spawnType;
          this.width = width;
-    }
-    
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.SPAWNPOINT;
     }
 
     /**

@@ -58,7 +58,7 @@ public class NPCCollisionControl extends AbstractControl {
         
         INode collideModel = collided.getControl(ModelControl.class).getModel();
 
-        npcModel.updateAIAction(FastMath.abs(distance), direction, collideModel.getNodeType());
+        npcModel.updateAIAction(FastMath.abs(distance), direction, ((String)collided.getUserData("nodeType")));
         }
     }
 

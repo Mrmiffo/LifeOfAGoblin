@@ -4,7 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
@@ -39,17 +38,6 @@ public class SpawnPointTest1 {
     
     @After
     public void tearDown() {
-    }
-
-    @Test
-    public void testGetNodeType() {
-        // setup
-        SpawnPoint sp1 = new SpawnPoint(1, new Minion(), 1);
-        SpawnPoint sp2 = new SpawnPoint(1, new Minion(), 1);
-        
-        //tests that a Spawnpoints's nodetype is SpawnPoint
-        assertTrue(sp1.getNodeType().equals(NodeType.SPAWNPOINT));
-        assertTrue(sp2.getNodeType().equals(NodeType.SPAWNPOINT));
     }
 
     @Test

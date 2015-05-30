@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,19 +36,6 @@ public class LevelTest {
     @After
     public void tearDown() {
     }
-
-    @Test
-    public void testGetNodeType() {
-        // setup
-        Level lvl1 = new Level("Level1", 1, "");
-        AbstractGameObject lvl2 = new Level("Level1", 1,"");
-        
-        //tests that a Level's nodetype is level
-        assertTrue(lvl1.getNodeType().equals(NodeType.LEVEL));
-        assertTrue(lvl2.getNodeType().equals(NodeType.LEVEL));
-    
-    }
-
 
     @Test
     public void testGetLevelName() {

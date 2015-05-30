@@ -1,7 +1,5 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.jME3.controller.character.PlayerMoveControl;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 /**
@@ -24,14 +22,6 @@ public class Player extends AbstractCharacter {
     public Player(){
         super(maxHealth, model, height, width, height, width, weight, baseDamage, jumpStrength);
         this.invulnerable = false;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.PLAYER;
     }
     
     /**

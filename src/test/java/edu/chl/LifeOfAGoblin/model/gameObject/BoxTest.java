@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,16 +37,6 @@ public class BoxTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testGetNodeType() {
-        // setup
-        Box box1 = new Box("");
-        AbstractGameObject box2 = new Box("");
-        
-        //tests that a Box's nodetype is Box
-        assertTrue(box1.getNodeType().equals(NodeType.BOX));
-        assertTrue(box2.getNodeType().equals(NodeType.BOX));
-    }
 
     @Test
     public void testCollide() {

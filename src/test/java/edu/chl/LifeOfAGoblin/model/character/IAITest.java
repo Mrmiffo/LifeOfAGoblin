@@ -4,7 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,7 +57,7 @@ public class IAITest {
         public void updateAIAction() {
         }
 
-        public void updateAIAction(float distance, Direction direction, NodeType type) {
+        public void updateAIAction(float distance, Direction direction, String type) {
         }
     }
 }

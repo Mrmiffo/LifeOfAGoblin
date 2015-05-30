@@ -5,9 +5,7 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
 import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
-import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,17 +36,6 @@ public class PlayerTest {
     
     @After
     public void tearDown() {
-    }
-
-    @Test
-    public void testGetNodeType() {
-        // setup
-        Player player1 = new Player();
-        AbstractGameObject player2 = new Player();
-        
-        //tests that a player's nodetype is player
-        assertTrue(player1.getNodeType().equals(NodeType.PLAYER));
-        assertTrue(player2.getNodeType().equals(NodeType.PLAYER));
     }
 
     @Test

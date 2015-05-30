@@ -17,7 +17,6 @@ import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.game.LifeOfAGoblin;
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -108,19 +107,6 @@ public class FinalCheckpointTest {
     
     @After
     public void tearDown() {
-    }
-
-    @Test
-    public void testGetNodeType() {
-                // setup
-        FinalCheckpoint cp1 = new FinalCheckpoint(1,1,1.0f);
-        AbstractGameObject cp2 = new FinalCheckpoint(1,1,1.0f);
-        Checkpoint cp3 = new FinalCheckpoint(1,1,1.0f);
-        
-        //tests that a checkpoints nodetype is checkpoint
-        assertTrue(cp1.getNodeType().equals(NodeType.FINALCHECKPOINT));
-        assertTrue(cp2.getNodeType().equals(NodeType.FINALCHECKPOINT));
-        assertTrue(cp3.getNodeType().equals(NodeType.FINALCHECKPOINT));
     }
 
     @Test

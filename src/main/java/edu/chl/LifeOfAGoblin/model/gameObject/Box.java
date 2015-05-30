@@ -1,7 +1,5 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.NodeType;
-import edu.chl.LifeOfAGoblin.model.gameObject.AbstractInanimateObject;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 /**
@@ -14,11 +12,6 @@ public class Box extends AbstractInanimateObject implements ICollidable{
     
     public Box(String modelName){
         super(modelName);
-    }
-    
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.BOX;
     }
 
     @Override
