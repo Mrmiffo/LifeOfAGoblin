@@ -54,7 +54,7 @@ public class NodeFactory {
      * @param cam the camera to be attached to the level.
      * @return the finished levelNode.
      */
-    public static Node createModeledLevelNode(Level levelToCreate, Camera cam){
+    public static Node createLevelNode(Level levelToCreate, Camera cam){
         Node levelNode = ((Node)Resources.getInstance().getResources(levelToCreate.getModelName()));
         List<Spatial> nodeList = levelNode.getChildren();
         for(Spatial s: nodeList){

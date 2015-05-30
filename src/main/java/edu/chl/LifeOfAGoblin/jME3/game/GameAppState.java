@@ -13,7 +13,6 @@ import edu.chl.LifeOfAGoblin.model.gameObject.Level;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
 import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
-import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
 import edu.chl.LifeOfAGoblin.model.profile.Actions;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
@@ -98,7 +97,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         //Create a new hud and display it.
         app.getViewPort().setBackgroundColor(ColorRGBA.Cyan);
         NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
-        levelNode = NodeFactory.createModeledLevelNode(level, app.getCamera());
+        levelNode = NodeFactory.createLevelNode(level, app.getCamera());
         rootNode.attachChild(levelNode);
     }
 
