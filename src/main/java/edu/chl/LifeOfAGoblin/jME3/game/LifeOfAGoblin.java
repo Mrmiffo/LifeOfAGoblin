@@ -55,12 +55,8 @@ public class LifeOfAGoblin extends SimpleApplication {
         if (allSavedFiles.isEmpty()){
             Profile defaultProfile = new Profile("Default profile");
             Profile.addProfile(defaultProfile);
-            try {
-                Profile.setActiveProfile(defaultProfile);
-            } catch (IOException ex) {
-                //TODO Add error message
-                System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
-            }
+            Profile.setActiveProfile(defaultProfile);
+
         } else {
             for (String fileName: allSavedFiles){
                 Serializable temp;
@@ -73,12 +69,7 @@ public class LifeOfAGoblin extends SimpleApplication {
                     Profile tempProfile = (Profile)temp;
                     Profile.addProfile(tempProfile);
                     if (tempProfile.getIsActiveProfile()){
-                        try {
-                            Profile.setActiveProfile(tempProfile);
-                        } catch (IOException ex) {
-                            //TODO Add error message
-                            System.out.println("Life Of a Goblin IO ERROR: Unable to load profile");
-                        }
+                        Profile.setActiveProfile(tempProfile);
                     }
                 }
 
