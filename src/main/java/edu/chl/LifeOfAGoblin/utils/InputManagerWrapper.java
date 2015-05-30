@@ -10,7 +10,6 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.input.controls.Trigger;
 import edu.chl.LifeOfAGoblin.model.profile.Actions;
-import edu.chl.LifeOfAGoblin.model.profile.InputDevice;
 import static edu.chl.LifeOfAGoblin.model.profile.InputDevice.KEYBOARD;
 import static edu.chl.LifeOfAGoblin.model.profile.InputDevice.MOUSE_BUTTON;
 import edu.chl.LifeOfAGoblin.model.profile.Keybind;
@@ -123,22 +122,6 @@ public class InputManagerWrapper {
                     temp = new MouseButtonTrigger(keybind.getKey());
             }
         return temp;
-     }
-
-        /**
-         * Returns the InputDevice associated with the Trigger. Used for 
-         * converting a trigger back to a Keybind.
-         * @param trigger the Trigger which to analyze.
-         * @return the associated InputDevice of the Trigger.
-         */
-        private static InputDevice getInputDevice(Trigger trigger) {
-            if (trigger.getClass() == KeyTrigger.class) {
-                return InputDevice.KEYBOARD;
-            } else if (trigger.getClass() == MouseButtonTrigger.class){
-                return InputDevice.MOUSE_BUTTON;
-            } else {
-                throw new IllegalArgumentException("In KeyBindings: getInputDevice(). Unknown input device: " + trigger.getClass());
-            }
         }
     }
 }
