@@ -10,6 +10,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.model.character.Player;
+import java.util.List;
 
 /**
  * A control for updating the game hud. Also checks if player is dead, if so respawn the character.
@@ -35,12 +36,13 @@ public class PlayerHealthControl extends AbstractControl {
         }
         if (player.isDead()) {
             Node scene = spatial.getParent();
+            List<Spatial> children = scene.getChildren();
             
-            for (int i = 0; i <scene.getChildren().size(); i++) {
-                if (scene.getChildren().get(i).getUserDataKeys().contains("nodeType")) {
-                    if (scene.getChildren().get(i).getUserData("nodeType").equals("CHECKPOINT")) {
+            for (Spatial child: children) {
+                if (child.getUserDataKeys().contains("nodeType")) {
+                    if (child.getUserData("nodeType").equals("CHECKPOINT")) {
                   //  && spatial.getParent().getParent().getChildren().get(i).getUserData("NUMBER").equals(Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint())){
-                        spatial.getControl(CharacterControl.class).warp(scene.getChildren().get(i).getLocalTranslation().add(new Vector3f(0, 10, 0)));
+                        spatial.getControl(CharacterControl.class).warp(child.getLocalTranslation().add(new Vector3f(0, 10, 0)));
                         player.setHealth(player.getMaxHealth());
                         player.setIsDead(false);
                     }
