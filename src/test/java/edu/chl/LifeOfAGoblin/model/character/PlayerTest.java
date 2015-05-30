@@ -61,12 +61,10 @@ public class PlayerTest {
 
         //tests that collide works
         player1.collide((ICollidable) new MeleeWeapon());
-        assertTrue(player1.isInvulnerable());
         assertTrue(player1.getHealth() < maxHealth);
 
         //tests that a player does not take damage from nonNPCs
         player2.collide(new Checkpoint(1, 1, 1.0f));
-        assertFalse(player2.isInvulnerable());
         assertFalse(player2.getHealth() < maxHealth);
 
         //tests that method can handle null input
@@ -80,10 +78,12 @@ public class PlayerTest {
         // setup
         Player player1 = new Player();
 
-        //tests that setIsDamaged works
-        assertFalse(player1.isInvulnerable());
-        player1.setInvulnerable();
-        assertTrue(player1.isInvulnerable());
+        //tests that player can't take dmg twice in a row
+        int playerHealth = player1.getHealth();
+        player1.decreaseHealth();
+        assertTrue(player1.getHealth() == playerHealth - 1);
+        player1.decreaseHealth();
+        assertFalse(player1.getHealth() == playerHealth - 2);
     }
 
     @Test
