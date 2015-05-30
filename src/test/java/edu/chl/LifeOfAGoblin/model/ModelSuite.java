@@ -16,7 +16,7 @@ import org.junit.runners.Suite;
  * @author Ulrika
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({edu.chl.LifeOfAGoblin.model.gameObject.GameObjectSuite.class, edu.chl.LifeOfAGoblin.model.IDamageableTest.class, edu.chl.LifeOfAGoblin.model.AbstractGameObjectTest.class, edu.chl.LifeOfAGoblin.model.NodeTypeTest.class, edu.chl.LifeOfAGoblin.model.INodeTest.class, edu.chl.LifeOfAGoblin.model.IModeledNodeTest.class, edu.chl.LifeOfAGoblin.model.character.CharacterSuite.class, edu.chl.LifeOfAGoblin.model.ICollidableTest.class, edu.chl.LifeOfAGoblin.model.profile.ProfileSuite.class, edu.chl.LifeOfAGoblin.model.ISpawnableTest.class})
+@Suite.SuiteClasses({edu.chl.LifeOfAGoblin.model.gameObject.GameObjectSuite.class, edu.chl.LifeOfAGoblin.model.AbstractGameObjectTest.class, edu.chl.LifeOfAGoblin.model.NodeTypeTest.class, edu.chl.LifeOfAGoblin.model.character.CharacterSuite.class, edu.chl.LifeOfAGoblin.model.profile.ProfileSuite.class})
 public class ModelSuite {
 
     @BeforeClass

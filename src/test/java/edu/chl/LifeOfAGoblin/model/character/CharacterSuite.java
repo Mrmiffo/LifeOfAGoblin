@@ -16,7 +16,7 @@ import org.junit.runners.Suite;
  * @author Ulrika
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({edu.chl.LifeOfAGoblin.model.character.MinionTest.class, edu.chl.LifeOfAGoblin.model.character.WeaponTest.class, edu.chl.LifeOfAGoblin.model.character.MeleeWeaponTest.class, edu.chl.LifeOfAGoblin.model.character.PlayerTest.class, edu.chl.LifeOfAGoblin.model.character.AbstractNPCTest.class, edu.chl.LifeOfAGoblin.model.character.IKillableTest.class, edu.chl.LifeOfAGoblin.model.character.DirectionTest.class, edu.chl.LifeOfAGoblin.model.character.BossTest.class, edu.chl.LifeOfAGoblin.model.character.AIActionTest.class, edu.chl.LifeOfAGoblin.model.character.RangedWeaponTest.class, edu.chl.LifeOfAGoblin.model.character.IAITest.class, edu.chl.LifeOfAGoblin.model.character.AbstractCharacterTest.class})
+@Suite.SuiteClasses({edu.chl.LifeOfAGoblin.model.character.MinionTest.class, edu.chl.LifeOfAGoblin.model.character.WeaponTest.class, edu.chl.LifeOfAGoblin.model.character.MeleeWeaponTest.class, edu.chl.LifeOfAGoblin.model.character.PlayerTest.class, edu.chl.LifeOfAGoblin.model.character.AbstractNPCTest.class, edu.chl.LifeOfAGoblin.model.character.BossTest.class, edu.chl.LifeOfAGoblin.model.character.RangedWeaponTest.class, edu.chl.LifeOfAGoblin.model.character.AbstractCharacterTest.class})
 public class CharacterSuite {
 
     @BeforeClass

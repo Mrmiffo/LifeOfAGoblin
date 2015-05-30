@@ -171,14 +171,6 @@ public class CheckpointTest {
     }
 
     @Test
-    public void testGetCollisionHeight() {
-    }
-
-    @Test
-    public void testGetCollisionWidth() {
-    }
-
-    @Test
     public void testIsActivated() {
     }
 

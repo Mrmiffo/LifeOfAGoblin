@@ -40,14 +40,6 @@ public class WeaponTest {
     public void testCollide() {
     }
 
-    @Test
-    public void testGetCollisionHeight() {
-    }
-
-    @Test
-    public void testGetCollisionWidth() {
-    }
-
     public class WeaponImpl extends Weapon {
 
         public WeaponImpl() {

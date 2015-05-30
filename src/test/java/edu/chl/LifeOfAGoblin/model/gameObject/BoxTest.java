@@ -37,16 +37,7 @@ public class BoxTest {
     public void tearDown() {
     }
 
-
     @Test
     public void testCollide() {
-    }
-
-    @Test
-    public void testGetCollisionHeight() {
-    }
-
-    @Test
-    public void testGetCollisionWidth() {
     }
 }

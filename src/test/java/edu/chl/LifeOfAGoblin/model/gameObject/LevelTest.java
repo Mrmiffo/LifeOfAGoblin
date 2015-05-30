@@ -49,13 +49,4 @@ public class LevelTest {
         assertTrue(lvl2.getLevelName().equals(""));
         
     }
-
-    @Test
-    public void testGetLevelNo() {
-    }
-
-    @Test
-    public void testGetBackgroundSoundName() {
-    }
-
 }

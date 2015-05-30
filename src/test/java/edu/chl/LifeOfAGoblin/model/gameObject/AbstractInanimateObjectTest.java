@@ -36,8 +36,5 @@ public class AbstractInanimateObjectTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testGetModelName() {
-    }
 
 }

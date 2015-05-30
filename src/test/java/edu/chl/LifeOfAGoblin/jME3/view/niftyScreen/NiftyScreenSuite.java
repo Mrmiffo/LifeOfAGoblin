@@ -16,7 +16,7 @@ import org.junit.runners.Suite;
  * @author Ulrika
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.interfaces.InterfacesSuite.class, edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.ProfileMenuTest.class, edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHudTest.class, edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.SettingsMenuTest.class, edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenuTest.class})
+@Suite.SuiteClasses({edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.ProfileMenuTest.class, edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHudTest.class, edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.SettingsMenuTest.class, edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.MainMenuTest.class})
 public class NiftyScreenSuite {
 
     @BeforeClass
