@@ -61,7 +61,7 @@ public class Player extends AbstractCharacter {
      * Sets whether the player is currently taking damage or not. If
      *
      */
-    public void setInvulnerable() {
+    private void setInvulnerable() {
         if (!isInvulnerable()) {
             invulnerable = true;
             timer.schedule(new InvulnerableController(), invulnerableTime);
@@ -74,7 +74,7 @@ public class Player extends AbstractCharacter {
      *
      * @return whether the player is currently taking damage or not.
      */
-    public boolean isInvulnerable() {
+    private boolean isInvulnerable() {
         return this.invulnerable;
     }
 
