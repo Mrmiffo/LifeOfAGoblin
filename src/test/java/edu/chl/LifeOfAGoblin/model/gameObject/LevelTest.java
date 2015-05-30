@@ -64,4 +64,12 @@ public class LevelTest {
         
     }
 
+    @Test
+    public void testGetLevelNo() {
+    }
+
+    @Test
+    public void testGetBackgroundSoundName() {
+    }
+
 }

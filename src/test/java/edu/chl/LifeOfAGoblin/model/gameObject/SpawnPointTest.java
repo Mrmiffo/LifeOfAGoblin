@@ -2,10 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model.character;
+package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class BossTest {
+public class SpawnPointTest {
     
-    public BossTest() {
+    public SpawnPointTest() {
     }
     
     @BeforeClass
@@ -40,17 +38,37 @@ public class BossTest {
 
     @Test
     public void testGetNodeType() {
-        // setup
-        Boss boss1 = new Boss();
-        AbstractGameObject boss2 = new Boss();
-        
-        //tests that a boss's nodetype is boss
-        assertTrue(boss1.getNodeType().equals(NodeType.BOSS));
-        assertTrue(boss2.getNodeType().equals(NodeType.BOSS));
     }
 
     @Test
     public void testCollide() {
     }
 
+    @Test
+    public void testIsActivated() {
+    }
+
+    @Test
+    public void testActivate() {
+    }
+
+    @Test
+    public void testInactivate() {
+    }
+
+    @Test
+    public void testGetCollisionHeight() {
+    }
+
+    @Test
+    public void testGetCollisionWidth() {
+    }
+
+    @Test
+    public void testGetType() {
+    }
+
+    @Test
+    public void testGetAmount() {
+    }
 }

@@ -2,10 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.model.gameObject;
+package edu.chl.LifeOfAGoblin.model;
 
-import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class BoxTest {
+public class ICollidableTest {
     
-    public BoxTest() {
+    public ICollidableTest() {
     }
     
     @BeforeClass
@@ -39,17 +37,6 @@ public class BoxTest {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        Box box1 = new Box("");
-        AbstractGameObject box2 = new Box("");
-        
-        //tests that a Box's nodetype is Box
-        assertTrue(box1.getNodeType().equals(NodeType.BOX));
-        assertTrue(box2.getNodeType().equals(NodeType.BOX));
-    }
-
-    @Test
     public void testCollide() {
     }
 
@@ -60,4 +47,5 @@ public class BoxTest {
     @Test
     public void testGetCollisionWidth() {
     }
+
 }

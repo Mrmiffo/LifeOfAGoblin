@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.utils;
+package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class StateManagerWrapperTest {
+public class ModelControlTest {
     
-    public StateManagerWrapperTest() {
+    public ModelControlTest() {
     }
     
     @BeforeClass
@@ -37,39 +37,18 @@ public class StateManagerWrapperTest {
     }
 
     @Test
-    public void testAddState() {
-        
+    public void testGetModel() {
     }
 
     @Test
-    public void testRemoveState() {
+    public void testSetModel() {
     }
 
     @Test
-    public void testActivateState() {
+    public void testControlUpdate() {
     }
 
     @Test
-    public void testDeactivateState() {
-    }
-
-    @Test
-    public void testGetAvailableStates() {
-    }
-
-    @Test
-    public void testGetAvailableState() {
-    }
-
-    @Test
-    public void testGetActiveState() {
-    }
-
-    @Test
-    public void testGetInstance() {
-    }
-
-    @Test
-    public void testInitialize() {
+    public void testControlRender() {
     }
 }

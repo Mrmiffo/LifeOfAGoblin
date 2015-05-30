@@ -4,8 +4,6 @@
  */
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
-import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
-import edu.chl.LifeOfAGoblin.model.NodeType;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class BoxTest {
+public class IActivatableTest {
     
-    public BoxTest() {
+    public IActivatableTest() {
     }
     
     @BeforeClass
@@ -39,25 +37,27 @@ public class BoxTest {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        Box box1 = new Box("");
-        AbstractGameObject box2 = new Box("");
-        
-        //tests that a Box's nodetype is Box
-        assertTrue(box1.getNodeType().equals(NodeType.BOX));
-        assertTrue(box2.getNodeType().equals(NodeType.BOX));
+    public void testActivate() {
     }
 
     @Test
-    public void testCollide() {
+    public void testInactivate() {
     }
 
     @Test
-    public void testGetCollisionHeight() {
+    public void testIsActivated() {
     }
 
-    @Test
-    public void testGetCollisionWidth() {
+    public class IActivatableImpl implements IActivatable {
+
+        public void activate() {
+        }
+
+        public void inactivate() {
+        }
+
+        public boolean isActivated() {
+            return false;
+        }
     }
 }

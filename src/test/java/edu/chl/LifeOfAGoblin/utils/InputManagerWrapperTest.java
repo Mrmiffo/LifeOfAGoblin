@@ -4,30 +4,24 @@
  */
 package edu.chl.LifeOfAGoblin.utils;
 
-import com.jme3.bullet.control.GhostControl;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-
+import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class PhysicsWrapperTest {
-        
-    public PhysicsWrapperTest() {
-
-
+public class InputManagerWrapperTest {
+    
+    public InputManagerWrapperTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
-        
-        
     }
     
     @AfterClass
@@ -36,44 +30,33 @@ public class PhysicsWrapperTest {
     
     @Before
     public void setUp() {
-
     }
     
     @After
     public void tearDown() {
-     
-     }
+    }
 
     @Test
     public void testGetInstance() {
     }
 
     @Test
-    
-    public void testAdd_Control() {
-
-        //tests that method can handle null input
-        PhysicsWrapper.getInstance().add((GhostControl)null);
-    }
-
-
-    @Test
-    public void testRemove() {
-
-        //tests that method can handle null input
-        PhysicsWrapper.getInstance().remove(null);
+    public void testInitialize() {
     }
 
     @Test
-    public void testAdd_PhysicsControl() {
+    public void testRegisterListener() {
     }
 
     @Test
-    public void testAddCollisionListener() {
+    public void testRegisterAction() {
     }
 
     @Test
-    public void testAdd_PhysicsTickListener() {
+    public void testAddRawInputListener() {
     }
 
-} 
+    @Test
+    public void testRemoveRawInputListener() {
+    }
+}

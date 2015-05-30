@@ -59,4 +59,16 @@ public class ProgressTest {
         
     }
 
+    @Test
+    public void testGetLastVisitedLevel() {
+    }
+
+    @Test
+    public void testGetLastVisitedCheckpoint() {
+    }
+
+    @Test
+    public void testGetLongestProgress() {
+    }
+
 }

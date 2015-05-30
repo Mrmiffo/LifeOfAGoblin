@@ -86,4 +86,12 @@ public class PlayerTest {
         assertTrue(player1.isInvulnerable());
     }
 
+    @Test
+    public void testCollide_AbstractNPC() {
+    }
+
+    @Test
+    public void testIsInvulnerable() {
+    }
+
 }

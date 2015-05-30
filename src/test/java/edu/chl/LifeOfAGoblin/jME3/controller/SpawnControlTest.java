@@ -56,17 +56,16 @@ public class SpawnControlTest {
     
     @After
     public void tearDown() {
-        System.out.println(" detta borde inte vara noll??" + ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList());
-        for(PhysicsGhostObject obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList()){
-            PhysicsWrapper.getInstance().remove(obj);
-        }
-
-        for(PhysicsCharacter obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getCharacterList()){
-            PhysicsWrapper.getInstance().remove(obj);
-        }
-        for(PhysicsRigidBody obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getRigidBodyList()){
-            PhysicsWrapper.getInstance().remove(obj);
-        }        
+//        for(PhysicsGhostObject obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getGhostObjectList()){
+//            PhysicsWrapper.getInstance().remove(obj);
+//        }
+//
+//        for(PhysicsCharacter obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getCharacterList()){
+//            PhysicsWrapper.getInstance().remove(obj);
+//        }
+//        for(PhysicsRigidBody obj: ((BulletAppState)StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class)).getPhysicsSpace().getRigidBodyList()){
+//            PhysicsWrapper.getInstance().remove(obj);
+//        }        
      }
 
 
@@ -79,5 +78,17 @@ public class SpawnControlTest {
         control.spawn(1, new Minion());
 
 
+    }
+
+    @Test
+    public void testInitialize() {
+    }
+
+    @Test
+    public void testControlUpdate() {
+    }
+
+    @Test
+    public void testControlRender() {
     }
 }
