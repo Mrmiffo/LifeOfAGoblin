@@ -31,7 +31,7 @@ public class LevelManager {
     public void initialize(){
         levelList = new HashMap<>();
         levelList.put(1, new Level("Level1",1, "magical_theme.wav"));
-        levelList.put(2, new Level("testScene", 2, "magical_theme.wav"));
+        levelList.put(2, new Level("Level2", 2, "magical_theme.wav"));
     }
     
     /**
