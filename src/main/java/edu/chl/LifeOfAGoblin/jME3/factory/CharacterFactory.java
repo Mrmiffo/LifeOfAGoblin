@@ -57,6 +57,10 @@ class CharacterFactory {
         provideGraphicalRepresentation(node);
     }
     
+    /**
+     * Adds player specific controls to the node
+     * @param node the node
+     */
     static void createPlayer(Node node) {
         //A control which use the player model data to update the game hud health bar.
         node.addControl(new PlayerHealthControl());
@@ -64,9 +68,14 @@ class CharacterFactory {
         attachPhysicsTickControl(node);
     }
         
-    static void createNPC(Node node, AbstractNPC character) {
+    /**
+     * Adds NPC specific controls to the node
+     * @param node the node
+     * @param npc the model of the NPC
+     */
+    static void createNPC(Node node, AbstractNPC npc) {
         enableReaction(node); //Adds AI
-        addWeapon(node, character);
+        addWeapon(node, npc);
     }
     
     /**
