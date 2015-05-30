@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -24,14 +25,6 @@ public class ModelControlTest {
     private INode model;
     
     public ModelControlTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
@@ -63,10 +56,12 @@ public class ModelControlTest {
         assertTrue("ModelControlTest: Model is not changed correctly by setModel()", mc.getModel() == newModel);
     }
 
+    @Ignore("Method does nothing")
     @Test
     public void testControlUpdate() {
     }
 
+    @Ignore("Method does nothing")
     @Test
     public void testControlRender() {
     }
