@@ -1,15 +1,18 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
 import edu.chl.LifeOfAGoblin.model.ICollidable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
- * The player class represents the player character in the game. The class 
- * contains methods and values related to the player, such as health, jumpStrength,
- * size etc. 
+ * The player class represents the player character in the game. The class
+ * contains methods and values related to the player, such as health,
+ * jumpStrength, size etc.
+ *
  * @author Anton
  */
 public class Player extends AbstractCharacter {
-    
+
     private static final int maxHealth = 5;
     private static final String model = "Goblin2.j3o";
     private static final float height = 1;
@@ -18,48 +21,59 @@ public class Player extends AbstractCharacter {
     private static final float baseDamage = 1;
     private static final float jumpStrength = 14;
     private boolean invulnerable;
-    
-    public Player(){
+    private long invulnerableTime = 1000;
+    private Timer timer;
+
+    public Player() {
         super(maxHealth, model, height, width, height, width, weight, baseDamage, jumpStrength);
         this.invulnerable = false;
+        timer = new Timer();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void collide(ICollidable collided) {
-        if (!invulnerable && collided instanceof Weapon) {
-            setInvulnerablility(true);
+        if (collided instanceof Weapon) {
             this.decreaseHealth();
         }
     }
-    
-    /**
-     * Describes what happens when the player collides with an NPC.
-     * @param enemy the NPC the player collides with.
-     */
-    @Deprecated
-    public void collide(AbstractNPC enemy){
-        System.out.println("player");
-        setInvulnerablility(true);
-        this.decreaseHealth();
-        //todo add methods for colliding with a player
+
+    @Override
+    public void decreaseHealth() {
+        if (!isInvulnerable()) {
+            super.decreaseHealth();
+            setInvulnerable();
+        }
     }
 
     /**
-     * Sets whether the player is currently taking damage or not.
-     * @param b wether the player is currently taking damage or not.
+     * Sets whether the player is currently taking damage or not. If
+     *
      */
-    public void setInvulnerablility(boolean b) {
-        this.invulnerable = b;
+    private void setInvulnerable() {
+        if (!isInvulnerable()) {
+            invulnerable = true;
+            timer.schedule(new InvulnerableController(), invulnerableTime);
+        }
+
     }
-    
+
     /**
      * Returns whether the player is currently taking damage or not.
+     *
      * @return whether the player is currently taking damage or not.
      */
-    public boolean isInvulnerable(){
+    private boolean isInvulnerable() {
         return this.invulnerable;
-    }   
+    }
+
+    class InvulnerableController extends TimerTask {
+
+        @Override
+        public void run() {
+            invulnerable = false;
+        }
+    }
 }
