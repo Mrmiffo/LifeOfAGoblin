@@ -36,6 +36,7 @@ public class MinionTest {
     public void tearDown() {
     }
 
+    @Ignore("This method does nothing")
     @Test
     public void testCollide() {
     }
