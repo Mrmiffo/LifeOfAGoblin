@@ -3,6 +3,7 @@ package edu.chl.LifeOfAGoblin.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -31,20 +32,22 @@ public class SaveLoadManager {
      * @param objectToSave The Serializable object to save.
      * @param path The path to save the object to. Will be set to default home directory/LifeOfAGoblin/savedFiles if left as null.
      */
-    public void saveToFile(Serializable objectToSave, String path, String name){
+    public void saveToFile(Serializable objectToSave, String path, String name) throws IOException{
 
             if (path == null){			
                     new File(System.getProperty("user.home") + File.separator +"LifeOfAGoblin" + File.separator + "savedFiles").mkdirs();
                     path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
             }
+            
             try{
 
                     FileOutputStream fout = new FileOutputStream(path + File.separator + name);
-                    ObjectOutputStream oos = new ObjectOutputStream(fout);   
+                try (ObjectOutputStream oos = new ObjectOutputStream(fout)) {   
                     oos.writeObject(objectToSave);
-                    oos.close();
-            }catch(Exception ex){
-                    ex.printStackTrace();
+                    fout.close();
+                }
+            }catch(IOException ex){
+                throw new IOException("Unable to save file.");
             }
     }
 
@@ -53,20 +56,23 @@ public class SaveLoadManager {
      * @param path The path to the file to load
      * @return the loaded file, or if none was found, null.
      */
-    public Serializable loadFile(String path, String name){
+    public Serializable loadFile(String path, String name) throws ClassNotFoundException, IOException{
             if (path == null){
                     path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
             }
             try{
                 FileInputStream fin = new FileInputStream(path + File.separator + name);
-                ObjectInputStream ois = new ObjectInputStream(fin);
-                Object toReturn= ois.readObject();
-                ois.close();
+                Object toReturn;
+                try (ObjectInputStream ois = new ObjectInputStream(fin)) {
+                    toReturn = ois.readObject();
+                    fin.close();
+                }
                 return (Serializable)toReturn;
-            }catch(Exception ex){
-                ex.printStackTrace();
-                return null;
-            }	
+            }catch(IOException ex){
+                throw new IOException("Unable to load file.");
+            }catch(ClassNotFoundException e){
+                throw new ClassNotFoundException("Loaded file could not be converted to Serializeable.");
+            }
     }
 
     /**
@@ -75,18 +81,19 @@ public class SaveLoadManager {
      * @return a list of file names.
      */
     public List<String> getSavedFiles(String path){
-        List<String> toReturn = new ArrayList<String>();
+        List<String> toReturn = new ArrayList<>();
         if (path == null){
                 new File(System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles").mkdirs();
                 path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
         }
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
-
-        for (int i = 0; i < listOfFiles.length; i++) {
-                    if (listOfFiles[i].isFile()) {
-                            toReturn.add(listOfFiles[i].getName());
-                    } 
+        if (listOfFiles != null){
+            for (int i = 0; i < listOfFiles.length; i++) {
+                        if (listOfFiles[i].isFile()) {
+                                toReturn.add(listOfFiles[i].getName());
+                        } 
+            }
         }
         return toReturn;
     }
@@ -103,11 +110,12 @@ public class SaveLoadManager {
         }
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
-
-        for (int i = 0; i < listOfFiles.length; i++) {
-                    if (listOfFiles[i].getName().equals(name)){
-                            listOfFiles[i].delete();
-                    } 
+        if (listOfFiles != null){
+            for (int i = 0; i < listOfFiles.length; i++) {
+                        if (listOfFiles[i].getName().equals(name)){
+                                listOfFiles[i].delete();
+                        } 
+            }
         }
     
     }//tar bort den specifika profilen
