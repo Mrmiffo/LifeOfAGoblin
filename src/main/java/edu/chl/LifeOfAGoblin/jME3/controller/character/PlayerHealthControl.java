@@ -10,6 +10,8 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.model.character.Player;
+import edu.chl.LifeOfAGoblin.model.profile.Profile;
+import edu.chl.LifeOfAGoblin.model.profile.Progress;
 import java.util.List;
 
 /**
@@ -41,13 +43,26 @@ public class PlayerHealthControl extends AbstractControl {
             for (Spatial child: children) {
                 if (child.getUserDataKeys().contains("nodeType")) {
                     if (child.getUserData("nodeType").equals("CHECKPOINT")) {
-                  //  && spatial.getParent().getParent().getChildren().get(i).getUserData("NUMBER").equals(Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint())){
-                        spatial.getControl(CharacterControl.class).warp(child.getLocalTranslation().add(new Vector3f(0, 10, 0)));
-                        player.setHealth(player.getMaxHealth());
-                        player.setIsDead(false);
+                        int nbr = child.getUserData("NUMBER");
+                        if (nbr == Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint()) {
+                        
+                            //  && spatial.getParent().getParent().getChildren().get(i).getUserData("NUMBER").equals(Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint())){
+                            spatial.getControl(CharacterControl.class).warp(child.getLocalTranslation().add(new Vector3f(0, 10, 0)));
+                            player.setHealth(player.getMaxHealth());
+                            player.setIsDead(false);
+                        }
                     }
                 }
             }
+            
+            
+            
+            Profile activeProfile = Profile.getActiveProfile();
+            Progress progress = activeProfile.getProgress();
+            progress.getLastVisitedCheckpoint();
+            
+            
+            
         }
     }
 
