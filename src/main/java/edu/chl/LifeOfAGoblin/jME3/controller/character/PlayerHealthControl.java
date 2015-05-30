@@ -34,18 +34,13 @@ public class PlayerHealthControl extends AbstractControl {
             lastMaxHealth = player.getMaxHealth();
         }
         if (player.isDead()) {
-            Node thePlayer = (Node)getSpatial();
             Node scene = spatial.getParent();
-            Node root = scene.getParent();
             
-            System.out.println("Spatial: " + spatial);
-            System.out.println("Spatial's parent: " + spatial.getParent());
-            System.out.println("Spatial's grandparent: " + spatial.getParent().getParent());
-            for (int i = 0; i < spatial.getParent().getChildren().size(); i++) {
-                if (spatial.getParent().getChildren().get(i).getUserDataKeys().contains("nodeType")) {
-                    if (spatial.getParent().getChildren().get(i).getUserData("nodeType").equals("CHECKPOINT")) {
+            for (int i = 0; i <scene.getChildren().size(); i++) {
+                if (scene.getChildren().get(i).getUserDataKeys().contains("nodeType")) {
+                    if (scene.getChildren().get(i).getUserData("nodeType").equals("CHECKPOINT")) {
                   //  && spatial.getParent().getParent().getChildren().get(i).getUserData("NUMBER").equals(Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint())){
-                        spatial.getControl(CharacterControl.class).warp(spatial.getParent().getChildren().get(i).getLocalTranslation().add(new Vector3f(0, 10, 0)));
+                        spatial.getControl(CharacterControl.class).warp(scene.getChildren().get(i).getLocalTranslation().add(new Vector3f(0, 10, 0)));
                         player.setHealth(player.getMaxHealth());
                         player.setIsDead(false);
                     }
