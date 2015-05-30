@@ -41,17 +41,6 @@ public class PlayerTest {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        Player player1 = new Player();
-        AbstractGameObject player2 = new Player();
-        
-        //tests that a player's nodetype is player
-        assertTrue(player1.getNodeType().equals(NodeType.PLAYER));
-        assertTrue(player2.getNodeType().equals(NodeType.PLAYER));
-    }
-
-    @Test
     public void testCollide_ICollidable() {
         //Setup
         Player player1 = new Player();

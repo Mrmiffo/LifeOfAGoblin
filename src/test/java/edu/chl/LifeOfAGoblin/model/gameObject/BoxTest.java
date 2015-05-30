@@ -39,25 +39,6 @@ public class BoxTest {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        Box box1 = new Box("");
-        AbstractGameObject box2 = new Box("");
-        
-        //tests that a Box's nodetype is Box
-        assertTrue(box1.getNodeType().equals(NodeType.BOX));
-        assertTrue(box2.getNodeType().equals(NodeType.BOX));
-    }
-
-    @Test
     public void testCollide() {
-    }
-
-    @Test
-    public void testGetCollisionHeight() {
-    }
-
-    @Test
-    public void testGetCollisionWidth() {
     }
 }

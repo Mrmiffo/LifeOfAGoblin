@@ -39,17 +39,6 @@ public class BossTest {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        Boss boss1 = new Boss();
-        AbstractGameObject boss2 = new Boss();
-        
-        //tests that a boss's nodetype is boss
-        assertTrue(boss1.getNodeType().equals(NodeType.BOSS));
-        assertTrue(boss2.getNodeType().equals(NodeType.BOSS));
-    }
-
-    @Test
     public void testCollide() {
     }
 
