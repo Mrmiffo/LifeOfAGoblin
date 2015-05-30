@@ -7,10 +7,13 @@ import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
-import edu.chl.LifeOfAGoblin.jME3.game.GameAppState;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -52,14 +55,33 @@ public class LifeOfAGoblin extends SimpleApplication {
         if (allSavedFiles.isEmpty()){
             Profile defaultProfile = new Profile("Default profile");
             Profile.addProfile(defaultProfile);
-            Profile.setActiveProfile(defaultProfile);
+            try {
+                Profile.setActiveProfile(defaultProfile);
+            } catch (IOException ex) {
+                //TODO Add error message
+                System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
+            }
         } else {
             for (String fileName: allSavedFiles){
-                Profile tempProfile = (Profile) SaveLoadManager.getInstance().loadFile(null, fileName);
-                Profile.addProfile(tempProfile);
-                if (tempProfile.getIsActiveProfile()){
-                    Profile.setActiveProfile(tempProfile);
+                Serializable temp;
+                try {
+                    temp = SaveLoadManager.getInstance().loadFile(null, fileName);
+                } catch (IOException | ClassNotFoundException io) {
+                    temp = null;
+                } 
+                if (temp != null && temp instanceof Profile){
+                    Profile tempProfile = (Profile)temp;
+                    Profile.addProfile(tempProfile);
+                    if (tempProfile.getIsActiveProfile()){
+                        try {
+                            Profile.setActiveProfile(tempProfile);
+                        } catch (IOException ex) {
+                            //TODO Add error message
+                            System.out.println("Life Of a Goblin IO ERROR: Unable to load profile");
+                        }
+                    }
                 }
+
             }
         }
     }

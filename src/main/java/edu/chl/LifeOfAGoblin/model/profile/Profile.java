@@ -1,6 +1,7 @@
 package edu.chl.LifeOfAGoblin.model.profile;
 
 import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Profile implements Serializable{
      * string cannot be empty.
      * @param newName the name with which the profile will be associated with.
      */
-    public void rename(String newName) {
+    public void rename(String newName) throws IOException {
         if (newName != null && !newName.isEmpty()) {
                 SaveLoadManager.getInstance().deleteFile(null, profileName);
                 profileName = newName;
@@ -61,7 +62,7 @@ public class Profile implements Serializable{
      * @param action the action which to add the key binding to.
      * ArrayList<Keybind> the new keybinds associated with the action.
      */
-    public void addCustomBinding(Actions action, ArrayList<Keybind> newBindings) {
+    public void addCustomBinding(Actions action, ArrayList<Keybind> newBindings) throws IOException {
         for(int i = 0; i<newBindings.size();i++){
             if(((Keybind)newBindings.get(i)).getKey()>1){
                 keybinds.setKeybind(action, newBindings);
@@ -73,7 +74,7 @@ public class Profile implements Serializable{
     /**
      * Resets the saved keybindings to the default ones.
      */
-    public void resetDefaultBindings(){
+    public void resetDefaultBindings() throws IOException{
         keybinds.setDefaultKeyBindings();
         keybinds.updateBindings();
         saveProfile();
@@ -105,7 +106,7 @@ public class Profile implements Serializable{
      * Sets the profile as the active profile.
      * @param profile the profile to be active.
      */
-    public static void setActiveProfile(Profile profile) {
+    public static void setActiveProfile(Profile profile) throws IOException {
         if(profile!=null){
             if (activeProfile != null){
                 activeProfile.setIsActiveProfile(false);
@@ -119,7 +120,7 @@ public class Profile implements Serializable{
      * Sets the isActiveProfile boolean on the profile instance.
      * @param isActive 
      */
-    private void setIsActiveProfile(boolean isActive){
+    private void setIsActiveProfile(boolean isActive) throws IOException{
         isActiveProfile = isActive;
         saveProfile();
         if (isActive && keybinds != null){
@@ -141,7 +142,7 @@ public class Profile implements Serializable{
      * Sets the profile associated with the profile name as the active profile.
      * @param profileName the name of the profile to be active.
      */
-    public static void setActiveProfile(String profileName) {
+    public static void setActiveProfile(String profileName) throws IOException {
         boolean exists = false;
         for (Profile p: listOfProfiles) {
             if (p.getProfileName().equals(profileName)) {
@@ -160,7 +161,7 @@ public class Profile implements Serializable{
      * object contained in the profile (progress) is saved or when the profile 
      * is created. Saves the profile to the default path.
      */
-    public void saveProfile(){
+    public void saveProfile() throws IOException{
         SaveLoadManager.getInstance().saveToFile(this, null, profileName);
     }
     

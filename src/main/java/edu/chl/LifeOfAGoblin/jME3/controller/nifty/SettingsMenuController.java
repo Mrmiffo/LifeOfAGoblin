@@ -8,10 +8,13 @@ import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.model.profile.Actions;
 import edu.chl.LifeOfAGoblin.model.profile.Keybind;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A controlled for the settings menu. Provides methods for the actions in the 
@@ -58,7 +61,12 @@ public class SettingsMenuController implements ScreenController{
     }
     
     public void resetKeyBindings() {
-        Profile.getActiveProfile().resetDefaultBindings();
+        try {
+            Profile.getActiveProfile().resetDefaultBindings();
+        } catch (IOException ex) {
+            //TODO add error message
+            System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
+        }
         reloadSettingsMenu();
     }
     
@@ -72,8 +80,13 @@ public class SettingsMenuController implements ScreenController{
             for (Integer field: changedKeyBinds.get(action).keySet()){
                 keybinds.add(changedKeyBinds.get(action).get(field));
             }
-            //Add the keybind to the profile.
-            Profile.getActiveProfile().addCustomBinding(action, keybinds);
+            try {
+                //Add the keybind to the profile.
+                Profile.getActiveProfile().addCustomBinding(action, keybinds);
+            } catch (IOException ex) {
+                //TODO Add error message.
+                System.out.println("Life Of a Goblin IO ERROR: Unable to save profile");
+            }
         }
         //Reset the changedKeyBinds and return to main menu.
         changedKeyBinds = new HashMap<>();
