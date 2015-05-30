@@ -5,7 +5,6 @@
 package edu.chl.LifeOfAGoblin.jME3.view;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -18,14 +17,6 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.NiftyScreenSuite.class})
 public class ViewSuite {
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Before
     public void setUp() throws Exception {

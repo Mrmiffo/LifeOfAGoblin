@@ -6,9 +6,7 @@ package edu.chl.LifeOfAGoblin.utils;
 
 import com.jme3.bullet.control.GhostControl;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -20,20 +18,8 @@ import org.junit.Test;
 public class PhysicsWrapperTest {
         
     public PhysicsWrapperTest() {
+    }
 
-
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-        
-        
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
 

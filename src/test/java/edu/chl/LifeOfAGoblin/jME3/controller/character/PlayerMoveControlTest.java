@@ -5,9 +5,7 @@
 package edu.chl.LifeOfAGoblin.jME3.controller.character;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,14 +16,6 @@ import static org.junit.Assert.*;
 public class PlayerMoveControlTest {
     
     public PlayerMoveControlTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
@@ -40,7 +30,4 @@ public class PlayerMoveControlTest {
     public void testOnAction() {
     }
 
-    @Test
-    public void testGetKeyBinds() {
-    }
 }

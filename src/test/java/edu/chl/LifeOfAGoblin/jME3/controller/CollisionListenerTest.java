@@ -18,9 +18,7 @@ import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -34,14 +32,6 @@ public class CollisionListenerTest {
     Node node1 = new Node();
     
     public CollisionListenerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before

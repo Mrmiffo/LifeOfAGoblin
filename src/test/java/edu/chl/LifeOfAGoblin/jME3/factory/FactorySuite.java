@@ -5,9 +5,7 @@
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -18,14 +16,6 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({edu.chl.LifeOfAGoblin.jME3.factory.NodeFactoryTest.class, edu.chl.LifeOfAGoblin.jME3.factory.LevelNodeBuilderTest.class, edu.chl.LifeOfAGoblin.jME3.factory.CollisionObjectPainterTest.class, edu.chl.LifeOfAGoblin.jME3.factory.CharacterFactoryTest.class})
 public class FactorySuite {
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Before
     public void setUp() throws Exception {

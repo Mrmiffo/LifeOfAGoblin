@@ -5,9 +5,7 @@
 package edu.chl.LifeOfAGoblin.utils;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,14 +16,6 @@ import static org.junit.Assert.*;
 public class StateManagerWrapperTest {
     
     public StateManagerWrapperTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before

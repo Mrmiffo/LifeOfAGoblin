@@ -6,19 +6,14 @@ package edu.chl.LifeOfAGoblin.model.gameObject;
 
 
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
-import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
-import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import com.jme3.input.*;
 import com.jme3.input.awt.AwtKeyInput;
 import com.jme3.input.awt.AwtMouseInput;
 import com.jme3.input.lwjgl.JInputJoyInput;
 import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
-import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -29,15 +24,6 @@ import static org.junit.Assert.*;
 public class CheckpointTest {
     
     public CheckpointTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
