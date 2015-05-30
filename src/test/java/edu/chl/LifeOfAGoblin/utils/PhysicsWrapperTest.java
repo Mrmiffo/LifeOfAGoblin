@@ -6,9 +6,7 @@ package edu.chl.LifeOfAGoblin.utils;
 
 import com.jme3.bullet.control.GhostControl;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 

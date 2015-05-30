@@ -4,12 +4,8 @@
  */
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.character.AbstractCharacter;
-import edu.chl.LifeOfAGoblin.model.character.Player;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

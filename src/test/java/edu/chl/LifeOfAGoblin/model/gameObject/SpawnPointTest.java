@@ -8,9 +8,7 @@ import edu.chl.LifeOfAGoblin.model.character.Minion;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

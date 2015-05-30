@@ -7,9 +7,7 @@ package edu.chl.LifeOfAGoblin.model.character;
 import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
