@@ -39,19 +39,6 @@ public class LevelTest {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        Level lvl1 = new Level("Level1", 1, "");
-        AbstractGameObject lvl2 = new Level("Level1", 1,"");
-        
-        //tests that a Level's nodetype is level
-        assertTrue(lvl1.getNodeType().equals(NodeType.LEVEL));
-        assertTrue(lvl2.getNodeType().equals(NodeType.LEVEL));
-    
-    }
-
-
-    @Test
     public void testGetLevelName() {
         // setup
         Level lvl1 = new Level("Level1", 1,"");

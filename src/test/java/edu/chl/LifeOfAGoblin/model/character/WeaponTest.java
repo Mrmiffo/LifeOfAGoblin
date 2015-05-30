@@ -38,17 +38,6 @@ public class WeaponTest {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        Weapon weapon1 = new RangedWeapon();
-        Weapon weapon2 = new MeleeWeapon();
-        
-        //tests that a Weapon's nodetype is Weapon
-        assertTrue(weapon1.getNodeType().equals(NodeType.WEAPON));
-        assertTrue(weapon2.getNodeType().equals(NodeType.WEAPON));
-    }
-
-    @Test
     public void testCollide() {
     }
 

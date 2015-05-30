@@ -38,16 +38,6 @@ public class BoxTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testGetNodeType() {
-        // setup
-        Box box1 = new Box("");
-        AbstractGameObject box2 = new Box("");
-        
-        //tests that a Box's nodetype is Box
-        assertTrue(box1.getNodeType().equals(NodeType.BOX));
-        assertTrue(box2.getNodeType().equals(NodeType.BOX));
-    }
 
     @Test
     public void testCollide() {

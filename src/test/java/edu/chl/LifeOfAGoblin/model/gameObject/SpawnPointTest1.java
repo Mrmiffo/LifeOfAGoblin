@@ -42,17 +42,6 @@ public class SpawnPointTest1 {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        SpawnPoint sp1 = new SpawnPoint(1, new Minion(), 1);
-        SpawnPoint sp2 = new SpawnPoint(1, new Minion(), 1);
-        
-        //tests that a Spawnpoints's nodetype is SpawnPoint
-        assertTrue(sp1.getNodeType().equals(NodeType.SPAWNPOINT));
-        assertTrue(sp2.getNodeType().equals(NodeType.SPAWNPOINT));
-    }
-
-    @Test
     public void testCollide() {
     //setup 
     Profile testProfile = new Profile("testProfile");

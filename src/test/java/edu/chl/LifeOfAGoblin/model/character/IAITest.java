@@ -58,7 +58,7 @@ public class IAITest {
         public void updateAIAction() {
         }
 
-        public void updateAIAction(float distance, Direction direction, NodeType type) {
+        public void updateAIAction(float distance, Direction direction, String type) {
         }
     }
 }

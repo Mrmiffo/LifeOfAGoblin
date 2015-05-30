@@ -39,17 +39,6 @@ public class MinionTest {
     }
 
     @Test
-    public void testGetNodeType() {
-        // setup
-        Minion minion1 = new Minion();
-        AbstractGameObject minion2 = new Minion();
-        
-        //tests that a minion's nodetype is minion
-        assertTrue(minion1.getNodeType().equals(NodeType.MINION));
-        assertTrue(minion2.getNodeType().equals(NodeType.MINION));
-    }
-
-    @Test
     public void testCollide() {
     }
 
