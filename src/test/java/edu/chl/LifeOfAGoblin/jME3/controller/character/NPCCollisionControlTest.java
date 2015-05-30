@@ -20,14 +20,6 @@ public class NPCCollisionControlTest {
     public NPCCollisionControlTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
     }

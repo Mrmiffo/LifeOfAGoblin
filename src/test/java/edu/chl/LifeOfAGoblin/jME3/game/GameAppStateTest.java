@@ -20,14 +20,6 @@ public class GameAppStateTest {
     public GameAppStateTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
     }
@@ -68,7 +60,4 @@ public class GameAppStateTest {
     public void testPause() {
     }
 
-    @Test
-    public void testGetKeyBinds() {
-    }
 }

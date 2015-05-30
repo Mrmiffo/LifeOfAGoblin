@@ -19,14 +19,6 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({edu.chl.LifeOfAGoblin.jME3.factory.NodeFactoryTest.class, edu.chl.LifeOfAGoblin.jME3.factory.LevelNodeBuilderTest.class, edu.chl.LifeOfAGoblin.jME3.factory.CollisionObjectPainterTest.class, edu.chl.LifeOfAGoblin.jME3.factory.CharacterFactoryTest.class})
 public class FactorySuite {
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     @Before
     public void setUp() throws Exception {
     }

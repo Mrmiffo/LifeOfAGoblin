@@ -36,14 +36,6 @@ public class CollisionListenerTest {
     public CollisionListenerTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() { 
         node1.setUserData("nodeType", "PLAYER");

@@ -20,14 +20,6 @@ public class NPCMoveControlTest {
     public NPCMoveControlTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
     }

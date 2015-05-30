@@ -20,14 +20,6 @@ public class PlayerMoveControlTest {
     public PlayerMoveControlTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
     }
@@ -40,7 +32,4 @@ public class PlayerMoveControlTest {
     public void testOnAction() {
     }
 
-    @Test
-    public void testGetKeyBinds() {
-    }
 }

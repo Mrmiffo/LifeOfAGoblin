@@ -36,14 +36,6 @@ public class FinalCheckpointTest {
     public FinalCheckpointTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         this.loag = new LifeOfAGoblin();

@@ -19,13 +19,6 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({edu.chl.LifeOfAGoblin.model.gameObject.GameObjectSuite.class, edu.chl.LifeOfAGoblin.model.AbstractGameObjectTest.class, edu.chl.LifeOfAGoblin.model.NodeTypeTest.class, edu.chl.LifeOfAGoblin.model.character.CharacterSuite.class, edu.chl.LifeOfAGoblin.model.profile.ProfileSuite.class})
 public class ModelSuite {
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Before
     public void setUp() throws Exception {
