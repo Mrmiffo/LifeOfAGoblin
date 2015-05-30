@@ -20,22 +20,22 @@ import static org.junit.Assert.*;
  * @author fredrik
  */
 public class PlayerTest {
-    
+
     public PlayerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -45,7 +45,7 @@ public class PlayerTest {
         // setup
         Player player1 = new Player();
         AbstractGameObject player2 = new Player();
-        
+
         //tests that a player's nodetype is player
         assertTrue(player1.getNodeType().equals(NodeType.PLAYER));
         assertTrue(player2.getNodeType().equals(NodeType.PLAYER));
@@ -57,32 +57,32 @@ public class PlayerTest {
         Player player1 = new Player();
         Player player2 = new Player();
         int maxHealth = player1.getHealth();
-        
-        
+
+
         //tests that collide works
-        player1.collide((ICollidable)new MeleeWeapon());
+        player1.collide((ICollidable) new MeleeWeapon());
         assertTrue(player1.isInvulnerable());
-        assertTrue(player1.getHealth()<maxHealth);
-        
+        assertTrue(player1.getHealth() < maxHealth);
+
         //tests that a player does not take damage from nonNPCs
-        player2.collide(new Checkpoint(1,1,1.0f));
+        player2.collide(new Checkpoint(1, 1, 1.0f));
         assertFalse(player2.isInvulnerable());
-        assertFalse(player2.getHealth()<maxHealth); 
-        
+        assertFalse(player2.getHealth() < maxHealth);
+
         //tests that method can handle null input
-        player2.collide((ICollidable)null);
-        
-        
+        player2.collide((ICollidable) null);
+
+
     }
 
     @Test
     public void testSetInvulnerablility() {
         // setup
         Player player1 = new Player();
-        
+
         //tests that setIsDamaged works
         assertFalse(player1.isInvulnerable());
-        player1.setInvulnerablility(true);
+        player1.setInvulnerable();
         assertTrue(player1.isInvulnerable());
     }
 
@@ -93,5 +93,4 @@ public class PlayerTest {
     @Test
     public void testIsInvulnerable() {
     }
-
 }
