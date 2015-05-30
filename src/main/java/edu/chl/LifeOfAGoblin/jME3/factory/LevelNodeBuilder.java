@@ -4,6 +4,8 @@
  */
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
+import com.jme3.input.ChaseCamera;
+import com.jme3.math.FastMath;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
@@ -26,7 +28,13 @@ public class LevelNodeBuilder {
         if(node.getUserDataKeys().size() > 0) {
             INode model = nodeToModel(node);
             if (model instanceof Player) {
-                CharacterFactory.createPlayer(node, cam);
+                CharacterFactory.createCharacter(node, (Player)model);
+                
+                ChaseCamera chaseCam = new ChaseCamera(cam);
+                chaseCam.setRotationSensitivity(0);
+                chaseCam.setDefaultHorizontalRotation(FastMath.PI/2);
+                chaseCam.setDefaultVerticalRotation(FastMath.PI/9); //20 degrees
+                node.addControl(chaseCam);
             } else if (model instanceof AbstractNPC) {
                 CharacterFactory.createCharacter(node, (AbstractNPC) model);
             } else if (model instanceof ICollidable){
