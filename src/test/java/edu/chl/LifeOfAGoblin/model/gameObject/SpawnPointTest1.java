@@ -5,6 +5,7 @@
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
 import edu.chl.LifeOfAGoblin.model.NodeType;
+import edu.chl.LifeOfAGoblin.model.character.Minion;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
 import org.junit.After;
@@ -43,8 +44,8 @@ public class SpawnPointTest1 {
     @Test
     public void testGetNodeType() {
         // setup
-        SpawnPoint sp1 = new SpawnPoint(1, NodeType.MINION, 1);
-        SpawnPoint sp2 = new SpawnPoint(1, NodeType.MINION, 1);
+        SpawnPoint sp1 = new SpawnPoint(1, new Minion(), 1);
+        SpawnPoint sp2 = new SpawnPoint(1, new Minion(), 1);
         
         //tests that a Spawnpoints's nodetype is SpawnPoint
         assertTrue(sp1.getNodeType().equals(NodeType.SPAWNPOINT));
@@ -56,8 +57,8 @@ public class SpawnPointTest1 {
     //setup 
     Profile testProfile = new Profile("testProfile");
     Profile.setActiveProfile(testProfile);
-    SpawnPoint sp1 = new SpawnPoint(1,NodeType.MINION,1.0f);
-    SpawnPoint sp2 = new SpawnPoint(2,NodeType.MINION,1);
+    SpawnPoint sp1 = new SpawnPoint(1, new Minion(), 1.0f);
+    SpawnPoint sp2 = new SpawnPoint(2, new Minion(), 1);
 
     // tests that collide is not run on an activated spawnpoint
     sp1.collide(new Player());
