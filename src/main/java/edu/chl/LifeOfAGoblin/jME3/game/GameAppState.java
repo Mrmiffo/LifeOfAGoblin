@@ -8,6 +8,7 @@ import com.jme3.audio.AudioNode;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import edu.chl.LifeOfAGoblin.jME3.controller.nifty.GameHudController;
 import edu.chl.LifeOfAGoblin.utils.IKeyListener;
 import edu.chl.LifeOfAGoblin.model.gameObject.Level;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
@@ -28,6 +29,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     private Level level;
     private Node levelNode;
     private GameHud hud;
+    private boolean isPaused;
     private final Actions[] actions = new Actions[] {
         Actions.OPEN_MENU
     };
@@ -105,12 +107,19 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
 
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (name.equals(Actions.OPEN_MENU.toString())){
-                pause();       
+        if (name.equals(Actions.OPEN_MENU.toString()) && isPressed){
+            pause();       
         }
     }
     
     public void pause(){
+        if (isPaused) {
+            GameHudController.turnOpaque();
+            isPaused = false;
+        } else {
+            GameHudController.turnGray();
+            isPaused = true;
+        }
 //        System.out.println("pause");
 //        StateManagerWrapper.getInstance().deactivateState(this);
 //        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(PauseAppState.class));

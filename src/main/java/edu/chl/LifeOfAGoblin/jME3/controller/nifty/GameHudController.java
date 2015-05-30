@@ -78,11 +78,19 @@ public class GameHudController implements ScreenController{
 
             @Override
             public void run() {
-                screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0, 0, 0, 0));
+                turnOpaque();
                 this.cancel();
             }
         }, timerDelay);
 
         screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(215/255f, 44/255f, 44/255f, 0.4f));
+    }
+    
+    public static void turnGray() {
+        screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(115/255f, 99/255f, 99/255f, 0.8f));
+    }
+    
+    public static void turnOpaque() {
+        screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0, 0, 0, 0));
     }
 }
