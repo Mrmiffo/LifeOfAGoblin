@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.utils;
+package edu.chl.LifeOfAGoblin.model;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class StateManagerWrapperTest {
+public class IDamageableTest {
     
-    public StateManagerWrapperTest() {
+    public IDamageableTest() {
     }
     
     @BeforeClass
@@ -37,39 +37,27 @@ public class StateManagerWrapperTest {
     }
 
     @Test
-    public void testAddState() {
-        
+    public void testSetIsInvulnerable() {
     }
 
     @Test
-    public void testRemoveState() {
+    public void testGetIsInvulnerable() {
     }
 
     @Test
-    public void testActivateState() {
+    public void testRecieveDamage() {
     }
 
-    @Test
-    public void testDeactivateState() {
-    }
+    public class IDamageableImpl implements IDamageable {
 
-    @Test
-    public void testGetAvailableStates() {
-    }
+        public void setIsInvulnerable(boolean b) {
+        }
 
-    @Test
-    public void testGetAvailableState() {
-    }
+        public boolean getIsInvulnerable() {
+            return false;
+        }
 
-    @Test
-    public void testGetActiveState() {
-    }
-
-    @Test
-    public void testGetInstance() {
-    }
-
-    @Test
-    public void testInitialize() {
+        public void recieveDamage(int pointsOfDamageTaken) {
+        }
     }
 }

@@ -49,4 +49,8 @@ public class MinionTest {
         assertTrue(minion2.getNodeType().equals(NodeType.MINION));
     }
 
+    @Test
+    public void testCollide() {
+    }
+
 }

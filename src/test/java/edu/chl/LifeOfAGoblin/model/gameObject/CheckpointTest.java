@@ -181,4 +181,20 @@ public class CheckpointTest {
         assertFalse(cp1.isActivated());
     }
 
+    @Test
+    public void testUpdateProgress() {
+    }
+
+    @Test
+    public void testGetCollisionHeight() {
+    }
+
+    @Test
+    public void testGetCollisionWidth() {
+    }
+
+    @Test
+    public void testIsActivated() {
+    }
+
 }

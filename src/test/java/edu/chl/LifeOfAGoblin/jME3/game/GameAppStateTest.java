@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.utils;
+package edu.chl.LifeOfAGoblin.jME3.game;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class StateManagerWrapperTest {
+public class GameAppStateTest {
     
-    public StateManagerWrapperTest() {
+    public GameAppStateTest() {
     }
     
     @BeforeClass
@@ -37,39 +37,38 @@ public class StateManagerWrapperTest {
     }
 
     @Test
-    public void testAddState() {
-        
-    }
-
-    @Test
-    public void testRemoveState() {
-    }
-
-    @Test
-    public void testActivateState() {
-    }
-
-    @Test
-    public void testDeactivateState() {
-    }
-
-    @Test
-    public void testGetAvailableStates() {
-    }
-
-    @Test
-    public void testGetAvailableState() {
-    }
-
-    @Test
-    public void testGetActiveState() {
-    }
-
-    @Test
-    public void testGetInstance() {
-    }
-
-    @Test
     public void testInitialize() {
+    }
+
+    @Test
+    public void testCleanup() {
+    }
+
+    @Test
+    public void testSetEnabled() {
+    }
+
+    @Test
+    public void testUpdate() {
+    }
+
+    @Test
+    public void testSetLevelToStart() {
+    }
+
+    @Test
+    public void testStartLevel() {
+    }
+
+    @Test
+    public void testOnAction() {
+    }
+
+    @Test
+    public void testPause() {
+    }
+
+    @Test
+    public void testGetKeyBinds() {
     }
 }

@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class StateManagerWrapperTest {
+public class SaveLoadManagerTest {
     
-    public StateManagerWrapperTest() {
+    public SaveLoadManagerTest() {
     }
     
     @BeforeClass
@@ -37,39 +37,22 @@ public class StateManagerWrapperTest {
     }
 
     @Test
-    public void testAddState() {
-        
-    }
-
-    @Test
-    public void testRemoveState() {
-    }
-
-    @Test
-    public void testActivateState() {
-    }
-
-    @Test
-    public void testDeactivateState() {
-    }
-
-    @Test
-    public void testGetAvailableStates() {
-    }
-
-    @Test
-    public void testGetAvailableState() {
-    }
-
-    @Test
-    public void testGetActiveState() {
-    }
-
-    @Test
     public void testGetInstance() {
     }
 
     @Test
-    public void testInitialize() {
+    public void testSaveToFile() throws Exception {
+    }
+
+    @Test
+    public void testLoadFile() throws Exception {
+    }
+
+    @Test
+    public void testGetSavedFiles() {
+    }
+
+    @Test
+    public void testDeleteFile() {
     }
 }

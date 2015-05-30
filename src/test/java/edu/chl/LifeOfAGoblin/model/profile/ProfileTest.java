@@ -263,4 +263,32 @@ public class ProfileTest {
         assertFalse(Profile.getProfiles().contains(p));
         
     }
+
+    @Test
+    public void testGetProfileName() {
+    }
+
+    @Test
+    public void testGetProgress() {
+    }
+
+    @Test
+    public void testGetProfile() {
+    }
+
+    @Test
+    public void testGetActiveProfile() {
+    }
+
+    @Test
+    public void testGetIsActiveProfile() {
+    }
+
+    @Test
+    public void testSaveProfile() {
+    }
+
+    @Test
+    public void testGetProfiles() {
+    }
 }

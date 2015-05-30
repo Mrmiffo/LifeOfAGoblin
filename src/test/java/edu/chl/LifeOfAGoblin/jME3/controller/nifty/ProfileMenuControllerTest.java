@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.utils;
+package edu.chl.LifeOfAGoblin.jME3.controller.nifty;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class StateManagerWrapperTest {
+public class ProfileMenuControllerTest {
     
-    public StateManagerWrapperTest() {
+    public ProfileMenuControllerTest() {
     }
     
     @BeforeClass
@@ -37,39 +37,30 @@ public class StateManagerWrapperTest {
     }
 
     @Test
-    public void testAddState() {
-        
+    public void testBind() {
     }
 
     @Test
-    public void testRemoveState() {
+    public void testOnStartScreen() {
     }
 
     @Test
-    public void testActivateState() {
+    public void testOnEndScreen() {
     }
 
     @Test
-    public void testDeactivateState() {
+    public void testSave() {
     }
 
     @Test
-    public void testGetAvailableStates() {
+    public void testBack() {
     }
 
     @Test
-    public void testGetAvailableState() {
+    public void testDeleteProfile() {
     }
 
     @Test
-    public void testGetActiveState() {
-    }
-
-    @Test
-    public void testGetInstance() {
-    }
-
-    @Test
-    public void testInitialize() {
+    public void testCreateProfile() {
     }
 }

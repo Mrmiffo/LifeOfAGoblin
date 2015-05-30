@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class StateManagerWrapperTest {
+public class LevelManagerTest {
     
-    public StateManagerWrapperTest() {
+    public LevelManagerTest() {
     }
     
     @BeforeClass
@@ -37,39 +37,22 @@ public class StateManagerWrapperTest {
     }
 
     @Test
-    public void testAddState() {
-        
-    }
-
-    @Test
-    public void testRemoveState() {
-    }
-
-    @Test
-    public void testActivateState() {
-    }
-
-    @Test
-    public void testDeactivateState() {
-    }
-
-    @Test
-    public void testGetAvailableStates() {
-    }
-
-    @Test
-    public void testGetAvailableState() {
-    }
-
-    @Test
-    public void testGetActiveState() {
-    }
-
-    @Test
     public void testGetInstance() {
     }
 
     @Test
     public void testInitialize() {
+    }
+
+    @Test
+    public void testGetLevel() {
+    }
+
+    @Test
+    public void testGetNextLevel() {
+    }
+
+    @Test
+    public void testGetAllLevelNames() {
     }
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.chl.LifeOfAGoblin.utils;
+package edu.chl.LifeOfAGoblin.jME3.controller.character;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author fredrik
+ * @author Ulrika
  */
-public class StateManagerWrapperTest {
+public class AbstractMoveControlTest {
     
-    public StateManagerWrapperTest() {
+    public AbstractMoveControlTest() {
     }
     
     @BeforeClass
@@ -37,39 +37,37 @@ public class StateManagerWrapperTest {
     }
 
     @Test
-    public void testAddState() {
-        
+    public void testControlUpdate() {
     }
 
     @Test
-    public void testRemoveState() {
+    public void testControlRender() {
     }
 
     @Test
-    public void testActivateState() {
+    public void testFaceLeft() {
     }
 
     @Test
-    public void testDeactivateState() {
+    public void testFaceRight() {
     }
 
     @Test
-    public void testGetAvailableStates() {
+    public void testFaceFront() {
     }
 
     @Test
-    public void testGetAvailableState() {
+    public void testHaltCharacter() {
     }
 
     @Test
-    public void testGetActiveState() {
+    public void testJump() {
     }
 
     @Test
-    public void testGetInstance() {
+    public void testSetSpatial() {
     }
 
-    @Test
-    public void testInitialize() {
+    public class AbstractMoveControlImpl extends AbstractMoveControl {
     }
 }
