@@ -1,12 +1,16 @@
 package edu.chl.LifeOfAGoblin.jME3.controller.character;
 
 import com.jme3.bullet.control.CharacterControl;
+import com.jme3.math.Vector3f;
 import edu.chl.LifeOfAGoblin.jME3.controller.nifty.GameHudController;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
+import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.model.character.Player;
+import edu.chl.LifeOfAGoblin.model.profile.Profile;
 
 /**
  * A control for updating the game hud. Also checks if player is dead, if so respawn the character.
@@ -31,16 +35,27 @@ public class PlayerHealthControl extends AbstractControl {
             lastMaxHealth = player.getMaxHealth();
         }
         if (player.isDead()) {
-            for (int i = 0; i < spatial.getParent().getParent().getChildren().size(); i++) {
-                if (spatial.getParent().getParent().getChildren().get(i).getUserDataKeys().contains("nodeType")) {
-                    if (spatial.getParent().getParent().getChildren().get(i).getUserData("nodeType").equals("CHECKPOINT")) {
-                  //  && spatial.getParent().getParent().getChildren().get(i).getUserData("NUMBER").equals(Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint())){
-                        spatial.getControl(CharacterControl.class).warp(spatial.getParent().getParent().getChildren().get(i).getLocalTranslation());
-                        player.setHealth(player.getMaxHealth());
-                        player.setIsDead(false);
+            Node scene = spatial.getParent();
+            
+            //Loop through all the pre-placed nodes in the current scene
+            for (Spatial child: scene.getChildren()) {
+                if (child.getUserDataKeys().contains("nodeType")) {
+                    //Search for all checkpoints
+                    if (child.getUserData("nodeType").equals("CHECKPOINT")) {
+                        //All checkpoints contain a number (index)
+                        int nbr = child.getUserData("NUMBER");
+                        //Check whether the number corresponds to the active profile's current progress.
+                        if (nbr == Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint()) {
+                            //The the number corresponds, place the player slightly above the location of the checkpoint.
+                            spatial.getControl(CharacterControl.class).warp(child.getLocalTranslation().add(new Vector3f(0, 5, 0)));
+                            //Restore the player's health.
+                            player.setHealth(player.getMaxHealth());
+                            //The player is no longer dead.
+                            player.setIsDead(false);
+                        }
                     }
                 }
-            }
+            }   
         }
     }
 
