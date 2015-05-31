@@ -30,7 +30,6 @@ public class CollisionObjectPainterTest {
     private SpawnPoint sp;
     private Node node1;
     private Node node2;
-    private Minion minion;
     
     public CollisionObjectPainterTest() {
     }
@@ -38,7 +37,7 @@ public class CollisionObjectPainterTest {
     @Before
     public void setUp() {
         fcp = new FinalCheckpoint(1,1,1);
-        sp = new SpawnPoint(1, minion, 1);
+        sp = new SpawnPoint(1, Minion.class, 1);
         node1 = new Node();
         node2 = new Node();
     }
