@@ -35,12 +35,12 @@ public class NodeFactory {
         if (type instanceof AbstractCharacter) {
             if (type instanceof AbstractNPC) {
                 if (type instanceof Minion) {
-                    CharacterFactory.createCharacter(node, new Minion());
+                    CharacterPainter.createCharacter(node, new Minion());
                 } else if (type instanceof Boss) {
-                    CharacterFactory.createCharacter(node, new Boss());
+                    CharacterPainter.createCharacter(node, new Boss());
                 } 
             } else if (type instanceof Player) {
-                CharacterFactory.createCharacter(node, new Player());
+                CharacterPainter.createCharacter(node, new Player());
             }
         }
         return node;
