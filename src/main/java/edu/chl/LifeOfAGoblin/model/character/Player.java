@@ -57,7 +57,6 @@ public class Player extends AbstractCharacter {
             invulnerable = true;
             timer.schedule(new InvulnerableController(), invulnerableTime);
         }
-
     }
 
     /**
@@ -69,8 +68,7 @@ public class Player extends AbstractCharacter {
         return this.invulnerable;
     }
 
-    class InvulnerableController extends TimerTask {
-
+    private class InvulnerableController extends TimerTask {
         @Override
         public void run() {
             invulnerable = false;

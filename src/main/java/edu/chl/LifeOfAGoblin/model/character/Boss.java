@@ -1,12 +1,10 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
-import edu.chl.LifeOfAGoblin.model.ICollidable;
-
 /**
- * The basic boss NPC class. Not yet fully implemented.
+ * The basic boss NPC class.
  * @author Anton
  */
-public class Boss extends AbstractNPC {
+public abstract class Boss extends AbstractNPC {
     
     private static final int maxHealth = 100;
     private static final float aggressionRange = 4;
@@ -33,13 +31,5 @@ public class Boss extends AbstractNPC {
         super(maxHealth, model, height, width, collisionHeight,collisionWidth, 
                 weight, baseDamage, jumpStrength, target.toUpperCase(),
                 aggressionRange, new MeleeWeapon());
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void collide(ICollidable collided){
-        //todo add methods for colliding with a boss
     }
 }

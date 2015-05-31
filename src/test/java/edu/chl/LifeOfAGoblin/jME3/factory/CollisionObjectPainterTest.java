@@ -13,7 +13,7 @@ import edu.chl.LifeOfAGoblin.jME3.controller.FinalCheckpointControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.ModelControl;
 import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
-import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
+import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
 import edu.chl.LifeOfAGoblin.model.gameObject.IActivatable;
 import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
 import org.junit.After;
@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
  * @author Ulrika
  */
 public class CollisionObjectPainterTest {
-    private FinalCheckpoint fcp;
+    private Checkpoint cp;
     private SpawnPoint sp;
     private Node node1;
     private Node node2;
@@ -36,7 +36,7 @@ public class CollisionObjectPainterTest {
     
     @Before
     public void setUp() {
-        fcp = new FinalCheckpoint(1,1,1);
+        cp = new Checkpoint(1,1,1);
         sp = new SpawnPoint(1, Minion.class, 1);
         node1 = new Node();
         node2 = new Node();
@@ -50,7 +50,7 @@ public class CollisionObjectPainterTest {
     public void testPaintCollisionObject() {
         //setup
         CollisionObjectPainter.paintCollisionObject(sp, node1);
-        CollisionObjectPainter.paintCollisionObject(fcp, node2);
+        CollisionObjectPainter.paintCollisionObject(cp, node2);
         Control c1;
         Control c2;
         
@@ -65,8 +65,8 @@ public class CollisionObjectPainterTest {
             assertTrue(measurements1.x == sp.getCollisionWidth());
             assertTrue(measurements1.y == sp.getCollisionHeight());
             assertTrue(measurements1.z == 0); 
-            assertTrue(measurements2.x == fcp.getCollisionWidth());
-            assertTrue(measurements2.y == fcp.getCollisionHeight());
+            assertTrue(measurements2.x == cp.getCollisionWidth());
+            assertTrue(measurements2.y == cp.getCollisionHeight());
             assertTrue(measurements2.z == 0);         
         } catch (NullPointerException ex) {
             fail();
@@ -82,7 +82,7 @@ public class CollisionObjectPainterTest {
             
             //tests that modelcontrols have the right model
             assertTrue(object1.equals(sp));
-            assertTrue(object2.equals(fcp));
+            assertTrue(object2.equals(cp));
         } 
         catch (NullPointerException ex) {
             fail();
@@ -106,5 +106,4 @@ public class CollisionObjectPainterTest {
             fail();
         }
     }
-    
 }

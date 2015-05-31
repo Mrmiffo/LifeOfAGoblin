@@ -1,8 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.model.character;
+
+import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 /**
  * A class representing a melee weapon.
@@ -25,5 +23,10 @@ public class MeleeWeapon extends Weapon {
      */
     public MeleeWeapon(float collisionHeight, float collisionWidth) {
         super(collisionHeight, collisionWidth);
+    }
+
+    @Override
+    public void collide(ICollidable collided) {
+        
     }
 }

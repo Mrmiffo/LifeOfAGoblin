@@ -25,8 +25,7 @@ public class Checkpoint extends AbstractGameObject implements ICollidable, IActi
      * @param number the number of the checkpoint in relation to the other
      * checkpoints in the level
      */
-    
-        public Checkpoint(int level, int number, float width ){
+    public Checkpoint(int level, int number, float width ){
         this.width = width;
         this.level = level;
         this.number = number;
@@ -50,7 +49,6 @@ public class Checkpoint extends AbstractGameObject implements ICollidable, IActi
      * @param number this checkpoints position related to all other checkpoints 
      * on this level.
      */
-    
     public void updateProgress(int level, int number) {
         Profile.getActiveProfile().getProgress().update(level, number);
     }
@@ -79,5 +77,4 @@ public class Checkpoint extends AbstractGameObject implements ICollidable, IActi
     public boolean isActivated() {
         return activated;
     }
-    
 }

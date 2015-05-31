@@ -35,22 +35,25 @@ public class Level extends AbstractInanimateObject {
         this.backgroundSound = backgroundSound;
         this.skyColor = skyColor;
     }
-
-    public String getLevelName() {
+    
+    /**
+     * Returns the name of the level.
+     * @return the namen of the level.
+     */
+    public String getLevelName(){
         return levelName;
     }
 
     /**
      * Returns the number of the level.
-     *
-     * @return
+     * @return the number of the level.
      */
     public int getLevelNo() {
         return levelNo;
     }
 
     /**
-     *
+     * Returns the name of the background sound.
      * @return the file name of the sound.
      */
     public String getBackgroundSoundName() {

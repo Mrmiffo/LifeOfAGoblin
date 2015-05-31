@@ -14,7 +14,6 @@ import edu.chl.LifeOfAGoblin.jME3.controller.SpawnControl;
 import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
-import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
 
 /**
  * A class responsible for "painting" nodes giving them models and adding
@@ -37,9 +36,6 @@ class CollisionObjectPainter {
         BoxCollisionShape checkBox = new BoxCollisionShape(halfExtent);
         GhostControl ghostControl = new GhostControl(checkBox);
 
-        ghostControl.setCollisionGroup(3); //FIX
-        ghostControl.setCollideWithGroups(2); //FIX
-        PhysicsWrapper.getInstance().addControl(ghostControl);
         node.addControl(modelControl);
         node.addControl(ghostControl);
 
@@ -48,7 +44,8 @@ class CollisionObjectPainter {
             node.addControl(sc);
             sc.initialize();
         }
-        if (collisionObject instanceof FinalCheckpoint) {
+        
+        if (node.getUserData("nodeType").equals("FINALCHECKPOINT")) {
             FinalCheckpointControl sc = new FinalCheckpointControl();
             node.addControl(sc);
             sc.initialize();
