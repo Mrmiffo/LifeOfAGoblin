@@ -7,7 +7,6 @@ package edu.chl.LifeOfAGoblin.model.character;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -29,12 +28,4 @@ public class WeaponTest {
     @Test
     public void testCollide() {
     }
-
-    public class WeaponImpl extends Weapon {
-
-        public WeaponImpl() {
-            super(0.0F, 0.0F);
-        }
-    }
-
 }

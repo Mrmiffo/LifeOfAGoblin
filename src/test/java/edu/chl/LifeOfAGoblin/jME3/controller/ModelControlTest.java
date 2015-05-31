@@ -5,8 +5,8 @@
 package edu.chl.LifeOfAGoblin.jME3.controller;
 
 import edu.chl.LifeOfAGoblin.model.INode;
-import edu.chl.LifeOfAGoblin.model.character.Boss;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
+import edu.chl.LifeOfAGoblin.model.character.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,7 +43,7 @@ public class ModelControlTest {
 
     @Test
     public void testSetModel() {
-        INode newModel = new Boss();
+        INode newModel = new Player();
         mc.setModel(newModel);
         
         //Testing to see that the model is changed properly

@@ -12,7 +12,6 @@ import com.jme3.bullet.control.GhostControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
-import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
@@ -55,7 +54,6 @@ public class CollisionListenerTest {
         // Setup test.
         Checkpoint testCheck = mock(Checkpoint.class);
         SpawnPoint testSpawn = mock(SpawnPoint.class);
-        FinalCheckpoint testFCheck = mock(FinalCheckpoint.class);
         Checkpoint testFaultyCheck = mock(Checkpoint.class);
         Minion testMinion = mock(Minion.class);
         Node node5 = new Node();
@@ -78,13 +76,6 @@ public class CollisionListenerTest {
         GhostControl mockSpawnGhost = new GhostControl(mockSpawnBox);
         node6.addControl(mockSpawnMc);
         node6.addControl(mockSpawnGhost);
-        
-        node7.setUserData("nodeType", "FINALCHECKPOINT");
-        ModelControl mockFcheckMc = new ModelControl(testFCheck);
-        BoxCollisionShape mockFcheckBox = new BoxCollisionShape(new Vector3f(1,1,1));
-        GhostControl mockFcheckGhost = new GhostControl(mockFcheckBox);
-        node7.addControl(mockFcheckMc);
-        node7.addControl(mockFcheckGhost);
         
         
         node9.setUserData("NodeType", "CHECKPOINT");
@@ -114,7 +105,6 @@ public class CollisionListenerTest {
         listener.collision(pce3);
         verify(testCheck, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
         verify(testSpawn, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
-        verify(testFCheck, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
         
      
         

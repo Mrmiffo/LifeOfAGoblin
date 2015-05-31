@@ -100,8 +100,8 @@ public class FinalCheckpointTest {
     public void testCollide() {
         Profile testProfile = new Profile("testProfile");
         Profile.setActiveProfile(testProfile);
-        Checkpoint cp1 = new FinalCheckpoint(1,1,1.0f);
-        Checkpoint cp2 = new FinalCheckpoint(2,2,1.0f);
+        Checkpoint cp1 = new Checkpoint(1,1,1.0f);
+        Checkpoint cp2 = new Checkpoint(2,2,1.0f);
         
         // tests that collide is not run on an activated checkpoint
         cp1.collide(new Player());
