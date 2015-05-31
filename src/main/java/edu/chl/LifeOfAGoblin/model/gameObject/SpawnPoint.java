@@ -5,7 +5,6 @@ import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 import edu.chl.LifeOfAGoblin.model.ISpawnable;
 
-
 /**
  * A class representing a spawnpoint that is responsible for creating new 
  * spawnables in the game when a player collides with it.
@@ -84,5 +83,4 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
     public int getAmount(){
         return this.amount;
     }
-    
 }

@@ -5,15 +5,18 @@ import edu.chl.LifeOfAGoblin.model.IModeledNode;
 
 
 /**
- * The abstract inanimate object class is the super class for all objects in the
- * game that have a visual representaion but are not consider "living" 
- * (such as characters).
+ * The abstract inanimate object class is the abstraction of all objects in the
+ * game that have a visual representaion but are not considered living.
  * @author Anton
  */
 public abstract class AbstractInanimateObject extends AbstractGameObject implements IModeledNode {
-    protected String model;
+   protected String model;
     
-   protected AbstractInanimateObject(String modelName) {
+    /**
+     *
+     * @param modelName the name of the model.
+     */
+    protected AbstractInanimateObject(String modelName) {
        this.model = modelName;
    }
 
@@ -21,5 +24,4 @@ public abstract class AbstractInanimateObject extends AbstractGameObject impleme
     public String getModelName() {
         return model;
     }
-
 }
