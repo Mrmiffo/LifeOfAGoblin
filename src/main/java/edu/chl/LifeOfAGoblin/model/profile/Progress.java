@@ -3,7 +3,7 @@ package edu.chl.LifeOfAGoblin.model.profile;
 import java.io.Serializable;
 
 /**
- *
+ * A class for saving a profile's progress.
  * @author kakan
  */
 public class Progress implements Serializable {
@@ -14,6 +14,7 @@ public class Progress implements Serializable {
     private static final long serialVersionUID = -9078773734400478680L;
     
     //This should be called everytime the player activates a Checkpoint.
+    
     /**
      * Updates the progress with the given parameters.
      * @param currentLevel the level the player is on.

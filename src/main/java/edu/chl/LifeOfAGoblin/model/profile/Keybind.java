@@ -7,7 +7,7 @@ import java.util.Objects;
  * A simple class representing a mouse or keyboard keybind.
  * @author Anton
  */
-public class Keybind implements Serializable{
+public class Keybind implements Serializable {
     private InputDevice inputDevice;
     private int key;
     private static final long serialVersionUID = -1499800738716923957L;
@@ -22,10 +22,18 @@ public class Keybind implements Serializable{
         this.key = key; 
     }
     
+    /**
+     * Returns the input device.
+     * @return the input device
+     */
     public InputDevice getInputDevice(){
         return inputDevice;
     }
     
+    /**
+     * Returns the int representing a key.
+     * @return an int representing a key
+     */
     public int getKey(){
         return key;
     }

@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The profile class contains all the profile data of the user, such as keybinds 
@@ -22,6 +20,10 @@ public class Profile implements Serializable{
     private static List<Profile> listOfProfiles = new ArrayList<>();
     private static final long serialVersionUID = -4203703890649981438L;
     
+    /**
+     * Creates an instance of Profile with a specified name.
+     * @param profileName the name of the profile
+     */
     public Profile(String profileName) {
         this.profileName = profileName;
         keybinds = new Keybindings();
@@ -31,7 +33,7 @@ public class Profile implements Serializable{
     
     /**
      * Replaces the current name associated with the profile with the new name.
-     * string cannot be empty.
+     * The string cannot be empty.
      * @param newName the name with which the profile will be associated with.
      */
     public void rename(String newName){
@@ -163,7 +165,7 @@ public class Profile implements Serializable{
      * object contained in the profile (progress) is saved or when the profile 
      * is created. Saves the profile to the default path.
      */
-    public void saveProfile(){
+    public void saveProfile() {
         try {
             SaveLoadManager.getInstance().saveToFile(this, null, profileName);
         } catch (IOException ex) {
@@ -191,7 +193,7 @@ public class Profile implements Serializable{
     
     /**
      * Returns a list of all the profiles.
-     * @return 
+     * @return a list of all profiles
      */
     public static List<Profile> getProfiles(){
         return listOfProfiles;
