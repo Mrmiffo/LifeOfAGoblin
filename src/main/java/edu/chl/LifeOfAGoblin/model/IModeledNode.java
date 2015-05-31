@@ -8,7 +8,6 @@ package edu.chl.LifeOfAGoblin.model;
  */
 public interface IModeledNode extends INode {
     
-    
     /**
      * Returns the name of the implementor's model.
      * @return the name of the model

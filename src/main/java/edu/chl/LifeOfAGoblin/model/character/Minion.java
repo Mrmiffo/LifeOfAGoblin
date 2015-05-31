@@ -1,5 +1,7 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
+import edu.chl.LifeOfAGoblin.model.ICollidable;
+
 /**
  * A basic minion NPC.
  * @author Anton
@@ -28,5 +30,10 @@ public class Minion extends AbstractNPC {
         super(maxHealth, model, height, width,
                 collisionHeight, collisionWidth, weight, baseDamage, jumpStrength,
                 target.toUpperCase(), aggressionRange, new MeleeWeapon());
+    }
+
+    @Override
+    public void collide(ICollidable collided) {
+    
     }
 }

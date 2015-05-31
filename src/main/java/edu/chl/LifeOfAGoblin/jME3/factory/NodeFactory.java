@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.factory;
 
 import com.jme3.audio.AudioNode;
@@ -16,7 +12,6 @@ import edu.chl.LifeOfAGoblin.model.ISpawnable;
 import edu.chl.LifeOfAGoblin.model.gameObject.Level;
 import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.utils.Resources;
-import edu.chl.LifeOfAGoblin.model.character.Boss;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
 import java.util.List;
 
@@ -32,8 +27,6 @@ public class NodeFactory {
         
         if (type == Minion.class) {
             CharacterPainter.createCharacter(node, new Minion());
-        } else if (type  == Boss.class) {
-            CharacterPainter.createCharacter(node, new Boss());
         }
         
         return node;

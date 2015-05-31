@@ -1,5 +1,7 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
+import edu.chl.LifeOfAGoblin.model.ICollidable;
+
 /**
  * A class representing a ranged weapon.
  * @author Ulrika
@@ -22,5 +24,9 @@ public class RangedWeapon extends Weapon {
     public RangedWeapon(float collisionHeight, float collisionWidth) {
         super(collisionHeight, collisionWidth);
     }
+
+    @Override
+    public void collide(ICollidable collided) {
     
+    }
 }

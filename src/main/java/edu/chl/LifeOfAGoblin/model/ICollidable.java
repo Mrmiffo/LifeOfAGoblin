@@ -6,6 +6,7 @@ package edu.chl.LifeOfAGoblin.model;
  * @author Ulrika Uddeborg
  */
 public interface ICollidable extends INode {
+    
     /**
      * Is called when another ICollidable collides with this object. 
      */

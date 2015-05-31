@@ -9,7 +9,6 @@ import com.jme3.math.FastMath;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Node;
 import edu.chl.LifeOfAGoblin.model.gameObject.Checkpoint;
-import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
 import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
 import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
@@ -50,15 +49,11 @@ public class LevelNodeBuilder {
         }
         
         float width = node.getUserData("WIDTH");
-        if (type.equals("CHECKPOINT")) {
+        
+        if (type.equals("CHECKPOINT") || type.equals("FINALCHECKPOINT")) {
             int level = node.getUserData("LEVEL");
             int number = node.getUserData("NUMBER");
             return new Checkpoint(level, number, width);
-            
-        } else if (type.equals("FINALCHECKPOINT")) {
-            int level = node.getUserData("LEVEL");
-            int number = node.getUserData("NUMBER");
-            return new FinalCheckpoint(level, number, width);
         
         } else if (type.equals("SPAWNPOINT")) {
             int amount = node.getUserData("AMOUNT");

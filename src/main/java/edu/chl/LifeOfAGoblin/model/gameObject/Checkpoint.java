@@ -13,7 +13,7 @@ import edu.chl.LifeOfAGoblin.model.ICollidable;
 
 public class Checkpoint extends AbstractGameObject implements ICollidable, IActivatable {
     
-    private final static float height = Float.MAX_VALUE;
+    private final static float height = 100;
     private int level;
     private int number;
     private float width;
