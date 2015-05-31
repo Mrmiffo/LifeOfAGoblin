@@ -18,7 +18,7 @@ import edu.chl.LifeOfAGoblin.model.INode;
 import java.util.List;
 
 /**
- * A control for controlling NPC movement.
+ * A control for updating NPC model information about collisions.
  * @author Ulrika
  */
 public class NPCCollisionControl extends AbstractControl {
