@@ -14,26 +14,28 @@ import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.SettingsMenu;
 
 /**
  * The mainMenuAppstate will create and display the main menu once activated.
+ *
  * @author Anton
  */
-public class MainMenuAppState extends AbstractAppState{
+public class MainMenuAppState extends AbstractAppState {
 
     private Application app;
     private AudioNode menuMusic;
-    
+
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         this.app = app;
         //Create an instance of the main menu, add it to nifty and display it.
         MainMenu mainMenu = new MainMenu();
+        //For some reason the settings menu and profile menu are automatically added to nifty, but not the main menu...
         SettingsMenu settingsMenu = new SettingsMenu();
         ProfileMenu profileMenu = new ProfileMenu();
         NiftyGUIWrapper.getInstance().addScreen(mainMenu.getScreenName(), mainMenu.getScreen());
         NiftyGUIWrapper.getInstance().goToScreen(mainMenu.getScreenName());
         addMusic();
-        
+
     }
-    
+
     @Override
     public void cleanup() {
         super.cleanup();
@@ -43,7 +45,7 @@ public class MainMenuAppState extends AbstractAppState{
 
     private void addMusic() {
         menuMusic = (AudioNode) Resources.getInstance().getResources("prologue.wav");
-        ((SimpleApplication)app).getRootNode().attachChild(menuMusic);
+        ((SimpleApplication) app).getRootNode().attachChild(menuMusic);
         menuMusic.setPositional(false);
         menuMusic.setLooping(true);
         menuMusic.setVolume(2);
@@ -51,9 +53,9 @@ public class MainMenuAppState extends AbstractAppState{
     }
 
     private void stopMusic() {
-        for (Spatial node: ((SimpleApplication)app).getRootNode().getChildren()){
-            if (node instanceof AudioNode){
-                ((AudioNode)node).stop();
+        for (Spatial node : ((SimpleApplication) app).getRootNode().getChildren()) {
+            if (node instanceof AudioNode) {
+                ((AudioNode) node).stop();
             }
         }
     }

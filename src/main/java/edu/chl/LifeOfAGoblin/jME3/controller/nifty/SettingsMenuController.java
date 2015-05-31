@@ -8,32 +8,30 @@ import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.model.profile.Actions;
 import edu.chl.LifeOfAGoblin.model.profile.Keybind;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- * A controlled for the settings menu. Provides methods for the actions in the 
+ * A controlled for the settings menu. Provides methods for the actions in the
  * settings menu. Also remember what changes has been made among the keybinds.
+ *
  * @author Anton
  */
-public class SettingsMenuController implements ScreenController{
+public class SettingsMenuController implements ScreenController {
 
     private Map<Actions, Map<Integer, Keybind>> changedKeyBinds;
     private Screen screen;
     private ListBox keybindBox;
-    
-    public SettingsMenuController(){
+
+    public SettingsMenuController() {
         changedKeyBinds = new HashMap<>();
     }
-    
+
     @Override
     public void bind(Nifty nifty, Screen screen) {
-       this.screen = screen;
+        this.screen = screen;
     }
 
     @Override
@@ -45,34 +43,34 @@ public class SettingsMenuController implements ScreenController{
     public void onEndScreen() {
         emptyKeyBindBox();
     }
-    
-    private void fillKeyBindBox(){
-        keybindBox =  screen.findNiftyControl("keybind_box", ListBox.class);
+
+    private void fillKeyBindBox() {
+        keybindBox = screen.findNiftyControl("keybind_box", ListBox.class);
         keybindBox.addAllItems(Arrays.asList(Actions.values()));
     }
-    
+
     private void reloadSettingsMenu() {
         emptyKeyBindBox();
         fillKeyBindBox();
     }
-    
-    public void back(){
+
+    public void back() {
         NiftyGUIWrapper.getInstance().goToScreen("mainMenu");
     }
-    
+
     public void resetKeyBindings() {
         Profile.getActiveProfile().resetDefaultBindings();
         reloadSettingsMenu();
     }
-    
-    public void save(){
-        
+
+    public void save() {
+
         //Loops through all the maps in the changeKeyBinds and sends them to the active profile.
-        for (Actions action: changedKeyBinds.keySet()){
+        for (Actions action : changedKeyBinds.keySet()) {
             //For each action: create a list of keybinds.
             ArrayList<Keybind> keybinds = new ArrayList<>();
             //Loop through the contained map of fields and add the keybinds to the list.
-            for (Integer field: changedKeyBinds.get(action).keySet()){
+            for (Integer field : changedKeyBinds.get(action).keySet()) {
                 keybinds.add(changedKeyBinds.get(action).get(field));
             }
             //Add the keybind to the profile.
@@ -82,13 +80,13 @@ public class SettingsMenuController implements ScreenController{
         changedKeyBinds = new HashMap<>();
         back();
     }
-    
-    public void setChangedKeyBind(Actions action, Keybind keybind, int field){
+
+    public void setChangedKeyBind(Actions action, Keybind keybind, int field) {
         //Loops through the actions to see if it has been changed before.
-        if (changedKeyBinds.containsKey(action)){
+        if (changedKeyBinds.containsKey(action)) {
             //If the action exists a Map also exists and the new mapping can be added
             changedKeyBinds.get(action).put(field, keybind);
-        //Else if the action has not been changed before a new map has to be created and the mapping added.
+            //Else if the action has not been changed before a new map has to be created and the mapping added.
         } else {
             Map<Integer, Keybind> mapping = new HashMap<>();
             mapping.put(field, keybind);

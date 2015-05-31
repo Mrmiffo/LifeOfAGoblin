@@ -1,6 +1,5 @@
 package edu.chl.LifeOfAGoblin.jME3.controller.nifty;
 
-
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.controls.ImageSelect;
 import de.lessvoid.nifty.screen.Screen;
@@ -12,21 +11,24 @@ import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 import edu.chl.LifeOfAGoblin.jME3.game.MainMenuAppState;
 
 /**
- * The MainMenuController is the control class for the main menu. It provides 
+ * The MainMenuController is the control class for the main menu. It provides
  * the methods and actions available to the object in the main menu.
+ *
  * @author Anton
  */
-public class MainMenuController implements ScreenController{
-    private Screen screen;
-    
-    public MainMenuController(){
+public class MainMenuController implements ScreenController {
 
+    private Screen screen;
+
+    public MainMenuController() {
     }
-   
+
     /**
-     * This mehtod is run when the control is bound to the screen through the controll() method in MainMenu.
+     * This mehtod is run when the control is bound to the screen through the
+     * controll() method in MainMenu.
+     *
      * @param nifty
-     * @param screen 
+     * @param screen
      */
     @Override
     public void bind(Nifty nifty, Screen screen) {
@@ -38,7 +40,6 @@ public class MainMenuController implements ScreenController{
      */
     @Override
     public void onStartScreen() {
-
     }
 
     /**
@@ -46,38 +47,36 @@ public class MainMenuController implements ScreenController{
      */
     @Override
     public void onEndScreen() {
-        
     }
-    
+
     /**
      * Start the game with the selected level.
      */
-    public void startGame(){
+    public void startGame() {
         //Get the selected level.
         ImageSelect levelSelectBox = screen.findNiftyControl("levelSelectBox", ImageSelect.class);
-        int selectedLevel = levelSelectBox.getSelectedImageIndex()+1; //+1 is used as the levelSelectBox start at 0 but the first level is 1
-        
+        int selectedLevel = levelSelectBox.getSelectedImageIndex() + 1; //+1 is used as the levelSelectBox start at 0 but the first level is 1
+
         //Get the gameAppState and set the level to start. Might need rework for pause and restart to work...
-        GameAppState appState = (GameAppState)StateManagerWrapper.getInstance().getAvailableState(GameAppState.class);
+        GameAppState appState = (GameAppState) StateManagerWrapper.getInstance().getAvailableState(GameAppState.class);
         StateManagerWrapper.getInstance().attachState(appState);
         appState.setLevelToStart(selectedLevel);
         appState.startLevel();
         StateManagerWrapper.getInstance().detachState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
     }
-    
+
     /**
      * Method run by the Quit button, shuts down the game.
      */
-    public void quitGame(){
-        System.out.println("Shutting down...");
+    public void quitGame() {
         Main.shutDown();
     }
-    
-    public void settings(){
+
+    public void settings() {
         NiftyGUIWrapper.getInstance().goToScreen("settingsMenu");
     }
-    
-    public void profile(){
+
+    public void profile() {
         NiftyGUIWrapper.getInstance().goToScreen("profileMenu");
     }
 }
