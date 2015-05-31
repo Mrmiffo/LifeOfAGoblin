@@ -35,7 +35,9 @@ class CollisionObjectPainter {
         Vector3f halfExtent = new Vector3f(collisionObject.getCollisionWidth(), collisionObject.getCollisionHeight(), 0);
         BoxCollisionShape checkBox = new BoxCollisionShape(halfExtent);
         GhostControl ghostControl = new GhostControl(checkBox);
-
+        
+        PhysicsWrapper.getInstance().addControl(ghostControl);
+        
         node.addControl(modelControl);
         node.addControl(ghostControl);
 
