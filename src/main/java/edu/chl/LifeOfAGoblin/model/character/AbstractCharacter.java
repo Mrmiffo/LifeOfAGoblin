@@ -3,14 +3,13 @@ package edu.chl.LifeOfAGoblin.model.character;
 import edu.chl.LifeOfAGoblin.model.AbstractGameObject;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 import edu.chl.LifeOfAGoblin.model.IModeledNode;
-import edu.chl.LifeOfAGoblin.model.ISpawnable;
 
 /**
  * The abstraction of any character. Contains information such as the visual model 
  * of the character and size of the same. Also contains some value for the character behavior.
  * @author Anton & kakan
  */
-public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable, ISpawnable{
+public abstract class AbstractCharacter extends AbstractGameObject implements IModeledNode, ICollidable, IKillable {
     
     private int health;
     private int maxHealth;

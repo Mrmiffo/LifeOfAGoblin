@@ -30,7 +30,7 @@ public class SpawnControl extends AbstractControl{
      * @param amount the number of spawnables to put in the game
      * @param type the type of spawnable to put in the game
      */
-    public void spawn(int amount, ISpawnable type) {
+    public void spawn(int amount, Class<? extends ISpawnable> type) {
         if (amount > 0) {
             for (int i = 0; i<amount; i++) {
                 Node spawn = NodeFactory.createNode(type);
@@ -49,7 +49,7 @@ public class SpawnControl extends AbstractControl{
             this.hasSpawned = true;
             this.activatable.activate();
             if(this.activatable instanceof SpawnPoint){
-                ISpawnable type = ((SpawnPoint)this.activatable).getType();
+                Class<? extends ISpawnable> type = ((SpawnPoint)this.activatable).getType();
                 int amount = ((SpawnPoint)this.activatable).getAmount();  
                 spawn(amount, type);
             }
