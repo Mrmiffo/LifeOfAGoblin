@@ -8,8 +8,6 @@ import edu.chl.LifeOfAGoblin.model.ICollidable;
  * @author fredrik
  */
 public class FinalCheckpoint extends Checkpoint {
-    private int level;
-    private int number;
     public FinalCheckpoint(int level, int number, float width){
         super(level, number, width);
     }
@@ -22,9 +20,5 @@ public class FinalCheckpoint extends Checkpoint {
     @Override
     public void collide(ICollidable collided) {
         super.collide(collided);
-        
-        //TODO fix this properly
-//            StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(GameAppState.class));
-//            StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
     }
 }
