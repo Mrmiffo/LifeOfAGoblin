@@ -4,6 +4,7 @@
  */
 package edu.chl.LifeOfAGoblin.model.gameObject;
 
+import java.awt.Color;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,8 +31,8 @@ public class LevelTest {
     @Test
     public void testGetLevelName() {
         // setup
-        Level lvl1 = new Level("Level1", 1,"");
-        Level lvl2 = new Level("", 2,"");
+        Level lvl1 = new Level("Level1", 1,"", Color.BLUE);
+        Level lvl2 = new Level("", 2,"", Color.BLACK);
         
         //tests that the correct name is returned regardless of graphical 
         //models

@@ -64,7 +64,7 @@ public class NodeFactory {
 
         //Makes the shape solid.
         RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
-        PhysicsWrapper.getInstance().add(landscape);
+        PhysicsWrapper.getInstance().addControl(landscape);
         levelNode.addControl(landscape);
 
         //----------------------------MOVE------------------------------

@@ -119,7 +119,7 @@ class CharacterPainter {
         //NOTE: CharacterControl has been depricated prematurly due to BetterCharacterControl. Although BetterCharacterControl contains major flaws (such as missing step height) that make CharacterControl a better choice for this project.
         CharacterControl mover = new CharacterControl(shape, 0.05f);
         mover.setJumpSpeed(character.getJumpStrength());
-        PhysicsWrapper.getInstance().add(mover);
+        PhysicsWrapper.getInstance().addControl(mover);
         node.addControl(mover);
     }
 
@@ -131,7 +131,7 @@ class CharacterPainter {
      */
     private static void attachGhostControl(Node node, BoxCollisionShape shape) {
         GhostControl ghost = new GhostControl(shape);
-        PhysicsWrapper.getInstance().add(ghost);
+        PhysicsWrapper.getInstance().addControl(ghost);
 
         //Attaching ghost control
         node.addControl(ghost);

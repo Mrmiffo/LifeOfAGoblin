@@ -39,9 +39,7 @@ class CollisionObjectPainter {
 
         ghostControl.setCollisionGroup(3); //FIX
         ghostControl.setCollideWithGroups(2); //FIX
-
-        PhysicsWrapper.getInstance().add(ghostControl);
-
+        PhysicsWrapper.getInstance().addControl(ghostControl);
         node.addControl(modelControl);
         node.addControl(ghostControl);
 
