@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.utils;
 
 import com.jme3.app.state.AppState;
@@ -18,10 +14,17 @@ public class StateManagerWrapper {
     private AppStateManager sm;
     private ArrayList<AppState> states;
     
+    /**
+     * Creates an instance of StateManagerWrapper.
+     */
     private StateManagerWrapper(){
         
     }
     
+    /**
+     * Returns the singleton instance of StateManagerWrapper.
+     * @return the instance of StateManagerWrapper
+     */
     public static synchronized StateManagerWrapper getInstance(){
         if (instance == null){
             instance = new StateManagerWrapper();
@@ -99,10 +102,19 @@ public class StateManagerWrapper {
     }
     
 
+    /**
+     * Returns a list of available states.
+     * @return the list
+     */
     public ArrayList<AppState> getAvailableStates(){
         return (ArrayList<AppState>)states.clone();
     }
     
+    /**
+     * Returns an AppState if available.
+     * @param appStateType the type of the wanted AppState
+     * @return the wanted AppState
+     */
     public AppState getAvailableState(Class<? extends AppState> appStateType){
         AppState toReturn = null;
         for (AppState state: states){
@@ -114,6 +126,11 @@ public class StateManagerWrapper {
         return toReturn;
     }
     
+    /**
+     * Returns the active AppState of the specified type.
+     * @param appStateType the type of the wanted AppState
+     * @return the wanted AppState
+     */
     public AppState getActiveState(Class<? extends AppState> appStateType){
         return sm.getState(appStateType);
     }
