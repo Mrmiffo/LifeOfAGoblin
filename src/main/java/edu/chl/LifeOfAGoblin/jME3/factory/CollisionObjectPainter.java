@@ -16,35 +16,35 @@ import edu.chl.LifeOfAGoblin.model.gameObject.SpawnPoint;
 import edu.chl.LifeOfAGoblin.model.ICollidable;
 import edu.chl.LifeOfAGoblin.model.gameObject.FinalCheckpoint;
 
-
 /**
  * A class responsible for "painting" nodes giving them models and adding
  * controls
+ *
  * @author fredrik
  */
-
 class CollisionObjectPainter {
+
     /**
      * Paints a node of the type collisionObject
+     *
      * @param typeToCreate the specific type of collisionobject to create
-     * @param node the node to be painted. It also contains all 
-     * relevant userdata.
+     * @param node the node to be painted. It also contains all relevant
+     * userdata.
      */
-    
     static void paintCollisionObject(ICollidable collisionObject, Node node) {
         ModelControl modelControl = new ModelControl(collisionObject);
         Vector3f halfExtent = new Vector3f(collisionObject.getCollisionWidth(), collisionObject.getCollisionHeight(), 0);
         BoxCollisionShape checkBox = new BoxCollisionShape(halfExtent);
         GhostControl ghostControl = new GhostControl(checkBox);
-        
+
         ghostControl.setCollisionGroup(3); //FIX
         ghostControl.setCollideWithGroups(2); //FIX
-        
+
         PhysicsWrapper.getInstance().add(ghostControl);
-        
+
         node.addControl(modelControl);
         node.addControl(ghostControl);
-        
+
         if (collisionObject instanceof SpawnPoint) {
             SpawnControl sc = new SpawnControl();
             node.addControl(sc);

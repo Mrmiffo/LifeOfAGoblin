@@ -26,8 +26,7 @@ import edu.chl.LifeOfAGoblin.model.character.AbstractCharacter;
 import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
 
 /**
- * The character factory is used to create and decorate player and NPC character
- * nodes.
+ * The character factory is used to decorate player and NPC character nodes.
  *
  * @author kakan
  */
@@ -38,15 +37,14 @@ class CharacterPainter {
      *
      * @param node the node which will represent the character
      * @param character the character which the node will represent.
-     * @return a node representing the character.
      */
-    static void createCharacter(Node node, AbstractCharacter character) {
+    static void paintCharacter(Node node, AbstractCharacter character) {
         //Connects the model to the node
         node.addControl(new ModelControl(character));
 
         makeSolid(node);
         makeMoveable(node);
-        if (character.getClass() == Player.class) {
+        if (character instanceof Player) {
             paintPlayer(node);
         }
         if (character instanceof AbstractNPC) {
@@ -60,7 +58,7 @@ class CharacterPainter {
      *
      * @param node the node
      */
-    static void paintPlayer(Node node) {
+    private static void paintPlayer(Node node) {
         //A control which use the player model data to update the game hud health bar.
         node.addControl(new PlayerHealthControl());
     }
@@ -71,7 +69,7 @@ class CharacterPainter {
      * @param node the node
      * @param npc the model of the NPC
      */
-    static void paintNPC(Node node, AbstractNPC npc) {
+    private static void paintNPC(Node node, AbstractNPC npc) {
         enableReaction(node); //Adds AI
         addWeapon(node, npc);
     }
@@ -187,7 +185,7 @@ class CharacterPainter {
         Weapon weapon = npc.getWeapon();
 
         weaponNode.addControl(new ModelControl(weapon));
-        
+
         BoxCollisionShape ghostShape = new BoxCollisionShape(new Vector3f(1,
                 weapon.getCollisionHeight(), weapon.getCollisionWidth()));
 

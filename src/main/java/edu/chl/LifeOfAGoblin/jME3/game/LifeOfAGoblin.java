@@ -12,15 +12,13 @@ import edu.chl.LifeOfAGoblin.utils.LevelManager;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
- * The LifeOfAGoblin class is the game itself. This class will insitialize all 
+ * The LifeOfAGoblin class is the game itself. This class will insitialize all
  * needed singletons and extends the jME3 simple Application. Use the start()
  * method to run the game and the user will be presented with the main menu.
  * This will also run all the initialize methods for all the helper classes.
+ *
  * @author Anton
  */
 public class LifeOfAGoblin extends SimpleApplication {
@@ -36,9 +34,9 @@ public class LifeOfAGoblin extends SimpleApplication {
         PhysicsWrapper.getInstance();
         setupProfile();
         setupAppStates();
-        
+
         StateManagerWrapper.getInstance().attachState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
-        
+
         //Removes statistics
         setDisplayFps(false);
         setDisplayStatView(false);
@@ -52,23 +50,23 @@ public class LifeOfAGoblin extends SimpleApplication {
      */
     private void setupProfile() {
         List<String> allSavedFiles = SaveLoadManager.getInstance().getSavedFiles(null);
-        if (allSavedFiles.isEmpty()){
+        if (allSavedFiles.isEmpty()) {
             Profile defaultProfile = new Profile("Default profile");
             Profile.addProfile(defaultProfile);
             Profile.setActiveProfile(defaultProfile);
 
         } else {
-            for (String fileName: allSavedFiles){
+            for (String fileName : allSavedFiles) {
                 Serializable temp;
                 try {
                     temp = SaveLoadManager.getInstance().loadFile(null, fileName);
                 } catch (IOException | ClassNotFoundException io) {
                     temp = null;
-                } 
-                if (temp != null && temp instanceof Profile){
-                    Profile tempProfile = (Profile)temp;
+                }
+                if (temp != null && temp instanceof Profile) {
+                    Profile tempProfile = (Profile) temp;
                     Profile.addProfile(tempProfile);
-                    if (tempProfile.getIsActiveProfile()){
+                    if (tempProfile.getIsActiveProfile()) {
                         Profile.setActiveProfile(tempProfile);
                     }
                 }
@@ -78,8 +76,8 @@ public class LifeOfAGoblin extends SimpleApplication {
     }
 
     /**
-     * A method to setup the app states and register them to the list of available 
-     * states in the state manager.
+     * A method to setup the app states and register them to the list of
+     * available states in the state manager.
      */
     private void setupAppStates() {
         GameAppState gameState = new GameAppState();

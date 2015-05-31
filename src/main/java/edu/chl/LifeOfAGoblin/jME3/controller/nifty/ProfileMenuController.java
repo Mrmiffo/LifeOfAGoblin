@@ -6,18 +6,18 @@ import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
-import java.io.IOException;
 import java.util.List;
 
 /**
- * The ProfilMenuController is the controller for the Profile menu screen.
- * This class will handle the events of the buttons in the screen.
+ * The ProfilMenuController is the controller for the Profile menu screen. This
+ * class will handle the events of the buttons in the screen.
+ *
  * @author Anton
  */
-public class ProfileMenuController implements ScreenController{
+public class ProfileMenuController implements ScreenController {
 
-    ListBox profileBox;
-    
+    private ListBox profileBox;
+
     @Override
     public void bind(Nifty nifty, Screen screen) {
         profileBox = screen.findNiftyControl("profile_box", ListBox.class);
@@ -38,9 +38,9 @@ public class ProfileMenuController implements ScreenController{
      */
     private void loadProfiles() {
         if (!Profile.getProfiles().isEmpty()) {
-            for (Profile profile: Profile.getProfiles()){
+            for (Profile profile : Profile.getProfiles()) {
                 profileBox.addItem(profile.getProfileName());
-                if (profile.getIsActiveProfile()){
+                if (profile.getIsActiveProfile()) {
                     profileBox.selectItem(profile.getProfileName());
                 }
             }
@@ -57,7 +57,7 @@ public class ProfileMenuController implements ScreenController{
     private void emptyProfiles() {
         profileBox.removeAllItems(profileBox.getItems());
     }
-    
+
     /**
      * Will empty and load the profile box.
      */
@@ -65,22 +65,23 @@ public class ProfileMenuController implements ScreenController{
         emptyProfiles();
         loadProfiles();
     }
-    
+
     /**
-     * Action for the save button. Will set the new active profile in the Profile class.
+     * Action for the save button. Will set the new active profile in the
+     * Profile class.
      */
-    public void save(){
-        Profile.setActiveProfile((String)profileBox.getSelection().get(0));
+    public void save() {
+        Profile.setActiveProfile((String) profileBox.getSelection().get(0));
         back();
     }
-    
+
     /**
      * Return to main menu.
      */
-    public void back(){
+    public void back() {
         NiftyGUIWrapper.getInstance().goToScreen("mainMenu");
     }
-    
+
     /**
      * Delete the profile from disk and the list of profiles.
      */
@@ -88,17 +89,17 @@ public class ProfileMenuController implements ScreenController{
         //Get the selected profile
         List<String> selectedProfile = profileBox.getSelection();
         String profileName = selectedProfile.get(0);
-        
+
         //Remove the profile from model.
         Profile.removeProfile(Profile.getProfile(profileName));
 
         //Reload the view.
         reloadProfiles();
     }
-    
+
     /**
-     * Create a new profile.
-     * TODO: Add ability to change profile name on creation.
+     * Create a new profile. TODO: Add ability to change profile name on
+     * creation.
      */
     public void createProfile() {
         //Creates a profile in model. Logic for naming a profile is not provided.
@@ -107,7 +108,7 @@ public class ProfileMenuController implements ScreenController{
         Profile.setActiveProfile(profile);
         profile.saveProfile();
 
-        
+
         //Reload the view.
         reloadProfiles();
     }

@@ -19,59 +19,65 @@ import edu.chl.LifeOfAGoblin.model.character.Boss;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
 
 /**
+ * The LevelNodeBuilder will paint the nodes in a level into objects.
  *
  * @author kakan
  */
 public class LevelNodeBuilder {
-    
-    public static void paintNode(Node node, Camera cam) {
-        if(node.getUserDataKeys().size() > 0) {
+
+    /**
+     * A package protected method used to pain the nodes contianed in the level
+     * node into game objects.
+     *
+     * @param node The level node which contains nodes to paint.
+     * @param cam The camera of the game, will be set to follow the player.
+     */
+    static void paintNode(Node node, Camera cam) {
+        if (node.getUserDataKeys().size() > 0) {
             INode model = nodeToModel(node);
             if (model instanceof Player) {
-                CharacterPainter.createCharacter(node, (Player)model);
-                
+                CharacterPainter.paintCharacter(node, (Player) model);
+
                 ChaseCamera chaseCam = new ChaseCamera(cam);
                 chaseCam.setRotationSensitivity(0);
-                chaseCam.setDefaultHorizontalRotation(FastMath.PI/2);
-                chaseCam.setDefaultVerticalRotation(FastMath.PI/9); //20 degrees
+                chaseCam.setDefaultHorizontalRotation(FastMath.PI / 2);
+                chaseCam.setDefaultVerticalRotation(FastMath.PI / 9); //20 degrees
                 node.addControl(chaseCam);
             } else if (model instanceof AbstractNPC) {
-                CharacterPainter.createCharacter(node, (AbstractNPC) model);
-            } else if (model instanceof ICollidable){
-                CollisionObjectPainter.paintCollisionObject((ICollidable)model, node);
+                CharacterPainter.paintCharacter(node, (AbstractNPC) model);
+            } else if (model instanceof ICollidable) {
+                CollisionObjectPainter.paintCollisionObject((ICollidable) model, node);
             }
         }
     }
 
     private static INode nodeToModel(Node node) {
-        String type = ((String)node.getUserData("nodeType"));       
-        if (type.equals("PLAYER")){
+        String type = ((String) node.getUserData("nodeType"));
+        if (type.equals("PLAYER")) {
             return new Player();
         }
-        
+
         float width = node.getUserData("WIDTH");
         if (type.equals("CHECKPOINT")) {
             int level = node.getUserData("LEVEL");
             int number = node.getUserData("NUMBER");
             return new Checkpoint(level, number, width);
-            
+
         } else if (type.equals("FINALCHECKPOINT")) {
             int level = node.getUserData("LEVEL");
             int number = node.getUserData("NUMBER");
             return new FinalCheckpoint(level, number, width);
-        
+
         } else if (type.equals("SPAWNPOINT")) {
             int amount = node.getUserData("AMOUNT");
             String spawnType = node.getUserData("TYPE");
-            switch(spawnType) {
+            switch (spawnType) {
                 case "BOSS":
                     return new SpawnPoint(amount, Boss.class, width);
                 case "MINION":
                     return new SpawnPoint(amount, Minion.class, width);
             }
-            
-        } else if (type.equals("GAMEOBJECT")) {
-            //Not implemented yet
+
         }
         return null;
     }

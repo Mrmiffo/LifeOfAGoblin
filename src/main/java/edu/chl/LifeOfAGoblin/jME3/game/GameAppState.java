@@ -19,9 +19,10 @@ import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
 import edu.chl.LifeOfAGoblin.model.profile.Actions;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
 import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
+import java.awt.Color;
 
 /**
- * The game appstate is the state in which the game itself is run and
+ * The GameAppState is the state in which the game itself is run and
  * initialized.
  *
  * @author Anton
@@ -70,6 +71,9 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         rootNode.detachAllChildren();
     }
 
+    /**
+     * Stops the music in the level.
+     */
     private void stopMusic() {
         if (levelNode != null && levelNode.getChildren().size() > 0) {
             for (Spatial node : (levelNode.getChildren())) {
@@ -81,7 +85,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     }
 
     /**
-     * Updates the the next level that should start.
+     * Updates the next level that should start.
      *
      * @param levelno the number of the next level
      */
@@ -93,7 +97,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
      * Starts the level specified by setLevelToStart.
      */
     public void startLevel() {
-        app.getViewPort().setBackgroundColor(new ColorRGBA(0.46f, 0.71f, 1, 0));
+        setSkyColor();
         attachPhysics();
         displayHud();
         levelNode = NodeFactory.createLevelNode(level, app.getCamera());
@@ -107,7 +111,10 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         }
     }
 
-    public void pause() {
+    /**
+     * A method used to pause the game.
+     */
+    private void pause() {
         StateManagerWrapper sm = StateManagerWrapper.getInstance();
         if (isPaused) {
             GameHudController.turnOpaque();
@@ -127,15 +134,33 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         return (Actions[]) actions.clone();
     }
 
+    /**
+     * Attach the physics state.
+     */
     private void attachPhysics() {
         StateManagerWrapper.getInstance().attachState(StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class));
     }
 
+    /**
+     * Display the game hud.
+     */
     private void displayHud() {
         NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
     }
 
+    /**
+     * Detach the physics to deactivate all the physical objects.
+     */
     private void detachPhysics() {
         StateManagerWrapper.getInstance().detachState(StateManagerWrapper.getInstance().getActiveState(BulletAppState.class));
+    }
+
+    /**
+     * Set the color of the sky.
+     */
+    private void setSkyColor() {
+        Color temp = level.getSkyColor();
+        ColorRGBA tempColor = new ColorRGBA((float) temp.getRed() / 255, (float) temp.getGreen() / 255, (float) temp.getBlue() / 255, (float) temp.getAlpha() / 255);
+        app.getViewPort().setBackgroundColor(tempColor);
     }
 }
