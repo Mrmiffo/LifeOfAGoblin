@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.controller.character;
 
 import com.jme3.bullet.collision.PhysicsCollisionObject;
@@ -22,16 +18,16 @@ import edu.chl.LifeOfAGoblin.model.INode;
 import java.util.List;
 
 /**
- *
+ * A control for controlling NPC movement.
  * @author Ulrika
  */
 public class NPCCollisionControl extends AbstractControl {
 
     /**
-     *
+     * Updates the information in the model about targets.
      * @param collided the object with which the GhostControl has collided with
      */
-    public void updateCollisionInfo(Spatial npc, Spatial collided) {
+    private void updateCollisionInfo(Spatial npc, Spatial collided) {
         if (npc != collided && collided.getControl(ModelControl.class).getModel() instanceof AbstractCharacter) {
             INode n = npc.getControl(ModelControl.class).getModel();
             AbstractNPC npcModel = (AbstractNPC) n;
@@ -49,15 +45,6 @@ public class NPCCollisionControl extends AbstractControl {
                 distance = collidedX - npcX;
                 direction = Direction.RIGHT;
             }
-
-            /*Direction direction;
-             if (distance >= 0) {
-             direction = Direction.LEFT;
-             } else {
-             direction = Direction.RIGHT;
-             }*/
-
-            INode collideModel = collided.getControl(ModelControl.class).getModel();
 
             npcModel.updateAIAction(FastMath.abs(distance), direction, ((String) collided.getUserData("nodeType")));
         }
