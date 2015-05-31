@@ -36,7 +36,7 @@ public class Keybindings implements Serializable{
             add(new Keybind(InputDevice.KEYBOARD, KeyInput.KEY_SPACE));
         }});
 
-        keybindings.put(Actions.OPEN_MENU, new ArrayList<Keybind>() {{
+        keybindings.put(Actions.PAUSE, new ArrayList<Keybind>() {{
             add(new Keybind(InputDevice.KEYBOARD, KeyInput.KEY_P));
         }});
     }

@@ -89,9 +89,9 @@ public class ProfileTest {
         p.addCustomBinding(Actions.JUMP, list1);
         list1.clear();
         list1.add(testKeyBind2);
-        p.addCustomBinding(Actions.OPEN_MENU, list1);
+        p.addCustomBinding(Actions.PAUSE, list1);
         assertTrue(Actions.JUMP.getKeyCodes().contains(testKeyBind1));
-        assertTrue(Actions.OPEN_MENU.getKeyCodes().contains(testKeyBind2));        
+        assertTrue(Actions.PAUSE.getKeyCodes().contains(testKeyBind2));        
         
         //tests if method can handle negative input
         list1.clear();
@@ -159,7 +159,7 @@ public class ProfileTest {
         rightList.add(KeyInput.KEY_D);
         
         TestDefaultKey jump = new TestDefaultKey(Actions.JUMP, jumpList);
-        TestDefaultKey menu = new TestDefaultKey(Actions.OPEN_MENU, menuList);
+        TestDefaultKey menu = new TestDefaultKey(Actions.PAUSE, menuList);
         TestDefaultKey left = new TestDefaultKey(Actions.WALK_LEFT, leftList);
         TestDefaultKey right = new TestDefaultKey(Actions.WALK_RIGHT, rightList);    
         ArrayList<TestDefaultKey> defaultKeyList = new ArrayList();
@@ -170,7 +170,7 @@ public class ProfileTest {
         
         ArrayList<Actions> actionsList= new ArrayList();
         actionsList.add(Actions.JUMP);
-        actionsList.add(Actions.OPEN_MENU);
+        actionsList.add(Actions.PAUSE);
         actionsList.add(Actions.WALK_LEFT);
         actionsList.add(Actions.WALK_RIGHT);
 
@@ -183,12 +183,12 @@ public class ProfileTest {
         
         //tests that keybindings were reset
         p.addCustomBinding(Actions.JUMP, list1);
-        p.addCustomBinding(Actions.OPEN_MENU, list1);
+        p.addCustomBinding(Actions.PAUSE, list1);
         p.addCustomBinding(Actions.WALK_LEFT, list1);
         p.addCustomBinding(Actions.WALK_RIGHT, list1);
         p.resetDefaultBindings();
         assertFalse(Actions.JUMP.getKeyCodes().contains(testKeyBind1));
-        assertFalse(Actions.OPEN_MENU.getKeyCodes().contains(testKeyBind1));
+        assertFalse(Actions.PAUSE.getKeyCodes().contains(testKeyBind1));
         assertFalse(Actions.WALK_LEFT.getKeyCodes().contains(testKeyBind1));
         assertFalse(Actions.WALK_RIGHT.getKeyCodes().contains(testKeyBind1));
         for(TestDefaultKey tdk: defaultKeyList){
