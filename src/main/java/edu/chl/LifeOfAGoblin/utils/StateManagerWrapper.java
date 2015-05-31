@@ -17,6 +17,7 @@ public class StateManagerWrapper {
     private static StateManagerWrapper instance;
     private AppStateManager sm;
     private ArrayList<AppState> states;
+    
     private StateManagerWrapper(){
         
     }
@@ -45,6 +46,7 @@ public class StateManagerWrapper {
     public void addState(AppState as){
         states.add(as);
     }
+    
     /**
      * Remove the state from the list of available states. NOTE: If the state is active it will be deactivated.
      * @param as the state to remove and detach.
@@ -53,10 +55,11 @@ public class StateManagerWrapper {
         states.remove(as);
         sm.detach(as);
     }
+    
     /**
      * Activates the state. Also adds the state to the list of available states 
      * if it does not exist there.
-     * @param as 
+     * @param as the state to activate
      */
     public void activateState(AppState as){
         sm.attach(as);
@@ -69,16 +72,35 @@ public class StateManagerWrapper {
     
     /**
      * Deactivates the states. NOTE: State will still be available in the list of available states.
-     * @param as 
+     * @param as the state to deactivate
      */
     public void deactivateState(AppState as){
         sm.detach(as);
     }
     
+    /**
+     * Enables the app state.
+     * @param as the app state to enable
+     */
+    public void enableState(AppState as) {
+        if (!as.isEnabled()) {
+            as.setEnabled(true);
+        }
+    }
+    
+    /**
+     * Disables the app state.
+     * @param as the app state to disable
+     */
+    public void disableState(AppState as) {
+        if (as.isEnabled()) {
+            as.setEnabled(false);
+        }
+    }
+    
 
     public ArrayList<AppState> getAvailableStates(){
         return (ArrayList<AppState>)states.clone();
-
     }
     
     public AppState getAvailableState(Class<? extends AppState> appStateType){
@@ -95,5 +117,4 @@ public class StateManagerWrapper {
     public AppState getActiveState(Class<? extends AppState> appStateType){
         return sm.getState(appStateType);
     }
-   
 }

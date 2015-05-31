@@ -87,7 +87,7 @@ public class GameHudController implements ScreenController{
     }
     
     public static void turnGray() {
-        screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(115/255f, 99/255f, 99/255f, 0.8f));
+        screen.findElementByName("backgroundPanel").getRenderer(PanelRenderer.class).setBackgroundColor(new Color(0, 0, 0, 0.6f));
     }
     
     public static void turnOpaque() {

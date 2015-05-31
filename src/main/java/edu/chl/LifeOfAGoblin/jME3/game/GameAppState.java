@@ -5,6 +5,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.audio.AudioNode;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
@@ -17,6 +18,7 @@ import edu.chl.LifeOfAGoblin.utils.NiftyGUIWrapper;
 import edu.chl.LifeOfAGoblin.jME3.view.niftyScreen.GameHud;
 import edu.chl.LifeOfAGoblin.model.profile.Actions;
 import edu.chl.LifeOfAGoblin.utils.LevelManager;
+import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 
 /**
  * The game appstate is the state in which the game itself is run and initialized. 
@@ -56,7 +58,6 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         rootNode = ((SimpleApplication)app).getRootNode();
         this.app = app;
         InputManagerWrapper.getInstance().registerListener(this);
-        
     }
     
     @Override
@@ -73,16 +74,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
             }
         }
     }
-    
-    @Override
-    public void setEnabled(boolean enabled) {
-    }
-    
-    @Override
-    public void update(float tpf) {
         
-    }
-    
     /**
      * Updates the the next level that should start.
      * @param levelno the number of the next level
@@ -103,8 +95,6 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
         rootNode.attachChild(levelNode);
     }
 
-
-
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
         if (name.equals(Actions.OPEN_MENU.toString()) && isPressed){
@@ -113,16 +103,18 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     }
     
     public void pause(){
+       StateManagerWrapper sm = StateManagerWrapper.getInstance();
         if (isPaused) {
             GameHudController.turnOpaque();
             isPaused = false;
+            setEnabled(true);
+            sm.enableState(sm.getAvailableState(BulletAppState.class));
         } else {
             GameHudController.turnGray();
             isPaused = true;
+            setEnabled(false);
+            sm.disableState(sm.getAvailableState(BulletAppState.class));
         }
-//        System.out.println("pause");
-//        StateManagerWrapper.getInstance().deactivateState(this);
-//        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(PauseAppState.class));
     }
 
     @Override
