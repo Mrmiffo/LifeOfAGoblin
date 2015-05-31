@@ -25,17 +25,22 @@ public class PlayerHealthControl extends AbstractControl {
 
     @Override
     protected void controlUpdate(float tpf) {
-        Player player = (Player) spatial.getControl(ModelControl.class).getModel();
-        //Checks if the health is the same as the last time the update method was run, if unchanged do nothing, if changed set the new health as last health and update hud.
+        Player player = (Player)spatial.getControl(ModelControl.class).getModel();
+        
+        /* Checks if the health is the same as the last time the update method was run,
+         * if unchanged do nothing, if changed set the new health as last health and update hud. */
         if (player.getHealth() != lastHealth || player.getMaxHealth() != lastMaxHealth) {
             GameHudController.updateHudHealthbar(player.getHealth(), player.getMaxHealth());
+            
             //Checks if the player took damage, if so flash the screen.
             if (player.getHealth() < lastHealth) {
                 GameHudController.flashOnDamage();
             }
+            
             lastHealth = player.getHealth();
             lastMaxHealth = player.getMaxHealth();
         }
+        
         if (player.isDead()) {
             Node scene = spatial.getParent();
 
@@ -46,6 +51,7 @@ public class PlayerHealthControl extends AbstractControl {
                     if (child.getUserData("nodeType").equals("CHECKPOINT")) {
                         //All checkpoints contain a number (index)
                         int nbr = child.getUserData("NUMBER");
+                        
                         //Check whether the number corresponds to the active profile's current progress.
                         if (nbr == Profile.getActiveProfile().getProgress().getLastVisitedCheckpoint()) {
                             //The the number corresponds, place the player slightly above the location of the checkpoint.
