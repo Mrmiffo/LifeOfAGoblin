@@ -17,16 +17,25 @@ import java.util.List;
  */
 public class SaveLoadManager {
     private static SaveLoadManager instance;
+    
+    /**
+     * Creates an instance of SaveLoadManager.
+     */
     private SaveLoadManager(){
         
     }
     
+    /**
+     * Returns the singleton instance of SaveLoadManager.
+     * @return the instance of SaveLoadManager
+     */
     public static synchronized SaveLoadManager getInstance(){
         if (instance == null){
             instance = new SaveLoadManager();
         }
         return instance;
     }
+    
     /**
      * This method will save the specified object to a file at the specified path.
      * @param objectToSave The Serializable object to save.
@@ -34,19 +43,18 @@ public class SaveLoadManager {
      */
     public void saveToFile(Serializable objectToSave, String path, String name) throws IOException{
 
-            if (path == null){			
+            if (path == null) {			
                     new File(System.getProperty("user.home") + File.separator +"LifeOfAGoblin" + File.separator + "savedFiles").mkdirs();
                     path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
             }
             
-            try{
-
-                    FileOutputStream fout = new FileOutputStream(path + File.separator + name);
+            try {
+                FileOutputStream fout = new FileOutputStream(path + File.separator + name);
                 try (ObjectOutputStream oos = new ObjectOutputStream(fout)) {   
                     oos.writeObject(objectToSave);
                     fout.close();
                 }
-            }catch(IOException ex){
+            } catch(IOException ex) {
                 throw new IOException("Unable to save file.");
             }
     }
@@ -56,11 +64,11 @@ public class SaveLoadManager {
      * @param path The path to the file to load
      * @return the loaded file, or if none was found, null.
      */
-    public Serializable loadFile(String path, String name) throws ClassNotFoundException, IOException{
-            if (path == null){
+    public Serializable loadFile(String path, String name) throws ClassNotFoundException, IOException {
+            if (path == null) {
                     path = System.getProperty("user.home") + File.separator + "LifeOfAGoblin" + File.separator + "savedFiles";
             }
-            try{
+            try {
                 FileInputStream fin = new FileInputStream(path + File.separator + name);
                 Object toReturn;
                 try (ObjectInputStream ois = new ObjectInputStream(fin)) {
@@ -68,9 +76,9 @@ public class SaveLoadManager {
                     fin.close();
                 }
                 return (Serializable)toReturn;
-            }catch(IOException ex){
+            } catch(IOException ex) {
                 throw new IOException("Unable to load file.");
-            }catch(ClassNotFoundException e){
+            } catch(ClassNotFoundException e) {
                 throw new ClassNotFoundException("Loaded file could not be converted to Serializeable.");
             }
     }

@@ -4,7 +4,6 @@ import com.jme3.asset.AssetManager;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.audio.AudioNode;
 import com.jme3.scene.Spatial;
-import edu.chl.LifeOfAGoblin.utils.SaveLoadManager;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -25,16 +24,24 @@ public class Resources {
     private String defaultPath;
     private AssetManager assetManager;
     
+    /**
+     * Creates an instance of Resources.
+     */
     private Resources(){
         defaultPath = "src" + File.separator + "main" + File.separator + "java" + File.separator + "edu" + File.separator + "chl" + File.separator + "LifeOfAGoblin" + File.separator + "assets";
     }
 
+    /**
+     * Returns the singleton instance of Resources.
+     * @return the instance of Resources
+     */
     public static synchronized Resources getInstance(){
         if (instance == null){
             instance = new Resources();
         }
         return instance;
     }
+    
     /**
      * The initialize method will setup the assetManager and load any needed j3o
      * resources.
@@ -91,6 +98,34 @@ public class Resources {
     public void setTempPath(String folder){
         assetManager.registerLocator(defaultPath + File.separator + folder, FileLocator.class);
     }
+
+    /**
+     * Loads the model for the game.
+     */
+    private void loadModels() {
+        String modelPath = defaultPath + File.separator + "models";
+        List<String> models = SaveLoadManager.getInstance().getSavedFiles(modelPath);
+        loadResources(models, modelPath);
+    }
+
+    //Loads the scenes files. Textures in the scenes folder do not have to be loaded into the geometries.
+    /**
+     * Loads the scenes for the game.
+     */
+    private void loadScenes() {
+        String scenesPath = defaultPath + File.separator + "scenes";
+        List<String> scenes = SaveLoadManager.getInstance().getSavedFiles(scenesPath);
+        loadResources(scenes, scenesPath);
+    }
+
+    /**
+     * Loads the sounds for the game.
+     */
+    private void loadSounds() {
+        String soundsPath = defaultPath + File.separator + "sounds";
+        List<String> sounds = SaveLoadManager.getInstance().getSavedFiles(soundsPath);
+        loadSoundResources(sounds, soundsPath);
+    }
     
     /**
      * The load sounds resource will load an audioNode instead of a normal node 
@@ -104,31 +139,4 @@ public class Resources {
             addResource(name, new AudioNode(assetManager, name));
         }
     }
-
-
-    private void loadModels() {
-        String modelPath = defaultPath + File.separator + "models";
-        List<String> models = SaveLoadManager.getInstance().getSavedFiles(modelPath);
-        loadResources(models, modelPath);
-    }
-
-    //Loads the scenes files. Textures in the scenes folder do not have to be loaded into the geometries.
-    private void loadScenes() {
-        String scenesPath = defaultPath + File.separator + "scenes";
-        List<String> scenes = SaveLoadManager.getInstance().getSavedFiles(scenesPath);
-        loadResources(scenes, scenesPath);
-    }
-
-    private void loadSounds() {
-        String soundsPath = defaultPath + File.separator + "sounds";
-        List<String> sounds = SaveLoadManager.getInstance().getSavedFiles(soundsPath);
-        loadSoundResources(sounds, soundsPath);
-    }
-
-//    private void loadTextures() {
-//        String texturesPath = defaultPath + File.separator + "textures";
-//        List<String> textures = SaveLoadManager.getInstance().getSavedFiles(texturesPath);
-//        loadSoundResources(textures, texturesPath);
-//    }
-    
 }
