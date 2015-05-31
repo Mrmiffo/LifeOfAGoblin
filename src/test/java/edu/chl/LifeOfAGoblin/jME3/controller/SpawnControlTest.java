@@ -52,18 +52,6 @@ public class SpawnControlTest {
 //        }        
      }
 
-
-    @Test
-    
-    public void testSpawn() {
-        SpawnControl control = new SpawnControl();
-        this.loag.getRootNode().attachChild(lvl);
-        lvl.addControl(control);
-        control.spawn(1, Minion.class);
-
-
-    }
-
     @Test
     public void testInitialize() {
     }

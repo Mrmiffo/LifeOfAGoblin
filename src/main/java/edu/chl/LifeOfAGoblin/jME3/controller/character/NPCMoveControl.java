@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.jME3.controller.character;
 
 import com.jme3.scene.Spatial;
@@ -12,8 +8,8 @@ import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.INode;
 
 /**
- *
- * @author Ulrika Uddeborg
+ * A control for controlling NPC movement.
+ * @author Ulrika
  */
 public class NPCMoveControl extends AbstractMoveControl {
 
@@ -23,35 +19,35 @@ public class NPCMoveControl extends AbstractMoveControl {
 
     /**
      * Creates a NPCMoveControl with a default move range and no connected
-     * spatial
+     * spatial.
      */
     public NPCMoveControl() {
-        this(20); //Default start value
+        this(20); //Default start value of idleMoveRange
     }
 
     /**
      * Creates a NPCMoveControl with a specified move range and no connected
-     * spatial
-     *
+     * spatial.
      * @param idleMoveRange the move range
      */
     public NPCMoveControl(float idleMoveRange) {
-        super(0.08f);
+        super(0.09f);
         this.maximumIdleMoveRange = idleMoveRange;
         this.currentMoveRange = maximumIdleMoveRange / 2;
         this.currentDirection = Direction.LEFT;
     }
 
     @Override
-    public void controlUpdate(float tpf) {
+    protected void controlUpdate(float tpf) {
         if (npcModel != null) {
             AIAction action = npcModel.getAIAction();
+            
             switch (action) {
                 case IDLE:
                     if (Math.abs(currentMoveRange) < 0.05f) {
                         currentDirection = (currentDirection == Direction.LEFT)
                                 ? Direction.RIGHT : Direction.LEFT;
-                        currentMoveRange = maximumIdleMoveRange; //10 is full idle range
+                        currentMoveRange = maximumIdleMoveRange;
                     } else {
                         currentMoveRange -= stepWidth;
                     }
