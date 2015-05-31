@@ -40,7 +40,7 @@ public class LevelManager {
      */
     public void initialize() {
         levelList = new HashMap<>();
-        levelList.put(1, new Level("Level1_platform", 1, "magical_theme.wav", new Color(135, 206, 235, 0)));
+        levelList.put(1, new Level("Level1", 1, "magical_theme.wav", new Color(135, 206, 235, 0)));
         levelList.put(2, new Level("Level2", 2, "magical_theme.wav", new Color(135, 206, 235, 0)));
     }
 
