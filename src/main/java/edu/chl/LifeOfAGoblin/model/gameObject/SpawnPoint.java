@@ -36,8 +36,10 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
      */
     @Override
     public void collide(ICollidable collided) {
-        if (!activated && collided.getClass() == Player.class) {
-            spawn();
+        if(collided != null){
+            if (!activated && collided.getClass() == Player.class) {
+                spawn();
+            }
         }
     }
     /**
