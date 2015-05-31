@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.utils;
 
 import com.jme3.input.InputManager;
@@ -16,7 +12,7 @@ import edu.chl.LifeOfAGoblin.model.profile.Keybind;
 import java.util.ArrayList;
 
 /**
- * This is a wrapper clas for the inputManager intended to move actionlistener
+ * This is a wrapper class for the inputManager intended to move actionlistener
  * registration out of the LifeOfAGoblin class.
  * @author Anton
  */
@@ -24,16 +20,12 @@ public class InputManagerWrapper {
     private static InputManagerWrapper instance;
     private InputManager im;
 
-    
-    private InputManagerWrapper(){
-
-    }
     /**
-     * Basice singleton getInstance method.
-     * @return 
+     * Basic singleton getInstance method.
+     * @return the instance
      */
-    public static synchronized InputManagerWrapper getInstance(){
-        if (instance == null){
+    public static synchronized InputManagerWrapper getInstance() {
+        if (instance == null) {
             instance = new InputManagerWrapper();
         }
         return instance;
@@ -46,7 +38,6 @@ public class InputManagerWrapper {
     public void initialize(InputManager inputManager){
         this.im = inputManager;
     }
-    
     
     /**
      * Register an actionlistoner to the input manager. This will cause the input 
@@ -80,9 +71,11 @@ public class InputManagerWrapper {
         im.addRawInputListener(ril);
         
     }
-    /*
-     * Removes the speciified RawInputListener. The input listener will no longer
+    
+    /**
+     * Removes the specified RawInputListener. The input listener will no longer
      * receive triggers.
+     * @param ril the RawInputListener to remove
      */
     public void removeRawInputListener(RawInputListener ril){
         im.removeRawInputListener(ril);
