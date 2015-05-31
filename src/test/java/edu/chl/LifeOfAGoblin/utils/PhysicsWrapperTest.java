@@ -39,7 +39,7 @@ public class PhysicsWrapperTest {
     public void testAdd_Control() {
 
         //tests that method can handle null input
-        PhysicsWrapper.getInstance().add((GhostControl)null);
+        PhysicsWrapper.getInstance().addControl((GhostControl)null);
     }
 
 
