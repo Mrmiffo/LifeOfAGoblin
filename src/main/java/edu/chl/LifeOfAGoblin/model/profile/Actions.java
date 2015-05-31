@@ -13,7 +13,7 @@ public enum Actions {
     WALK_LEFT,
     WALK_RIGHT,
     JUMP,
-    OPEN_MENU;
+    PAUSE;
     private ArrayList<Keybind> keyCodes;
 
     /**
@@ -52,9 +52,15 @@ public enum Actions {
             case "JUMP":
                 return Actions.JUMP;
             case "OPEN_MENU":
-                return Actions.OPEN_MENU;
+                return Actions.PAUSE;
             default:
                 return null;
         }
+    }
+    
+    @Override
+    public String toString() {
+        String name = super.toString();
+        return name.substring(0, 1) + name.substring(1).toLowerCase() ;
     }
 }

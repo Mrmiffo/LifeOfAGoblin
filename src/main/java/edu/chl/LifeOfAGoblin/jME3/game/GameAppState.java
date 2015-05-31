@@ -33,7 +33,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
     private GameHud hud;
     private boolean isPaused;
     private final Actions[] actions = new Actions[] {
-        Actions.OPEN_MENU
+        Actions.PAUSE
     };
     
     /**
@@ -97,7 +97,7 @@ public class GameAppState extends AbstractAppState implements IKeyListener {
 
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (name.equals(Actions.OPEN_MENU.toString()) && isPressed){
+        if (name.equals(Actions.PAUSE.toString()) && isPressed){
             pause();       
         }
     }
