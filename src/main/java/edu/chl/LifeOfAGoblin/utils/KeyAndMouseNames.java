@@ -37,8 +37,8 @@ public class KeyAndMouseNames {
      * @param keybind The keybind to translate
      * @return the name of the key.
      */
-    public String getName(Keybind keybind){
-        switch (keybind.getInputDevice()){
+    public String getName(Keybind keybind) {
+        switch (keybind.getInputDevice()) {
             case KEYBOARD:
                 return keyNames.getName(keybind.getKey());
             case MOUSE_BUTTON:
