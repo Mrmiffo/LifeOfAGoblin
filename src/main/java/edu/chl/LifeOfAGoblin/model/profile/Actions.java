@@ -3,9 +3,9 @@ package edu.chl.LifeOfAGoblin.model.profile;
 import edu.chl.LifeOfAGoblin.utils.InputManagerWrapper;
 import java.util.ArrayList;
 
-
 /**
  * An enum describing all allowed actions, mapped to currently active keybinds.
+ *
  * @author Anton
  */
 public enum Actions {
@@ -14,38 +14,42 @@ public enum Actions {
     WALK_RIGHT,
     JUMP,
     PAUSE;
-    
     private ArrayList<Keybind> keyCodes;
 
     /**
      * Returns the keybinds which invokes the action.
+     *
      * @return a HashMap of Integer/InputDevices pairs that invoke the enum.
      */
     public ArrayList<Keybind> getKeyCodes() {
-        return (ArrayList<Keybind>)keyCodes.clone();
+        return (ArrayList<Keybind>) keyCodes.clone();
     }
 
     /**
-     * Replaces the current keybinds of the action with new ones. Also registers 
+     * Replaces the current keybinds of the action with new ones. Also registers
      * the action to the InputManagerWrapper.
-     * @param newKeyCodes a HashMap of Integer/InputDevice pairs which will invoke the enum.
+     *
+     * @param newKeyCodes a HashMap of Integer/InputDevice pairs which will
+     * invoke the enum.
      */
     public void setKeyCodes(ArrayList<Keybind> newKeyCodes) {
         if (keyCodes != null) {
             keyCodes.clear();
         }
-        keyCodes = (ArrayList<Keybind>)newKeyCodes.clone();
+        keyCodes = (ArrayList<Keybind>) newKeyCodes.clone();
         InputManagerWrapper.getInstance().registerAction(this);
     }
-    
+
     /**
-     * A method used to get the enum of a specific string. Typically used in the 
+     * A method used to get the enum of a specific string. Typically used in the
      * GUI where Nifty XML does not allow java code but only strings.
+     *
      * @param actionString the string of the action
-     * @return the action related to the string. If no such action exist will return null.
+     * @return the action related to the string. If no such action exist will
+     * return null.
      */
-    public static Actions findActionByName(String actionString){
-        switch (actionString){
+    public static Actions findActionByName(String actionString) {
+        switch (actionString) {
             case "WALK_LEFT":
                 return Actions.WALK_LEFT;
             case "WALK_RIGHT":
@@ -58,10 +62,9 @@ public enum Actions {
                 return null;
         }
     }
-    
-    @Override
-    public String toString() {
-        String name = super.toString();
-        return name.substring(0, 1) + name.substring(1).toLowerCase() ;
-    }
+//    @Override
+//    public String toString() {
+//        String name = super.toString();
+//        return name.substring(0, 1) + name.substring(1).toLowerCase() ;
+//    }
 }
