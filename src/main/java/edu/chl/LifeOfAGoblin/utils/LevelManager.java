@@ -14,10 +14,17 @@ public class LevelManager {
     private HashMap<Integer, Level> levelList;
     private static LevelManager instance;
     
+    /**
+     * Creates an instance of LevelManager.
+     */
     private LevelManager(){
         
     }
     
+    /**
+     * Returns the singleton instance of LevelManager.
+     * @return the instance of LevelManager
+     */
     public static synchronized LevelManager getInstance(){
         if (instance == null){
             instance = new LevelManager();
