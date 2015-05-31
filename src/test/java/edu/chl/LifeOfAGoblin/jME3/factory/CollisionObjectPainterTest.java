@@ -40,6 +40,8 @@ public class CollisionObjectPainterTest {
         sp = new SpawnPoint(1, Minion.class, 1);
         node1 = new Node();
         node2 = new Node();
+        node1.setUserData("nodeType", "");
+        node2.setUserData("nodeType", "FINALCHECKPOINT");
     }
     
     @After

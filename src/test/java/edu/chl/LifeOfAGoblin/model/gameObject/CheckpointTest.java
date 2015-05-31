@@ -121,6 +121,7 @@ public class CheckpointTest {
        assertTrue(cp1.isActivated());
        
        //tests that method can handle null input
+       cp1.inactivate();
        cp1.collide(null);
        
     }

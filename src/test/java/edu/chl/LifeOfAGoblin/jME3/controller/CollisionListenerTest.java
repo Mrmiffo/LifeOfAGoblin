@@ -102,7 +102,6 @@ public class CollisionListenerTest {
 
         listener.collision(pce1);
         listener.collision(pce2);
-        listener.collision(pce3);
         verify(testCheck, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
         verify(testSpawn, times(1)).collide(((ICollidable)node1.getControl(ModelControl.class).getModel()));
         
