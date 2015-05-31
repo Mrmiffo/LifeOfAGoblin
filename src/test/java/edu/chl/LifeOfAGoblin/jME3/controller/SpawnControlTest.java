@@ -59,7 +59,7 @@ public class SpawnControlTest {
         SpawnControl control = new SpawnControl();
         this.loag.getRootNode().attachChild(lvl);
         lvl.addControl(control);
-        control.spawn(1, new Minion());
+        control.spawn(1, Minion.class);
 
 
     }

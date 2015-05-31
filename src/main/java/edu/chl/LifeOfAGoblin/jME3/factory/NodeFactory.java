@@ -30,18 +30,16 @@ import java.util.List;
  */
 public class NodeFactory {
     
-    public static Node createNode(ISpawnable type){
+    public static Node createNode(Class<? extends ISpawnable> type){
         Node node = new Node();
-        if (type instanceof AbstractCharacter) {
-            if (type instanceof AbstractNPC) {
-                if (type instanceof Minion) {
+        if (type == Minion.class) {
                     CharacterPainter.createCharacter(node, new Minion());
-                } else if (type instanceof Boss) {
+               /* } else if (type instanceof Boss) {
                     CharacterPainter.createCharacter(node, new Boss());
                 } 
             } else if (type instanceof Player) {
                 CharacterPainter.createCharacter(node, new Player());
-            }
+            }*/
         }
         return node;
     }

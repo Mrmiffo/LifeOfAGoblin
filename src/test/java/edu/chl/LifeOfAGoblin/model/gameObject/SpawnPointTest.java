@@ -35,8 +35,8 @@ public class SpawnPointTest {
     //setup 
     Profile testProfile = new Profile("testProfile");
     Profile.setActiveProfile(testProfile);
-    SpawnPoint sp1 = new SpawnPoint(1, new Minion(), 1.0f);
-    SpawnPoint sp2 = new SpawnPoint(2, new Minion(), 1);
+    SpawnPoint sp1 = new SpawnPoint(1, Minion.class, 1.0f);
+    SpawnPoint sp2 = new SpawnPoint(2, Minion.class, 1);
 
     // tests that collide is not run on an activated spawnpoint
     sp1.collide(new Player());

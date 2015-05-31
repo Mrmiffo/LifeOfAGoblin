@@ -17,7 +17,7 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
     private int amount;
     private boolean activated;
     private float width;
-    private ISpawnable spawnType;
+    private Class<? extends ISpawnable> spawnType;
     
      /**
      * Constructor for creating a Spawnpoint
@@ -25,7 +25,7 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
      * @param amount how many spawnable should spawn
      * @param type what type of spawnable should spawn
      */
-     public SpawnPoint(int amount, ISpawnable spawnType, float width) {
+     public SpawnPoint(int amount, Class<? extends ISpawnable> spawnType, float width) {
          this.amount = amount;
          this.spawnType = spawnType;
          this.width = width;
@@ -77,7 +77,7 @@ public class SpawnPoint extends AbstractGameObject implements ICollidable, IActi
         return width;
     }
     
-    public ISpawnable getType(){
+    public Class<? extends ISpawnable> getType(){
         return this.spawnType;
     }
     
