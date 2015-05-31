@@ -20,6 +20,10 @@ public class InputManagerWrapper {
     private static InputManagerWrapper instance;
     private InputManager im;
 
+    private InputManagerWrapper() {
+        
+    }
+    
     /**
      * Basic singleton getInstance method.
      * @return the instance
