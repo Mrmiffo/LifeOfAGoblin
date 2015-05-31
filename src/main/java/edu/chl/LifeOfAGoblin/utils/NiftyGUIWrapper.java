@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.chl.LifeOfAGoblin.utils;
 
 import com.jme3.app.Application;
@@ -50,8 +46,8 @@ public class NiftyGUIWrapper {
     }
     
     /**
-     * Loads a style
-     * @param file 
+     * Loads a style from a file
+     * @param file the file containing the style
      */
     public void loadStyleFile(String file){
         nifty.loadStyleFile(file);
@@ -59,7 +55,7 @@ public class NiftyGUIWrapper {
     
     /**
      * Loads a control file for nifty.
-     * @param file 
+     * @param file the control file
      */
     public void loadControlFile(String file){
         nifty.loadControlFile(file); 
@@ -85,8 +81,8 @@ public class NiftyGUIWrapper {
     }
     
     /**
-     * returns the nifty instance. Needed when building the nifty screens.
-     * @return the nifty instance.
+     * Returns the nifty instance. Needed when building the nifty screens.
+     * @return the nifty instance
      */
     public Nifty getNifty(){
         return nifty;
