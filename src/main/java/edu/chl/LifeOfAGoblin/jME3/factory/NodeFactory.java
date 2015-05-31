@@ -13,14 +13,11 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import edu.chl.LifeOfAGoblin.jME3.controller.CollisionListener;
 import edu.chl.LifeOfAGoblin.model.ISpawnable;
-import edu.chl.LifeOfAGoblin.model.character.AbstractCharacter;
-import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
 import edu.chl.LifeOfAGoblin.model.gameObject.Level;
 import edu.chl.LifeOfAGoblin.utils.PhysicsWrapper;
 import edu.chl.LifeOfAGoblin.utils.Resources;
 import edu.chl.LifeOfAGoblin.model.character.Boss;
 import edu.chl.LifeOfAGoblin.model.character.Minion;
-import edu.chl.LifeOfAGoblin.model.character.Player;
 import java.util.List;
 
 /**
@@ -32,15 +29,13 @@ public class NodeFactory {
     
     public static Node createNode(Class<? extends ISpawnable> type){
         Node node = new Node();
+        
         if (type == Minion.class) {
-                    CharacterPainter.createCharacter(node, new Minion());
-               /* } else if (type instanceof Boss) {
-                    CharacterPainter.createCharacter(node, new Boss());
-                } 
-            } else if (type instanceof Player) {
-                CharacterPainter.createCharacter(node, new Player());
-            }*/
+            CharacterPainter.createCharacter(node, new Minion());
+        } else if (type  == Boss.class) {
+            CharacterPainter.createCharacter(node, new Boss());
         }
+        
         return node;
     }
     

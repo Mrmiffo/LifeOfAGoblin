@@ -1,10 +1,12 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
+import edu.chl.LifeOfAGoblin.model.ISpawnable;
+
 /**
  * The AbstractNPC class is the super class to all characters that use AI.
  * @author Anton
  */
-public abstract class AbstractNPC extends AbstractCharacter implements IAI {
+public abstract class AbstractNPC extends AbstractCharacter implements IAI, ISpawnable {
    
     protected AIAction activeAction;
     private String targetNodeType;

@@ -64,8 +64,6 @@ public class LevelNodeBuilder {
             int amount = node.getUserData("AMOUNT");
             String spawnType = node.getUserData("TYPE");
             switch(spawnType) {
-                case "PLAYER":
-                    return new SpawnPoint(amount, Player.class, width);
                 case "BOSS":
                     return new SpawnPoint(amount, Boss.class, width);
                 case "MINION":
