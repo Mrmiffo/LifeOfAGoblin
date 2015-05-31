@@ -31,10 +31,10 @@ import edu.chl.LifeOfAGoblin.model.character.AbstractNPC;
  *
  * @author kakan
  */
-class CharacterFactory {
+class CharacterPainter {
 
     /**
-     * Creates a node representing any character.
+     * Paints a node representing any character.
      *
      * @param node the node which will represent the character
      * @param character the character which the node will represent.
@@ -47,10 +47,10 @@ class CharacterFactory {
         makeSolid(node);
         makeMoveable(node);
         if (character.getClass() == Player.class) {
-            createPlayer(node);
+            paintPlayer(node);
         }
         if (character instanceof AbstractNPC) {
-            createNPC(node, (AbstractNPC) character);
+            paintNPC(node, (AbstractNPC) character);
         }
         provideGraphicalRepresentation(node);
     }
@@ -60,7 +60,7 @@ class CharacterFactory {
      *
      * @param node the node
      */
-    static void createPlayer(Node node) {
+    static void paintPlayer(Node node) {
         //A control which use the player model data to update the game hud health bar.
         node.addControl(new PlayerHealthControl());
     }
@@ -71,7 +71,7 @@ class CharacterFactory {
      * @param node the node
      * @param npc the model of the NPC
      */
-    static void createNPC(Node node, AbstractNPC npc) {
+    static void paintNPC(Node node, AbstractNPC npc) {
         enableReaction(node); //Adds AI
         addWeapon(node, npc);
     }
@@ -132,17 +132,8 @@ class CharacterFactory {
      * @param shape the template for the shape of the GhostControl.
      */
     private static void attachGhostControl(Node node, BoxCollisionShape shape) {
-        //Could we use another abstraction? ICollidable? AbstractGameObject?
-        AbstractCharacter model = (AbstractCharacter) node.getControl(ModelControl.class).getModel();
-
         GhostControl ghost = new GhostControl(shape);
         PhysicsWrapper.getInstance().add(ghost);
-
-        //TODO add more special cases
-        if (!(model instanceof Player)) {
-            //sets what to collide with
-            ghost.setCollideWithGroups(2);
-        }
 
         //Attaching ghost control
         node.addControl(ghost);
@@ -192,19 +183,16 @@ class CharacterFactory {
     }
 
     private static void addWeapon(Node node, AbstractNPC npc) {
-
         Node weaponNode = new Node();
         Weapon weapon = npc.getWeapon();
 
         weaponNode.addControl(new ModelControl(weapon));
+        
+        BoxCollisionShape ghostShape = new BoxCollisionShape(new Vector3f(1,
+                weapon.getCollisionHeight(), weapon.getCollisionWidth()));
 
-        BoxCollisionShape ghostShape = new BoxCollisionShape(new Vector3f(weapon.getCollisionWidth(),
-                weapon.getCollisionHeight(), 1));
+        attachGhostControl(weaponNode, ghostShape);
 
-        GhostControl ghost = new GhostControl(ghostShape);
-        PhysicsWrapper.getInstance().add(ghost);
-
-        weaponNode.addControl(ghost);
         node.attachChild(weaponNode);
     }
 }

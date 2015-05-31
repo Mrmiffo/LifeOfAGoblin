@@ -123,8 +123,8 @@ public class CharacterFactoryTest {
     @Test
     public void testCreateCharacter() {
         //setup
-        CharacterFactory.createCharacter(node1, player);
-        CharacterFactory.createCharacter(node2, minion);
+        CharacterPainter.createCharacter(node1, player);
+        CharacterPainter.createCharacter(node2, minion);
         Control c1;
         Control c2;
         

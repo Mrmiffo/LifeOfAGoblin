@@ -28,7 +28,7 @@ public class LevelNodeBuilder {
         if(node.getUserDataKeys().size() > 0) {
             INode model = nodeToModel(node);
             if (model instanceof Player) {
-                CharacterFactory.createCharacter(node, (Player)model);
+                CharacterPainter.createCharacter(node, (Player)model);
                 
                 ChaseCamera chaseCam = new ChaseCamera(cam);
                 chaseCam.setRotationSensitivity(0);
@@ -36,7 +36,7 @@ public class LevelNodeBuilder {
                 chaseCam.setDefaultVerticalRotation(FastMath.PI/9); //20 degrees
                 node.addControl(chaseCam);
             } else if (model instanceof AbstractNPC) {
-                CharacterFactory.createCharacter(node, (AbstractNPC) model);
+                CharacterPainter.createCharacter(node, (AbstractNPC) model);
             } else if (model instanceof ICollidable){
                 CollisionObjectPainter.paintCollisionObject((ICollidable)model, node);
             }
