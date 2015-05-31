@@ -14,6 +14,7 @@ public enum Actions {
     WALK_RIGHT,
     JUMP,
     PAUSE;
+    
     private ArrayList<Keybind> keyCodes;
 
     /**
