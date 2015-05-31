@@ -51,7 +51,7 @@ public class SpawnControl extends AbstractControl {
 
     @Override
     protected void controlUpdate(float f) {
-        if (!this.activatable.isActivated() && !hasSpawned) {
+        if (this.activatable.isActivated() && !hasSpawned) {
             this.hasSpawned = true;
             this.activatable.activate();
             if (this.activatable instanceof SpawnPoint) {
