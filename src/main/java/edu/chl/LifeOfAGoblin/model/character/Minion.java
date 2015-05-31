@@ -25,21 +25,11 @@ public class Minion extends AbstractNPC {
     public Minion() {
         this("PLAYER");
     }
-    /**
-     * {@inheritDoc}
-     */
-    public Minion(String target){
-        this(target.toUpperCase(), 1, aggressionRange, new MeleeWeapon());   
-    }
     
-    /**
-     * {@inheritDoc}
-     * @param healthMultiplyer the multiplier to make the Minion tougher.
-     */
-    public Minion(String target, float healthMultiplyer, float aggressionRange, Weapon weapon) {
-        super((int)healthMultiplyer * maxHealth, model, height, width,
+    public Minion(String target) {
+        super(maxHealth, model, height, width,
                 collisionHeight, collisionWidth, weight, baseDamage, jumpStrength,
-                target, aggressionRange, weapon);
+                target.toUpperCase(), aggressionRange, new MeleeWeapon());
     }
     
     /**
