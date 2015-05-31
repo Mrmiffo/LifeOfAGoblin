@@ -53,9 +53,11 @@ public class AbstractCharacterTest {
         
         //tests that health is decreased with one
         p.decreaseHealth();
+        System.out.println(p.getHealth());
         assertTrue(p.getHealth() == 4);
         
         //tests that player dies if health is decreased enough
+        p = new Player();
         p.setHealth(1);
         p.decreaseHealth();
         assertTrue(p.isDead());
