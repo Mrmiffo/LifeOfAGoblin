@@ -37,7 +37,7 @@ public class LifeOfAGoblin extends SimpleApplication {
         setupProfile();
         setupAppStates();
         
-        StateManagerWrapper.getInstance().activateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
+        StateManagerWrapper.getInstance().attachState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
         
         //Removes statistics
         setDisplayFps(false);
@@ -86,7 +86,7 @@ public class LifeOfAGoblin extends SimpleApplication {
         MainMenuAppState mainMenu = new MainMenuAppState();
         StateManagerWrapper.getInstance().addState(gameState);
         StateManagerWrapper.getInstance().addState(mainMenu);
-        StateManagerWrapper.getInstance().activateState(gameState);
-//        StateManagerWrapper.getInstance().deactivateState(gameState);
+        StateManagerWrapper.getInstance().attachState(gameState);
+//        StateManagerWrapper.getInstance().detachState(gameState);
     }
 }

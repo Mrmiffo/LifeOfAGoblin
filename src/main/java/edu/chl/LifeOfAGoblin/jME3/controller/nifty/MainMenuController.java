@@ -59,10 +59,10 @@ public class MainMenuController implements ScreenController{
         
         //Get the gameAppState and set the level to start. Might need rework for pause and restart to work...
         GameAppState appState = (GameAppState)StateManagerWrapper.getInstance().getAvailableState(GameAppState.class);
-        StateManagerWrapper.getInstance().activateState(appState);
+        StateManagerWrapper.getInstance().attachState(appState);
         appState.setLevelToStart(selectedLevel);
         appState.startLevel();
-        StateManagerWrapper.getInstance().deactivateState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
+        StateManagerWrapper.getInstance().detachState(StateManagerWrapper.getInstance().getAvailableState(MainMenuAppState.class));
     }
     
     /**

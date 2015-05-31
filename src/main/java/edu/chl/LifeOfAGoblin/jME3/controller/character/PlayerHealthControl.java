@@ -13,14 +13,16 @@ import edu.chl.LifeOfAGoblin.model.character.Player;
 import edu.chl.LifeOfAGoblin.model.profile.Profile;
 
 /**
- * A control for updating the game hud. Also checks if player is dead, if so respawn the character.
+ * A control for updating the game hud. Also checks if player is dead, if so
+ * respawn the character.
+ *
  * @author Anton & Fredrik
  */
 public class PlayerHealthControl extends AbstractControl {
-    
+
     private int lastHealth = 0;
     private int lastMaxHealth = 0;
-    
+
     @Override
     protected void controlUpdate(float tpf) {
         Player player = (Player) spatial.getControl(ModelControl.class).getModel();
@@ -28,7 +30,7 @@ public class PlayerHealthControl extends AbstractControl {
         if (player.getHealth() != lastHealth || player.getMaxHealth() != lastMaxHealth) {
             GameHudController.updateHudHealthbar(player.getHealth(), player.getMaxHealth());
             //Checks if the player took damage, if so flash the screen.
-            if (player.getHealth() < lastHealth){
+            if (player.getHealth() < lastHealth) {
                 GameHudController.flashOnDamage();
             }
             lastHealth = player.getHealth();
@@ -36,9 +38,9 @@ public class PlayerHealthControl extends AbstractControl {
         }
         if (player.isDead()) {
             Node scene = spatial.getParent();
-            
+
             //Loop through all the pre-placed nodes in the current scene
-            for (Spatial child: scene.getChildren()) {
+            for (Spatial child : scene.getChildren()) {
                 if (child.getUserDataKeys().contains("nodeType")) {
                     //Search for all checkpoints
                     if (child.getUserData("nodeType").equals("CHECKPOINT")) {
@@ -55,13 +57,11 @@ public class PlayerHealthControl extends AbstractControl {
                         }
                     }
                 }
-            }   
+            }
         }
     }
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
-        
     }
-    
 }

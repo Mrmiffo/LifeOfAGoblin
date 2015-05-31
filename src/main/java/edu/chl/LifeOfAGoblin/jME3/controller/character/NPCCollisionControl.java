@@ -26,39 +26,40 @@ import java.util.List;
  * @author Ulrika
  */
 public class NPCCollisionControl extends AbstractControl {
+
     /**
-     * 
+     *
      * @param collided the object with which the GhostControl has collided with
      */
     public void updateCollisionInfo(Spatial npc, Spatial collided) {
         if (npc != collided && collided.getControl(ModelControl.class).getModel() instanceof AbstractCharacter) {
-        INode n = npc.getControl(ModelControl.class).getModel();
-        AbstractNPC npcModel = (AbstractNPC)n;
-        
-        Vector3f npcLocation = npc.getControl(CharacterControl.class).getPhysicsLocation();
-        
-        float distance;
-        Direction direction;
-        float npcX = npcLocation.getX();
-        float collidedX = collided.getControl(CharacterControl.class).getPhysicsLocation().getX();
-        if (npcX > collidedX) {
-            distance = npcX - collidedX;
-            direction = Direction.LEFT;
-        } else {
-            distance = collidedX - npcX;
-            direction = Direction.RIGHT;
-        }
-        
-        /*Direction direction;
-        if (distance >= 0) {
-            direction = Direction.LEFT;
-        } else {
-            direction = Direction.RIGHT;
-        }*/
-        
-        INode collideModel = collided.getControl(ModelControl.class).getModel();
+            INode n = npc.getControl(ModelControl.class).getModel();
+            AbstractNPC npcModel = (AbstractNPC) n;
 
-        npcModel.updateAIAction(FastMath.abs(distance), direction, ((String)collided.getUserData("nodeType")));
+            Vector3f npcLocation = npc.getControl(CharacterControl.class).getPhysicsLocation();
+
+            float distance;
+            Direction direction;
+            float npcX = npcLocation.getX();
+            float collidedX = collided.getControl(CharacterControl.class).getPhysicsLocation().getX();
+            if (npcX > collidedX) {
+                distance = npcX - collidedX;
+                direction = Direction.LEFT;
+            } else {
+                distance = collidedX - npcX;
+                direction = Direction.RIGHT;
+            }
+
+            /*Direction direction;
+             if (distance >= 0) {
+             direction = Direction.LEFT;
+             } else {
+             direction = Direction.RIGHT;
+             }*/
+
+            INode collideModel = collided.getControl(ModelControl.class).getModel();
+
+            npcModel.updateAIAction(FastMath.abs(distance), direction, ((String) collided.getUserData("nodeType")));
         }
     }
 
@@ -68,13 +69,13 @@ public class NPCCollisionControl extends AbstractControl {
         for (PhysicsCollisionObject pco : overlapping) {
             Object userObject = pco.getUserObject();
             if (userObject.getClass() == Node.class) {
-                Node node = (Node)userObject;
+                Node node = (Node) userObject;
                 if (node.getControl(ModelControl.class) != null) {
                     updateCollisionInfo(this.spatial, node);
                 }
             }
         }
-    } 
+    }
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
