@@ -10,13 +10,21 @@ import edu.chl.LifeOfAGoblin.model.profile.Keybind;
  * keyboard keys.
  * @author Anton
  */
-public class KeyAndMouseNames{
+public class KeyAndMouseNames {
     private static KeyAndMouseNames instance;
     private KeyNames keyNames;
+    
+    /**
+     * Creates an instance of KeyAndMouseNames.
+     */
     private KeyAndMouseNames(){
         keyNames = new KeyNames();
     }
     
+    /**
+     * Returns the singleton instance of KeyAndMouseNames.
+     * @return the instance of KeyAndMouseNames
+     */
     public static synchronized KeyAndMouseNames getInstance(){
         if (instance == null){
             instance = new KeyAndMouseNames();
