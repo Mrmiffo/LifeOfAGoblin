@@ -8,7 +8,6 @@ import com.jme3.bullet.control.CharacterControl;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import edu.chl.LifeOfAGoblin.jME3.factory.NodeFactory;
 import edu.chl.LifeOfAGoblin.model.ISpawnable;
@@ -28,12 +27,12 @@ public class SpawnControl extends AbstractControl {
     private boolean hasSpawned = false;
 
     /**
-     * creates a number of spawnables and puts them in the game
+     * Creates a number of spawnables and puts them in the game
      *
      * @param amount the number of spawnables to put in the game
      * @param type the type of spawnable to put in the game
      */
-    public void spawn(int amount, Class<? extends ISpawnable> type) {
+    private void spawn(int amount, Class<? extends ISpawnable> type) {
         if (amount > 0) {
             for (int i = 0; i < amount; i++) {
                 Node spawn = NodeFactory.createNode(type);
@@ -43,6 +42,9 @@ public class SpawnControl extends AbstractControl {
         }
     }
 
+    /**
+     * Initializes the control.
+     */
     public void initialize() {
         this.activatable = (IActivatable) this.getSpatial().getControl(ModelControl.class).getModel();
     }
