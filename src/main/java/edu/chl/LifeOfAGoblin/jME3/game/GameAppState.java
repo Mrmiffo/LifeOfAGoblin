@@ -21,104 +21,121 @@ import edu.chl.LifeOfAGoblin.utils.LevelManager;
 import edu.chl.LifeOfAGoblin.utils.StateManagerWrapper;
 
 /**
- * The game appstate is the state in which the game itself is run and initialized. 
+ * The game appstate is the state in which the game itself is run and
+ * initialized.
+ *
  * @author Anton
  */
 public class GameAppState extends AbstractAppState implements IKeyListener {
+
     private Node rootNode;
     private Application app;
-    private int levelToStart;
     private Level level;
     private Node levelNode;
     private GameHud hud;
     private boolean isPaused;
-    private final Actions[] actions = new Actions[] {
+    private final Actions[] actions = new Actions[]{
         Actions.PAUSE
     };
-    
+
     /**
-     * Creates a GameAppState with a default first level 
+     * Creates a GameAppState with a default first level
      */
     public GameAppState() {
         this(1);
     }
-    
+
     /**
-     * Creates a GameAppState with a specified first level 
+     * Creates a GameAppState with a specified first level
      */
-    public GameAppState(int firstLevelToStart){
+    public GameAppState(int firstLevelToStart) {
         setLevelToStart(firstLevelToStart);
         hud = new GameHud();
         NiftyGUIWrapper.getInstance().addScreen(hud.getScreenName(), hud.getScreen());
     }
-    
+
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
-        rootNode = ((SimpleApplication)app).getRootNode();
+        rootNode = ((SimpleApplication) app).getRootNode();
         this.app = app;
         InputManagerWrapper.getInstance().registerListener(this);
     }
-    
+
     @Override
     public void cleanup() {
         super.cleanup();
+        detachPhysics();
         stopMusic();
         rootNode.detachAllChildren();
     }
-    
+
     private void stopMusic() {
-        for (Spatial node: (levelNode.getChildren())){
-            if (node instanceof AudioNode){
-                ((AudioNode)node).stop();
+        if (levelNode != null && levelNode.getChildren().size() > 0) {
+            for (Spatial node : (levelNode.getChildren())) {
+                if (node instanceof AudioNode) {
+                    ((AudioNode) node).stop();
+                }
             }
         }
     }
-        
+
     /**
      * Updates the the next level that should start.
+     *
      * @param levelno the number of the next level
      */
     public void setLevelToStart(int levelno) {
-        levelToStart = levelno;
-        level = LevelManager.getInstance().getLevel(levelToStart);
+        level = LevelManager.getInstance().getLevel(levelno);
     }
 
     /**
      * Starts the level specified by setLevelToStart.
      */
     public void startLevel() {
-        //Create a new hud and display it.
-        app.getViewPort().setBackgroundColor(ColorRGBA.Cyan);
-        NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
+        app.getViewPort().setBackgroundColor(new ColorRGBA(0.46f, 0.71f, 1, 0));
+        attachPhysics();
+        displayHud();
         levelNode = NodeFactory.createLevelNode(level, app.getCamera());
         rootNode.attachChild(levelNode);
     }
 
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (name.equals(Actions.PAUSE.toString()) && isPressed){
-            pause();       
+        if (name.equals(Actions.PAUSE.toString()) && isPressed) {
+            pause();
         }
     }
-    
-    public void pause(){
-       StateManagerWrapper sm = StateManagerWrapper.getInstance();
+
+    public void pause() {
+        StateManagerWrapper sm = StateManagerWrapper.getInstance();
         if (isPaused) {
             GameHudController.turnOpaque();
             isPaused = false;
             setEnabled(true);
-            sm.enableState(sm.getAvailableState(BulletAppState.class));
+            sm.activateState(sm.getAvailableState(BulletAppState.class));
         } else {
             GameHudController.turnGray();
             isPaused = true;
             setEnabled(false);
-            sm.disableState(sm.getAvailableState(BulletAppState.class));
+            sm.deactivateState(sm.getAvailableState(BulletAppState.class));
         }
     }
 
     @Override
     public Actions[] getKeyBinds() {
-        return (Actions[])actions.clone();
+        return (Actions[]) actions.clone();
+    }
+
+    private void attachPhysics() {
+        StateManagerWrapper.getInstance().attachState(StateManagerWrapper.getInstance().getAvailableState(BulletAppState.class));
+    }
+
+    private void displayHud() {
+        NiftyGUIWrapper.getInstance().goToScreen(hud.getScreenName());
+    }
+
+    private void detachPhysics() {
+        StateManagerWrapper.getInstance().detachState(StateManagerWrapper.getInstance().getActiveState(BulletAppState.class));
     }
 }
