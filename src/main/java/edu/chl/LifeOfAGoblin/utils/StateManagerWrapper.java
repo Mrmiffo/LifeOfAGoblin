@@ -61,7 +61,7 @@ public class StateManagerWrapper {
      * if it does not exist there.
      * @param as the state to activate
      */
-    public void activateState(AppState as){
+    public void attachState(AppState as){
         sm.attach(as);
 
         if (!states.contains(as)){
@@ -74,7 +74,7 @@ public class StateManagerWrapper {
      * Deactivates the states. NOTE: State will still be available in the list of available states.
      * @param as the state to deactivate
      */
-    public void deactivateState(AppState as){
+    public void detachState(AppState as){
         sm.detach(as);
     }
     
@@ -82,7 +82,7 @@ public class StateManagerWrapper {
      * Enables the app state.
      * @param as the app state to enable
      */
-    public void enableState(AppState as) {
+    public void activateState(AppState as) {
         if (!as.isEnabled()) {
             as.setEnabled(true);
         }
@@ -92,7 +92,7 @@ public class StateManagerWrapper {
      * Disables the app state.
      * @param as the app state to disable
      */
-    public void disableState(AppState as) {
+    public void deactivateState(AppState as) {
         if (as.isEnabled()) {
             as.setEnabled(false);
         }
