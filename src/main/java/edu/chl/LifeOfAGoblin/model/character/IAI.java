@@ -1,7 +1,7 @@
 package edu.chl.LifeOfAGoblin.model.character;
 
 /**
- *
+ * An interface that provides basic artificial intelligence.
  * @author Ulrika
  */
 public interface IAI {

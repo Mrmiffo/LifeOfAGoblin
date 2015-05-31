@@ -27,11 +27,12 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
      * Default constructor for the abstract character. To be called by subclasses
      * to populate needed values. Also tells the Resource class to load needed model. 
      * This reduce the need of loading resources from harddrive during gameplay.
-     * @param collisionGroup which group of collidable object 
      * @param maxHealth the max health of the character.
      * @param model the model texture to load for the character. Must be placed in the assets/model folder.
      * @param height the height of the character.
      * @param width the width (along the X-axis) of the character.
+     * @param collisionHeight the height within which the character can collide. 
+     * @param collisionWidth the width within which the character can collide.
      * @param weight the weight of the character.
      * @param baseDamage the character's unmodified damage.
      * @param jumpStrength the character reaches by jumping.
@@ -69,11 +70,15 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     }
     
     /**
-     * Sets the character health. If the newHealth <= 0, the die()-method is invoked.
-     * @param newHealth 
+     * Sets the character health. The character dies if the parameter is equal
+     * to or less than 0.
+     * @param newHealth the health to set the character's health to. Cannot be higher than the character's max health.
      */
     public void setHealth(int newHealth){
-        health = newHealth;
+        if (newHealth <= maxHealth) {
+            health = newHealth;
+        }
+        
         if (health <= 0){
             die();
         }
@@ -81,7 +86,7 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     
     /**
      * Decreases the character's health with 1. If the health becomes
-     * equal to 0 the character dies. 
+     * equal to 0 the character dies.
      */
     public void decreaseHealth() {
         if (health > 0) {
@@ -94,7 +99,7 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     }
         
     /**
-     * Increases the character's health with 1.
+     * Increases the character's health with 1 if health is less than maximum health.
      */
     public void increaseHealth() {
         if (health < maxHealth) {
@@ -112,7 +117,7 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     
     /**
      * Method to set the max health.
-     * @param newMaxHealth The nex max health of the character.
+     * @param newMaxHealth The new max health of the character.
      */
     public void setMaxHealth(int newMaxHealth){
         maxHealth = newMaxHealth;
@@ -158,14 +163,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     public float getJumpStrength() {
         return jumpStrength;
     }
-    
-    /**
-     * The default behaviour of a character when colliding with something
-     */
-    @Override
-    public void collide(ICollidable collided) {
-        //TODO add implementation (if necessary)  
-    }
 
     @Override
     public float getCollisionHeight() {
@@ -183,7 +180,6 @@ public abstract class AbstractCharacter extends AbstractGameObject implements IM
     @Override
     public void die() {
         this.isDead = true;
-        //animator.runDeathAnimation()  this is what these are actually good for
     }
     
     /**

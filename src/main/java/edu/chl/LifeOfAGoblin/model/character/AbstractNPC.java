@@ -20,10 +20,14 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI, ISpa
      * @param model the model texture to load for the NPC. Must be placed in the assets/model folder.
      * @param height the height of the NPC.
      * @param width the width (along the X-axis) of the NPC.
+     * @param collisionHeight the height within which the NPC can collide. 
+     * @param collisionWidth the width within which the NPC can collide.
      * @param weight the weight of the NPC.
      * @param baseDamage the NPC's unmodified damage.
      * @param jumpStrength the height the NPC reaches by jumping.
-     * @param target the target that the NPC should be hostile toward
+     * @param target the target that the NPC should be hostile toward.
+     * @param aggressionRange the range within which the NPC is aggressive.
+     * @param weapon which weapon the NPC uses.
      */
     protected AbstractNPC(int maxHealth, String model, float height, float width,
                           float collisionHeight, float collisionWidth, float weight,
@@ -73,6 +77,10 @@ public abstract class AbstractNPC extends AbstractCharacter implements IAI, ISpa
         return activeAction;
     }
     
+    /**
+     * Returns the weapon of the NPC.
+     * @return the weapon of the NPC.
+     */
     public Weapon getWeapon() {
         return weapon;
     }
