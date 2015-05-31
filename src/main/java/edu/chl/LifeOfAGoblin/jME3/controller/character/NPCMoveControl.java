@@ -38,7 +38,7 @@ public class NPCMoveControl extends AbstractMoveControl {
     }
 
     @Override
-    public void controlUpdate(float tpf) {
+    protected void controlUpdate(float tpf) {
         if (npcModel != null) {
             AIAction action = npcModel.getAIAction();
             
